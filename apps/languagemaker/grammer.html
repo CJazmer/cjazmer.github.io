@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Language Dictionary</title>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Search words in different languages.">
+	<meta name="keywords" content="random sentence generator, funny">
+	<style>
+		h3{
+			margin: 10px 0px 0px 0px;
+			padding: .5em;
+			background-color: goldenrod;
+			color: black;
+		}
+        table{
+            background-color: wheat;
+            width: fit-content;
+        }
+        table tr th{
+            color: gold;
+            background-color: black;
+            text-align: right;
+            padding-right: .3em;
+        }
+        table tr td{
+            color: black;
+            background-color: white;
+            text-align: left;
+            padding: 0em 2em 0em 0em;
+        }
+        .tablesholder{
+            position:relative;
+            background-color: gray;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            padding: .5em 0em .5em 0em;
+        }
+        .tabletitle{
+            width: auto;
+            margin: 0px;
+            background-color: gold;
+            color: black;
+            font-weight: bolder;
+        }
+	</style>
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(76 225 0)">
+		<div class="themeblackgoldback">
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+
+			<div id="navflex">
+
+                <h3>Plural Nouns</h3>
+				<div>Noun + Plural(s) + Case</div>
+                <div class="tablesholder" id="pluralmarker">
+                    <div style="width: fit-content;">
+                        <p class="tabletitle">Plural Marker</p>
+                        <table>
+                            <tr><th>Marker</th><td>ti</td></tr>
+                        </table>
+                    </div>
+                </div>                
+				
+                <h3>Conjugation Verbs</h3>
+                <div style="display: flex; background-color: darkgoldenrod;">
+                    <label for="conjugationtype" style="margin-right: .2em;">Type:</label>
+                    <select name="conjugationtype" id="conjugationtype" style="width: 100%">
+                        <option value="african">African (verb + tense + person)</option>
+                        <option value="european">European (verb + tense & person)</option>
+                        <option value="english">English (just use pronouns)</option>
+                    </select>
+                </div>
+                
+        <div class="tablesholder" id="african">
+            <div style="width: fit-content;">
+                <p class="tabletitle">Tenses</p>
+                <table>
+                    <tr><th>Future</th><td>pa</td></tr>
+                    <tr><th>Present</th><td>ta</td></tr>
+                    <tr><th>Past</th><td>ka</td></tr>
+                </table>
+            </div>
+            <div style="width: fit-content;">
+                <p class="tabletitle">Conjugation</p>
+                <table>
+                    <tr><th>I</th><td>ti</td><th>we</th><td>tu</td></tr>
+                    <tr><th>you</th><td>bi</td><th>yall</th><td>bu</td></tr>
+                    <tr><th>s/he/it</th><td>gi</td><th>they</th><td>gu</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="tablesholder" id="european">
+            <div style="width: fit-content;">
+                <p class="tabletitle">Present</p>
+                <table>
+                    <tr><th>I</th><td>ti</td><th>we</th><td>tu</td></tr>
+                    <tr><th>you</th><td>bi</td><th>yall</th><td>bu</td></tr>
+                    <tr><th>s/he/it</th><td>gi</td><th>they</th><td>gu</td></tr>
+                </table>
+            </div>
+            <div style="width: fit-content;">
+                <p class="tabletitle">Past</p>
+                <table>
+                    <tr><th>I</th><td>ti</td><th>we</th><td>tu</td></tr>
+                    <tr><th>you</th><td>bi</td><th>yall</th><td>bu</td></tr>
+                    <tr><th>s/he/it</th><td>gi</td><th>they</th><td>gu</td></tr>
+                </table>
+            </div>
+            <div style="width: fit-content;">
+                <p class="tabletitle">Future</p>
+                <table>
+                    <tr><th>I</th><td>ti</td><th>we</th><td>tu</td></tr>
+                    <tr><th>you</th><td>bi</td><th>yall</th><td>bu</td></tr>
+                    <tr><th>s/he/it</th><td>gi</td><th>they</th><td>gu</td></tr>
+                </table>
+            </div>
+        </div>
+				
+			
+				<footer>
+					<p>Copyright &copy; 2023 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+let grammer = [
+    {name: "plural", affix: "s", where: "end"}
+]
+let order = ["plural", "case"];
+const conjugationtype = document.getElementById("conjugationtype");
+var african = document.getElementById("african");
+var european = document.getElementById("european");
+
+conjugationChange();
+function conjugationChange(){
+if (conjugationtype.value == "african"){ 
+    european.style.visibility = 'hidden';
+    african.style.visibility = 'visible';
+}
+else if (conjugationtype.value == "european"){
+    european.style.visibility = 'visible';
+    african.style.visibility = 'hidden';
+}
+else {
+    european.style.visibility = 'hidden';
+    african.style.visibility = 'hidden';
+}
+
+}
+
+conjugationtype.addEventListener("change", conjugationChange)
+</script> 

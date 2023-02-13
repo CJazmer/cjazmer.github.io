@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Most Common Edible Plants and Uses</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="">
+	<meta name="keywords" content="survival, foraging, forage plants, wild edibles, backyard edibles, most common edible plants">
+    <style> 
+	.gallery:hover{background-color: aliceblue; transition: .2s; filter: brightness(1.1);} 
+	.searchcontainer{
+		padding: 4px 4px 4px;
+		background-color: darkgoldenrod
+	}
+	.searchcontainer button{
+		height: 2em;
+		width: fit-content;
+	}
+	.searchtable{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: start;
+		background-color: black;
+	}
+	.searchtable div{
+		display: flex;
+		background-color: orangered;
+		max-height: fit-content;
+		vertical-align: middle;
+		padding: .5em;
+		border: .2em solid black;
+	}
+	.searchtable div input{ height: fit-content; min-height: 100%; margin: 0px 0px 0px .2em;}
+	.searchtable div p{ height: fit-content; margin: 0px;}
+	</style>
+</head>
+
+<body class="themeblackgoldveryback">
+	<div style="background-color: rgb(255 234 49)">
+		<div class="themeblackgoldback">
+			<nav class="topnavbar" style="background-color: rgb(29 29 29)"><h1 onclick="window.location.href='../../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='../../translators/indexlanguages.html'">Language</li><li onclick="window.location.href='../indexsurvival.html'">Survival</li><li>Music</li><li onclick="window.location.href='../../apps/indexapps.html'">Apps</li></ul></nav>
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			
+			<!--
+			<div class="searchcontainer">
+				<input type="text" placeholder="Search Plant" id="searchbar" />
+				<button>Search</button>
+			</div>
+			-->
+
+			<div class="searchcontainer">
+				<div>
+					<label for="filterby">Filter By:</label>
+					<select name="filterby" id="myid">
+						<option value="commonness">commonness</option>
+						<option value="name">name</option>
+					 </select>
+				</div>
+				<div class="searchtable">
+						<div><p>thorns/PoisonSap</p><input type="checkbox" id="chkbxthorns"/></div>
+						<div><p>Good Sent</p><input type="checkbox" id="chkbxgoodsent"/></div>
+						<div><p>Cordage</p><input type="checkbox" id="chkbxcordage"/></div>
+						<div><p>Berries</p><input type="checkbox" id="chkbxberries"/></div>
+				</div>
+				<div id="searchaddons"></div>
+			</div>
+		<center>
+			<h1>Plants</h1>
+			<h3><span style="background-color:lightgreen;color:green;">Green = Raw Edible parts |</span><span style="background-color: yellow; color:darkgoldenrod"> Yellow = Only edible if... |</span><span style="background-color: orange; color:rgb(132 79 0)"> Orange = Toxic to eat |</span><span style="background-color: red; color:darkred"> Red = Touching can hurt you</span></h3></center>
+		</center>
+
+			<div id="flexcontainer">
+			<center>
+				<h1>Weeds & Smaller Plants</h1>
+				<div id="weed"></div>
+
+
+				<h1>Vines</h1>
+				<p>Many vines will just be little shoots comming out of the ground. Most Vines produce Berries.</p>
+				<div id="vine"></div>
+				
+
+				<h1>Shrubs/small tree & Bushes</h1>
+				<p>Many shrubs have berries.</p>
+				
+
+				<h1>Sents & Mints</h1>
+				
+
+				<h1>Trees</h1>
+			</center>
+				
+
+				<p>General Knollage: Fall is when most berries & Fruit are ripe because it had all summer to grow the fuits using the sun as energy.  Spit out seeds & skin of berries and fruits.</p>
+
+			</div>
+
+			<footer>
+				<p>Copyright &copy; 2022 - Conner Jasmer</p>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var daplant = "not found";
+	var puthere = document.getElementById("flexcontainer");
+    var plants = ["dandelion", "americangermander", "asparagus", "baneberry", "bedstraw", "birdsfoottrefoil", "blackberry", "blackeyesusan", "broadleafplantain", "burdock", "butterflyweed", "cattail", "chickweed", "chicory", "chives", "clearweed", "clover", "coneflower", "curlydock", "garlicmustard", "goldenrod", "gooseberry", "groundelder", "groundivy", "canadianhonewort", "horseweed", "jackinthepulpit", "jewelweed", "lilyofthevalley", "falsesolomonsseal", "mayapple", "mapleleafviburnum", "milkweed", "motherwart", "mullein", "mustard", "nettle", "bittersweetnightshade", "enchantersnightshade", "orangefruithorsegentian", "pepperweed", "poisonhemlock", "purslane", "ragweed", "raspberry", "rose", "yellowsalsify", "sarsaparilla", "whitesnakeroot", "spottedspurge", "stickseed", "strawberry", "sunflower", "thistle", "velvetleaf", "vetch", "voilet", "wildcarrot", "wildginger", "wildlettuce", "wildparsnip", "woodsorrel", "yarrow"];
+    var vines = ["poisonivy", "virginiacreeper", "riverbankgrape", "hogpeanut", "orientalbittersweet", "wildcucumber", "hedgebindweed"];
+	var sqlquery = "SELECT * FROM plants WHERE name = ''"
+
+	function test(plantname) {
+		daplant = plantname;
+		localStorage.setItem('choosenplant', daplant);
+		window.location.href = "theplant.html";
+	};
+
+	// ../../images/plants/weed/goldenrod/goldenrod.png
+	function showplants(arr, type) {
+    arr.forEach(plant => {
+	var e = document.createElement("img"); 
+	e.src = "../../images/plants/" + type + "/" + plant + "/" + plant + ".jpg"; 
+	document.getElementById(type).appendChild(e);
+	e.className = "gallery"; // test(plant)
+	e.addEventListener('click', function(){ test(plant) });
+	});
+}
+showplants(plants, "weed");
+showplants(vines, "vine");
+    // var numoffolders = 2;
+	// for (var i = 0; i < numoffolders; i++) {
+		// name of plant change and paste
+	// }
+</script>

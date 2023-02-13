@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="../../css/translatorscss.css" rel="stylesheet">
+<title>Lakota Language Translator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Conner Jasmer">
+<meta name="description" content="A translator for the Lakota Language!">
+<meta name="keywords" content="lakota, language, translator">
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(255 216 0)">
+		<div class="bg" style="background-color: rgb(255 199 100);">
+			<nav class="topnavbar"><h1 onclick="window.location.href='../../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='index.html'">Language</li><li onclick="window.location.href='survival/plants/indexplants.html'">Survival</li><li>Music</li><li>Games</li></ul></nav>
+
+			<div id="navflex">
+				<h1>Lakota Translator</h1>
+
+				<h2 id="lefttextarealanguage">English</h2>
+				<textarea id="lefttextarea" name="lefttextarea" rows="10" cols="50"></textarea>
+				<h2 id="righttextarealanguage">Lakota</h2>
+				<div id="righttextarea" name="righttextarea" class="translatoroutput"></div>
+				<center><button onclick="Flip()">Flip</button>   <button onclick="Translate()">Translate</button></center>
+				<button onclick="removethedash()">Remove dashes</button>
+
+				<p>English to Oneida: Objective & Subjective & 2 Person Pronouns all working! (Smart enough to translate: i dont love you and i have a fish)</p>
+
+
+				<footer>
+					<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="lakotatranslator.js"></script>

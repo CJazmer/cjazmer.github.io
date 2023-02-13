@@ -1,0 +1,315 @@
+#mainimage {
+	background-color: white;
+	border-radius: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+button {
+	cursor: pointer;
+	background-color: white;
+	vertical-align: middle;
+	width: 200px;
+	min-width: fit-content;
+	height: 100px;
+	font-size: 25px;
+	border: 2px solid black;
+	margin: 2px;
+	transition: 0.2s;
+}
+button:hover {
+	border: 2px solid white;
+	color:black
+}
+
+* {
+	font-family: Gill Sans, sans-serif;
+}
+#navflex {
+	text-align: center;
+	display: flex;
+	border: 1px solid gold;
+	flex-direction: column;
+}
+.notdonebutton {
+	background-color: indianred;
+}
+.topnavbar {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px 10%;
+	background-color: rgb(29 29 29);
+	border: 3px solid gold;
+}
+.topnavbar h1 {
+	display: inline-block;
+	padding: 0px 20px;
+	color:gold;
+}
+	.topnavbar li {
+		display: inline-block;
+		padding: 0px 20px;
+		transition: all 0.3s ease 0s;
+		text-decoration: none;
+		font-size: 30px;
+		color: white;
+	}
+	.topnavbar li:hover {
+		color: gold;
+		cursor: pointer;
+	}
+	.topnavbar h1:hover {
+		color: white;
+		cursor: pointer;
+	}
+.topbackbutton {
+	color: gold;
+	background-color: rgb(29 29 29);
+	text-align: center;
+	text-decoration: none;
+	font-size: 30px;
+	border: 1px solid gold;
+}
+	.topbackbutton:hover {
+		color: white;
+		background-color: gold;
+		cursor: pointer;
+		border: 1px solid black;
+	}
+.bigbuttons button {
+	height: 150px;
+	border-radius: 17px;
+	width: 300px;
+	padding-bottom: 10px;
+}
+
+
+	/*Translator stuff*/
+#container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.translatorflex {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction:row;
+	align-items: center;
+	align-content: space-between;
+	align-self: center;
+	
+}
+textarea {
+	font-size: 23px;
+}
+.translatorflex {
+	background-color: white;
+	min-width: 60%;
+	width: fit-content;
+	height: fit-content;
+	margin: .1em;
+	border: 2px solid black;
+	align-items: center;
+	align-content: center;
+}
+#righttextarea {
+	background-color: rgb(255, 248, 209);
+	align-self: center;
+	text-align: left;
+	width:100%;
+	min-height: 110px;
+	height: fit-content;
+	padding: .3em;
+}
+#lefttextarea {
+	align-self: center;
+	width:100%;
+	padding: .3em;
+	min-height: 100px;
+	height: fit-content;
+	margin-right: .1em;
+	margin-left: .1em;
+	border: 0px solid black
+}
+#righttextarea span {
+	border-bottom: 1px dashed;
+	text-decoration: none;
+}
+	#righttextarea span:hover {
+		font-weight: bold;
+		background: gold;
+		cursor: pointer;
+	}
+
+
+.gallery {
+	width: 300px;
+	height: 500px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+	border: 5px solid black;
+	background-color: green;
+}
+
+.flexcontainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-content: center;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.flexcontaineruses {
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+	.flexcontaineruses div {
+		padding: 5px;
+		max-width: fit-content;
+		font-size: 20px;
+	}
+
+
+
+img {
+	border: 3px solid gold;
+}
+.icon {
+	border: 1px solid black;
+	width: 90px;
+	height: 90px;
+}
+
+.plantinfotable {
+	justify-content: center;
+	border-collapse: collapse;
+	margin: 25px 0;
+	border: 1px solid gold;
+}
+
+	.plantinfotable th {
+		background-color: rgb(29 29 29);
+		color: gold;
+		text-align: right;
+		padding: 10px;
+	}
+	.plantinfotable td {
+		background-color: rgb(49 49 49);
+		color: white;
+		text-align: left;
+		padding: 10px;
+	}
+
+#totheleft {
+	float:left;
+	margin: 0px;
+	width: auto;
+}
+#totheright {
+	float: right;
+	margin: 0px;
+	width: auto;
+
+}
+
+#navnormal {
+	border: 1px solid green;
+	margin-right: 100px;
+	float: left;
+}
+
+
+.themewarmback {
+	background-color: rgb(255 178 69);
+}
+
+.themewarmveryback {
+	background-color: rgb(239 0 0);
+}
+
+.themeblackgoldback {
+	background-color: rgb(56 56 56);
+	color: lightgray;
+}
+.themeblackgoldveryback {
+	background-color: black;
+}
+.themeblackgoldback button {
+	background: linear-gradient(180deg, rgba(141,125,11,1) 0%, rgba(255,213,54,1) 100%);
+}
+.themeblackgoldback h1 {
+color: gold;
+}
+.standout {
+	color: white;
+	font-weight: bold;
+	font-size: 125%;
+}
+
+
+@media (max-width: 700px) {
+	* {
+		font-size: 100%;
+	}
+
+	img {
+		width: 50%
+	}
+
+	#imgflex img {
+		width: 60%
+	}
+	button {
+		max-width: 30%;
+		font-size: 140%;
+	}
+	img.gallery {
+		max-width: 24%;
+		height: 170%;
+	}
+    nav li{
+		font-size: 340%;
+	}
+}
+
+@media (min-width: 701px) and (max-width: 999px) {
+	* {
+		font-size: 106%;
+	}
+	img {
+		width: 50%
+	}
+	button {
+		max-width: 100%;
+	}
+}
+
+@media (min-width: 1000px) {
+	* {
+		font-size: 105%;
+	}
+	h1 {
+		font-size: 200%;
+	}
+
+	img {
+		width: 50%
+	}
+	button {
+		max-width: 110%;
+	}
+
+	#imgflex img {
+		width: 95%
+	}
+}

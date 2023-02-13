@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="calculator">
+	<meta name="keywords" content="calculator">
+<style>
+    .thetable td{
+		font-size: 30px;
+		background-color:darkslategrey;
+		color: azure;
+		width:25%;
+		height:4em;
+		text-align:center;
+		transition: .2s;
+    }
+    .thetable td:hover {
+        background-color: cadetblue;
+        color: azure;
+		cursor: pointer;
+    }
+    .thetable {
+		background-color:black;
+		width: 90%;
+		max-width: 30em;
+    }
+    .outputstuff {
+		width:90%;
+		max-width: 30em;
+
+		height:6em;
+		text-align:center;
+		background-color:cadetblue;
+		color:azure;
+		border-radius: 1em;
+		border: .3em solid black;
+		transform: translateY(1em);
+		z-index: -1;
+    }
+</style>
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(736 225 0)">
+		<div class="wrapper" style="background: linear-gradient(to right, #ff5a00 0%, #ff3300 100%);">
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="navflex">
+				<h1>Calculator</h1>
+
+				<center>
+					<div id="input" class="outputstuff"></div>
+					<table class="thetable">	
+						<tr><td onclick="Click('1')">1</td><td onclick="Click('2')">2</td><td onclick="Click('3')">3</td><td onclick="Click('+')">+</td></tr>
+						<tr><td onclick="Click('4')">4</td><td onclick="Click('5')">5</td><td onclick="Click('6')">6</td><td onclick="Click('-')">-</td></tr>
+						<tr><td onclick="Click('7')">7</td><td onclick="Click('8')">8</td><td onclick="Click('9')">9</td><td onclick="Click('*')">x</td></tr>
+						<tr><td onclick="Click('0')">0</td><td onclick="Calculate()">Cal</td><td onclick="Reset()">Res</td><td onclick="Click('/')">%</td></tr>
+
+					</table>
+				</center>
+
+				<footer>
+					<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="calculator.js"></script> 

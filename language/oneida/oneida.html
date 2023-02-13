@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="../../css/translatorscss.css" rel="stylesheet">
+<title>Oneida Language Translator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Conner Jasmer">
+<meta name="description" content="A translator for the Oneida Language!">
+<meta name="keywords" content="oneida, language, translator">
+</head>
+
+<body style="background-color: rgb(173 76 255)">
+	<div style="background-color: rgb(218 161 255)">
+		<div class="bg" style="background-color: rgb(218 161 255);">
+			<nav class="topnavbar"><h1 onclick="window.location.href='../../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='../indexlanguages.html'">Language</li><li onclick="window.location.href='../../survival/indexsurvival.html'">Survival</li><li>Music</li><li onclick="window.location.href='../../apps/indexapps.html'">Apps</li></ul></nav>
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+
+			<div id="navflex">
+				<h1>Oneida Translator</h1>
+				<div>
+					<input type="checkbox" id="checkboxobjective" name="objective" checked>
+					<label for="dabox" id="dalable">You Witnessed it / Factual / Unbaised</label>
+				</div>
+				<div>
+					<input type="checkbox" id="checkboxplural" name="plural">
+					<label for="dabox" id="dalable">You and I plural</label>
+				</div>
+				<h2 id="langtolang">English to Oneida</h2>
+				<div class="translatorflex">
+				  <textarea id="lefttextarea" name="lefttextarea"></textarea>
+				  <div id="righttextarea" name="righttextarea"></div>
+				</div>
+				<center><button onclick="Flip()">Flip</button>   <button onclick="Translate()">Translate</button></center>
+
+				<p>K = G sound,  T = D sound,  Tsy/Tsi = J sound</p>
+				<div style="background-color:mediumpurple">
+				<h2 style="text-align:left">English to Oneida Features</h2>
+				<ul style="text-align:left">
+					<li>2 People pronouns, Objective & Subjective Pronouns</li>
+					<li>Possessive pronouns</li>
+					<li>Negation (Te prefix)</li>
+					<li>Smart enough to translate: i dont love you and i have a fish</li>
+					<li>if oneida noun is alone, it needs a prefix (Ka or O)</li>
+				</ul>
+                </div>
+				<footer>
+					<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="oneidatranslator.js"></script>

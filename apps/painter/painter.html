@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Apps made by Jazmer">
+	<meta name="keywords" content="jazmer, apps">
+	<style>        
+		#canvas{background-color: rgb(255, 255, 255); width: 90%; height: auto; align-self: center;}
+        .controlscontainer{
+            background-color: darkgoldenrod;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .controlscontainer div{
+            display: flex;
+            background-color: goldenrod;
+            width: fit-content;
+            padding: .3em;
+            border: .1em solid gold;
+            border-radius: 1em;
+            margin-right: .1em;
+            justify-content: center;
+            align-items: center;
+        }
+        .controlscontainer div p{
+            font-size: large;
+            color: black;
+            height: fit-content;
+            margin: 0px 0px 0px 0px;
+        }
+        .controlscontainer div input{
+            font-size: large;
+            color: black;
+            height: fit-content;
+            margin: 0px 0px 0px .4em;
+        }
+    </style>
+</head>
+
+<body class="themeblackgoldveryback">
+	<div style="background-color: rgb(255 234 49)">
+		<div class="themeblackgoldback">
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="navflex">
+
+			<h1>Painter</h1>
+            <canvas id="canvas"></canvas>
+
+            <div class="controlscontainer">
+                <div><p>Brush Size</p><input type="range" id="inputbrushsize" value="10" min="1" max="60"></div>
+                <div><p>Transparency</p><input type="range"/></div>
+                <div><p>color</p><input type="color" id="brushcolor" style="height: 2em;"></div>
+                <div><p>Brush Type</p>
+                    <select id="inputbrushtype" style="height: fit-content;">
+                        <option value="circle">circle</option>
+                        <option value="square">square</option>
+                     </select>
+                </div>
+            </div>
+
+			</div>
+        </div>
+            <footer>
+                <p>Copyright &copy; 2022 - Conner Jasmer</p>
+            </footer>
+		</div>
+	</div>
+</body>
+</html>
+
+<script>
+    var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+    var inputbrushsize = document.getElementById("inputbrushsize");
+    var brushcolor = document.getElementById("brushcolor");
+    var inputbrushtype = document.getElementById("inputbrushtype");
+    var xmouse = 0;
+    var ymouse = 0;
+
+    function draw(shape){
+        if(shape == "square") {
+            ctx.beginPath();
+            ctx.fillRect(xmouse, ymouse, inputbrushsize.value, inputbrushsize.value);
+            ctx.fillStyle = brushcolor.value;
+            ctx.fill();
+            ctx.closePath();
+        }
+        else {
+            ctx.beginPath();
+            ctx.arc(xmouse, ymouse, inputbrushsize.value, 0, Math.PI * 2);
+            ctx.fillStyle = brushcolor.value;
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+    function mousehover(e){
+        xmouse = e.pageX - 120;
+        ymouse = e.pageY - 120;
+        draw(inputbrushtype.value);
+    }
+
+    canvas.addEventListener("mousemove", mousehover);
+
+</script>
