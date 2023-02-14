@@ -2,11 +2,43 @@
 <html lang="en">
 <head>
 	<link href="../css/translatorscss.css" rel="stylesheet">
-	<title>Survival Home</title>
+	<title>Languages</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Conner Jasmer">
-	<meta name="description" content="home page for learning survival skills, plants, and animals.">
-	<meta name="keywords" content="survival, skills">
+	<meta name="description" content="home page for learning languages.">
+	<meta name="keywords" content="world, languages">
+	<style>
+		.langholder:hover{
+			filter: brightness(1.2);
+		}
+		.langinfodiv{
+			justify-content: left;
+			display: flex;
+			width: 100% - .2em;
+			background-color: purple;
+			padding: .2em;
+			margin: 0em;
+		}
+		.langname{
+			color: black;
+			width: 100%;
+			margin-right: .3em;
+			background-color: white;
+			margin: 0em .3em 0em 0em;
+		}
+		.langinfo{
+			background-color: grey;
+			color: black;
+			margin: 0em;
+			width: 100%;
+			text-align: left;
+			padding: .2em;
+		}
+		.langextra{height: fit-content; min-height: 1px; background-color: darkslategrey; padding: .5em;}
+		.langextra a{color:gold; width: 3em; height: 2em; border-radius: 10%; border: .1em solid gold; background-color: black; padding: .2em; text-decoration: none;}
+		.desc{color: white;}
+		.langpic{width: 5em; height: 5em; background-color: white;}
+	</style>
 </head>
 
 <body class="themeblackgoldveryback">
@@ -14,49 +46,62 @@
 		<div class="themeblackgoldback">
 			<nav class="topnavbar" style="background-color: rgb(29 29 29)"><h1 onclick="window.location.href='../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='indexlanguages.html'">Language</li><li onclick="window.location.href='../survival/indexsurvival.html'">Survival</li><li>Music</li><li onclick="window.location.href='../apps/indexapps.html'">Apps</li></ul></nav>
 			<div class="topbackbutton" onclick="history.back()">Back</div>
-
-			<center>
-				<h1>Dictionary</h1>
-				<div class="bigbuttons"><button onclick="window.location.href='dictionary/dictionary.html'">Languages Dictionary</button></div>
-			</center>
-			<center><h1>Translators</h1></center>
-			<center>
+		
 				<div id="navflex">
+					<h1>Dictionary</h1>
+					<div class="bigbuttons"><button onclick="window.location.href='dictionary/dictionary.html'">Languages Dictionary</button></div>
 
-					<center>
-						<h1>Native American</h1>
-						<button onclick="window.location.href='oneida/oneida.html'" style="background:rgb(218 161 255)">Oneida</button>
-						<button onclick="window.location.href='lakota/lakota.html'">Lakota</button>
-						<button class="notdonebutton" onclick="window.location.href='index.html'">Menominee</button>
-						<button onclick="" class="notdonebutton">Ojibwe</button>
-
-						<h1>Caribbean</h1>
-						<button onclick="window.location.href='patois/patois.html'" style="background: linear-gradient(to right, #00cc00 0%, #ff3300 100%)">Jamaican Patois</button>
-						<button onclick="" class="notdonebutton">Haitian Creole</button>
-
-						<center><h1>Europe</h1></center>
-						<button onclick="" class="notdonebutton" style="background:lightgreen">Irish Gaelic</button>
-
-						<center><h1>Africa</h1></center>
-						<button onclick="" class="notdonebutton">Swahili</button>
-						<center><h2>other</h2></center>
-						<button onclick="" class="notdonebutton">Quechua</button>
-						<button onclick="window.location.href='english/englishaccents.html'">English Accents</button>
-						<button onclick="window.location.href='spanish/spanish.html'">Spanish</button>
-					</center>
-
-
-
-
-
-				</div>
-			</center>
+				<h1>---------- Languages ----------</h1>
+				<div id="langdiv"></div>
 
 			<footer>
-				<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				<p>Copyright &copy; 2023 - Conner Jasmer</p>
 			</footer>
-
 		</div>
 	</div>
 </body>
 </html>
+<script>
+	const langdiv = document.getElementById("langdiv");
+	const langs = [
+		{name: "Spanish", langfam: "romance", flag: "mexico", description: "Native American language.", extra:"<a href='spanish/spanish.html'>Translator</a><a href='../images/language/pdf/spanish.pdf'>Language PDF</a>"},
+		{name: "Portugese", langfam: "romance", flag: "brazil", description: "Native American language.", extra:""},
+		{name: "Arabic", langfam: "semitic", flag: "semitic", description: "Native American language.", extra:""},
+		{name: "Hebrew", langfam: "semitic", flag: "semitic", description: "Native American language.", extra:""},
+		{name: "amazigh", langfam: "berber", flag: "berber", description: "Language of North Africa!", extra:""},
+		{name: "Oneida", langfam: "native american", flag: "oneida", description: "Native American language.", extra:"<a href='oneida/oneida.html'>Translator</a>"},
+		{name: "Lakota", langfam: "native american", flag: "lakota", description: "Native American language.", extra:"<a href='lakota/lakota.html'>Translator</a>"},
+		{name: "Irish", langfam: "celtic", flag: "celtic", description: "Native American language.", extra:""},
+		{name: "Swahili", langfam: "african", flag: "africa", description: "Native American language.", extra:""},
+		{name: "Russian", langfam: "slavic", flag: "russian", description: "1st most spoken Slavic language.", extra:""},
+		{name: "polish", langfam: "slavic", flag: "polish", description: "2nd most spoken Slavic language.", extra:""},
+		{name: "hawaiian", langfam: "austronesian", flag: "flower", description: "Language of Hawaii!", extra:""},
+		{name: "Jamaican Patois", langfam: "creole", flag: "none", description: "English / West African based creole language.", extra:""}
+	];
+	// Color Themes based on lang family
+	const colors = [
+		{langfam: "none", clrhead: "grey", clrbackg: "white"},
+		{langfam: "romance", clrhead: "darkorange", clrbackg: "orange"},
+		{langfam: "celtic", clrhead: "green", clrbackg: "lime"},
+		{langfam: "semitic", clrhead: "rgb(255, 180, 70)", clrbackg: "rgb(255, 210, 100)"},
+		{langfam: "native", clrhead: "mediumpurple", clrbackg: "plum"},
+		{langfam: "native", clrhead: "mediumpurple", clrbackg: "plum"},
+		{langfam: "african", clrhead: "mediumpurple", clrbackg: "plum"},
+		{langfam: "slavic", clrhead: "rgb(60, 135, 215)", clrbackg: "rgb(100, 175, 255)"},
+		{langfam: "austronesian", clrhead: "hotpink", clrbackg: "lightpink"},
+		{langfam: "berber", clrhead: "rgb(255, 180, 70)", clrbackg: "rgb(255, 210, 100)"},
+	]
+
+	langs.forEach(l => {
+		var colorobj = null; 
+		colors.forEach(c => {if(l.langfam.includes(c.langfam)){colorobj = c;}})
+		if (colorobj == null){colorobj = colors[0];}
+
+		langdiv.innerHTML += "<div class='langholder'>"+
+		"<p class='langname' style='background-color:"+colorobj.clrhead+"'>"+ l.name +" ("+ l.langfam +")</p>"+
+		"<div class='langinfodiv' style='background-color:" +colorobj.clrbackg+ "'><img class='langpic' src='../images/language/flags/"+ l.flag +".png'><p class='desc'>"+ l.description +"</p></div>"+
+		"<div class='langextra'>"+ l.extra +"</div>"
+		
+		langdiv.innerHTML += "</div>";
+	});
+</script>

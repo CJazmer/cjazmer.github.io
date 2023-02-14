@@ -23,6 +23,17 @@
 		border-radius: 1em;
 		border: rgb(255, 193, 78) solid .2em;
 	}
+	.btnholder button:active{
+		background-color: gold;
+		transform: scale(1.05);
+	}
+	h1{
+		background-color: wheat;
+		color:black;
+		margin: 1em 0em 0em 0em;
+		padding: .2em;
+		border: .2em solid black;
+	}
 </style>
 </head>
 
@@ -38,14 +49,6 @@
 					<button onclick="nextwordclick()" class="thebutton">Next Word</button>
 					<button onclick="cleartext()" class="thebutton2">Clear</button>
 				</div>
-
-				<h2 id="righttextarealanguage">Random Story</h2>
-				<textarea id="textarea" name="textarea" rows="10" cols="30"></textarea>
-				<div class="btnholder">
-					<button onclick="GenerateStory()" class="thebutton">Generate Story!</button>
-					<button onclick="GenerateSentence()" class="thebutton">Generate Sentence!</button>
-				</div>
-
 
 				<footer>
 					<p>Copyright &copy; 2022 - Conner Jasmer</p>

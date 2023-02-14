@@ -71,7 +71,7 @@ button:hover {
 	background-color: rgb(29 29 29);
 	text-align: center;
 	text-decoration: none;
-	font-size: 30px;
+	font-size: 2em;
 	border: 1px solid gold;
 }
 	.topbackbutton:hover {

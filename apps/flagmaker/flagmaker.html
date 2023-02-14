@@ -41,10 +41,11 @@
         }
         .controlsholder button{
             height: 2em;
-            width: 100%;
+            width: fit-content + 1em;
         }
         .controlsholder p{
             margin: 0px;
+            align-self: center;
         }
         .textinput{
             min-width: 2em;
@@ -62,9 +63,9 @@
                 <p class="info">Automatically creates flags with given values...</p>
                 <h3>Flag</h3>
                 <div class="controlsholder">
+                    <button onclick="applyclick()">Change Size</button>
                     <div><p>Width</p><input type="text" class="textinput" id="inputwidth"/></div>
                     <div><p>Height</p><input type="text" class="textinput" id="inputheight"/></div>
-                    <button onclick="applyclick()">Apply</button>
                 </div>
             <canvas id="canvasflag"></canvas>
             <select name="numbers" id="defaultflags"></select>

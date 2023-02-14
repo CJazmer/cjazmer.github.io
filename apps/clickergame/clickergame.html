@@ -13,11 +13,16 @@
 		 background-color:green;
 		 width: 200px;
 		 height: 200px;
+		 transition: .1s;
         }
             .clicker:hover {
                 background-color: forestgreen;
-				scale: 110%;
             }
+			.clicker:active{
+				background-color: yellowgreen;
+				scale: 110%;
+				box-shadow: 0em 0em 5px 12px yellow
+			}
 			.thebutton {background-color: greenyellow; border: 2px solid black; border-radius: 8px;}
 		.upgradescontainer{
 			width: 100%;
@@ -52,6 +57,12 @@
 			background-color: goldenrod;
 			border: .2em solid black;
 		}
+		.money{
+			font-size: xx-large;
+			color:black;
+			transition: .4s;
+			margin-bottom: 0em;
+		}
     </style>
 </head>
 
@@ -65,7 +76,7 @@
 				<h1>Clicker</h1>
 				<center>
 				<div>
-					<div><h2>$<span id="playermoney">0</span></h2></div>
+					<div><h2 class="money">$<span id="playermoney">0</span></h2></div>
 					<div><h2><span id="autoclicknum">1</span>/cps</h2></div>
 					<button onclick="clicked()" class="clicker">Clicking Power $<span id="clickingpower">0</span></button>
 				</div>
@@ -73,11 +84,10 @@
 					<h1>Upgrades</h1>
 
 					<h3>Auto Clickers</h3>
-					<div class="upgradescontainer" id="autoclickupgrades"></div>
+					<div class="upgradescontainer" id="autoclickdiv"></div>
 
 					<h3>Power Ups</h3>
-					<div class="upgradescontainer" id="clickpowercontainer">
-						<button onclick="btnclickpower()">Click Power x2</button>
+					<div class="upgradescontainer" id="powerupsdiv">
 					</div>
 
 				</center>
@@ -90,8 +100,8 @@
 </body>
 </html>
 <script>
-	var clickpowercontainer = document.getElementById("clickpowercontainer");
-	var autoclickupgrades = document.getElementById("autoclickupgrades");
+	var powerupsdiv = document.getElementById("powerupsdiv");
+	var autoclickdiv = document.getElementById("autoclickdiv");
 	var autoclicknum = document.getElementById("autoclicknum");
 	var clickingpowerscreen = document.getElementById("clickingpower")
 
@@ -103,7 +113,11 @@
 		{name: "Num25", cps: 8, cost: 20, level: 0},
 		{name: "Num3", cps: 16, cost: 40, level: 0}
 	]
-	let upgpowerclick = {name: "Click Power", cost: 200, level: 0};
+	let upgpowerups = [
+		{name: "Click Power", cost: 200, level: 0, description: ""},
+		{name: "Boost", cost: 200, level: 0, description: ""},
+		{name: "Boost2", cost: 200, level: 0, description: ""}
+	]
 	
 	var playermoneyscreen = document.getElementById("playermoney");
 	let playermoney = 0;
@@ -111,10 +125,8 @@
 	let playercps = 0;
 	var ee = document.createElement("div");
 	var eee = document.createElement("div");
-	autoclickupgrades.appendChild(ee);
-	clickpowercontainer.appendChild(eee);
-		
-	
+	autoclickdiv.appendChild(ee);		
+	powerupsdiv.appendChild(eee);		
 
 	function clicked(){
 		playermoney += playerclickpower;
@@ -132,22 +144,23 @@
 		
 
 
+	// Add Buttons to Div -------------------------------------
 		autoclicks.forEach(a => {
 		ee.innerHTML += "<div>" +
 		'<button ' + 'onclick="upgrade(' + "'" + a.name + "'" + ')">' + a.name + "</button>" +
 		'<div class="upgradeinfocontainer"><p>buy: $' + a.cost + '</p><p>clicks: ' + a.cps + '</p><p>Level: ' + a.level + '</p></div>' +
 		'</div>'
-	   //<button class="btnupgrade"      onclick="upgrade('Lemonaid Stand')">Lemonaid Stand</button>
 	})
-	powerclicks.forEach(a => {
+	upgpowerups.forEach(a => {
 		eee.innerHTML += "<div>" +
-		'<button ' + 'onclick="upgrade(' + "'" + a.name + "'" + ')">' + a.name + "</button>" +
-		'<div class="upgradeinfocontainer"><p>buy: $' + a.cost + '</p><p>clicks: +' + a.click + '</p><p>Level: ' + a.level + '</p></div>' +
+		'<button ' + 'onclick="powerupClicked(' + "'" + a.name + "'" + ')">' + a.name + "</button>" +
+		'<div class="upgradeinfocontainer"><p>buy: $' + a.cost + '</p><p>Level: ' + a.level + '</p></div>' +
 		'</div>'
 	})
 	}
 	updatescreen()
 
+	// Auto Clicker Buttons click --------------------------------
 	function upgrade(upgragename){
 		autoclicks.forEach(a => {
 			if(upgragename == a.name){
@@ -159,26 +172,25 @@
 				}
 			}
 		});
-		powerclicks.forEach(a => {
-			if(upgragename == a.name){
-
-				if(playermoney >= a.cost){
-					a.level++;
-					playerclickpower += a.click;
-					playermoney -= a.cost;
-					a.cost = Math.ceil(a.cost * 1.3)
-				}
-			}
-		});
 		updatescreen();
 	}
-	function btnclickpower(){
-		if(playermoney >= upgpowerclick.cost) {
-			playermoney -= upgpowerclick.cost;
-			upgpowerclick.cost *= 2.1;
-			playerclickpower *= 2;
-			upgpowerclick.level++;
-		}
+
+	// Power Up Button Clicks --------------------------------
+	function powerupClicked(powerupName){
+		var objPowerup = null;
+		upgpowerups.forEach(p => { if(p.name == powerupName) {objPowerup = p}})
+
+		if(playermoney >= objPowerup.cost) {
+				playermoney -= objPowerup.cost;
+				objPowerup.cost *= 2.1;
+				objPowerup.level++;
+				updatescreen();
+
+			switch(powerupName) {
+				case "Click Power": playerclickpower *= 2; break;
+				case "Powerup1": playerclickpower *= 2; break;
+			}
+		}	
 	}
 
 	setInterval(autoclick, 1000);
@@ -189,9 +201,11 @@
 		playercps += a.cps * a.level;
 		});
 		playermoney += playercps
-
 		updatescreen();
 	}
-	
 
+	function moneyeffect(){
+		document.getElementById("playermoney").className = "pop";
+	}
+document.getElementById("playermoney").addEventListener("change", moneyeffect())
 </script>
