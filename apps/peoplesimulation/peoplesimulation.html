@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>People Simulation</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="People generator">
+	<meta name="keywords" content="jazmer, apps">
+	<style>        
+		#peoplelist{
+            padding: 5px;
+            background-color: gray;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            min-height: 200px;
+        }
+        .person{
+            transition: .5s;
+            background-color: wheat;
+            margin: 5px;
+            color: black;
+            width: 100px;
+            min-width: max-content;
+            border: 4px solid black;
+            border-radius: 20px;
+        }
+        .person:hover{
+            filter:hue-rotate(40deg);
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 5px gold;
+        }
+        .personname{
+            background-color: black;
+            color: gold;
+        }
+        .numinput{
+            width: 80px;
+            height: 50px;
+        }
+        .inputtable{
+            background-color: tan;
+            width: 400px;
+            border: 5px solid black;
+        }
+        .inputtable tr th{
+            background-color: black;
+        }
+        .inputtable tr p{
+            white-space: nowrap
+        }
+        .inputtable tr td{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+    .persontable{
+        align-self: center;
+        width: 95%;
+        margin: 3px;
+        background-color: gold;
+        padding: 1%;
+        border: 1px solid;
+        border-radius: 10%;
+    }
+    .persontable th{
+        border-radius: 10%;
+        font-size: medium;
+        background-color: black;
+        color: gold;
+        text-align: right;
+    }
+    .persontable td{
+        font-size: small;
+    }
+
+/* Popup */
+.person:hover::after{
+  content: "Delete, Money";
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  top: 50%;
+  left: 100%;
+  margin-left: -5px;
+  border: 5px solid black;
+  background-color: gray;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+}
+    </style>
+</head>
+
+<body class="themeblackgoldveryback">
+	<div style="background-color: rgb(255 234 49)">
+		<div class="themeblackgoldback">
+            <nav class="topnavbar"><h1 onclick="window.location.href='../../index.html'">Jazmer World Music</h1></nav>
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+            <div style="background-color: black; margin-bottom: 0px; display: flex; flex-direction: row; justify-content: center; margin-top: 10px; align-items: center;">
+                <div>
+                    <button onclick="cleararray()">Clear People</button>
+                    <button onclick="buttonclick()">Add People</button>
+                </div>
+                <table class="inputtable">
+                    <tr>
+                    <th>Amount</th>
+                    <td><input type="text" class="numinput" id="inputamount"/></td>
+                    </tr>
+                    <tr>
+                    <th><p>Age Range</p></td>
+                    <td><p>min</p><input type="text" class="numinput" id="inputagemin"/><p>max</p><input type="text" class="numinput" id="inputagemax"/></td>
+                    </tr>
+                </table>
+            </div>
+
+			<div id="navflex">
+				<h2 style="margin-bottom: 0px; width: 100%; background-color: gainsboro; color: black; margin-top: 0px;">People</h2>
+                <div id="peopleinfo"></div>
+                <button onclick="addyear()" style="width:100%; height: 60px;">+1 Year</button>
+
+                <div id="peoplelist"></div>
+				
+
+				<footer>
+					<p>Copyright &copy; 2023 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+<script>
+var peoplelist = document.getElementById('peoplelist')
+var peopleinfo = document.getElementById('peopleinfo')
+var inputamount = document.getElementById('inputamount')
+var inputagemin = document.getElementById('inputagemin')
+var inputagemax = document.getElementById('inputagemax')
+
+var namesMale = ["Joe" ,"Will", "Bob", "Dakota", "Leeroy", "Kyle", "Alex", "Griffin", "Antone", "Fred"];
+var lastnames = ["Swanson", "Harvey", "Willis", "Woods", "Smith", "Jones", "Jordan", ] 
+var namesFemale = ["sara" ,"cara", "kendall", "ivory", "avery", "sandra", "karen"]
+var arrjobs = [
+    {jobname: "none", pay: 0},
+    {jobname: "busser", pay: 20000},
+    {jobname: "Banker", pay: 40000},
+]
+var arrbills = [
+    {billname: "insurance", cost: 5000},
+    {billname: "kids", cost: 15000},
+    {billname: "smokes", cost: 1000},
+]
+var arrhouses = ["parents", "Homeless", "Small House", "Mid House", "Big House"]
+var people = []
+
+class person{
+    constructor(thename, theage, money, thejob, thehouse, thebills){
+        this.name = thename
+        this.age = theage
+        this.money = money
+        this.job = thejob // object {job name, pay (per year)}
+        this.house = thehouse
+        this.bills = thebills
+    }
+}
+// Creates people with constructor, adds then to people array
+function MakePeople(amount, agemin, agemax, moneymin, moneymax){
+for (i = 0; i < amount; i++) {
+    var p = new person(
+    namesMale[randomnum(0, namesMale.length)] + " " + lastnames[randomnum(0,lastnames.length)],
+    randomnum(agemin, agemax),
+    randomnum(moneymin, moneymax),
+    arrjobs[randomnum(0, arrjobs.length)],
+    arrhouses[randomnum(0, arrhouses.length)],
+    [arrbills[randomnum(0, arrbills.length)], arrbills[randomnum(0, arrbills.length)]]
+    );
+    people.push(p);
+}
+}
+// Clears people and refreshes screen
+function cleararray() {
+    people = []
+    showPeople()
+}
+// Create People Button clicked
+function buttonclick() {
+    verifiyinputs();
+    MakePeople(parseInt(inputamount.value), parseInt(inputagemin.value), parseInt(inputagemax.value), 2, 2000);
+
+showPeople()
+}
+// Validates the user inputs on screen
+function verifiyinputs() {
+    if (!Number.isInteger(parseInt(inputamount.value))) {inputamount.value = "1"}
+    if (!Number.isInteger(parseInt(inputagemin.value))) {inputagemin.value = "0"}
+    if (!Number.isInteger(parseInt(inputagemax.value))) {inputagemax.value = "20"}
+    if (parseInt(inputagemax.value) < parseInt(inputagemin.value)) { inputagemin.value = "0"; inputagemax.value = "20"}
+}
+// Updataes Screen
+function showPeople() {
+    var minors = 0; var adults = 0; var senors = 0; var peoplenum = 0;
+    peoplelist.innerHTML = ""
+
+    people.forEach(p => {
+        var totalbills = 0;
+        p.bills.forEach(b => {totalbills += b.cost});
+        
+        var contain = document.createElement("div"); 
+        contain.className = "person"
+        contain.innerHTML = "<p class='personname'>🧑" + p.name + "</p>" +
+        "<p>" + p.age + "yrs $" + p.money + "</p>" + 
+        "<table class='persontable'><tr><th>Income</th><td>" + p.job.jobname + " ($" + p.job.pay + ")</tr>" +
+        "<tr><th>Bills</th><td>$"+ totalbills +"</td></tr>" +
+        "<tr><th>House</th><td>"+ p.house +"</td></tr>" +
+        "</table>"
+        // "<button style='position:relative; display:inline-block;' onclick='function e(){p.money = 0; showPeople();}'>Reset</button>"
+        peoplelist.appendChild(contain);
+        
+
+        contain.onclick=function(){    
+            alert(p.name + " " + p.money)
+        }  
+
+    if (p.age < 18) {minors++}
+    else if (p.age >= 60) {senors++}
+    else {adults++}
+    peoplenum++;
+})
+peopleinfo.innerHTML = peoplenum + " People (" + minors + " minors, " + adults + " adults, " + senors + " senors)"
+}
+
+function addyear() {
+  var chancetomake = 50;
+
+    people.forEach(p => {
+        p.age++;
+        p.money += p.job.pay;
+        p.bills.forEach(b => p.money -= b.cost )
+        
+        /*
+        var r = randomnum(0,100)
+        if(r >= 50) {p.money += randomnum(0,1000)}
+        else {p.money -= randomnum(0,1000)}
+        */
+    })
+    showPeople()
+}
+
+function randomnum(min, max){
+var e = Math.floor(Math.random() * max) + min
+return e
+}
+</script>

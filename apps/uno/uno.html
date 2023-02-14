@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Uno</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Uno like game">
+	<meta name="keywords" content="Uno">
+<style>
+    .card {
+		margin: 8px;
+		padding: 2px;
+		font-size: 200%;
+		background-color:red;
+		color: azure;
+		font-weight: 600;
+		width:200px;
+		height:300px;
+		border-radius: 20px;
+		text-align:left;
+		vertical-align: center;
+		position:relative;
+		transform: rotate(2deg);
+		border: 5px solid black;
+		transition: 0.2s;
+		margin-left: -100px;
+		padding:10px;
+    }
+    .card:hover {
+        font-size: 300%;
+		border: 5px solid white;
+		transform: translateY(-30px) rotate(5deg);
+    }
+    .deck {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+		padding-left: 100px;
+    }
+	#maincard {
+		rotate: 0deg;
+	}
+    
+</style>
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(736 225 0)">
+		<div class="wrapper" style="background: linear-gradient(to right, #ff5a00 0%, #ff3300 100%);">
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="navflex">
+				<h1 id="toptext">UNO (Remove all Cards)</h1>
+
+				<center>
+					<div class="card" id="maincard" style="transform: rotate(0deg); margin: 0px"></div>
+					<button onclick="DrawCard()" id="drawcardbutton">Draw Card</button>
+					<div class="deck" id="deck"></div>
+				</center>
+
+				<footer>
+					<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	// CODE -------------------------------------------------------------
+var thedeck = document.getElementById('deck');
+var maincard = document.getElementById('maincard');
+var drawcardbutton = document.getElementById('drawcardbutton');
+var toptext = document.getElementById('toptext');
+var colors = ["red", "blue", "green", "rgb(191, 201, 0)"];
+
+class Card {
+    constructor(number, color) {
+        this.number = number;
+        this.color = color;
+    }
+}
+var deck = [];
+
+function DrawCard() {
+    var ran = Math.floor(Math.random() * 9)
+    var ran2 = Math.floor(Math.random() * colors.length)
+
+        var card = new Card(ran, colors[ran2]);
+        deck.push(card);
+    ShowCards();
+}
+function ShowCards() {
+    thedeck.innerHTML = "";
+    for (var c of deck) {
+        var div = document.createElement('div');
+        thedeck.appendChild(div);
+        div.className = "card";
+        div.innerHTML = c.number;
+        div.style.backgroundColor = c.color;
+    }
+}
+
+// Start card values
+maincard.style.backgroundColor = "red"; maincard.innerHTML = "1";
+// 3 default cards
+function drawcards(amount){ for(i = 0; i < amount; i++) {DrawCard();}}
+drawcards(3)
+
+
+// click event for everything, obj is the thing clicked on
+document.addEventListener("click", function(obj){
+	var cardcolor = obj.target.style.backgroundColor;
+	var cardnumber = obj.target.innerHTML;
+	if(obj.target.textContent == "Play Again") {drawcards(3);}
+
+	// if its a card
+   if (obj.target.className == "card"){
+
+    // If card is same color or same number
+    if(cardcolor == maincard.style.backgroundColor || cardnumber == maincard.innerHTML) {
+		// remove from deck and update main card number and color
+	var i = 0;
+	while (i < deck.length) {
+		// if valid play
+		if (deck[i].number == parseInt(maincard.innerHTML) || deck[i].color == maincard.style.backgroundColor) {
+		
+		// if card player clicked
+		if(cardcolor == deck[i].color && cardnumber == deck[i].number) {deck.splice(i, 1);}
+		break;
+		} else {
+		++i;
+		}
+	}
+		// deck = deck.filter(o => o.color != obj.target.style.backgroundColor && o.number != parseInt(obj.target.innerHTML));
+		ShowCards();
+		maincard.style.backgroundColor = obj.target.style.backgroundColor;
+		maincard.innerHTML = obj.target.innerHTML;
+	}
+    else {} // err animation
+   }
+   if(deck.length == 0){ drawcardbutton.textContent = "Play Again"; toptext.innerHTML = "You Win";}
+	else {drawcardbutton.textContent = "Draw Card";  toptext.innerHTML = "UNO (Remove all Cards)";}
+}, false)
+</script> 

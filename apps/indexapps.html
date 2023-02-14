@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../css/translatorscss.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Apps made by Jazmer">
+	<meta name="keywords" content="jazmer, apps">
+	<style>        
+		.container {
+			justify-content: flex-start;
+			background-color: goldenrod;
+			width: 90%; 
+			align-self: center;
+			border: 5px solid gold;
+			border-radius: 10px;
+			margin: 1em;
+			margin-top: 0px;
+			padding: 1em;
+		    display: flex;
+			overflow-x: scroll;
+			scroll-behavior: smooth;
+        }
+        .container button{
+			height: 100px;
+			min-width: 6em;
+			border-radius: 20px;
+        }
+		h2{
+			margin: 1em; 
+			margin-bottom: -8px; 
+			padding: .2em; 
+			width: 90%; 
+			align-self: center;
+			background-color: black; 
+			color: gold; border-radius: 5px; 
+			border: 5px solid gold; 
+			font-size: xx-large;
+		}
+    </style>
+</head>
+
+<body class="themeblackgoldveryback">
+	<div style="background-color: rgb(255 234 49)">
+		<div class="themeblackgoldback">
+			<nav class="topnavbar"><h1 onclick="window.location.href='../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='../language/indexlanguages.html'">Language</li><li onclick="window.location.href='../survival/indexsurvival.html'">Survival</li><li>Music</li><li onclick="window.location.href='../apps/indexapps.html'">Apps</li></ul></nav>
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+
+			<div id="navflex">
+				<h1>Apps</h1>
+
+				<h2>Visual Simulations</h2>
+				<div class="container" id="simulationsdiv"></div>
+
+				<h2>Creating</h2>
+				<div class="container" id="creationdiv"></div>
+
+				<h2>Games</h2>
+				<div class="container" id="gamesdiv"></div>
+
+				<h2>Other</h2>
+				<div class="container" id="othersdiv"></div>
+				<footer>
+					<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script>
+	const simulationsdiv = document.getElementById("simulationsdiv");
+	const gamesdiv = document.getElementById("gamesdiv");
+	const creationdiv = document.getElementById("creationdiv");
+	const othersdiv = document.getElementById("othersdiv");
+
+	// Names have to be same as folder and file name (tolower removedSpaves)
+	const simulations = ["Rain Simulator", "Firework Maker", "People Simulation", "Shapes Simulation", "Lightning"]
+	const games = ["uno", "tictactoe", "clickergame"];
+	const creations = ["Flag Maker", "Painter", "Language Maker"];
+	const others = ["Random Story Generator", "Info Maker", "Calculator", "Movement"]
+
+	function ShowApps(arrayName, divtoaddto) {
+		arrayName.forEach(i => {	
+		var path = i.toLowerCase().replace(/ /g, "") + "/" + i.toLowerCase().replace(/ /g, "") + ".html";
+		divtoaddto.innerHTML += " <button " + 'onclick="window.location.href=' + "'" + path + "'" + '">' + i + "</button>"
+	//                                         onclick="window.location.href='randomstorygenerator/randomstorygenerator.html'">
+	})}
+	ShowApps(simulations, simulationsdiv);
+	ShowApps(games, gamesdiv);
+	ShowApps(creations, creationdiv);
+	ShowApps(others, othersdiv);
+</script>

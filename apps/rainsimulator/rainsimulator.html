@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Rain Simulator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Simulation you can control">
+	<meta name="keywords" content="rain, simulation">
+<style>    
+	#controls{margin:0px; width:25%; height: auto; background-color: grey;}
+    #canvas{background-color: black; width: 75%; height: auto;}
+    .bg{display: flex; height: 500px;}
+	.inputdiv{background-color: rgb(165, 165, 165); padding: 8px; transition: 0.5s;}
+	.inputdiv:hover{text-shadow: -1px 0 3px gold, 0 0 10px #ffffff; font-size: 115%;}
+	.inputdiv input{width:100%}
+	.inputdiv h2{padding: 0px; margin: 0px;}
+</style>
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(736 225 0)">
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+			<nav class="topnavbar"><h1 onclick="window.location.href='../../index.html'">Jazmer World Music</h1></nav>
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div class="bg">
+                <div id="controls">
+				  <div class="inputdiv">
+					<h2>Speed</h2>
+					<input type="range" value="220" min="1" max="250" id="rangebarspeed"/>
+				  </div>
+				  <div class="inputdiv">
+					<h2>Drop Amount</h2>
+					<input type="range" value="200" min="1" max="300" id="rangebaramount"/>
+				  </div>
+				  <div class="inputdiv">
+					<h2>Drop Color</h2>
+					<input type="color" id="rangebardropcolor" value="#576E75"/>
+				  </div>
+				  <div class="inputdiv">
+					<h2>Drop Length</h2>
+					<input type="range" value="7" min="1" max="10" id="rangebardroplength"/>
+				  </div>
+				  <div class="inputdiv">
+					<h2>Drop Thickness</h2>
+					<input type="range" value="1" min="1" max="10" id="rangebardropthickness"/>
+				  </div>
+				</div>
+				<canvas id="canvas"></canvas>
+			</div>
+            <footer>
+                <p>Copyright &copy; 2022 - Conner Jasmer</p>
+            </footer>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+    var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d")
+	var rangebarspeed = document.getElementById("rangebarspeed");
+	var rangebaramount = document.getElementById("rangebaramount");
+	var rangebardropcolor = document.getElementById("rangebardropcolor");
+	var rangebardroplength = document.getElementById("rangebardroplength");
+	var rangebardropthickness = document.getElementById("rangebardropthickness");
+	var drops = [];
+
+    class drop{
+		constructor(x, y){
+			this.dropx = x;
+			this.dropy = y;
+		}
+		show() {
+			dropx = dropx + 2;
+	        dropy = dropy + 2;
+			update(this)
+		}
+	}
+
+
+	var interval = setInterval(update, 210 - rangebarspeed.value);
+	CreateDrops()
+
+	rangebarspeed.addEventListener('change', function(){
+		clearInterval(interval);
+		interval = setInterval(update, 220 - rangebarspeed.value);
+	})
+	rangebaramount.addEventListener('change', function(){ CreateDrops()})
+	rangebardropcolor.addEventListener('change', function(){ update()})
+	rangebardroplength.addEventListener('change', function(){ update()})
+	rangebardropthickness.addEventListener('change', function(){ update()})
+
+	function CreateDrops() {
+	drops = [];
+	for(i = 0; i < rangebaramount.value; i++){
+	var e = new drop(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height))
+	drops.push(e)
+	update()
+	}
+    }
+
+	function update() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
+	ctx.fillStyle = rangebardropcolor.value;
+
+	drops.forEach(d => {
+		if (d.dropy >= canvas.height) {d.dropy = 0}
+		else {d.dropy = d.dropy + 2;}
+		ctx.fillRect(d.dropx, d.dropy, rangebardropthickness.value, rangebardroplength.value)
+		ctx.fill()
+	})
+	}
+</script> 

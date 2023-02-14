@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Shape Simulation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random shapes">
+	<meta name="keywords" content="shape, maker, simulation">
+<style>    
+	.thebutton {
+		width: 200px;
+    }
+</style>
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(736 225 0)">
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="navflex">
+				<h1>Lightning Generator</h1>
+
+				<center>
+					<button onclick="generate()" class="thebutton">Generate</button>
+					<div  style="display:flex; flex-wrap: wrap; flex-direction: row;">
+					<div><h3>Thickness</h3><input type="range" min="2" max="100" value="30" id="rangebar"></div>
+					<div><h3>Blocky</h3><input type="range" min="2" max="100" value="4" id="rangebar2"></div>
+				    </div>
+				</center>
+				<div id="main">
+					<canvas style="background-color: gray;" id="mycanvas" width="600" height="800"></canvas>
+					
+				</div>
+
+
+				<footer>
+					<p>Copyright &copy; 2022 - Conner Jasmer</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="lightning.js"></script> 
