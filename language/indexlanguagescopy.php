@@ -1,5 +1,3 @@
-@model List<Language>
-
 <body class="themeblackgoldveryback">
 	<div style="background-color: rgb(255 234 49)">
 		<div class="themeblackgoldback">
@@ -12,10 +10,14 @@
 
 				<h1>---------- Languagessss ----------</h1>
 				<div id="langdiv">
-					@foreach (Language obj in Model){
-
+					<?php
+					$conn = mysqli_connect("localhost", "root", " ", "company");
+					if ($conn-> connect_error){
+						die("Connection Failed:". $conn-> connect_error);
 					}
-
+					$sql = "SELECT name FROM Languages"
+					
+					?>
 				</div>
 
 			<footer>

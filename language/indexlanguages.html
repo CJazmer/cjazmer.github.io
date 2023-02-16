@@ -11,6 +11,7 @@
 		.langholder:hover{
 			filter: brightness(1.2);
 		}
+		.langholder p{color:black}
 		.langinfodiv{
 			justify-content: left;
 			display: flex;
@@ -36,20 +37,20 @@
 		}
 		.langextra{height: fit-content; min-height: 1px; background-color: darkslategrey; padding: .5em;}
 		.langextra a{color:gold; width: 3em; height: 2em; border-radius: 10%; border: .1em solid gold; background-color: black; padding: .2em; text-decoration: none;}
-		.desc{color: white;}
-		.langpic{width: 5em; height: 5em; background-color: white;}
+		.desc{color: white; text-align: left;}
+		.langpic{width: 5em; height: 5em; margin-right: .3em; background-color: white;}
 	</style>
 </head>
 
 <body class="themeblackgoldveryback">
 	<div style="background-color: rgb(255 234 49)">
 		<div class="themeblackgoldback">
-			<nav class="topnavbar" style="background-color: rgb(29 29 29)"><h1 onclick="window.location.href='../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='indexlanguages.html'">Language</li><li onclick="window.location.href='../survival/indexsurvival.html'">Survival</li><li>Music</li><li onclick="window.location.href='../apps/indexapps.html'">Apps</li></ul></nav>
+			<nav class="topnavbar" style="background-color: rgb(29 29 29)"><h1 onclick="window.location.href='../index.html'">Jazmer World Music</h1><ul><li onclick="window.location.href='indexlanguages.html'">Language</li><li onclick="window.location.href='../survival/indexsurvival.html'">Survival</li><li onclick="window.location.href='../music/indexmusic.html'">Music</li><li onclick="window.location.href='../apps/indexapps.html'">Apps</li></ul></nav>
 			<div class="topbackbutton" onclick="history.back()">Back</div>
 		
 				<div id="navflex">
 					<h1>Dictionary</h1>
-					<div class="bigbuttons"><button onclick="window.location.href='dictionary/dictionary.html'">Languages Dictionary</button></div>
+					<button onclick="window.location.href='dictionary/dictionary.html'">Languages Dictionary</button>
 
 				<h1>---------- Languages ----------</h1>
 				<div id="langdiv"></div>
@@ -64,23 +65,25 @@
 <script>
 	const langdiv = document.getElementById("langdiv");
 	const langs = [
-		{name: "Spanish", langfam: "romance", flag: "mexico", description: "Native American language.", extra:"<a href='spanish/spanish.html'>Translator</a><a href='../images/language/pdf/spanish.pdf'>Language PDF</a>"},
-		{name: "Portugese", langfam: "romance", flag: "brazil", description: "Native American language.", extra:""},
-		{name: "Arabic", langfam: "semitic", flag: "semitic", description: "Native American language.", extra:""},
-		{name: "Hebrew", langfam: "semitic", flag: "semitic", description: "Native American language.", extra:""},
-		{name: "amazigh", langfam: "berber", flag: "berber", description: "Language of North Africa!", extra:""},
-		{name: "Oneida", langfam: "native american", flag: "oneida", description: "Native American language.", extra:"<a href='oneida/oneida.html'>Translator</a>"},
-		{name: "Lakota", langfam: "native american", flag: "lakota", description: "Native American language.", extra:"<a href='lakota/lakota.html'>Translator</a>"},
-		{name: "Irish", langfam: "celtic", flag: "celtic", description: "Native American language.", extra:""},
-		{name: "Swahili", langfam: "african", flag: "africa", description: "Native American language.", extra:""},
+		{name: "Spanish", langfam: "romance", flag: "mexico", description: "Biggest romance language.", extra:"<a href='spanish/spanish.html'>Translator</a><a href='../images/language/pdf/spanish.pdf'>Language PDF</a>"},
+		{name: "Portugese", langfam: "romance", flag: "brazil", description: "2nd biggest romance language.", extra:""},
+		{name: "Arabic", langfam: "semitic", flag: "semitic", description: "Ancient language that is still one of the most spoken in the world.", extra:""},
+		{name: "Hebrew", langfam: "semitic", flag: "semitic", description: "Ancient language responsible for texts like the bible & torah.", extra:""},
+		{name: "amazigh", langfam: "berber", flag: "berber", description: "Ancient Language of North Africa!", extra:""},
+		{name: "Oneida", langfam: "native american", flag: "oneida", description: "Spoken in New York and Green Bay.", extra:"<a href='oneida/oneida.html'>Translator</a>"},
+		{name: "Lakota", langfam: "native american", flag: "lakota", description: "Language of sitting bull and the great plains of South Dakota. 3 dilects (Lakota, Dakota, Nakota)", extra:"<a href='lakota/lakota.html'>Translator</a>"},
+		{name: "Irish", langfam: "celtic", flag: "celtic", description: "Native language of the Irish.", extra:""},
+		{name: "Swahili", langfam: "african", flag: "africa", description: "Very easy/logical language that follows it's rules.", extra:""},
 		{name: "Russian", langfam: "slavic", flag: "russian", description: "1st most spoken Slavic language.", extra:""},
 		{name: "polish", langfam: "slavic", flag: "polish", description: "2nd most spoken Slavic language.", extra:""},
-		{name: "hawaiian", langfam: "austronesian", flag: "flower", description: "Language of Hawaii!", extra:""},
-		{name: "Jamaican Patois", langfam: "creole", flag: "none", description: "English / West African based creole language.", extra:""}
+		{name: "hawaiian", langfam: "austronesian", flag: "flower", description: "Language of Hawaii!", extra:"<a href='../images/language/pdf/hawaiian.pdf'>Language PDF</a>"},
+		{name: "turkish", langfam: "turkic", flag: "turkey", description: "Language of Turkey!", extra:""},
+		{name: "Jamaican Patois", langfam: "creole", flag: "none", description: "English / West African based creole language.", extra:""},
+		{name: "Haitin Creole", langfam: "creole", flag: "none", description: "French / West African based creole language.", extra:""}
 	];
 	// Color Themes based on lang family
 	const colors = [
-		{langfam: "none", clrhead: "grey", clrbackg: "white"},
+		{langfam: "none", clrhead: "grey", clrbackg: "lightgrey"},
 		{langfam: "romance", clrhead: "darkorange", clrbackg: "orange"},
 		{langfam: "celtic", clrhead: "green", clrbackg: "lime"},
 		{langfam: "semitic", clrhead: "rgb(255, 180, 70)", clrbackg: "rgb(255, 210, 100)"},
@@ -89,6 +92,7 @@
 		{langfam: "african", clrhead: "mediumpurple", clrbackg: "plum"},
 		{langfam: "slavic", clrhead: "rgb(60, 135, 215)", clrbackg: "rgb(100, 175, 255)"},
 		{langfam: "austronesian", clrhead: "hotpink", clrbackg: "lightpink"},
+		{langfam: "turkic", clrhead: "red", clrbackg: "pink"},
 		{langfam: "berber", clrhead: "rgb(255, 180, 70)", clrbackg: "rgb(255, 210, 100)"},
 	]
 
