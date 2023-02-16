@@ -66,6 +66,7 @@
                     <button onclick="applyclick()">Change Size</button>
                     <div><p>Width</p><input type="text" class="textinput" id="inputwidth"/></div>
                     <div><p>Height</p><input type="text" class="textinput" id="inputheight"/></div>
+                    <button onclick="download()" style="width:100%; height: 2em;">Download</button>
                 </div>
             <canvas id="canvasflag"></canvas>
             <select name="numbers" id="defaultflags"></select>
@@ -95,7 +96,7 @@ var ctx = canvas.getContext("2d");
 var divdefaultflags = document.getElementById("defaultflags");
 var inputstripenum = document.getElementById("inputstripenum");
 var inputhorizontalcheck = document.getElementById("inputhorizontalcheck");
-var inputcolors = document.getElementById("inputcolors");
+var inputcolors = document.getElementById("inputcolors"); inputcolors.value = "red, orange, yellow";
 var inputwidth = document.getElementById("inputwidth");
 var inputheight = document.getElementById("inputheight");
 const flags = [ // Order to show in dropdown box
@@ -113,7 +114,7 @@ flags.forEach(f => {
     divdefaultflags.innerHTML += "<option>" + f + "</option>";
 })
 
-
+// Instructions on how to make the flags using my functions
 divdefaultflags.addEventListener("change", flagchanged)
 function flagchanged(){
     switch(divdefaultflags.value) {
@@ -211,5 +212,12 @@ if (shape == "cornerbox"){ ctx.fillRect(0, 0, canvas.width / 3, canvas.height / 
 ctx.closePath(); 
 }
 drawstripes(1, "vertical", ["white"]);
+
+function download(){
+var link = document.createElement('a');
+  link.download = 'filename.png';
+  link.href = document.getElementById('canvasflag').toDataURL()
+  link.click();
+}
 
 </script> 
