@@ -94,7 +94,7 @@ function nextwordclick() {
 	}
 
 	rules.forEach(r => {
-		if(r.wordbefore == words[words.length - 1].pos) {w = makeword(r.newword[1],r.newword[0])} // 0 is POS, 1 is array
+		if(r.wordbefore == words[words.length - 1].pos) { w = makeword(r.newword[1],r.newword[0]) } // 0 is POS, 1 is array
 	})
 
 	words.push(w);
