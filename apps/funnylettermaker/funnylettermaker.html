@@ -51,7 +51,8 @@
                         <option value="random">Random</option>
                         <option value="custom">Custom</option>
                     </select>
-                    <input type="text" id="inputtopictext">
+                    <input type="text" id="inputtopictext" style="visibility: hidden;">
+                    <p style="margin: 0em; font-size: medium; width: 100%; align-self: center; visibility: hidden;" id="pInfo">Add 'ing' to verb. Example: 'Selling sand'</p>
                 </div>         
             <button onclick="generate()" style="width:100%; height: 2em;">Generate</button>
             <div class="txtarea" id="txtarea"></div>
@@ -73,6 +74,7 @@ const txtarea = document.getElementById("txtarea");
 const inputtopic = document.getElementById("inputtopic");
 const inputtopictext = document.getElementById("inputtopictext");
 const topics = ["working a job", "living in the woods", "selling sand", "hiding eggs", "moving to Bosnia", "watching grass grow"];
+const pInfo = document.getElementById('pInfo');
 
 function generate(){
 
@@ -150,4 +152,15 @@ function generate(){
 function randword(arr){
     return arr[Math.floor(Math.random() * ((arr.length - 1) - 0 + 1))]
 }
+
+inputtopic.addEventListener("change", function(){
+    if (inputtopic.value == "custom") { 
+        inputtopictext.style.visibility='visible';
+        pInfo.style.visibility='visible';
+    }
+    else {
+        inputtopictext.style.visibility='hidden';
+        pInfo.style.visibility='hidden';
+    }
+})
 </script> 

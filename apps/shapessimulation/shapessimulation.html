@@ -9,13 +9,15 @@
 	<meta name="keywords" content="shape, maker, simulation">
 <style>    
 	.thebutton {
-		width: 200px;
+		width: 100%;
+		align-self: center;
     }
 	.inputdivs{
-		background-color: gray;
+		background-color: rgb(227, 164, 81);
 		flex-direction: column;
 		justify-content: space-evenly;
 		display: flex;
+		flex-wrap: wrap;
 		flex-direction: row;
 		padding: .2em;
 	}
@@ -23,6 +25,8 @@
 		background-color: wheat;
 		width: fit-content;
 		padding: .5em;
+		border: .2em solid black;
+		border-radius: 1em;
 	}
 </style>
 </head>
@@ -33,7 +37,6 @@
 			<div class="topbackbutton" onclick="history.back()">Back</div>
 
 			<div id="navflex">
-				<h1>Shapes</h1>
 
 				<div class="inputdivs">
 					<div>
@@ -49,11 +52,11 @@
 						<input type="range" value="3" min="1" max="7" id="numofcolors"/>
 					</div>
 				</div>
-				<center>
-					<button onclick="Create()" class="thebutton">Create!</button>
-				</center>
-					<canvas style="background-color: gray;" id="mycanvas"></canvas>
-					<p id="infotext"></p>
+				
+				<button onclick="Create()" class="thebutton">Create Shapes!</button>
+				
+				<canvas style="background-color: gray;" id="mycanvas"></canvas>
+				<p id="infotext"></p>
 
 				<footer>
 					<p>Copyright &copy; 2022 - Conner Jasmer</p>
