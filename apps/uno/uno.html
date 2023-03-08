@@ -75,9 +75,10 @@ var toptext = document.getElementById('toptext');
 var colors = ["red", "blue", "green", "rgb(191, 201, 0)"];
 
 class Card {
-    constructor(number, color) {
+    constructor(number, color, id) {
         this.number = number;
         this.color = color;
+		this.id = id;
     }
 }
 var deck = [];
@@ -86,7 +87,7 @@ function DrawCard() {
     var ran = Math.floor(Math.random() * 9)
     var ran2 = Math.floor(Math.random() * colors.length)
 
-        var card = new Card(ran, colors[ran2]);
+        var card = new Card(ran, colors[ran2], deck.length);
         deck.push(card);
     ShowCards();
 }
@@ -100,6 +101,10 @@ function ShowCards() {
         div.style.backgroundColor = c.color;
     }
 }
+function UpdateIds() {
+	var theid = 0;
+	for (var c of deck) { c.id = theid; theid++;}
+}
 
 // Start card values
 maincard.style.backgroundColor = "red"; maincard.innerHTML = "1";
@@ -112,6 +117,7 @@ drawcards(3)
 document.addEventListener("click", function(obj){
 	var cardcolor = obj.target.style.backgroundColor;
 	var cardnumber = obj.target.innerHTML;
+	
 	if(obj.target.textContent == "Play Again") {drawcards(3);}
 
 	// if its a card
@@ -126,7 +132,7 @@ document.addEventListener("click", function(obj){
 		if (deck[i].number == parseInt(maincard.innerHTML) || deck[i].color == maincard.style.backgroundColor) {
 		
 		// if card player clicked
-		if(cardcolor == deck[i].color && cardnumber == deck[i].number) {deck.splice(i, 1);}
+		if(cardcolor == deck[i].color && cardnumber == deck[i].number) {deck.splice(i, 1); UpdateIds();}
 		break;
 		} else {
 		++i;

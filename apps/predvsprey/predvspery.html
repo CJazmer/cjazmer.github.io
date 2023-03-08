@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Pred Vs Prey</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Simulation you can control">
+	<meta name="keywords" content="pred, prey">
+<style>    
+canvas {
+    width: 100%;
+    height: 20em;
+    margin: 0em;
+    background-color: tan;
+
+}
+.holderdiv {
+width: fit-content;
+background-color: blanchedalmond;
+margin-left: auto;
+    margin-right: auto;
+}
+table {
+    background-color: blanchedalmond;
+    border: .2em solid black;
+    width: 50%;
+    margin: 0em;
+ 
+}
+button {
+    width: 100%;
+    height: fit-content;
+}
+p {margin: 0em;}
+</style>
+</head>
+
+<body style="background-color: rgb(0 0 0)">
+	<div style="background-color: rgb(736 225 0)">
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div class="bg">
+                
+				<canvas id="canvas"></canvas>
+                <div>
+                    <div style="background-color: thistle; display: flex; padding: 0px; margin: 0em; justify-content: space-evenly;">
+                    <p>Preys <span id="dPreys"></span></p>
+                    <p>Preds <span id="dPreds"></span></p>
+                    </div>
+
+                        <label for="ee">Starve Rate</label>
+                        <select name="ee" id="hStarveRate">
+                            <option value="0">None</option>
+                           <option value=".1">Slow</option>
+                           <option value=".5">Medium</option>
+                           <option value="1">Fast</option>
+                           <option value="2">Faster</option>
+                        </select>
+
+                        <div class="holderdiv">
+                        <table>
+                            <tr><th>Type</th><td><select id="hType"><option value="prey">Prey</option><option value="pred">Pred</option></select></td></tr>
+                            <tr><th>Amount</th><td><input type="text" id="hAmount"></td></tr>
+                        </table>
+                        <button onclick="btnclick()">Add</button>
+                    </div>
+                </div>
+			</div>
+            <footer>
+                <p>Copyright &copy; 2022 - Conner Jasmer</p>
+            </footer>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+    const canvas = document.getElementById("canvas");
+	const ctx = canvas.getContext("2d")
+    // h = from HTML, o = options
+    let hPreys = document.getElementById("dPreys");
+    let hPreds = document.getElementById("dPreds");
+    let hStarveRate = document.getElementById("hStarveRate");
+    let hType = document.getElementById("hType");
+    let hAmount = document.getElementById("hAmount");
+    let oSize = 5;
+    let oStarveRate = .2; // per 100ms
+    
+
+
+	let blobs = [];
+
+
+    class blob{
+		constructor(x, y, type, life){
+			this.x = x;
+			this.y = y;
+            this.type = type;
+            this.life = life;
+		}
+        move(){
+            if(this.x >= canvas.width) {this.x -= 5;}
+            else if (this.x <= 0) {this.x += 5;}
+            else {this.x += randomnum(-1, 1); }
+
+            if (this.y <= 0) {this.y += 5;}
+            else if (this.y >= canvas.height) {this.y -= 5;}
+            else {this.y += randomnum(-1, 1);}
+        }
+	}
+    CreateBlobs("prey", 80);
+	CreateBlobs("pred", 3);
+
+
+
+	setInterval(update, 100);
+
+	
+	function CreateBlobs(type, amount) {
+	for(i = 0; i < amount; i++){
+	var e = new blob(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height), type, 100)
+	blobs.push(e)
+	update()
+	}
+    }
+
+	function update() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
+        let numpreys = 0;
+        let numpreds = 0;
+        oStarveRate = hStarveRate.value;
+
+	blobs.forEach(b => {
+        b.life -= oStarveRate;
+        // if dead, remove
+        if (b.life <= 0) { blobs.slice(b); }
+        // if alive, draw it!
+        else {
+        if (b.type == "pred") {ctx.fillStyle = "red"; numpreds++;}
+        else { ctx.fillStyle = "green"; numpreys++;}
+        b.move();
+
+        ctx.beginPath();
+		ctx.arc(b.x, b.y, oSize, 0, Math.PI * 2)
+		ctx.fill()
+        ctx.closePath();
+        }
+	})
+    hPreys.innerHTML = numpreys;
+    hPreds.innerHTML = numpreds;
+    }
+
+    function btnclick(){
+        try {hAmount.value = parseInt(hAmount.value);}
+        catch {hAmount.value = 1;}
+        CreateBlobs(hType.value, hAmount.value);
+    }
+    function randomnum(min, max){return Math.floor(Math.random() * (max - min + 1)) + min}
+</script> 
