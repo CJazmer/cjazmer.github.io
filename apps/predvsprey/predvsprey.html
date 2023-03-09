@@ -26,7 +26,6 @@ table {
     border: .2em solid black;
     width: 50%;
     margin: 0em;
- 
 }
 button {
     width: 100%;
@@ -92,23 +91,28 @@ p {margin: 0em;}
 
 
     class blob{
-		constructor(x, y, type, life){
+		constructor(id, x, y, type, life, kills, births){
+            this.id = id;
 			this.x = x;
 			this.y = y;
             this.type = type;
             this.life = life;
+            this.kills = kills;
+            this.births = births;
 		}
         move(){
+            // boundaries left and right
             if(this.x >= canvas.width) {this.x -= 5;}
             else if (this.x <= 0) {this.x += 5;}
             else {this.x += randomnum(-1, 1); }
 
+            // boundaries up and down
             if (this.y <= 0) {this.y += 5;}
             else if (this.y >= canvas.height) {this.y -= 5;}
             else {this.y += randomnum(-1, 1);}
         }
 	}
-    CreateBlobs("prey", 80);
+    CreateBlobs("prey", 5);
 	CreateBlobs("pred", 3);
 
 
@@ -118,11 +122,15 @@ p {margin: 0em;}
 	
 	function CreateBlobs(type, amount) {
 	for(i = 0; i < amount; i++){
-	var e = new blob(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height), type, 100)
+	var e = new blob(blobs.length, randomnum(0, canvas.width), randomnum(0, canvas.height), type, 100, 0, 0)
 	blobs.push(e)
-	update()
 	}
     }
+    function Birth(blobOBJ) {
+        var e = new blob(blobs.length, blobOBJ.x, blobOBJ.y, blobOBJ.type, 100, 0, 0)
+	    blobs.push(e)
+    }
+
 
 	function update() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -131,12 +139,29 @@ p {margin: 0em;}
         oStarveRate = hStarveRate.value;
 
 	blobs.forEach(b => {
-        b.life -= oStarveRate;
+
         // if dead, remove
-        if (b.life <= 0) { blobs.slice(b); }
+        if (b.life <= 0) { RemoveBlob(b); }
+
         // if alive, draw it!
         else {
-        if (b.type == "pred") {ctx.fillStyle = "red"; numpreds++;}
+
+        if (b.type == "pred") {
+            b.life -= oStarveRate;
+            ctx.fillStyle = "rgba(255, 0, 0, "+ (b.life / 100) +")";
+            numpreds++;
+        
+            // if pred touching prey, kill prey
+            let index = blobs.findIndex( b2 => {
+                if(getDistance(b.x, b.y, b2.x, b2.y) <= oSize && b2.type == "prey"){ b.kills++; b.life += 100; return true; }
+            });
+            if(index != -1) {blobs.splice(index, 1);}
+
+            // if pred has 2 kills, duplicate
+            if (b.kills == 2 && b.births == 0) {Birth(b); b.births++;}
+            else if((b.kills / b.births) == 2 && b.births != 2) { Birth(b); b.births++;}
+            // 2k 1b, 4k 2b, 6k 3b, 8k 4b
+        }
         else { ctx.fillStyle = "green"; numpreys++;}
         b.move();
 
@@ -149,11 +174,22 @@ p {margin: 0em;}
     hPreys.innerHTML = numpreys;
     hPreds.innerHTML = numpreds;
     }
-
+    // Add button clicked, Create circles with entered values (amount, type (pred or prey))
     function btnclick(){
         try {hAmount.value = parseInt(hAmount.value);}
         catch {hAmount.value = 1;}
         CreateBlobs(hType.value, hAmount.value);
     }
     function randomnum(min, max){return Math.floor(Math.random() * (max - min + 1)) + min}
+    
+    function getDistance(xA, yA, xB, yB) { 
+	var xDiff = xA - xB;  var yDiff = yA - yB;
+	return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+    }
+    function RemoveBlob(OBJ){
+        let index = blobs.findIndex( b => {
+                if(b.id == OBJ.id){ return true; }
+            });
+            if(index != -1) {blobs.splice(index, 1);}
+    }
 </script> 
