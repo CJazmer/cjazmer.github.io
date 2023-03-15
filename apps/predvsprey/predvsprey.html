@@ -20,18 +20,29 @@ width: fit-content;
 background-color: blanchedalmond;
 margin-left: auto;
     margin-right: auto;
+    margin-top: 2em;
 }
 table {
     background-color: blanchedalmond;
     border: .2em solid black;
-    width: 50%;
+    width: 100%;
     margin: 0em;
 }
+th {text-align: right;}
+td select{ width: 100%;}
 button {
     width: 100%;
     height: fit-content;
 }
 p {margin: 0em;}
+.heading{
+    background-color: white;
+    font-weight: bolder;
+    padding: .5em;
+}
+.settingsdiv{
+    width: 50%;
+}
 </style>
 </head>
 
@@ -41,31 +52,82 @@ p {margin: 0em;}
 			<div class="topbackbutton" onclick="history.back()">Back</div>
 			<div class="bg">
                 
+                <div><p>Time Passed: <span id="hGameTime"></span> seconds | Total: <span id="htotal"></span></p></div>
 				<canvas id="canvas"></canvas>
                 <div>
-                    <div style="background-color: thistle; display: flex; padding: 0px; margin: 0em; justify-content: space-evenly;">
-                    <p>Preys <span id="dPreys"></span></p>
-                    <p>Preds <span id="dPreds"></span></p>
-                    </div>
+                    <div style="background-color: wheat; display: flex; padding: 0px; margin: 0em; justify-content: space-evenly;">
+                    <p><span id="hcrownpred"></span>Preds <span id="dPreds"></span></p>
+                    vs
+                    <p><span id="hcrownprey"></span>Preys <span id="dPreys"></span></p>
+                </div>
 
-                        <label for="ee">Starve Rate</label>
-                        <select name="ee" id="hStarveRate">
-                            <option value="0">None</option>
-                           <option value=".1">Slow</option>
-                           <option value=".5">Medium</option>
-                           <option value="1">Fast</option>
-                           <option value="2">Faster</option>
-                        </select>
-
-                        <div class="holderdiv">
-                        <table>
-                            <tr><th>Type</th><td><select id="hType"><option value="prey">Prey</option><option value="pred">Pred</option></select></td></tr>
-                            <tr><th>Amount</th><td><input type="text" id="hAmount"></td></tr>
+                <div style="display: flex; flex:1;">
+                    <div class="settingsdiv">
+                        <p class="heading" style="background-color: red;">Preditor Settings</p>
+                        <table style="background-color: rgb(255, 158, 158);">
+                            <tr>
+                                <th>Starve Speed</th>
+                                <td>
+                                    <select id="hStarveRate">
+                                        <option value="0">OFF</option>
+                                       <option value=".1">Slow</option>
+                                       <option value=".2" selected>Medium</option>
+                                       <option value=".5">Fast</option>
+                                       <option value="1">Faster</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Duplicates after getting</th>
+                                <td>
+                                    <select id="hPredDupRate">
+                                        <option value="0">OFF</option>
+                                        <option value="1">1 kill</option>
+                                       <option value="2" selected>2 kills</option>
+                                       <option value="3">3 kills</option>
+                                       <option value="4">4 kills</option>
+                                    </select>
+                                </td>
+                            </tr>
                         </table>
-                        <button onclick="btnclick()">Add</button>
+                    </div>
+                    <div class="settingsdiv">
+                        <p class="heading" style="background-color:rgb(26, 154, 26);">Prey Settings</p>
+                        <table style="background-color: greenyellow;">
+                            <tr>
+                                <th>Duplicate every</th>
+                                <td>
+                                    <select id="hPreyDupSpeed">
+                                        <option value="0">OFF</option>
+                                        <option value="10000">10 sec</option>
+                                        <option value="20000" selected>20 sec</option>
+                                        <option value="30000">30 sec</option>
+                                        <option value="60000">1 min</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
+
+                
 			</div>
+            <div class="holderdiv">
+                <p class="heading">Add Preys/Preds</p>
+                <table>
+                    <tr><th>Type</th><td><select id="hType"><option value="prey">Prey</option><option value="pred">Pred</option></select></td></tr>
+                    <tr><th>Amount</th><td><input type="text" id="hAmount"></td></tr>
+                </table>
+                <button onclick="btnclick()">Add</button>
+                <button onclick="ClearBlobs()">Clear All</button>
+            </div>
+            
             <footer>
                 <p>Copyright &copy; 2022 - Conner Jasmer</p>
             </footer>
@@ -82,23 +144,29 @@ p {margin: 0em;}
     let hStarveRate = document.getElementById("hStarveRate");
     let hType = document.getElementById("hType");
     let hAmount = document.getElementById("hAmount");
+    let hPreyDupSpeed = document.getElementById("hPreyDupSpeed");
+    let hPredDupRate = document.getElementById("hPredDupRate");
     let oSize = 5;
     let oStarveRate = .2; // per 100ms
+    let gGameTime = 0;
+    let hGameTime = document.getElementById("hGameTime");
+    let htotal = document.getElementById("htotal");
+    let hcrownpred = document.getElementById("hcrownpred");
+    let hcrownprey = document.getElementById("hcrownprey");
+
     
-
-
 	let blobs = [];
 
-
     class blob{
-		constructor(id, x, y, type, life, kills, births){
+		constructor(id, x, y, type, life){
             this.id = id;
 			this.x = x;
 			this.y = y;
             this.type = type;
             this.life = life;
-            this.kills = kills;
-            this.births = births;
+            this.kills = 0;
+            this.births = 0;
+            this.timealive = 0;
 		}
         move(){
             // boundaries left and right
@@ -112,8 +180,9 @@ p {margin: 0em;}
             else {this.y += randomnum(-1, 1);}
         }
 	}
-    CreateBlobs("prey", 5);
-	CreateBlobs("pred", 3);
+    // Default when loaded
+    CreateBlobs("prey", 50);
+	CreateBlobs("pred", 5);
 
 
 
@@ -122,23 +191,27 @@ p {margin: 0em;}
 	
 	function CreateBlobs(type, amount) {
 	for(i = 0; i < amount; i++){
-	var e = new blob(blobs.length, randomnum(0, canvas.width), randomnum(0, canvas.height), type, 100, 0, 0)
+	var e = new blob(blobs.length, randomnum(0, canvas.width), randomnum(0, canvas.height), type, 100)
 	blobs.push(e)
 	}
     }
     function Birth(blobOBJ) {
-        var e = new blob(blobs.length, blobOBJ.x, blobOBJ.y, blobOBJ.type, 100, 0, 0)
+        var e = new blob(blobs.length, blobOBJ.x, blobOBJ.y, blobOBJ.type, 100)
 	    blobs.push(e)
     }
-
+    function ClearBlobs(){ blobs = []; }
 
 	function update() {
+        gGameTime += 100;
+        hGameTime.innerHTML = gGameTime.toString().slice(0, -3); // convert ms to seconds
+
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
         let numpreys = 0;
         let numpreds = 0;
         oStarveRate = hStarveRate.value;
 
 	blobs.forEach(b => {
+        b.timealive += 100;
 
         // if dead, remove
         if (b.life <= 0) { RemoveBlob(b); }
@@ -158,11 +231,15 @@ p {margin: 0em;}
             if(index != -1) {blobs.splice(index, 1);}
 
             // if pred has 2 kills, duplicate
-            if (b.kills == 2 && b.births == 0) {Birth(b); b.births++;}
-            else if((b.kills / b.births) == 2 && b.births != 2) { Birth(b); b.births++;}
+            if (hPredDupRate.value == 0) {}
+            else if(b.kills % hPredDupRate.value == 0 && (b.kills/b.births) != hPredDupRate.value && b.kills != 0 ) { Birth(b); b.births++;}
             // 2k 1b, 4k 2b, 6k 3b, 8k 4b
         }
-        else { ctx.fillStyle = "green"; numpreys++;}
+        // If Prey...
+        else { 
+            ctx.fillStyle = "green"; numpreys++;
+            if(b.timealive % hPreyDupSpeed.value == 0 && hPreyDupSpeed.value != 0) { Birth(b); b.births++; }
+        }
         b.move();
 
         ctx.beginPath();
@@ -173,6 +250,10 @@ p {margin: 0em;}
 	})
     hPreys.innerHTML = numpreys;
     hPreds.innerHTML = numpreds;
+    // Give crown to winner
+    if(numpreds > numpreys) { hcrownpred.innerHTML = "👑"; hcrownprey.innerHTML = "";}
+    else {hcrownpred.innerHTML = ""; hcrownprey.innerHTML = "👑";}
+    htotal.innerHTML = blobs.length;
     }
     // Add button clicked, Create circles with entered values (amount, type (pred or prey))
     function btnclick(){
