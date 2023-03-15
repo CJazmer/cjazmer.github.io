@@ -52,13 +52,13 @@ p {margin: 0em;}
 			<div class="topbackbutton" onclick="history.back()">Back</div>
 			<div class="bg">
                 
-                <div><p>Time Passed: <span id="hGameTime"></span> seconds | Total: <span id="htotal"></span></p></div>
+                <div style="background-color: beige; padding: .5em; text-align: center;"><p>Time Passed: <span id="hGameTime"></span> seconds | Total: <span id="htotal"></span></p></div>
 				<canvas id="canvas"></canvas>
                 <div>
                     <div style="background-color: wheat; display: flex; padding: 0px; margin: 0em; justify-content: space-evenly;">
-                    <p><span id="hcrownpred"></span>Preds <span id="dPreds"></span></p>
+                    <p><span id="hcrownpred"></span>Preds <span id="dPreds"></span><span id="harrowpred"></span></p>
                     vs
-                    <p><span id="hcrownprey"></span>Preys <span id="dPreys"></span></p>
+                    <p><span id="hcrownprey"></span>Preys <span id="dPreys"></span><span id="harrowprey"></span></p>
                 </div>
 
                 <div style="display: flex; flex:1;">
@@ -153,6 +153,8 @@ p {margin: 0em;}
     let htotal = document.getElementById("htotal");
     let hcrownpred = document.getElementById("hcrownpred");
     let hcrownprey = document.getElementById("hcrownprey");
+    let harrowpred = document.getElementById("harrowpred");
+    let harrowprey = document.getElementById("harrowprey");
 
     
 	let blobs = [];
@@ -248,8 +250,15 @@ p {margin: 0em;}
         ctx.closePath();
         }
 	})
+    // update arrows
+    if (hPreys.innerHTML < numpreys) {harrowprey.innerHTML = "⏫";}
+    if (hPreys.innerHTML > numpreys) {harrowprey.innerHTML = "⏬";}
+    if (hPreds.innerHTML < numpreds) {harrowpred.innerHTML = "⏫";}
+    if (hPreds.innerHTML > numpreds) {harrowpred.innerHTML = "⏬";}
+
     hPreys.innerHTML = numpreys;
     hPreds.innerHTML = numpreds;
+
     // Give crown to winner
     if(numpreds > numpreys) { hcrownpred.innerHTML = "👑"; hcrownprey.innerHTML = "";}
     else {hcrownpred.innerHTML = ""; hcrownprey.innerHTML = "👑";}
