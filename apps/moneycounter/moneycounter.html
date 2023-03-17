@@ -69,7 +69,7 @@ h1{
                 <div style="display: flex; justify-content: center; background-color:beige; border: .1em solid black;";>
                     <p style="margin: auto .5em auto .5em; ">click power</p>
                 <input type="number" value="1" id="hclickpower"/>
-                <button style="width: 50%; max-width: 10em; margin-left: 0em auto 0em auto;">Reset</button>
+                <button style="width: 50%; max-width: 10em; margin-left: 0em auto 0em auto;" onclick="Reset()">Reset</button>
                 </div>                
 
                 <div id="hvisualmoney">
@@ -147,6 +147,9 @@ htotal.innerHTML = "$" + total;
   }
   function Reset(){
     total = 0;
+    hclickpower.value = 1;
+    usmoney.forEach(i => { i.numbof = 0; })
+    Update();
   }
 
 
