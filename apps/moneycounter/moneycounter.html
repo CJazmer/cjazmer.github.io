@@ -79,24 +79,23 @@ h1{
 
 
                 <div> 
-                    <label for="numbers">Choose a num:</label>
+                    <label for="numbers">Display Money By:</label>
                     <select name="numbers" id="hchartopt">
-                    <option value="amount">Amount</option>
-                    <option value="numberof">Number of</option>
+                    <option value="amount">Amounts</option>
+                    <option value="numberof">Number you have</option>
                     </select>
 
                     <canvas id="canvas"></canvas>
                 </div>
             
-            <footer>
-                <p>Copyright &copy; 2023 - Conner Jasmer</p>
-            </footer>
+            <footer></footer>
 		</div>
 	</div>
 </body>
 </html>
 <!-- Chart.js Plugin -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../../layout.js"></script>
 <script>
     // h = from HTML
     const hmoneydropdown = document.getElementById("hmoneydropdown");
@@ -149,7 +148,7 @@ let thevalues = [];
 
 
 
-// Update Chart (chart.js)
+// Update Chart (chart.js) ---------------------------------------------------------
 if (hchartopt.value == "numberof"){
     usmoney.forEach(i => {
    if(i.numbof > 0) {thelables.push(i.value.toString());} thevalues.push(i.numbof);
