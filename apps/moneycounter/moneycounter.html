@@ -76,6 +76,17 @@ h1{
                     <div id="hcoinholder" class="moneyholder"></div>
                     <div id="hbillholder" class="moneyholder"></div>
                 </div>
+
+
+                <div> 
+                    <label for="numbers">Choose a num:</label>
+                    <select name="numbers" id="hchartopt">
+                    <option value="amount">Amount</option>
+                    <option value="numberof">Number of</option>
+                    </select>
+
+                    <canvas id="canvas"></canvas>
+                </div>
             
             <footer>
                 <p>Copyright &copy; 2023 - Conner Jasmer</p>
@@ -84,6 +95,8 @@ h1{
 	</div>
 </body>
 </html>
+<!-- Chart.js Plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // h = from HTML
     const hmoneydropdown = document.getElementById("hmoneydropdown");
@@ -91,7 +104,7 @@ h1{
     const hcoinholder = document.getElementById("hcoinholder");
     const hbillholder = document.getElementById("hbillholder");
     const hclickpower = document.getElementById("hclickpower");
-
+    const hchartopt = document.getElementById("hchartopt");
     let total = 0;
 
   let usmoney = [
@@ -110,7 +123,6 @@ h1{
   ];
 
     hclickpower.addEventListener("change", Update)
-  Update();
   
   function Update(){
     hbillholder.innerHTML = '';
@@ -127,7 +139,35 @@ usmoney.forEach(m => {
       hbillholder.innerHTML += '<div class="bill" onclick="MoneyClicked('+m.value+','+hclickpower.value+')">$'+ m.value +'<br><br>('+ m.numbof +')</div>';
   }
 })
-htotal.innerHTML = "$" + total;
+htotal.innerHTML = "$" + total.toFixed(2);
+
+
+
+
+let thelables = [];
+let thevalues = [];
+
+
+
+// Update Chart (chart.js)
+if (hchartopt.value == "numberof"){
+    usmoney.forEach(i => {
+   if(i.numbof > 0) {thelables.push(i.value.toString());} thevalues.push(i.numbof);
+    })
+    mychart.data.datasets[0].data = thevalues;
+    mychart.data.labels = thelables;
+    mychart.data.datasets[0].label = "Number of"
+    mychart.update();
+}
+else {
+    usmoney.forEach(i => {
+   if(i.numbof > 0) {thelables.push(i.value.toString());} thevalues.push(i.numbof * i.value);
+    })
+    mychart.data.datasets[0].data = thevalues;
+    mychart.data.labels = thelables;
+    mychart.data.datasets[0].label = "Money $"
+    mychart.update();
+}
   }
 
   function AddMoney(){
@@ -151,6 +191,29 @@ htotal.innerHTML = "$" + total;
     usmoney.forEach(i => { i.numbof = 0; })
     Update();
   }
+
+  // Chart.js Plugin ---------------
+const ctx = document.getElementById('canvas').getContext("2d");
+let mychart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["e", "2", "s"],
+      datasets: [{
+        label: 'Number of',
+        data: [1, 4, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  Update();
+  hchartopt.addEventListener("change", Update)
 
 
 </script> 
