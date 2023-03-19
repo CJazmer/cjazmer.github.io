@@ -54,10 +54,9 @@
 	</style>
 </head>
 
-<body style="background-color: rgb(0 0 0)">
-	<div style="background-color: rgb(76 225 0)">
+<body>
 		<div class="themeblackgoldback">
-			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="layoutpagenav"></div>
 
 			<div id="navflex">
                 <p class="info">Automatically creates flags with given values...</p>
@@ -84,9 +83,10 @@
 				<footer></footer>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
+
+<!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
 var canvas = document.getElementById("canvasflag");

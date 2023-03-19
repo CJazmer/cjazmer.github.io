@@ -95,10 +95,10 @@
     </style>
 </head>
 
-<body class="themeblackgoldveryback">
-	<div style="background-color: rgb(255 234 49)">
+<body>
 		<div class="themeblackgoldback">
-			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="layoutpagenav"></div>
+
             <div style="background-color: black; margin-bottom: 0px; display: flex; flex-direction: row; justify-content: center; margin-top: 10px; align-items: center;">
                 <div>
                     <button onclick="cleararray()">Clear People</button>
@@ -127,9 +127,10 @@
 				<footer></footer>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
+
+<!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
 var peoplelist = document.getElementById('peoplelist')

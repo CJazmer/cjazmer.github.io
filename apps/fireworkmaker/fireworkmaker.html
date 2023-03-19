@@ -18,10 +18,10 @@
 </style>
 </head>
 
-<body style="background-color: rgb(0 0 0)">
-	<div style="background-color: rgb(736 225 0)">
+<body>
 		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
-			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="layoutpagenav"></div>
+
 			<div class="bg">
                 <div id="controls">
 				  <div class="inputdiv">
@@ -49,9 +49,10 @@
 			</div>
             <footer></footer>
 		</div>
-	</div>
 </body>
 </html>
+
+<!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
     var canvas = document.getElementById("canvas");

@@ -46,10 +46,11 @@ p {margin: 0em;}
 </style>
 </head>
 
-<body style="background-color: rgb(0 0 0)">
+<body>
 	<div style="background-color: rgb(736 225 0)">
 		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
-			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="layoutpagenav"></div>
+
 			<div class="bg">
                 
                 <div style="background-color: beige; padding: .5em; text-align: center;"><p>Time Passed: <span id="hGameTime"></span> seconds | Total: <span id="htotal"></span></p></div>
@@ -75,13 +76,14 @@ p {margin: 0em;}
                 <button onclick="ClearBlobs()">Clear All</button>
             </div>
             
-            <footer>
-                <p>Copyright &copy; 2022 - Conner Jasmer</p>
-            </footer>
+            <footer></footer>
 		</div>
 	</div>
 </body>
 </html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
 <script>
     const canvas = document.getElementById("canvas");
 	const ctx = canvas.getContext("2d")

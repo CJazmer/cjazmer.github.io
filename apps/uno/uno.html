@@ -45,10 +45,10 @@
 </style>
 </head>
 
-<body style="background-color: rgb(0 0 0)">
-	<div style="background-color: rgb(736 225 0)">
+<body>
 		<div class="wrapper" style="background: linear-gradient(to right, #ff5a00 0%, #ff3300 100%);">
-			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="layoutpagenav"></div>
+
 			<div id="navflex">
 				<h1 id="toptext">UNO (Remove all Cards)</h1>
 
@@ -61,10 +61,11 @@
 				<footer></footer>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
-<script src="../../layout.js"></script>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
 <script>
 	// CODE -------------------------------------------------------------
 var thedeck = document.getElementById('deck');

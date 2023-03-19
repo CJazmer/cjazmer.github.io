@@ -46,10 +46,10 @@ p {margin: 0em;}
 </style>
 </head>
 
-<body style="background-color: rgb(0 0 0)">
-	<div style="background-color: rgb(736 225 0)">
+<body>
 		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
-			<div class="topbackbutton" onclick="history.back()">Back</div>
+			<div id="layoutpagenav"></div>
+
 			<div class="bg">
                 <p style="background-color: white; padding: .4em; border: .2em solid; margin-bottom: 1em;">The red eat the green if they get close enough. Control how fast the green duplicate and how fast the red starve/how many greens they need to eat to reproduce. The circles are not intelligent, but move around randomly.</p>
 
@@ -130,9 +130,10 @@ p {margin: 0em;}
             </div>
             <footer></footer>
 		</div>
-	</div>
 </body>
 </html>
+
+<!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
     const canvas = document.getElementById("canvas");
