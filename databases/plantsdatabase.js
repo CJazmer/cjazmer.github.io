@@ -97,6 +97,7 @@ const plantsdatabasemushrooms = [
     {name: "Shaggy Scalycap", sciname: "", family: "", commonness: "", tags: "poisoneat"},
     {name: "Turkey Tail", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Aspen Bracket", sciname: "", family: "", commonness: "", tags: ""},
+    {name: "Hoof Fungus", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Blushing Bracket", sciname: "", family: "", commonness: "", tags: ""},
 ]
 const plantsdatabasetrees = [
