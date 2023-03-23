@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Language Dictionary</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Search words in different languages.">
+	<meta name="keywords" content="language, dictionary">
+	<style>
+		#searchbar {
+			border-radius: 25px;
+			width: 50%;
+		}
+
+		#searchbarbackground {
+			background-color: darkgoldenrod;
+		}
+
+		#languages {
+			align-self: center;
+			width: fit-content
+		}
+
+		#flex {
+			background-color: gray;
+			display: flex;
+			justify-content: space-evenly;
+			align-content: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+			line-height: 5px
+		}
+
+		#outputdiv {
+			line-height: 5px;
+			background-color: dimgray;
+		}
+
+		#outputoriginal {
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+		<div class="themeblackgoldback">
+			<div id="layoutpagenav"></div>
+
+			<div id="navflex">
+				<h1 style="margin-bottom: 1px"><span id="selectedlanguage">Spanish</span> Dictionary</h1>
+				<select name="languages" id="languages" style="margin-bottom: 20px; background-color: gold" onchange="updatelang()">
+					<option value="English to Spanish">English -> Spanish</option>
+					<option value="English to Russian">English -> Russian</option>
+					<option value="English to Arabic">English -> Arabic</option>
+					<option value="English to Oneida">English -> Oneida</option>
+				</select>
+
+				<div id="searchbarbackground" class="dropdown-content">
+						<input type="text" placeholder="Search Word" id="searchbar" oninput="suggestions()" />
+						<button onclick="Search()">Search!</button>
+						<div id="suggestions"></div>
+					</div>
+
+					<div id="outputdiv">
+						<h1 id="outputnewword"></h1>
+						<h3 id="outputogword"></h3>
+						<div id="flex">
+							<div>
+								<div style="line-height:5px">
+									<p id="exampleotherlang"></p>
+									<p id="exampleenglish"></p>
+
+								</div>
+
+							</div>
+							<div style="line-height:5px">
+								<p id="exampleotherlang"></p>
+								<p id="exampleenglish"></p>
+
+							</div>
+						</div>
+
+						<footer></footer>
+				</div>
+		    </div>
+	    </div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script src="dictionary.js"></script> 

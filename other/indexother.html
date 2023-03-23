@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="/css/translatorscss.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Other</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="This website's purpose is to help save endangered languages and teach various skills. There are languages like Menominee, Ojibwe, Oneida, Quechua, Jamaican Patois, Irish Gaelic, and more to come. This was all made by 1 person so development is slower.">
+	<meta name="keywords" content="jazmer, conner jasmer, conner, jasmer, conner jazmer, jazmer world music">
+	<style>
+		h2{
+			color:gold;
+			margin: 0em;
+			padding: .2em;
+			background-color: darkgoldenrod;
+			border: .1em solid black;
+			text-align: left;
+		}
+		.holder{
+			background-color: gray;
+			min-width: 10em;
+			padding: .3em;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+		.holder p{
+			margin: 0em;
+			text-align: left;
+			color: black;
+		}
+		.picdisplay{
+			padding: .2em;
+			margin: .1em;
+
+			border: .1em solid black;
+			background-color: tan;
+			font-weight: bolder;
+		}
+		.picdisplay img{
+			height: 10em;
+			width: 10em;
+		}
+		.picdisplay video{
+			height: 8em;
+			width: 13em;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="layoutpagenav"></div>
+
+
+				<h2>Astronomy (CLICK PICTURES TO EXPAND)</h2>
+				<div class="flex">
+					<div class="holder" id="hastronomy"></div>
+				<h2>Storm</h2>
+					<div class="holder" id="hstorm"></div>
+				<h2>Homemade Science Stuff</h2>
+					<div class="holder" id="hscience"></div>
+
+				<footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+	const hastronomy = document.getElementById("hastronomy");
+	const hstorm = document.getElementById("hstorm");
+	const hscience = document.getElementById("hscience");
+	const picsastronomy = ["Moon", "Milky Way", "Light Polution", "Comet Neowise", "Jupiter", "Saturn", "Sun", "Lunar Eclipse"];
+	const vidsstorm = ["2018july1", "video1", "video2", "video3", "fullrainbow"];
+
+
+	hastronomy.innerHTML = "";
+	picsastronomy.forEach(arrayname => {
+		let nn = arrayname.replace(/ /g, '').toLowerCase();
+			hastronomy.innerHTML += `<div class="picdisplay" onclick="AstoClicked('${nn}')"><p>${arrayname}</p><img src="/assets/astronomy/${nn}/${nn}1.jpg"></div>`;
+	})
+	hstorm.innerHTML = "";
+	vidsstorm.forEach(arrayname => {
+		hstorm.innerHTML += `<div class="picdisplay"><p>${arrayname}</p><video src="/assets/weather/${arrayname}.mp4" controls></video></div>`;
+	})
+	hscience.innerHTML = "";
+	for(i = 1; i < 4; i++){
+		hscience.innerHTML += `<div class="picdisplay"><p>Video</p><video src="/assets/science/video${i}.mp4" controls></video></div>`;
+	}
+
+	// filename is lowercase and no spaces! *already done!
+	function AstoClicked(filename){
+		localStorage.setItem('choosenmediafile', filename);
+		window.location.href = "./displaymedia.html";
+	}
+</script>

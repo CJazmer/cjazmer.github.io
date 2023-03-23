@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Random Info Generator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.hclock{
+            width: 40em;
+            height: 40em;
+            margin: auto;
+            background: rgb(255,255,255);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(127,127,127,1) 100%);
+            border: 1em solid black;
+            border-radius: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+        }
+        #htickersec{
+            background-color: red;
+            width: .3em;
+            height: 90%;
+            position:absolute;
+            left: 50%;
+            top: 60%;
+        }
+        #htickermin{
+            background-color: black;
+            width: .4em;
+            height: 90%;
+            margin: auto;
+            position:absolute;
+            left: 50%;
+            top: 60%;
+        }
+        #htickerhr{
+            background-color: black;
+            width: .5em;
+            height: 90%;
+            margin: auto;
+            position:absolute;
+            left: 50%;
+            top: 60%;
+        }
+        #htime{
+            background-color:firebrick;
+            color: goldenrod;
+            padding: 2em;
+            font-weight: bolder;
+        }
+        #hseason{
+            height: 2em;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, rgb(210, 140, 200), rgb(206, 82, 82) 100%);">
+			<div id="layoutpagenav"></div>
+
+			<div id="navflex">
+				
+					<h3>Realtime Clock</h3>
+                    <p id="htime"></p>
+					<div class="hclock">
+                        <div id="htickersec"></div>
+                        <div id="htickermin"></div>
+                        <div id="htickerhour"></div>
+					</div>
+
+
+					<h3>Seasons</h3>
+                <div style="width: 100%; border: .4em solid black; border-radius: 2em;">
+                    <div id="hseason">
+                    </div>
+
+				<footer></footer>
+			</div>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+	const hclock = document.getElementById("hclock");
+    let htickersec = document.getElementById("htickersec");
+    htickersec.style.transform = `translateX(40em) translateY(40em);`;
+
+    let htickermin = document.getElementById("htickermin");
+    let htickerhour = document.getElementById("htickerhour");
+    let htime = document.getElementById("htime");
+    let hseason = document.getElementById("hseason");
+
+    setInterval(tick, 100);
+let totaltime = 0;
+    function tick(){
+        let now = new Date();
+        htime.innerHTML = `${now.getFullYear()} ${now.getDay()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        totaltime += 1;
+        console.log("rotate("+ totaltime +"deg)");
+
+        hseason.style.width = `${totaltime}%`;
+        htickersec.style.transform = `rotate(${now.getSeconds()*4}deg)`;
+        htickermin.style.transform = `rotate(${now.getMinutes()*4}deg)`;
+        htickerhour.style.transform = `rotate(${now.getHours()}deg)`;
+    }
+    
+    /*
+    for(i = 1; i <= 12; i++){
+        hclock.innerHTML += `<p style="transform: translateX(${i*3}%) translateY(${i}%)">${i}</p>`;
+    }
+    */
+
+	
+
+</script>

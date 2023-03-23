@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Physics Maker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Simulation you can control">
+	<meta name="keywords" content="pred, prey">
+<style>    
+button {
+    width: 100%;
+    height: fit-content;
+}
+.holder { width: fit-content; margin-right: auto; margin-left: auto;}
+select{width: 80%;}
+#hpiano {width: fit-content; display: flex; flex-direction: row;}
+.key{ width: 1em; height: 8em; background-color: white; border: .1em solid black;}
+.whitekey{ background-color: white; transform: scaleX(2);}
+.blackkey{ background-color: black; height: 5em; z-index: 10;}
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+            <div id="layoutpagenav"></div>
+                
+                <div class="holder">
+                <label for="numbers">Play Style:</label>
+                <select name="numbers" id="hplaystyle">
+                <option value="singlenote">single note</option>
+                <option value="majorchord">Major Chord</option>
+                <option value="minorchord">Minor Chord</option>
+                </select>
+                <div id="hpiano"></div>
+                </div>
+                
+
+                <h1>Generate a song</h1>
+                <div style="background-color: beige; padding: .5em; text-align: center;"><p>Genera: <span id="hgenera"></span> | Key: <span id="hkey"></span> | Progression: <span id="hchordnums"></span> | beat: <span id="hbeat"></span></p></div>
+                <button onclick="AddSongClick()">Add Song</button>
+                
+            
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js" integrity="sha512-jduERlz7En1IUZR54bqzpNI64AbffZWR//KJgF71SJ8D8/liKFZ+s1RxmUmB+bhCnIfzebdZsULwOrbVB5f3nQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../../layout.js"></script>
+<script>
+    // h = from HTML
+    const hkey = document.getElementById("hkey");
+    const hgenera = document.getElementById("hgenera");
+    const hchordnums = document.getElementById("hchordnums");
+    const hbeat = document.getElementById("hbeat");
+    const hpiano = document.getElementById("hpiano");
+    const hplaystyle = document.getElementById("hplaystyle");
+    const arrnotes = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
+
+    for(i = 0; i < 2; i++){
+    arrnotes.forEach(n => {
+        // white key is default
+        let secclass = "whitekey";
+        // if black key
+        if(n.includes("#")){ secclass = "blackkey"; }
+
+        let newkey = '<div class="key '+ secclass +'" onclick="KeyPressed('+"'"+ n +"'"+')"></div>'
+        hpiano.innerHTML += newkey;
+    })
+    }
+
+    function KeyPressed(thenote){
+        console.log(thenote);
+        console.log(MakeChord(thenote, false));
+        // Tone.js
+        switch(hplaystyle.value) {
+        case "singlenote":
+            PlayNotes([thenote]);
+            break;
+        case "majorchord":
+            PlayNotes(MakeChord(thenote, false));
+            break;
+        case "minorchord":
+            PlayNotes(MakeChord(thenote, true));
+            break;
+        default:
+        }
+    }
+    function MakeChord(thenote, isminor){
+        if(isminor) {return [thenote, CountUpNotes(thenote, 3), CountUpNotes(thenote, 7)];}
+        else {return [thenote, CountUpNotes(thenote, 4), CountUpNotes(thenote, 7)];}
+    }
+    function PlayNotes(arr){
+
+        for(e = 0; e < arr.length; e++){
+        const synth = new Tone.Synth().toDestination();
+        const now = Tone.now()
+
+        let pitch = 4;
+       try{if(e > 0 && GetNoteIndex(arr[e]) < GetNoteIndex(arr[e-1])){pitch++;}} catch{}
+        synth.triggerAttackRelease(arr[e]+pitch.toString(), "8n", now);
+        }
+    }
+    function CountUpNotes(startnote, num){
+        let newnoteindex = GetNoteIndex(startnote);
+        for(i = 0; i < num; i++){
+            if(newnoteindex == arrnotes.length-1) {newnoteindex = 0}
+            else {newnoteindex++;}
+        }
+        return arrnotes[newnoteindex];
+    }
+    // Pass in a note like a, b, c, d... returns the index of note in arrnotes
+    function GetNoteIndex(thenote){
+        for(i = 0; i < arrnotes.length; i++){
+            if (arrnotes[i] == thenote) {return i;}
+        }
+    }
+
+
+    const arrchordnums = [[1,5], [1,4,5], [1,5,6,4], [1,6,4,5]]
+    const arrgeneras = [
+        {name: "reggae", beat: ["b", "-", "k", "-"]}, 
+        {name: "slow blues", beat: ["b", "-", "-", "k", "-", "b"]},
+        {name: "12 blues", beat: ["b", "k"]}
+    ];
+
+	let songs = [];
+
+    class song{
+		constructor(key, chordnums, objgenera){
+            this.key = key;
+            this.isminor = false;
+			this.chordnums = chordnums;
+            this.objgenera = objgenera;
+			this.swing = false;
+		}
+        play(){
+        }
+        display(){
+            hkey.innerHTML = this.key;
+            if (this.isminor){hkey.innerHTML += "m"}
+            hgenera.innerHTML = this.objgenera.name;
+            hchordnums.innerHTML = this.chordnums + " ("+ NumtoChords(this) +")";
+
+            hbeat.innerHTML = this.objgenera.beat;
+        }
+	}
+	
+    function AddSongClick(){
+        let k = arrnotes[randomnum(0,arrnotes.length-1)];
+
+	var s = new song(k, arrchordnums[randomnum(0, arrchordnums.length-1)], arrgeneras[randomnum(0, arrgeneras.length-1)])
+    if(randomnum(0,1) == 1){s.isminor = true;} // 50% chance to be minor key (add 'm')
+
+    songs.push(s)
+	
+    s.display();
+    }
+    
+    function ClearSongs(){ songs = []; }
+
+    // how many half steps by to go up from the root, a 1-4-5 major is actully 0-3-5
+    const ScaleMajor = [
+        {steps: 0, type: ""},
+        {steps: 2, type: "dim"},
+        {steps: 4, type: "m"}, 
+        {steps: 5, type: ""},
+        {steps: 7, type: ""},
+        {steps: 9, type: ""},
+        {steps: 11, type: ""}
+    ];
+    const ScaleMinor = [
+        {steps: 0, type: "m"},
+        {steps: 2, type: "dim"},
+        {steps: 3, type: "m"}, 
+        {steps: 5, type: "m"},
+        {steps: 7, type: ""},
+        {steps: 8, type: ""},
+        {steps: 10, type: ""}
+    ];
+    
+    // Changes 1-4-5 to C-F-G
+    function NumtoChords(songobj){
+        let arrreturn = [];
+        songobj.chordnums.forEach(cnumb => {
+
+            // Chord numb convert to numb of half steps
+            let hlfstps = 0;
+            if(songobj.isminor){
+                for(i = 0; i < ScaleMinor.length; i++){
+                    if(cnumb-1 == i){ hlfstps = ScaleMinor[i];}
+                }  
+            }
+            else {
+                for(i = 0; i < ScaleMajor.length; i++){
+                    if(cnumb-1 == i){ hlfstps = ScaleMajor[i];}
+                }  
+            }     
+            
+           arrreturn.push(CountUpNotes(songobj.key, hlfstps));
+        })
+        
+        console.log(arrreturn)
+        return [arrreturn]
+    }
+
+	
+   function PlayChord(chord){
+    arrnotes.forEach(n => {
+        
+    })
+   }
+    function randomnum(min, max){return Math.floor(Math.random() * (max - min + 1)) + min}
+</script> 

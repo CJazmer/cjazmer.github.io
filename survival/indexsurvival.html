@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../css/translatorscss.css" rel="stylesheet">
+	<title>Survival Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="home page for learning survival skills, plants, and animals.">
+	<meta name="keywords" content="survival, skills">
+</head>
+
+<body>
+		<div class="themeblackgoldback">
+			<div id="layoutpagenav"></div>
+
+
+			<center>
+			<h1>Survival</h1>
+			<h1>Choose a Skill</h1>
+			
+				<div id="flexcontainer">
+					<div onclick="Clicked('plants')"><img src="/assets/survival/plants.png" class="gallery"></div>
+					<div onclick="Clicked('animals')"><img src="/assets/survival/animals.png" class="gallery"></div>
+					<a href="technology/indextechnology.html"><img src="/assets/survival/technology.png" class="gallery"></a>
+
+					<center><h1>General Knowledge</h1></center>
+
+					<ul>
+						<li>Make Tea from soaking leaves/root in very hot water to extract minerals.</li>
+						<li>General Knollage: Fall is harvesting season! It's when most berries & Fruit are ripe because it had all summer to grow the fuits using the sun as energy.</li>
+						<li>Some edible plants can be toxic when overeaten.</li>
+						<li>Spit out seeds and skin for fruits and big berries.</li>
+					</ul>
+				</div>
+			</center>
+
+			<footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+	function Clicked(thename){
+		localStorage.setItem('databasename', thename);
+		window.location.href = "/survival/displayall.html";
+	}
+
+</script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="/css/translatorscss.css" rel="stylesheet">
+	<style>        
+    .stoplight{
+        background-color: rgb(54, 54, 54);
+        border: .2em solid rgb(34, 32, 32);
+        border-radius: 10%;
+
+        width: 10em;
+        height: 20em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 2em auto 2em auto;
+    }
+    .mainlight{
+        min-width: 80%;
+        min-height: 20%;
+    }
+    #circlesholder{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .thebutton{
+        min-width: 100%; 
+        height: fit-content; 
+        padding: 1em 0em 1em 0em;
+    }
+    </style>
+</head>
+
+<body>
+        <div id="layoutpagenav"></div>
+
+        <h1 style="color: gold; text-align: center;">Colorful Lights</h1>
+			<div class="stoplight" id="stoplight">
+                <div class="lightgreen .mainlight"></div>
+                <div class="lightyellow .mainlight"></div>
+                <div class="lightred .mainlight"></div>
+            </div>
+            <button onclick="CreateCircles()" class="thebutton">Refresh Colors</button>
+            <div id="circlesholder"></div>
+            <footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+	const stoplight = document.getElementById("stoplight");
+    const circlesholder = document.getElementById("circlesholder");
+    const colors = ["green", "yellow", "red", "blue", "purple", "orange", "white"];
+
+    var styleSheet = document.createElement("style")
+    
+    
+    
+    updateclasses()
+function updateclasses(){
+    for(i = 0; i < colors.length; i++){
+        styleSheet.innerHTML += `
+        .light${colors[i]}{
+            background-color: grey;
+            width: 4em;
+            height: 4em;
+            margin: .2em;
+            border-radius: 100%;
+            background-color: ${colors[i]};
+            box-shadow: 0em 0em 1em .4em ${colors[i]};
+            transition: .1s;
+
+        }
+        .light${colors[i]}:hover{
+            background-color: ${colors[i]};
+            box-shadow: 0em 0em 2em .8em ${colors[i]};
+        }
+        `;
+        document.head.appendChild(styleSheet)
+
+    }
+}
+    // create 300 circles 
+    function CreateCircles(){
+        circlesholder.innerHTML = "";
+    for(i = 0; i < 300; i++){
+        let rcolor = colors[randomnum(0, colors.length-1)];
+        circlesholder.innerHTML += `<div class='light${rcolor}' onclick(btnclick(this)></div>`;
+    }
+    }
+    CreateCircles()
+
+   function btnclick(obj){
+        obj.style = "background-color: red"
+    }
+</script>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../css/translatorscss.css" rel="stylesheet">
+	<title>Languages</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="home page for learning languages.">
+	<meta name="keywords" content="world, languages">
+	<style>
+	.outlines{
+		fill: rgba(255, 0, 0, 0.4);
+	}
+	svg{padding: 0em; margin: 0em;}
+	.btnholder{
+		background-color: tan;
+		box-shadow: 1em black;
+	}
+	.btnholder button{
+		width: 20%;
+	}
+	.h:hover{
+		filter: sepia(1) brightness(0%);
+		border: 10em solid black;
+	}
+	table{
+		background-color: black;
+		width: 100%;
+		align-self: center;
+	}
+	table th{
+		background-color: rgb(113, 83, 9);
+		text-align: right;
+		padding: .2em;
+		width: fit-content;
+	}
+	table td{
+		background-color: darkgoldenrod;
+		text-align: left;
+		width: 100%;
+	}
+	.scroller{
+		/*
+		overflow-x: scroll;
+		scroll-behavior: smooth;
+		*/
+		display: flex;
+		flex-wrap: nowrap;
+		color: black;
+	} 
+	</style>
+</head>
+
+<body>
+		<div class="themeblackgoldback">
+			<div id="layoutpagenav"></div>
+
+			<h1>Native Languages of the World!</h1>
+		
+				<div id="navflex">
+
+			<div class="btnholder">
+				<button onclick="clicked('paths1')">Main Families</button>
+				<button onclick="clicked('paths2')">Sub Families</button>
+			</div>
+			<div>
+				<svg id="worldsvg" class="outlines" style="padding:0em; margin:0em; position:absolute" baseprofile="tiny" fill="#ececec" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".1" version="1.2" viewbox="0 0 1000 684" xmlns="http://www.w3.org/2000/svg"></svg>
+				<img src="/assets/language/world.svg" style="width: 100%; height: auto;"/>
+			</div>
+			<div>
+				<h1 id="Lname">Click a Language</h1>
+				<p id="Linfo">...</p>
+				<p id="Llangs"></p>
+				<div id="LangTable"></div>
+			</div>
+
+				<footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+	const worldsvg = document.getElementById("worldsvg");
+	const Lname = document.getElementById("Lname");
+	const Linfo = document.getElementById("Linfo");
+	const Llangs = document.getElementById("Llangs");
+	const LangTable = document.getElementById("LangTable");
+
+	const paths1 = [
+		{name: "Indo-European", color: "rgba(255, 225, 0, 0.3)", path: "M 482 135 L 488 108 L 482 88 L 465 61 L 455 43 L 467 38 L 488 40 L 513 49 L 531 45 L 548 32 L 567 26 L 576 29 L 574 33 L 567 37 L 566 40 L 569 45 L 565 50 L 559 58 L 561 65 L 571 69 L 577 71 L 583 71 L 583 62 L 591 53 L 592 46 L 604 40 L 629 33 L 637 39 L 634 50 L 633 71 L 644 85 L 637 94 L 637 102 L 644 107 L 642 113 L 645 118 L 628 115 L 617 115 L 594 117 L 586 123 L 585 133 L 590 146 L 567 143 L 552 144 L 545 136 L 529 129 L 509 141 L 497 141 L 483 140 L 481 137 M 633 128 L 621 134 L 615 140 L 624 139 L 632 139 L 642 144 L 653 160 L 664 173 L 674 173 L 676 172 L 682 178 L 701 181 L 715 191 L 726 205 L 735 222 L 738 216 L 747 202 L 762 200 L 771 193 L 779 189 L 780 182 L 785 169 L 780 169 L 774 172 L 752 168 L 739 160 L 725 143 L 722 137 L 709 135 L 695 137 L 685 141 L 672 134 L 662 139 L 651 136 L 647 141 L 639 136 L 633 128 L 634 129",
+			info: "Gendered Nouns, verbs usually conjugate at the end for number and tense"
+		},
+		{name: "Turkic", color: "rgba(255, 89, 0, 0.4)", path: "M 597 121 L 593 121 L 588 121 L 585 123 L 587 127 L 586 132 L 587 138 L 594 143 L 600 143 L 607 142 L 614 142 L 617 140 L 624 139 L 633 137 L 639 138 L 649 138 L 652 137 L 664 137 L 670 136 L 675 137 L 683 141 L 686 144 L 691 143 L 696 140 L 699 136 L 700 137 L 710 138  L 723 138 L 727 142 L 733 144 L 764 138 L 774 119 L 771 116 L 765 111 L 757 109 L 750 102 L 743 97 L 749 95 L 759 95 L 766 95 L 765 89 L 773 91 L 780 95 L 791 95 L 802 98 L 812 95 L 820 96 L 821 89 L 818 86 L 822 84 L 830 86 L 840 93 L 849 98 L 859 102 L 865 103 L 865 115 L 868 121 L 876 120 L 881 109 L 879 96 L 872 90 L 860 84 L 853 79 L 854 69 L 863 67 L 871 67 L 883 69 L 886 64 L 883 60 L 889 61 L 890 56 L 892 53 L 887 45 L 879 41 L 868 38 L 860 34 L 848 29 L 810 25 L 797 25 L 775 21 L 749 20 L 732 23 L 708 48 L 682 56 L 630 53 L 626 60 L 630 85 L 639 112 L 644 118 L 646 122 L 640 123 L 635 124 L 627 122 L 617 121 L 606 118 L 597 121"},
+		{name: "Uralic", color: "rgba(0, 255, 233, 0.4)", path: "M 564 108 L 560 108 L 558 105 L 558 102 L 560 101 L 564 101 L 567 100 L 570 99 L 573 100 L 575 101 L 574 103 L 572 105 L 570 108 L 566 108 L 564 109 L 564 108 M 565 65 L 561 57 L 564 51 L 563 48 L 559 46 L 553 47 L 547 52 L 543 52 L 539 49 L 545 38 L 557 31 L 578 28 L 596 35 L 603 37 L 615 33 L 624 26 L 640 24 L 663 21 L 691 23 L 732 20 L 737 22 L 727 33 L 709 52 L 688 60 L 680 63 L 662 56 L 630 58 L 627 78 L 613 79 L 599 48 L 594 49 L 592 62 L 587 71 L 579 71 L 572 69 L 565 65"},
+		{name: "Afro-Asiatic", color: "rgba(255, 153, 0, 0.4)", path: "M 466 200 L 463 188 L 470 169 L 483 153 L 497 142 L 509 141 L 521 136 L 541 136 L 548 138 L 549 148 L 567 154 L 573 150 L 589 154 L 599 155 L 609 155 L 612 150 L 614 143 L 613 140 L 618 136 L 641 138 L 647 150 L 650 162 L 657 169 L 664 174 L 671 178 L 675 174 L 679 175 L 680 178 L 691 186 L 690 193 L 683 206 L 667 214 L 669 221 L 667 241 L 659 254 L 645 263 L 640 269 L 616 256 L 611 249 L 592 240  L 571 236 L 555 227 L 548 218 L 487 210 L 464 209 L 466 200",
+			info: "The Afro-Asiatic has very old historic languages responsible for the texts of the Abrahamic religion (Christianity, Judaism, Islam). Consonant roots (3-4 letters) that have a broad meaning. Arabic Example SLM = 'Peace'. (SaLaM 'peace', SaLiM 'saftey', maSLuM 'person of peace')"
+		},
+		{name: "Niger-Congo", color: "rgba(153, 0, 255, 0.4)", path: "M 463 206 L 472 206 L 482 208 L 499 209 L 532 215 L 547 217 L 561 233 L 568 233 L 577 230 L 593 237 L 602 243 L 622 256 L 645 264 L 638 282 L 641 307 L 637 323 L 625 332 L 623 346 L 615 351 L 601 375 L 565 385 L 551 354 L 548 338 L 541 320 L 546 292 L 529 256 L 524 250 L 488 256 L 466 236 L 457 214 L 463 206",
+			info: "One of the biggest language families in the world holding 1,500-2,000 languages!"
+		},
+		{name: "Khoisan", color: "rgba(255, 0, 218, 0.4)", path: "M 548 322 L 557 319 L 588 319 L 593 329 L 592 334 L 582 347 L 580 351 L 580 357 L 583 362 L 582 368 L 577 370 L 571 367 L 559 359 L 554 350 L 553 338 L 548 322",
+			info: "Known for its clicking consonants"
+		},
+		{name: "Eskimo-aleut", color: "rgba(0, 176, 255, 0.4)", path: "M 173 62 L 172 56 L 156 57 L 158 50 L 173 40 L 191 39 L 228 46 L 253 47 L 287 49 L 290 70 L 319 72 L 326 79 L 342 66 L 370 73 L 415 66 L 413 57 L 408 46 L 411 25 L 382 13 L 348 14 L 273 14 L 230 28 L 177 23 L 129 42 L 105 62 L 102 88 L 140 79 L 170 68 L 172 61", 
+			info: "Many consonants, vowel harmony, agglutinative"
+		},
+		{name: "Andean-Equatorial", color: "", path: "M 281 260 L 285 259 L 290 261 L 294 264 L 296 271 L 291 288 L 299 302 L 315 311 L 323 318 L 330 336 L 332 351 L 325 354 L 322 350 L 322 337 L 320 338 L 316 331 L 313 322 L 307 321 L 304 323 L 291 316 L 270 283 L 272 262 L 281 260"},
+		{name: "Uto-Aztecan", color: "rgba(255, 153, 0, 0.4)", path: "M 191 114 L 193 110 L 209 109 L 217 112 L 222 137 L 227 147 L 225 164 L 227 173 L 225 181 L 226 189 L 232 196 L 240 202 L 239 205 L 229 201 L 220 203 L 209 193 L 201 180 L 193 162 L 193 153 L 190 149 L 184 148 L 180 147 L 181 127 L 189 111 L 191 113"},
+		{name: "Na-Dene", color: "rgba(0, 255, 13, 0.4)", path: "M 173 38 L 191 36 L 215 42 L 244 42 L 264 47 L 291 50 L 300 63 L 295 73 L 264 84 L 217 93 L 198 93 L 195 84 L 187 78 L 182 73 L 172 69 L 158 69 L 153 66 L 144 61 L 150 55 L 159 47 L 174 38 M 239 163 L 228 159 L 206 156 L 205 146 L 212 138 L 226 139 L 229 146 L 231 153 L 244 158 L 244 162 L 239 163"},
+		{name: "Algic", color: "rgba(21, 0, 255, 0.4)", path: "M 366 66 L 359 68 L 342 67 L 331 69 L 327 77 L 317 81 L 311 78 L 298 73 L 294 72 L 277 75 L 249 80 L 217 78 L 204 78 L 198 89 L 201 106 L 216 101 L 235 97 L 240 102 L 263 108 L 266 125  L 263 153 L 276 151 L 285 147 L 293 152 L 301 148 L 307 143 L 308 137 L 316 129 L 331 122 L 353 117 L 366 113 L 383 106 L 382 91 L 370 69 L 366 66"},
+		{name: "Salishan", color: "", path: "M 190 79 L 195 80 L 197 88 L 205 90 L 213 91 L 210 100 L 206 103 L 203 111 L 200 111 L 200 105 L 195 106 L 187 105 L 184 95 L 190 79"},
+		{name: "Siouan", color: "rgba(255, 225, 0, 0.3)", path: "M 202 109 L 206 104 L 223 101 L 233 97 L 245 95 L 251 100 L 275 113 L 273 129 L 271 143 L 254 150 L 246 151 L 243 142 L 242 123 L 237 116 L 231 112 L 222 113 L 200 116 L 202 109"},
+		{name: "Muskogean", color: "rgba(111, 53, 0, 0.4)", path: "M 261 159 L 259 167 L 269 164 L 275 166 L 277 170 L 279 178 L 284 180 L 287 176 L 288 167 L 287 158 L 289 152 L 282 149 L 280 149 L 261 150 L 261 159"},
+		{name: "Penutian", color: "", path: "M 186 107 L 192 107 L 201 109 L 207 111 L 207 115 L 198 116 L 191 115 L 188 122 L 185 130 L 184 139 L 186 144 L 188 147 L 183 151 L 176 150 L 173 135 L 177 122 L 186 107"},
+		{name: "Caddoan", color: "", path: "M 231 156 L 232 160 L 236 163 L 242 162 L 247 160 L 250 158 L 255 155 L 252 151 L 243 149 L 235 151 L 231 154 L 231 156 M 245 106 L 250 107 L 251 113 L 252 121 L 246 128 L 237 128 L 234 121 L 242 111 L 245 106"},
+		{name: "Chibchan", color: "rgba(46, 164, 0, 0.4)", path: "M 263 207 L 259 213 L 261 219 L 264 224 L 261 226 L 261 230 L 267 236 L 277 240 L 282 241 L 285 250 L 294 252 L 298 251 L 305 231 L 306 222 L 306 218 L 303 218 L 293 223 L 286 226 L 275 224 L 274 210 L 266 205 L 263 207"},
+		{name: "Misumalpan", color: "", path: "M 273 226 L 270 226 L 267 219 L 263 209 L 269 207 L 275 211 L 273 226"},
+		{name: "Arawakan", color: "rgba(0, 255, 233, 0.4)", path: "M 290 169 L 295 169 L 304 180 L 317 191 L 332 198 L 342 209 L 342 223 L 355 233 L 373 247 L 371 263 L 350 266 L 307 263 L 309 271 L 303 277 L 298 283 L 299 292 L 305 296 L 311 292 L 323 289 L 324 292 L 323 295 L 324 301 L 335 307 L 366 309 L 366 319 L 360 335 L 349 338 L 335 323 L 328 318 L 312 312 L 303 309 L 292 296 L 287 285 L 301 269 L 300 222 L 294 209 L 276 200 L 275 192 L 285 181 L 290 169"},
+		{name: "Cariban", color: "rgba(138, 0, 255, 0.4)", path: "M 348 236 L 359 240 L 367 246 L 366 254 L 361 262 L 352 265 L 341 266 L 335 259 L 333 251 L 331 246 L 322 242 L 320 229 L 312 228 L 308 230 L 306 235 L 296 244 L 289 238 L 297 229 L 304 224 L 310 217 L 328 221 L 337 225 L 348 236"},
+		{name: "Chicham", color: "", path: "M 296 272 L 291 268 L 285 267 L 283 271 L 282 282 L 285 285 L 294 285 L 296 272"},
+		{name: "Tupian", color: "rgba(0, 255, 145, 0.4)", path: "M 402 271 L 403 283 L 405 292 L 396 304 L 395 319 L 391 332 L 377 339 L 374 345 L 359 346 L 353 335 L 339 326 L 337 312 L 340 298 L 347 297 L 358 305 L 366 300 L 365 292 L 346 285 L 347 282 L 385 278 L 389 269 L 375 262 L 368 251 L 362 248 L 353 254 L 356 263 L 340 268 L 334 269 L 331 281 L 322 295 L 324 335 L 334 339 L 335 331 L 340 327 L 353 335 L 348 346 L 349 354 L 351 359 L 360 360 L 368 369 L 373 370 L 379 360 L 383 347 L 400 341 L 405 324 L 407 306 L 417 291 L 413 274 L 402 271"},
+		{name: "Jê", color: "rgba(153, 0, 255, 0.4)", path: "M 405 292 L 403 299 L 399 305 L 397 314 L 393 333 L 384 338 L 379 340 L 372 348 L 373 354 L 359 357 L 353 351 L 357 337 L 356 330 L 350 317 L 344 310 L 338 310 L 333 304 L 338 294 L 344 281 L 363 276 L 400 276 L 405 282 L 408 286 L 404 293",
+			info: "Vowel harmony, intransitive vs transitive verbs, many affixes to add meaning"
+		},
+
+		{name: "Nilosaharan", color: "", path: "M 576 181 L 564 178 L 552 179 L 546 181 L 546 189 L 549 197 L 552 206 L 551 213 L 550 222 L 554 225 L 558 222 L 562 222 L 564 229 L 562 231 L 560 229 L 557 231 L 559 237 L 561 240 L 566 239 L 572 234 L 578 232 L 585 233 L 588 235 L 592 237 L 594 237 L 594 240 L 595 242 L 596 246 L 594 248 L 601 256 L 607 255 L 608 259 L 608 268 L 612 275 L 619 281 L 626 283 L 625 277 L 629 267 L 630 262 L 625 253 L 623 245 L 617 237 L 616 231 L 613 226 L 609 221 L 598 226 L 588 225 L 581 223 L 570 226 L 567 222 L 569 209 L 578 210 L 589 209 L 602 206 L 603 197 L 594 192 L 575 179",
+			info: "Nilo-Saharan has tones (like mandarin Chinese)"
+		},
+		{name: "Austronesian", color: "rgba(255, 0, 218, 0.4)", path: "M 875 179 L 868 175 L 862 177 L 855 186 L 844 195 L 834 199 L 834 206 L 839 216 L 836 220 L 823 230 L 815 239 L 807 236 L 791 241 L 767 275 L 690 300 L 660 297 L 644 311 L 637 335 L 637 355 L 655 356 L 697 345 L 770 316 L 846 301 L 889 300 L 915 287 L 914 279 L 906 276 L 892 265 L 890 250 L 897 245 L 918 256 L 952 272 L 953 278 L 969 293 L 985 289 L 993 307 L 983 326 L 961 373 L 944 415 L 958 435 L 997 431 L 1031 407 L 1039 354 L 1042 322 L 1042 299 L 1040 229 L 1040 188 L 1009 179 L 945 186 L 919 204 L 889 205 L 876 184 L 875 179 M 7 164 L 54 166 L 95 185 L 147 231 L 209 298 L 248 344 L 272 382 L 236 403 L 166 393 L 59 392 L 6 384 L 5 374", 
+			info: "Simple sounds & few consonants. Have dual pronouns (you2, us2, them2). Inclusive 'we' (me & you) and exclusive 'we' (me & us)"
+		},
+		{name: "Sino-Tibetan", color: "rgba(255, 0, 0, 0.4)", path: "M 857 182 L 861 174 L 865 165 L 863 156 L 855 148 L 854 141 L 855 135 L 854 128 L 856 123 L 862 120 L 866 117 L 867 106 L 865 101 L 857 101 L 843 92 L 828 85 L 820 84 L 819 94 L 816 100 L 824 102 L 828 105 L 823 108 L 813 114 L 805 119 L 788 120 L 773 119 L 761 111 L 751 105 L 745 100 L 741 97 L 738 102 L 735 105 L 729 113 L 738 115 L 743 126 L 750 133 L 751 140 L 747 144 L 742 142 L 726 140 L 723 144 L 726 151 L 734 152 L 740 158 L 746 162 L 756 168 L 767 170 L 771 171 L 778 171 L 781 167 L 786 164 L 791 164 L 793 168 L 789 173 L 788 177 L 785 179 L 781 179 L 781 183 L 783 190 L 783 195 L 786 200 L 788 207 L 790 212 L 797 213 L 801 220 L 803 228 L 806 229 L 808 224 L 808 219 L 807 217 L 804 210 L 805 207 L 802 198 L 801 196 L 806 193 L 808 190 L 813 186 L 819 184 L 824 186 L 828 190 L 830 193 L 830 199 L 833 203 L 838 202 L 843 195 L 851 189 L 857 182"},
+		{name: "Mongolic", color: "rgba(0, 255, 13, 0.4)", path: "M 751 107 L 754 112 L 765 114 L 774 121 L 784 122 L 793 122 L 802 124 L 812 120 L 816 114 L 822 110 L 829 106 L 829 103 L 822 100 L 817 99 L 816 95 L 809 93 L 800 96 L 790 92 L 780 92 L 772 88 L 763 87 L 760 93 L 749 92 L 741 96 L 741 100 L 751 107"},
+		{name: "Chukchi-Kamchatkan", color: "rgba(255, 153, 0, 0.4)", path: "M 860 33 L 873 31 L 891 31 L 906 35 L 920 43 L 930 52 L 934 58 L 926 64 L 919 72 L 920 86 L 918 94 L 911 94 L 894 81 L 890 72 L 890 67 L 887 61 L 886 56 L 889 50 L 882 43 L 867 38 L 860 33"},
+		{name: "Tai-Kadai (kra–da)", color: "rgba(0, 255, 145, 0.4)", path: "M 815 238 L 806 237 L 802 233 L 806 226 L 807 221 L 804 214 L 802 207 L 801 203 L 799 200 L 801 195 L 797 191 L 788 177 L 792 170 L 794 167 L 798 170 L 806 174 L 810 179 L 816 174 L 825 170 L 833 179 L 829 189 L 828 192 L 821 199 L 824 203 L 824 210 L 824 214 L 819 214 L 816 216 L 816 221 L 815 238"},
+		{name: "Austro-Asiatic", color: "rgba(145, 255, 0, 0.4)", path: "M 827 192 L 819 192 L 817 195 L 818 198 L 821 201 L 821 207 L 821 212 L 818 214 L 817 214 L 815 216 L 815 220 L 816 225 L 821 233 L 828 236 L 837 229 L 840 217 L 835 205 L 827 199 L 827 192"},
+		{name: "Dravidian", color: "rgba(153, 0, 255, 0.4)", path: "M 764 197 L 758 196 L 752 197 L 743 196 L 740 201 L 733 212 L 731 215 L 734 225 L 739 236 L 745 242 L 754 245 L 759 243 L 761 237 L 758 229 L 753 223 L 753 212 L 759 207 L 765 199 L 764 197"},
+		{name: "Pama-Nyungan", color: "", path: "M 832 346 L 832 363 L 836 387 L 867 384 L 892 388 L 921 397 L 951 379 L 963 341 L 946 311 L 933 295 L 917 299 L 913 302 L 916 310 L 916 311 L 923 322 L 914 334 L 886 329 L 866 323 L 847 327 L 832 345"},
+		{name: "Papuan Language Families", color: "rgba(153, 0, 255, 0.4)", path: "M 889 249 L 912 251 L 937 263 L 963 269 L 978 280 L 981 290 L 971 303 L 958 309 L 940 301 L 938 296 L 922 294 L 908 288 L 904 276 L 902 270 L 895 267 L 890 264 L 886 254 L 889 249",
+			info: "Group of Language families that are not Austronesian nor Austrailian"
+		},
+	]
+	// Na-Dene and Athabaskan ARE DIFFERENT, athabaskan is subgroup
+	// "Algic" and "Algonquin" ARE DIFFERENT, algonquin is subgroup
+	// Isolates: yeniseian, burushaski, tai-kadai?, Altaic lot of people use.
+	// Gilyak is not in Tungusic family?????
+	// Ho-Chunk and Winnebago are the same.
+	// Debated LangFams: Penutian, Altaic, Andean-equatorial, Hokan, Macro-Cariban,
+	
+	const smallerpaths = [	
+		{name: "Panoan", color: "rgba(98, 255, 0, 0.4)", path: "M 308 272 L 305 271 L 298 277 L 293 279 L 290 283 L 292 292 L 296 299 L 302 302 L 313 304 L 319 309 L 324 309 L 327 304 L 323 298 L 323 293 L 318 293 L 314 295 L 310 297 L 308 294 L 311 289 L 317 284 L 314 280 L 308 281 L 302 281 L 304 279 L 308 276 L 308 272"},
+		{name: "Tucanoan", color: "rgba(255, 0, 218, 0.4)", path: "M 293 268 L 291 267 L 288 263 L 287 259 L 291 255 L 294 254 L 296 258 L 293 261 L 293 264 L 296 267 L 298 270 L 301 269 L 305 269 L 306 269 L 306 265 L 304 263 L 305 258 L 307 256 L 309 256 L 311 258 L 315 259 L 314 261 L 310 262 L 310 269 L 308 268 L 306 267 L 306 269 L 302 269 L 300 273 L 296 273 L 292 270 L 293 268"},
+		{name: "Otomanguean", color: "", path: "M 237 202 L 240 205 L 239 211 L 236 213 L 229 211 L 221 207 L 219 202 L 219 193 L 224 190 L 228 190 L 231 193 L 233 198 L 237 202"},
+		{name: "Mize-Zoquean", color: "", path: "M 240 200 L 237 202 L 235 207 L 236 212 L 240 211 L 244 213 L 246 213 L 245 209 L 244 205 L 240 200"},
+		{name: "Yuman-Cochimi", color: "", path: "M 184 155 L 184 161 L 186 172 L 189 177 L 197 176 L 197 171 L 193 163 L 192 155 L 198 153 L 203 150 L 202 146 L 199 145 L 194 145 L 193 149 L 193 152 L 192 151 L 184 152 L 184 155"},
+		{name: "Mayan", color: "rgba(255, 81, 0, 0.4)", path: "M 264 189 L 265 192 L 261 200 L 259 207 L 259 210 L 256 213 L 252 215 L 250 217 L 244 215 L 242 212 L 241 208 L 241 200 L 243 198 L 248 197 L 251 194 L 252 191 L 255 189 L 259 188 L 264 189"},
+		{name: "Timucua", color: "rgba(255, 62, 174, 0.4)", path: "M 278 164 L 283 162 L 288 161 L 289 163 L 290 171 L 289 179 L 286 181 L 282 180 L 280 176 L 278 170 L 278 164"},
+		{name: "Guanahatabey", color: "rgba(225, 225, 225, 0.4)", path: "M 279 182 L 280 185 L 279 189 L 272 191 L 268 191 L 267 187 L 269 184 L 276 182 L 279 182",
+			info: "Guanahatabey is a mysterious language/people group that show no relation to their native american neighbors around them. Only a few words and prases were documented by spanish explorers and the language shows no relation to any language family we know of..."
+		},
+
+		{name: "Iroquoian", color: "rgba(138, 0, 255, 0.4)", path: "M 299 110 L 296 113 L 294 118 L 290 122 L 293 123 L 298 124 L 305 124 L 304 133 L 306 131 L 309 126 L 309 123 L 315 121 L 321 118 L 325 110 L 331 105 L 330 103 L 326 105 L 320 108 L 313 110 L 303 110 L 299 110",
+			languagesObjArr: [
+				{name: "", langs: ["Cherokee", "Mohawk", "Oneida", "Onondaga", "Cayuga", "Seneca", "Tuscarora"]}
+			]},
+		{name: "Caucasian", color: "", path: "M 626 122 L 630 123 L 634 125 L 641 124 L 645 124 L 648 122 L 644 117 L 641 112 L 630 112 L 624 111 L 616 113 L 621 117 L 626 122"},
+		{name: "Basque", color: "rgba(225, 225, 225, 0.4)", path: "M 506 116 L 507 118 L 510 120 L 513 121 L 515 119 L 516 117 L 516 117 L 515 115 L 513 115 L 511 115 L 509 116 L 506 116"},
+		{name: "Tyrsenian", color: "rgba(225, 225, 225, 0.4)", path: "M 549 112 L 547 115 L 545.712 121.141 L 540 123 L 539 118 L 542.678 114.341 L 544 112 L 539 106 L 539 101 L 545 100 L 550 101 L 547 106 L 545 110 L 546 112 L 549 112"},
+		{name: "Ainu", color: "rgba(225, 225, 225, 0.4)", path: "M 888 122 L 892 124 L 899 123 L 907 119 L 907 113 L 915 100 L 919 86 L 914 85 L 900 87 L 886 93 L 881 96 L 880 102 L 886 114 L 888 122"},
+		{name: "Burushaski", color: "rgba(225, 225, 225, 0.4)", path: "M 717 139 L 718 141 L 721 142 L 725 141 L 724 138 L 722 137 L 717 139"},
+		{name: "Yeniseian", color: "rgba(225, 225, 225, 0.4)", path: "M 762 83 L 766 79 L 759 74 L 756 76 L 745 72 L 734 69 L 722 57 L 714 49 L 703 53 L 699 63 L 729 71 L 733 78 L 756 83 L 763 83"},
+		{name: "Tasmanian", color: "rgba(225, 225, 225, 0.4)", path: "M 903 397 L 908 395 L 918 396 L 922 401 L 916 409 L 909 411 L 901 409 L 902 402 L 903 397"},
+		{name: "Tungusic", color: "rgba(225, 225, 225, 0.4)", path: "M 889 102 L 891 97 L 883 77 L 892 57 L 886 49 L 868 49 L 822 52 L 807 70 L 799 77 L 806 88 L 828 103 L 839 101 L 852 101 L 861 105 L 889 102 M 734 28 L 742 35 L 745 51 L 737 58 L 720 59 L 703 54 L 693 38 L 706 28 L 734 28"},
+		{name: "Japonic", color: "rgba(255, 62, 174, 0.6)", path: "M 887 160 L 898 154 L 909 148 L 910 136 L 907 115 L 903 110 L 893 108 L 889 109 L 887 114 L 889 122 L 894 130 L 891 136 L 881 139 L 877 149 L 876 157 L 883 161 L 887 160"},
+		{name: "Koreanic", color: "rgba(0, 8, 255, 0.4)", path: "M 854 129 L 856 134 L 861 141 L 866 148 L 872 149 L 876 146 L 878 142 L 876 137 L 871 132 L 867 129 L 868 126 L 868 121 L 864 118 L 861 119 L 856 122 L 853 128 L 854 129"},
+	]
+	const paths2 = [
+		{name: "Romance", color: "rgba(255, 0, 0, 0.4)", path: "M 501 141 L 493 141 L 485 133 L 488 115 L 501 99 L 515 94 L 523 91 L 530 94 L 535 98 L 535 102 L 537 106 L 540 108 L 544 105 L 550 105 L 552 108 L 552 112 L 555 118 L 562 122 L 567 127 L 564 134 L 560 141 L 557 143 L 552 142 L 546 135 L 535 132 L 520 133 L 509 140 L 501 141 M 582 115 L 575 114 L 568 109 L 570 105 L 575 101 L 584 101 L 586 100 L 592 103 L 594 106 L 594 111 L 592 115 L 584 115 L 580 115",
+			info: "These languages came from Latin. Features: Noun gender (male/female), verb conjugation (change verb endings to show person and tense), Prepositions (don't like cases), articals (a, the)",
+			languagesObjArr: [
+				{name: "Italic", langs: ["Italian", "Sardinian"]},
+				{name: "West (Iberian)", langs: ["Spanish", "Portuguese", "French", "Catalan", "Occitan"]},
+				{name: "East", langs: ["Romanian", "Moldovan", "Aromanian", "Istro-Romanian", "Megleno-Romanian"]}
+			]},
+		{name: "Germanic", color: "rgba(255, 238, 0, 0.4)", path: "M 561 36 L 567 40 L 567 47 L 561 55 L 562 65 L 556 77 L 551 83 L 552 90 L 548 93 L 547 96 L 551 99 L 557 99 L 558 104 L 555 107 L 546 105 L 541 107 L 536 105 L 534 102 L 534 97 L 531 94 L 522 91 L 515 93 L 501 95 L 497 89 L 494 77 L 495 68 L 477 58 L 455 50 L 461 40 L 485 37 L 516 40 L 531 48 L 548 35 L 561 36 L 562 36",
+			languagesObjArr: [
+				{name: "West", langs: ["German", "English", "Dutch", "Afrikaans", "Yiddish", "Luxembourgish"]},
+				{name: "North", langs: ["Danish", "Swedish", "Norwegian", "Faroese", "Icelandic"]},
+				{name: "East (extinct)", langs: ["gothic"]}
+			]},
+		{name: "Slavic", color: "rgba(0, 6, 255, 0.4)", path: "M 551 82 L 550 84 L 553 90 L 552 92 L 547 94 L 547 96 L 550 99 L 552 99 L 557 99 L 560 101 L 562 102 L 568 100 L 572 100 L 575 102 L 581 102 L 585 101 L 588 100 L 592 104 L 594 107 L 594 110 L 604 113 L 609 115 L 625 115 L 642 118 L 643 114 L 642 110 L 645 107 L 636 100 L 638 93 L 644 90 L 652 90 L 661 93 L 671 90 L 666 82 L 650 62 L 629 57 L 605 50 L 590 58 L 581 66 L 581 71 L 572 70 L 566 70 L 556 77 L 551 82 M 552 106 L 551 111 L 558 117 L 566 122 L 567 119 L 571 117 L 573 119 L 572 121 L 570 123 L 572 125 L 580 123 L 590 121 L 592 118 L 591 116 L 585 114 L 576 115 L 573 113 L 568 108 L 566 108 L 558 107 L 558 105 L 552 106",
+			info: "Features: Noun gender and cases",
+			languagesObjArr: [
+				{name: "East", langs: ["Russian", "Ukrainian", "Belarusian"]},
+				{name: "West", langs: ["Polish", "Czech", "Slovak", "Sorbian"]},
+				{name: "South", langs: ["Bulgarian", "Macedonian", "Serbian", "Croatian", "Slovenian", "Bosnian", "Montenegrin"]}
+			]},
+		{name: "Celtic", color: "rgba(0, 255, 13, 0.4)" , path: "M 498 76 L 492 78 L 488 83 L 488 89 L 491 92 L 495 99 L 507 106 L 510 104 L 511 99 L 506 90 L 507 83 L 503 80 L 502 79 L 509 67 L 506 65 L 499 66 L 498 76",
+			languagesObjArr: [
+				{name: "Goidelic", langs: ["Irish", "Scottish", "Manx"]},
+				{name: "Brythonic", langs: ["Welsh", "Breton", "Cornish"]}
+			]},
+		{name: "Hellenic", color: "rgba(255, 225, 0, 0.3)", path: "M 569 130 L 571 128 L 572 125 L 578 123 L 582 123 L 585 123 L 586 121 L 587 123 L 586 126 L 587 128 L 587 130 L 587 135 L 591 139 L 595 141 L 600 140 L 608 141 L 611 145 L 610 149 L 598 149 L 579 148 L 571 143 L 569 130"},
+		{name: "Illyrian", color: "rgba(200, 200, 0, 0.4)", path: "M 569 130 L 571 129 L 573 125 L 571 123 L 572 121 L 574 120 L 574 118 L 571 116 L 570 117 L 567 118 L 566 118 L 565 121 L 565 123 L 566 125 L 569 130", 
+			info: "Albanian language is the only survivor. FunFact: Albanians are the only muslum majority europeans"
+		},
+
+		{name: "Taino", color: "rgba(0, 255, 233, 0.4)", path: "M 290 169 L 295 169 L 304 180 L 317 191 L 332 198 L 334 203 L 332 207 L 305 209 L 281 204 L 276 194 L 284 182 L 288 176 L 290 169",
+			info: "Taino were the natives of the Caribbean. They came from South America"
+		},
+		{name: "Bantu", color: "rgba(150, 0, 255, 0.4)", path: "M 538 248 L 542 239 L 548 236 L 555 237 L 574 246 L 582 247 L 588 244 L 606 252 L 633 255 L 637 266 L 637 274 L 635 281 L 639 308 L 636 321 L 622 329 L 622 341 L 620 347 L 613 350 L 608 365 L 595 375 L 587 377 L 583 369 L 581 346 L 573 332 L 565 326 L 546 325 L 546 309 L 549 293 L 536 271 L 533 261 L 538 248", 
+		  	info: "Bantu languages sort nouns into classes using prefixes (living, nonliving, small objects...)"
+		},	
+		{name: "Kwa", color: "rgba(90, 0, 255, 0.4)", path: "M 499 247 L 499 236 L 508 229 L 527 231 L 528 236 L 521 244 L 513 247 L 509 248 L 499 247", 
+			info: "",
+			languagesObjArr: [
+				{name: "Akan", langs: ["Twi", "Akan", "Asante", "Fante"]},
+				{name: "Igboid", langs: ["Igbo", "Izii"]},
+				{name: "Bia", langs: ["Anyi", "Baoulé", "Senufo", "Nzema", "Chakosi"]},
+				{name: "Kru", langs: ["Kru", "Bété", "Grebo", "Klao", "Chakosi MORE LANGS"]},
+			]
+		},
+		{name: "Kru", color: "rgba(150, 0, 255, 0.4)", path: "M 500 246 L 499 235 L 483 233 L 474 236 L 474 239 L 488 249 L 494 249 L 500 246"},
+		{name: "Gour", color: "rgba(150, 0, 255, 0.4)", path: "M 504 236 L 519 234 L 526 234 L 531 229 L 534 219 L 534 216 L 531 215 L 516 212 L 501 211 L 498 219 L 495 228 L 497 235 L 504 236"},
+		{name: "Mande", color: "rgba(90, 0, 255, 0.4)", path: "M 475 236 L 491 235 L 495 235 L 500 236 L 504 232 L 498 228 L 496 223 L 504 210 L 487 210 L 479 212 L 480 215 L 472 220 L 468 225 L 475 236"},
+		{name: "Atlantic", color: "rgba(150, 0, 255, 0.4)", path: "M 465 226 L 475 219 L 480 212 L 485 211 L 490 209 L 487 206 L 478 202 L 465 201 L 462 210 L 462 214 L 465 225"},
+		
+		{name: "Semitic", color: "rgba(255, 170, 0, 0.4)", path: "M 613 141 L 618 138 L 630 137 L 643 141 L 645 145 L 645 148 L 658 159 L 657 163 L 660 171 L 671 176 L 677 172 L 680 176 L 682 180 L 692 186 L 681 208 L 661 218 L 645 222 L 640 216 L 637 210 L 631 213 L 631 223 L 633 232 L 622 231 L 614 228 L 605 229 L 595 230 L 586 232 L 582 224 L 559 225 L 554 217 L 548 213 L 524 211 L 495 210 L 478 211 L 473 207 L 462 207 L 462 187 L 458 166 L 463 159 L 481 155 L 497 141 L 508 141 L 520 135 L 544 135 L 549 140 L 554 147 L 568 150 L 578 150 L 596 154 L 610 153 L 613 141",
+			languagesObjArr: [
+				{name: "Central", langs: ["Arabic", "Hebrew", "Aramaic"]},
+				{name: "South", langs: ["Amharic", "Tigrinya", "Ge'ez"]},
+				{name: "East", langs: ["Akkadian", "Eblaite"]},
+				
+			]
+		},
+		{name: "Cushitic", color: "rgba(255, 150, 0, 0.4)", path: "M 637 273 L 645 265 L 661 249 L 671 223 L 667 217 L 659 219 L 646 222 L 634 210 L 631 211 L 630 214 L 635 229 L 633 231 L 616 230 L 615 234 L 629 242 L 624 247 L 627 258 L 632 270 L 637 273",
+			languagesObjArr: [
+				{name: "East", langs: ["Somali", "Oromo", "Afar", "Saho"]},
+				{name: "South", langs: ["Boni", "Burunge", "Dullay", "Gawwada", "Konso", "Kambaata", "Hadiyya", "Gedeo", "Alaba", "Sidamo"]},
+				{name: "North", langs: ["Agaw", "Bilen", "Blin", "Kemant", "Silt'e"]},
+			]
+		},
+		{name: "Berber (Amazigh)", color: "rgba(255, 120, 0, 0.4)", path: "M 462 165 L 464 163 L 483 159 L 486 151 L 494 143 L 499 141 L 508 141 L 519 137 L 529 136 L 540 135 L 546 136 L 548 139 L 548 147 L 559 151 L 576 160 L 576 166 L 573 168 L 556 166 L 552 171 L 550 179 L 556 184 L 554 189 L 545 199 L 543 212 L 530 213 L 515 216 L 501 210 L 503 205 L 516 189 L 527 178 L 518 172 L 497 168 L 488 172 L 475 176 L 464 175 L 461 169 L 462 165",
+			languagesObjArr: [
+				{name: "North", langs: ["Kabyle", "Riffian", "Shawiya", "Nafusi"]},
+				{name: "Zenati", langs: ["Tlemcen", "Shenwa", "Mzab-Wargla", "Awjila-Sokna"]},
+				{name: "East", langs: ["Siwa", "Awjilah", "Ghadames", "Sokna"]},
+				{name: "Tuareg", langs: ["Tamahaq", "Tamasheq", "Ghat", "Air Tamajeq"]},
+				{name: "Zenaga", langs: ["Zenaga"]},
+			]
+		},
+		{name: "Chadic", color: "rgba(255, 120, 0, 0.4)", path: "M 527 224 L 524 221 L 523 209 L 530 205 L 546 209 L 559 214 L 563 220 L 565 226 L 570 229 L 566 234 L 558 234 L 546 231 L 538 233 L 533 225 L 527 224"},
+		{name: "Omotic", color: "rgba(255, 120, 0, 0.4)", path: "M 618 225 L 624 226 L 624 228 L 619 231 L 619 235 L 625 238 L 629 241 L 633 242 L 632 244 L 627 247 L 625 248 L 621 246 L 618 241 L 616 238 L 614 233 L 614 226 L 614 223 L 616 222 L 618 225"},
+	
+		{name: "Oceanic", color: "rgba(255, 0, 220, 0.4)", path: "M 7 164 L 54 166 L 95 185 L 147 231 L 209 298 L 248 344 L 272 382 L 236 403 L 166 393 L 59 392 L 6 384 L 5 374 M 894 242 L 903 255 L 931 268 L 953 288 L 976 322 L 991 357 L 984 376 L 950 405 L 946 427 L 970 431 L 1005 411 L 1038 355 L 1042 322 L 1043 301 L 1043 206 L 950 205 L 946 221 L 937 225 L 894 242"},
+		{name: "Formosan", color: "rgba(255, 0, 270, 0.4)", path: "M 864 175 L 868 176 L 869 183 L 867 190 L 862 190 L 860 185 L 860 181 L 864 175"},
+		{name: "Western Malayo-Polynesian", color: "rgba(255, 0, 220, 0.4)", path: "M 647 356 L 636 351 L 635 335 L 639 312 L 656 300 L 681 292 L 777 255 L 796 240 L 820 241 L 839 225 L 838 209 L 853 193 L 869 188 L 890 188 L 945 202 L 955 211 L 951 221 L 939 225 L 893 241 L 889 254 L 884 276 L 882 283 L 870 284 L 849 295 L 646 356"},
+		{name: "Central Malaya-Polynesian", color: "rgba(275, 0, 220, 0.4)", path: "M 855 293 L 858 286 L 873 283 L 882 281 L 885 270 L 894 268 L 902 270 L 905 275 L 906 279 L 914 279 L 915 285 L 910 293 L 895 299 L 869 304 L 856 298 L 855 293"},
+		{name: "South Halmahera", color: "rgba(255, 0, 220, 0.4)", path: "M 922 262 L 923 269 L 914 279 L 904 273 L 896 270 L 887 263 L 890 251 L 899 250 L 922 262"},
+	
+		{name: "Pama-Nyungan", color: "", path: "M 832 346 L 832 363 L 836 387 L 867 384 L 892 388 L 921 397 L 951 379 L 963 341 L 946 311 L 933 295 L 917 299 L 913 302 L 916 310 L 916 311 L 923 322 L 914 334 L 886 329 L 866 323 L 847 327 L 832 345"},
+		{name: "Papuan Language Families", color: "rgba(153, 0, 255, 0.4)", path: "M 889 249 L 912 251 L 937 263 L 963 269 L 978 280 L 981 290 L 971 303 L 958 309 L 940 301 L 938 296 L 922 294 L 908 288 L 904 276 L 902 270 L 895 267 L 890 264 L 886 254 L 889 249"},
+	]
+
+	const WorldRegions1 = []
+
+	function LoadPaths(arr){	
+		arr.forEach(p => {
+			var colorr = p.color;
+		if(colorr == undefined) {colorr = rgba(255, 238, 0, 0.4)}
+
+		worldsvg.innerHTML += '<a xlink:title="'+p.name+'">' +
+		'<path style="fill:'+colorr+'; transform: translatex(-.4%) translatey(-.4%) scale(.96)" class="h" d="'+ p.path +'" id="'+ p.name +'" onclick="HighlightClicked('+"'"+p.name+"'"+')"><p>'+p.name+'</p></path>' +
+		'</a>'
+	});
+	}
+	worldsvg.innerHTML = "";
+	LoadPaths(paths1);
+	LoadPaths(smallerpaths);
+
+	function clicked(pathtype){
+		worldsvg.innerHTML = "";
+		if(pathtype == "paths2") {LoadPaths(paths2)}
+		else {LoadPaths(paths1)}
+		LoadPaths(smallerpaths);		
+	}
+	// When Highlighted path is clicked
+	function HighlightClicked(thename){
+		Lname.innerHTML = thename;
+		Llangs.innerHTML = "Languages: ";
+		let langObj = null;
+
+		// Find the langObj in array using name "germanic, slavic..." * only for 'smaller' and 'paths2' array
+		paths1.forEach(l => { if (l.name == thename) {langObj = l} })
+		paths2.forEach(l => { if (l.name == thename) {langObj = l} })
+		smallerpaths.forEach(l => { if (l.name == thename) {langObj = l} })
+
+		// if null, it doesnt crash
+		try{
+			langObj.languagesObjArr.forEach(l => {
+				l.langs.forEach(la => { Llangs.innerHTML += la + ", "}) // Show each language on screen
+			})
+		}
+		catch{}
+
+		// Show lang info if exists
+		if(langObj.info != undefined){Linfo.innerHTML = langObj.info}
+		else {Linfo.innerHTML = "..."}
+
+		// Fill table with info dynamically
+		try{
+			LangTable.innerHTML = "";
+
+			let htmltable = "<table><tr><th>Group</th><th style='text-align:left'>Languages</th><tr>"
+				// number of tablerows based on num of language families
+				langObj.languagesObjArr.forEach(l => {
+				htmltable += "<tr><th>"+ l.name +"</th><td><div class='scroller'>"+ l.langs.join(", ") +"</div></td><tr>"
+				})
+			htmltable += "</table>"
+
+			LangTable.innerHTML = htmltable;
+		}
+		catch{}
+	}
+</script>

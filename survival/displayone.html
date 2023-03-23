@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Goldenrod Info and Uses</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Goldenrod info and uses">
+	<meta name="keywords" content="Goldenrod, wild, survival">
+	<style>
+		.flexcontainer{
+			display: flex;
+			justify-content: space-evenly;
+		}
+		.totheright{flex: 1; padding: 1em;}
+		.totheleft{flex:1;  padding: 1em;}
+	#htitlepic img{
+		width: 15em; 
+		height: 22em;
+		border: .4em solid black; 
+		border-radius: 2em;
+	}
+	.moreimages{
+		width: 100%;
+	}
+	.moreimages img{
+		width: 12em;
+		height: 20em;
+		border: .2em solid black;
+		margin: .2em;
+	}
+	.infotable {
+	justify-content: center;
+	border-collapse: collapse;
+	margin: 25px 0;
+	border: 1px solid gold;
+}
+
+	.infotable th {
+		background-color: rgb(29 29 29);
+		color: gold;
+		text-align: right;
+		padding: 10px;
+	}
+	.infotable td {
+		background-color: rgb(49 49 49);
+		color: white;
+		text-align: left;
+		padding: 10px;
+	}
+	#hdescription{
+		text-align: left; 
+		word-wrap: normal;
+		color: white;
+		max-width: 23em;
+	}
+	</style>
+</head>
+
+<body>
+		<div class="themeblackgoldback">
+			<div id="layoutpagenav"></div>
+
+			<div id="navflex">
+				<h1 id="hname"></h1>
+
+
+				<div class="flexcontainer">
+					<div id="totheleft">
+						<center>
+							<table class="infotable">
+									<tr><th>Commonness</th><td id="hcommonness"></td></tr>
+									<tr><th>Scientific Name</th><td id="hsciname"></td></tr>
+									<tr><th>Family</th><td id="hfamily"></td></tr>
+							</table>
+						</center>
+						<p id="hdescription"></p>
+					</div>
+					<div id="totheright">
+						<div id="htitlepic"></div>
+						</div>
+					</div>
+				<h2>More Pictures</h2>
+				<div class="moreimages" id="hmoreimages">
+				</div>
+
+				<footer></footer>
+			</div>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script src="/databases/plantsdatabase.js"></script>
+<script src="/databases/animalsdatabase.js"></script>
+<script>
+const htitlepic = document.getElementById("htitlepic");
+const hname = document.getElementById("hname");
+const hmoreimages = document.getElementById("hmoreimages");
+const hdescription = document.getElementById("hdescription");
+const hsciname = document.getElementById("hsciname");
+const hcommonness = document.getElementById("hcommonness");
+const hfamily = document.getElementById("hfamily");
+
+
+let choosenname = localStorage.getItem("choosenplant");
+let databasename = localStorage.getItem("databasename");
+let choosenobj = null; // default
+let choosentableobj = null;
+let path = "/assets/plants/";
+
+if(databasename == "animals"){
+	path = "/assets/animals/";
+	choosenname = localStorage.getItem("choosenplant")
+	LoadPage(animalsdatabase)
+}
+else{LoadPage(plantsdatabase)}
+
+
+
+function LoadPage(thedatabase){
+
+	thedatabase.forEach(t => {
+	t.table.forEach(p => {
+	if(p.name == choosenname) {choosenobj = p; choosentableobj = t;}
+});
+});
+
+
+hname.innerHTML = choosenname;
+choosenname = choosenname.replace(/ /g, '').toLowerCase();
+htitlepic.innerHTML = `<img src="${path}${choosentableobj.tablename}/${choosenname}/${choosenname}1.jpg">`;
+hsciname.innerHTML = choosenobj.sciname || "...";
+hfamily.innerHTML = choosenobj.family || "...";
+hcommonness.innerHTML = choosenobj.commonness || "...";
+hdescription.innerHTML = choosenobj.description || "...";
+
+
+hmoreimages.innerHTML = "";
+for(i = 0; i < 10; i++){
+	try {
+	hmoreimages.innerHTML += `<img src="${path}${choosentableobj.tablename}/${choosenname}/${choosenname}${i+1}.jpg">`;
+	}
+	catch{}
+}
+}
+</script>

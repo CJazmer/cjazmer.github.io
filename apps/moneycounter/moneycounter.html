@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Money Counter</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Count up your money.">
+	<meta name="keywords" content="money, counter">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+<style>    
+button {
+    width: 100%;
+    height: fit-content;
+}
+.holder { width: fit-content; margin-right: auto; margin-left: auto;}
+select{width: 80%;}
+.moneyholder{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.moneyholder div{
+    margin: .5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.moneyholder div:hover{
+    filter: brightness(2);
+}
+.coin {
+    border-radius: 50%; 
+    background-color: silver; 
+    border: .1em solid black;
+    width: 2em; height: 2em;
+    padding: 2em;
+    text-align: center;
+}
+.bill {
+    border-radius: 5%; 
+    background-color: green; 
+    border: .1em solid greenyellow;
+    width: 8em; height: 2em;
+    padding: 2em;
+    text-align: center;
+}
+input {height: fit-content; width: 4em; padding: .4em; margin-right: auto;}
+h2{
+    width: 100%; 
+    text-align: center; 
+    background-color: white; 
+    margin: 0em;
+    padding: .5em 0em .5em 0em;
+}
+#htotal{ font-weight: bolder;}
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+			<div id="layoutpagenav"></div>
+
+                <h2>Count money easily by clicking the coins/dollars to add to your total. increase the click power to add more per click.</h2>
+                <div style="background-color: beige; padding: .5em; text-align: center;"><p>Total: <span id="htotal"></span></p></div>
+                
+                <div style="display: flex; justify-content: center; background-color:beige; border: .1em solid black;";>
+                    <p style="margin: auto .5em auto .5em; ">click power</p>
+                <input type="number" value="1" id="hclickpower"/>
+                <button style="width: 50%; max-width: 10em; margin-left: 0em auto 0em auto;" onclick="Reset()">Reset</button>
+                </div>                
+
+                <div id="hvisualmoney">
+                    <div id="hcoinholder" class="moneyholder"></div>
+                    <div id="hbillholder" class="moneyholder"></div>
+                </div>
+
+
+                <div> 
+                    <label for="numbers">Display Money By:</label>
+                    <select name="numbers" id="hchartopt">
+                    <option value="amount">Amounts</option>
+                    <option value="numberof">Number you have</option>
+                    </select>
+
+                    <canvas id="canvas"></canvas>
+                </div>
+            
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<!-- Chart.js Plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../../layout.js"></script>
+<script>
+    // h = from HTML
+    const hmoneydropdown = document.getElementById("hmoneydropdown");
+    const htotal = document.getElementById("htotal");
+    const hcoinholder = document.getElementById("hcoinholder");
+    const hbillholder = document.getElementById("hbillholder");
+    const hclickpower = document.getElementById("hclickpower");
+    const hchartopt = document.getElementById("hchartopt");
+    let total = 0;
+
+  let usmoney = [
+    {value: .01, numbof: 0},
+    {value: .05, numbof: 0},
+    {value: .10, numbof: 0},
+    {value: .25, numbof: 0},
+    {value: .50, numbof: 0},
+    {value: 1, numbof: 0},
+    {value: 2, numbof: 0},
+    {value: 5, numbof: 0},
+    {value: 10, numbof: 0},
+    {value: 20, numbof: 0},
+    {value: 50, numbof: 0},
+    {value: 100, numbof: 0},
+  ];
+
+    hclickpower.addEventListener("change", Update)
+  
+  function Update(){
+    hbillholder.innerHTML = '';
+    hcoinholder.innerHTML = '';
+    total = 0;
+
+usmoney.forEach(m => {
+    total += m.numbof * m.value;
+
+  if(m.value < 1) {
+      hcoinholder.innerHTML += '<div class="coin" onclick="MoneyClicked('+m.value+','+hclickpower.value+')">'+ m.value * 100 +'¢<br>('+ m.numbof +')</div>';
+   }
+  else {
+      hbillholder.innerHTML += '<div class="bill" onclick="MoneyClicked('+m.value+','+hclickpower.value+')">$'+ m.value +'<br><br>('+ m.numbof +')</div>';
+  }
+})
+htotal.innerHTML = "$" + total.toFixed(2);
+
+
+
+
+let thelables = [];
+let thevalues = [];
+
+
+
+// Update Chart (chart.js) ---------------------------------------------------------
+if (hchartopt.value == "numberof"){
+    usmoney.forEach(i => {
+   if(i.numbof > 0) {thelables.push(i.value.toString());} thevalues.push(i.numbof);
+    })
+    mychart.data.datasets[0].data = thevalues;
+    mychart.data.labels = thelables;
+    mychart.data.datasets[0].label = "Number of"
+    mychart.update();
+}
+else {
+    usmoney.forEach(i => {
+   if(i.numbof > 0) {thelables.push(i.value.toString());} thevalues.push(i.numbof * i.value);
+    })
+    mychart.data.datasets[0].data = thevalues;
+    mychart.data.labels = thelables;
+    mychart.data.datasets[0].label = "Money $"
+    mychart.update();
+}
+  }
+
+  function AddMoney(){
+    total += parseFloat(hmoneydropdown.value);
+    Update();
+  }
+  function MoneyClicked(thevalue, amounttoadd){
+    usmoney.forEach(m => {
+        if(m.value == thevalue) {
+            //if adding (above 0)
+            if(amounttoadd > 0) {m.numbof += amounttoadd;}
+            // if subtracting (check if have enough bills to subtract so you dont have negative amount of bills )
+            else { if(m.numbof >= amounttoadd){ m.numbof -= amounttoadd; }}
+        }
+    })
+    Update();
+  }
+  function Reset(){
+    total = 0;
+    hclickpower.value = 1;
+    usmoney.forEach(i => { i.numbof = 0; })
+    Update();
+  }
+
+  // Chart.js Plugin ---------------
+const ctx = document.getElementById('canvas').getContext("2d");
+let mychart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["e", "2", "s"],
+      datasets: [{
+        label: 'Number of',
+        data: [1, 4, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  Update();
+  hchartopt.addEventListener("change", Update)
+
+
+</script> 

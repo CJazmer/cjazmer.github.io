@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Most Common Edible Plants and Uses</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="">
+	<meta name="keywords" content="survival, foraging, forage plants, wild edibles, backyard edibles, most common edible plants">
+    <style> 
+	.imgflex div:hover{background-color: aliceblue; transition: .2s; filter: brightness(1.1);} 
+	.imgflex{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		width: 100%;
+	}
+	.plantcontainer{
+		width: fit-content;
+		border: .3em solid black;
+		margin: .1em;
+	}
+	.imgflex p{
+		margin: 0em;
+		padding: .2em 0em .2em 0em;
+		font-weight: bolder;
+	}
+	a{text-decoration: none;}
+	.plantcontainer img{
+		width: 10em;
+		height: 16em;
+	}
+	.searchcontainer{
+		padding: 4px 4px 4px;
+		background-color: darkgoldenrod
+	}
+	.searchcontainer button{
+		height: 2em;
+		width: fit-content;
+	}
+	.searchtable{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: start;
+		background-color: black;
+	}
+	.searchtable div{
+		display: flex;
+		background-color: orangered;
+		max-height: fit-content;
+		vertical-align: middle;
+		padding: .5em;
+		border: .2em solid black;
+	}
+	.searchtable div input{ height: fit-content; min-height: 100%; margin: 0px 0px 0px .2em;}
+	.searchtable div p{ height: fit-content; margin: 0px;}
+	.famname{
+		transform: translateY(40%);
+		margin-top: -14%;
+		margin-bottom: 2%;
+		color: white;
+		background-color: black;
+	}
+	</style>
+</head>
+
+<body class="themeblackgoldveryback">
+		<div class="themeblackgoldback">
+			<div id="layoutpagenav"></div>
+
+			<div class="searchcontainer">
+				<div>
+					<label for="filterby">Filter By:</label>
+					<select name="filterby" id="hfilterby">
+						<option value="commonness">commonness</option>
+						<option value="name">name</option>
+						<option value="family">family</option>
+					 </select>
+					 <button onclick="SortButton()">Sort!</button>
+				</div>
+				<!--
+				<div class="searchtable">
+						<div><p>thorns/PoisonSap</p><input type="checkbox" id="chkbxthorns"/></div>
+						<div><p>Good Sent</p><input type="checkbox" id="chkbxgoodsent"/></div>
+						<div><p>Cordage</p><input type="checkbox" id="chkbxcordage"/></div>
+						<div><p>Berries</p><input type="checkbox" id="chkbxberries"/></div>
+				</div>
+				-->
+				<div class="searchtable">
+					<div><p>Show Family</p><input type="checkbox" id="chkbxshofamily"/></div>
+			</div>
+				<div id="searchaddons"></div>
+			</div>
+		<center>
+
+			 <h1 id="thetitle"></h1>
+			<h3 id="emojidescription"></h3></center>
+		</center>
+
+			<div id="flexcontainer">
+			<center>
+				<div id="hallplants"></div>			
+			</center>
+				
+
+				<p>General Knollage: Fall is when most berries & Fruit are ripe because it had all summer to grow the fuits using the sun as energy.  Spit out seeds & skin of berries and fruits.</p>
+			</div>
+
+			<footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script src="/databases/plantsdatabase.js"></script>
+<script src="/databases/animalsdatabase.js"></script>
+
+<script>
+const hallplants = document.getElementById("hallplants");
+const hfilterby = document.getElementById("hfilterby");
+const emojidescription = document.getElementById("emojidescription");
+const thetitle = document.getElementById("thetitle");
+
+
+let imgpath = "/assets/plants/"
+hallplants.innerHTML = "";
+let color = "green";
+thetitle.innerHTML = "Plants";
+
+
+let databasename = localStorage.getItem("databasename");
+if (databasename == "animals") {
+// Show Animals Database
+thetitle.innerHTML = "Animals";
+imgpath = "/assets/animals/"
+ShowImages(animalsdatabase);
+emojidescription.innerHTML = `🌊 by water | 🩸 Bites | 🐝 Stings`;
+}
+else{ 
+	// Defalut is plants
+imgpath = "/assets/plants/"
+ShowImages(plantsdatabase);
+emojidescription.innerHTML = `🌵 has thorns | 💀 Poisonous to eat | ⚠️ Poisonous to touch | 👃 has sent`;
+
+}
+emojidescription.innerHTML += `<br><br><span style="background-color: lime; color:black;">Very Common</span> | <span style="background-color: green;color:black;">Common</span> | <span style="background-color: pink; color:black;">Rare</span> | <span style="background-color:purple;">Very Rare</span>`;
+
+
+
+
+function ShowImages(thedatabase){
+	hallplants.innerHTML = "";
+	let html = "";
+
+	thedatabase.forEach(table => {
+		let letter = table.tablename.slice(0,1).toUpperCase();
+		let caps = letter + table.tablename.slice(1,table.tablename.length)
+
+		html += `<h1>${caps}s</h1><p>${table.description}</p>`;
+		html += `<div class="imgflex">`;
+
+	table.table.forEach(p => {
+	if(p.commonness == "very common") {color = "lime";}
+	else if(p.commonness == "common") {color = "green";}
+	else if(p.commonness == "rare") {color = "pink";}
+	else if(p.commonness == "very rare") {color = "purple";}
+	else {color = "white";}
+	let thename = p.name.replace(/ /g, '').toLowerCase();
+	let extra = "";
+	// Plants / Fungi
+	if(p.tags.includes("poisoneat")){extra += "💀";}
+	if(p.tags.includes("poisonsap")){extra += "⚠️";}
+	if(p.tags.includes("thorns")){extra += "🌵";}
+	if(p.tags.includes("sent")){extra += "👃";}
+	// Animals / Bugs
+	if(p.tags.includes("water")){extra += "🌊";}
+	if(p.tags.includes("bite")){extra += "🩸";}
+	if(p.tags.includes("sting")){extra += "🐝";}
+
+	let extraview = "";
+	let familynamecut = p.family;
+
+	// Plant family name display
+	if(document.getElementById("chkbxshofamily").checked){
+		if(familynamecut.includes("(")){familynamecut = familynamecut.slice(0, familynamecut.indexOf("("))}
+		extraview += `<div class="famname">${familynamecut}</div>`;
+	}
+	
+	html += `
+	<div onclick="SwitchPage('${p.name}')" class="plantcontainer">
+	<p style="color: black; background-color: `+ color +`;">${p.name}${extra}</p>
+	<img src="${imgpath}${table.tablename}/${thename}/${thename}1.jpg">
+	${extraview}
+	</div>
+	`;
+});
+
+html += `</div>`;
+hallplants.innerHTML = html;
+})
+}
+
+
+function sort(field, databasename){
+
+databasename.forEach(t => {
+
+
+t.table.sort((a, b) => {
+let fa = a[field].toLowerCase();
+let fb = b[field].toLowerCase();
+
+if(field == "commonness"){
+	const jjj = ["very common", "common", "rare", "very rare"]
+		if(jjj.indexOf(fa) != -1){fa = jjj.indexOf(fa).toString()};
+		if(jjj.indexOf(fb) != -1){fb = jjj.indexOf(fb).toString()};
+		if (fa == ""){fa = "9999"}; if (fb == ""){fb = "9999"};
+
+	if (fa < fb) {
+		return -1;
+	}
+	if (fa > fb) {
+		return 1;
+	}
+}
+else {
+	if (fa < fb) {
+		return -1;
+	}
+	if (fa > fb) {
+		return 1;
+	}
+}
+return 0;
+});
+})
+}
+
+
+function SortButton(){
+	if(hfilterby.value == "none"){ ShowImages(plantsdatabase); }
+	else {
+		if(databasename == "animals"){
+			sort(hfilterby.value, animalsdatabase);
+			ShowImages(animalsdatabase);
+		}
+		else {
+			sort(hfilterby.value, plantsdatabase);
+			ShowImages(plantsdatabase);
+		}
+
+	}
+}
+
+function SwitchPage(pname){
+	localStorage.setItem('choosenplant', pname);
+	window.location.href = "./displayone.html";
+}
+</script>
