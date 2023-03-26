@@ -219,7 +219,8 @@ if(griddisabled){}
     else{
         // if Blank Circle
         clickedcircle.style.backgroundColor = currentplayer.rgbstring;
-        clickedcircle.style.boxShadow = `0em 0em 1em .3em ${currentplayer.rgbstring}`;
+        clickedcircle.style.boxShadow = `0em 0em 1em .1em ${currentplayer.rgbstring}`;
+        clickedcircle.style.border = `.1em solid ${currentplayer.rgbstring}`;
 
         SwitchPlayer("next");
 
