@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Connect 4</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Connect four game.">
+	<meta name="keywords" content="connect, four">
+    <style>
+        #gamebord{
+            background-color: rgb(85, 85, 85);
+            border: .3em solid gold;
+            border-radius: 5%;
+            margin: 2em auto 2em auto;
+            width: fit-content;
+            padding: 1em;
+        }
+        .row{
+            width:fit-content;
+            height: fit-content;
+            margin: 0em;
+            display: flex;
+            justify-content: center;
+        }
+        .circle{
+            width: 3em;
+            height: 3em;
+            margin: .2em;
+            border-radius: 100%;
+            border: .1em solid black;
+        }
+        .circle:hover{
+            background-color: gold;
+        }
+        #buttonholder{
+            width: 100%;
+            background-color: goldenrod;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        #buttonholder button{
+            width: 10em;
+            height: fit-content;
+            padding: .5em;
+            margin: .2em;
+        }
+        #TeamTurn{
+            color: gold;
+            text-align: center;
+            font-weight: bolder;
+            font-size: xx-large;
+            background-color: rgb(121, 92, 20);
+            margin: 0em;
+        }
+        .checkboxholder{
+            display: flex;
+            justify-content: center;
+            background-color: wheat;
+            padding: 1em;
+            border: .1em solid black;
+        }
+        .checkboxholder div{
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 1em;
+            border: .1em solid black;
+        }
+        table{
+            margin: auto;
+        }
+        th{text-align: right;}
+    </style>
+<style>    
+
+</style>
+</head>
+
+<body>
+			<div id="layoutpagenav"></div>
+            <div id="OptionsPage"></div>
+
+            <p id="TeamTurn"></p>
+			<div id="gamebord"></div>
+            <div id="buttonholder"></div>
+
+            <footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const gamebord = document.getElementById("gamebord");
+    const TeamTurn = document.getElementById("TeamTurn");
+    const OptionsPage = document.getElementById("OptionsPage");
+    const buttonholder = document.getElementById("buttonholder");
+
+    // Game Options
+    let numrows = 7; // og game is 7 rows, 6 cols
+    let numcols = 6;
+    let numtowin = 5; // og game is 4 to win
+    let griddisabled = false;
+    let players = [];
+    let allids = [];
+    let currentplayer = null; // obj (name, rgbstring)
+	const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    class ClassPlayer{
+        constructor(index, name, rgbstring){
+            this.index = index;
+            this.name = name;
+            this.rgbstring = rgbstring;
+        }
+    }
+    // SPACES MATTER rgb(255, 0, 0) and not rgb(255,0,0)
+
+
+    function LoadOptionsPage(){
+OptionsPage.innerHTML = `
+
+    <div style="background-color: goldenrod;padding:.5em;">
+        <p style="margin:0em; background-color: wheat; padding:.5em; font-weight:bolder;border: .1em solid black;">Check to add extra players, besides red & blue</p>
+    <div class="checkboxholder">
+    <div style="background-color: green;">
+        <p>Green Player:</p>
+        <input type="checkbox" id="playergreen">
+    </div>
+    <div>
+        <p>White Player:</p>
+        <input type="checkbox" id="playerwhite">
+    </div>
+    <div style="background-color: orange;">
+        <p>Orange Player:</p>
+        <input type="checkbox" id="playerorange">
+    </div>
+    </div>
+    <table>
+        <tr>
+            <th>Number in a row to win:</th>
+            <td><input type="number" id="hnumtowin" value="4"></td>
+        </tr>
+        <tr>
+            <th>Grid Rows</th>
+            <td><input type="number" id="hnumrows" value="7"></td>
+        </tr>
+        <tr>
+            <th>Grid Columns</th>
+            <td><input type="number" id="hnumcols" value="6"></td>
+        </tr>
+    </table>
+    </div>
+    `;
+buttonholder.innerHTML = `<button onclick="StartGameButton()">Start Game</button>`;
+}
+LoadOptionsPage();
+
+function StartGameButton(){
+    griddisabled = false;
+    players = [];
+    players.push(new ClassPlayer(0, "Red", "rgb(255, 0, 0)"));
+    players.push(new ClassPlayer(1, "Blue", "rgb(0, 195, 221)"));
+    currentplayer = players[0];
+    if(document.getElementById("playergreen").checked) {players.push(new ClassPlayer(players.length, "Green", "rgb(0, 255, 0)"));}
+    if(document.getElementById("playerwhite").checked) {players.push(new ClassPlayer(players.length, "White", "rgb(255, 255, 255)"));}
+    if(document.getElementById("playerorange").checked) {players.push(new ClassPlayer(players.length, "Orange", "rgb(255, 127, 0)"));}
+
+    numtowin = document.getElementById("hnumtowin").value;
+    numrows = document.getElementById("hnumrows").value;
+    numcols = document.getElementById("hnumcols").value;
+
+    SetupGame();
+}
+
+
+
+function SetupGame(){
+    griddisabled = false;
+    players.forEach(g => {console.log(g.name + " joined!")})
+
+    OptionsPage.innerHTML = "";
+    SwitchPlayer("start");
+
+    gamebord.innerHTML = "";
+    buttonholder.innerHTML = `<button onclick="SetupGame()">Reset</button><button onclick="LoadOptionsPage()">Settings</button>`;
+    let thehtml = "";
+    allids = [];
+
+    // Create Gamebord and Circles
+for(j = 0; j < numcols; j++){
+    thehtml += "<div class='row'>"
+
+    for(i = 1; i <= numrows; i++){
+        thehtml += `
+            <div class="circle" id="${letters[j]}${i}" onclick="CircleClicked('${letters[j]}${i}')"></div>
+        `;
+        allids.push(`${letters[j]}${i}`);
+    }
+    thehtml += "</div>";
+}
+gamebord.innerHTML = thehtml;
+}
+
+  
+function CircleClicked(theid){
+    const clickedcircle = document.getElementById(theid);
+    let circleplayed = false; // If circle is blank/not clicked yet
+    // if circle already clicked before (is red or blue)
+
+if(griddisabled){}
+    else{
+    players.forEach(p => { 
+    if(clickedcircle.style.backgroundColor == p.rgbstring){ circleplayed = true; }
+    });
+
+    if(circleplayed){ console.log("circle already played"); }
+    else{
+        // if Blank Circle
+        clickedcircle.style.backgroundColor = currentplayer.rgbstring;
+        clickedcircle.style.boxShadow = `0em 0em 1em .3em ${currentplayer.rgbstring}`;
+
+        SwitchPlayer("next");
+
+    CheckForWin();
+    }
+}
+
+}
+
+// switch player (red or blue) 
+function SwitchPlayer(input){
+if(input == "start"){
+  currentplayer = players[0];
+}
+else {   
+    if (currentplayer.index + 1 >= players.length){ currentplayer = players[0];}
+    else { currentplayer = players[currentplayer.index+1];}
+}
+TeamTurn.innerHTML = `${currentplayer.name}'s Turn!`; 
+}
+
+function CheckForWin(){
+
+    players.forEach(plyr => {
+    for(y = 1; y <= numcols; y++){
+    let horizontalcount = 0;
+        for(x = 1; x <= numrows; x++){
+            if(`${plyr.rgbstring}` == document.getElementById(`${letters[y-1]}${x}`).style.backgroundColor){
+                horizontalcount++;
+                if(horizontalcount >= numtowin){Win(`${plyr.name} Sideways Win!!`)}
+            }
+            else {horizontalcount = 0;}
+        }
+    }
+    for(x = 1; x <= numrows; x++){
+    let vertcount = 0;
+        for(y = 1; y <= numcols; y++){
+            if(`${plyr.rgbstring}` == document.getElementById(`${letters[y-1]}${x}`).style.backgroundColor){
+                vertcount++;
+                if(vertcount >= numtowin){Win(`${plyr.name} Vertical Win!!`)}
+            }
+            else {vertcount = 0;}
+        }
+    }
+    })
+}
+function Win(txt){
+    TeamTurn.innerHTML = txt;
+    griddisabled = true;
+}
+</script> 
