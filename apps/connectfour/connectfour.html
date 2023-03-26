@@ -103,6 +103,7 @@
     let numcols = 6;
     let numtowin = 5; // og game is 4 to win
     let griddisabled = false;
+    let diagonalenabled = true;
     let players = [];
     let allids = [];
     let currentplayer = null; // obj (name, rgbstring)
@@ -150,6 +151,10 @@ OptionsPage.innerHTML = `
             <th>Grid Columns</th>
             <td><input type="number" id="hnumcols" value="6"></td>
         </tr>
+        <tr>
+            <th>Diagonal Winning Enabled</th>
+            <td><input type="checkbox" id="henablediagonal" checked></td>
+        </tr>
     </table>
     </div>
     `;
@@ -166,7 +171,8 @@ function StartGameButton(){
     if(document.getElementById("playergreen").checked) {players.push(new ClassPlayer(players.length, "Green", "rgb(0, 255, 0)"));}
     if(document.getElementById("playerwhite").checked) {players.push(new ClassPlayer(players.length, "White", "rgb(255, 255, 255)"));}
     if(document.getElementById("playerorange").checked) {players.push(new ClassPlayer(players.length, "Orange", "rgb(255, 127, 0)"));}
-
+    if(document.getElementById("henablediagonal").checked == false) {diagonalenabled = false;}
+    
     numtowin = document.getElementById("hnumtowin").value;
     numrows = document.getElementById("hnumrows").value;
     numcols = document.getElementById("hnumcols").value;
@@ -250,7 +256,7 @@ function CheckForWin(){
         for(x = 1; x <= numrows; x++){
             if(`${plyr.rgbstring}` == document.getElementById(`${letters[y-1]}${x}`).style.backgroundColor){
                 horizontalcount++;
-                if(horizontalcount >= numtowin){Win(`${plyr.name} Sideways Win!!`)}
+                if(horizontalcount >= numtowin){Win(`${plyr.name} Horizontal Win!!`)}
             }
             else {horizontalcount = 0;}
         }
@@ -265,7 +271,41 @@ function CheckForWin(){
             else {vertcount = 0;}
         }
     }
-    })
+
+    if(diagonalenabled){
+for(e = 0; e <= numcols; e++){
+    for(y = 1; y <= numcols; y++){
+    let diagonalleftcount = 0;
+        for(x = 1; x <= numrows; x++){            
+        try {
+                if(`${plyr.rgbstring}` == document.getElementById(`${letters[(y-1)+(x-1)]}${x+e}`).style.backgroundColor){
+                    diagonalleftcount++;
+                if(diagonalleftcount >= numtowin){Win(`${plyr.name} Diagonal left Win!!`)}
+            }
+            else {diagonalleftcount = 0;}
+
+        } catch {}
+        }    
+    }
+}
+for(e = 0; e <= numcols; e++){
+    for(y = 1; y <= numcols; y++){
+    let diagonalleftcount = 0;
+        for(x = numrows; x >= 0; x--){            
+        try {
+                if(`${plyr.rgbstring}` == document.getElementById(`${letters[(y-1)-(x-1)]}${x+e}`).style.backgroundColor){
+                    diagonalleftcount++;
+                if(diagonalleftcount >= numtowin){Win(`${plyr.name} Diagonal Right Win!!`)}
+            }
+            else {diagonalleftcount = 0;}
+
+        } catch {}
+        }    
+    }
+}  
+    }  
+
+})
 }
 function Win(txt){
     TeamTurn.innerHTML = txt;
