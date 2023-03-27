@@ -75,15 +75,14 @@
 
 	// Names have to be same as folder and file name (tolower removedSpaves)
 	const simulations = ["Pred vs Prey", "Physics Maker", "Rain Simulator", "Firework Maker", "People Simulation", "Shapes Simulation", "Lightning"]
-	const games = ["Connect Four", "Uno", "Tictactoe", "Clicker Game"];
+	const games = ["Connect Four", "Pong", "Uno", "Tictactoe", "Clicker Game"];
 	const creations = ["Money Counter", "Javscript Database Maker", "Flag Maker", "Painter", "Language Maker", "Funny Letter Maker"];
 	const others = ["Colorful Lights", "Music Maker", "Clock and Time", "Random Story Generator", "Info Maker", "Calculator", "Movement"]
 
 	function ShowApps(arrayName, divtoaddto) {
 		arrayName.forEach(i => {	
 		var path = i.toLowerCase().replace(/ /g, "") + "/" + i.toLowerCase().replace(/ /g, "") + ".html";
-		divtoaddto.innerHTML += " <button " + 'onclick="window.location.href=' + "'" + path + "'" + '">' + i + "</button>"
-	//                                         onclick="window.location.href='randomstorygenerator/randomstorygenerator.html'">
+		divtoaddto.innerHTML += `<button onclick="window.location.href='${path}'">${i}</button>`;
 	})}
 	ShowApps(simulations, simulationsdiv);
 	ShowApps(games, gamesdiv);

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="../../css/translatorscss.css" rel="stylesheet">
+	<title>Pong</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Pong game made with javascript canvas">
+	<meta name="keywords" content="pong">
+<style>    
+    canvas{
+        width: 100%;
+        max-height: 30em;
+        background-color: black;
+    }
+    .pointsholder{
+        display: flex; justify-content: space-evenly;
+    }
+    .pointsholder p{
+        padding: 1em;
+        margin: 0em;
+        width: 50%;
+        text-align: center;
+        font-weight: bolder;
+    }
+    .arrowholder{
+        padding: 1em;
+        margin: 0em;
+        width: 50%;
+        text-align: center;
+    }
+    .arrow{
+        font-size: 2em;
+    }
+    .buttonholder{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .buttonholder button{
+        min-width: 5em;
+        height: fit-content;
+        padding: .4em;
+    }
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+			<div id="layoutpagenav"></div>
+
+                <p class="layoutcssh1">Pong</p>
+                <p class="layoutcssdescription">Classic Pong Game made with raw javascript.</p>
+            <div class="pointsholder">
+                <p id="hpointsp1" style="background-color: red;"></p>
+                <p id="hpointsp2" style="background-color: aqua;"></p>
+            </div>
+                <canvas id="canvas"></canvas>
+			
+                    <div class="settingsdiv"></div>
+                        
+            <div class="pointsholder">
+                <div class="arrowholder" style="background-color: #ff3300;">
+                    <div class="arrow" onclick="Move('player1', 'up')">⬆️</div>
+                    <div class="arrow" onclick="Move('player1', 'down')">⬇️</div>
+                </div>
+                <div class="arrowholder" style="background-color: aqua;">
+                    <div class="arrow" onclick="Move('player2', 'up')">⬆️</div>
+                    <div class="arrow" onclick="Move('player2', 'down')">⬇️</div>
+                </div>
+            </div>
+            <div class="buttonholder">
+                <button id="p1up" onclick="AddBall()">Add Ball</button>
+                <button onclick="Reset()">Reset</button>
+            </div>
+            <table>
+                <tr><th>Controller Speed</th><td><input type="range" min="1" max="8" value="2" id="hctrlrspeed"></td></tr>
+                <tr><th>Controller Height</th><td><input type="range" min="10" max="50" value="5" id="hctrlrheight"></td></tr>
+            </table>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const canvas = document.getElementById("canvas");
+	const ctx = canvas.getContext("2d")
+    const hpointsp1 = document.getElementById("hpointsp1");
+    const hpointsp2 = document.getElementById("hpointsp2");
+
+    let pongs = [];
+    let pointsp1 = 0;
+    let pointsp2 = 0;
+    let controllerdistance = 5;
+    let controllerheight = canvas.height/5;
+    let controllerspeed = 2;
+    let controllers = [
+        {playername: "player1", x: controllerdistance, y: canvas.height/2, color: "red"},
+        {playername: "player2", x: canvas.width - controllerdistance, y: canvas.height/2, color: "aqua"},
+    ];
+
+  
+    class Pong{
+        constructor(x, y, size, speed, color){
+            this.x = x;
+            this.y = y;
+            this.xdirection = 1;
+            this.ydirection = 0;
+            this.speed = speed;
+            this.size = size;
+            this.color = color
+        }
+        move(){
+            // if touch right side
+            if(this.x >= canvas.width){
+                pointsp1++;
+                this.xdirection = -1;
+                if(this.ydirection == 0){this.ydirection = .1;}
+            }
+            // if touch left side
+            if(this.x <= 0){
+                pointsp2++;
+                this.xdirection = 1;
+                if(this.ydirection == 0){this.ydirection = .1;}
+            }
+            // if touch bottom
+            if(this.y >= canvas.height){
+                this.ydirection = -.1;
+            }
+            // if touch bottom
+            if(this.y <= 0){
+                this.ydirection = .1;
+            }
+
+
+            let r = randomnum(0,100); //small chance itll switch directions
+
+            // Red Controller bump
+            if(getDistance(controllers[0].x, controllers[0].y+(controllerheight/2), this.x, this.y) <= controllerheight/2){
+                this.xdirection = 1;
+                if(r>=80){this.ydirection *= -1;}
+            }
+            // Blue Controller bump
+            if(getDistance(controllers[1].x, controllers[1].y+(controllerheight/2), this.x, this.y) <= controllerheight/2){
+                this.xdirection = -1;
+                if(r>=80){this.ydirection *= -1;}
+            }
+
+
+
+            this.x += this.speed*(this.xdirection);
+            this.y += this.speed*(this.ydirection);
+        }
+    }
+
+    setInterval(Update, 10);
+    function Update(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        // update points first
+
+        pongs.forEach(p => {
+            p.move();            
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = "gold";
+            ctx.fill();
+            ctx.closePath(); 
+        });
+        hpointsp1.innerHTML = `P1 ${pointsp1}pts`;
+        hpointsp2.innerHTML = `P2 ${pointsp2}pts`;
+
+        // then update Controllers
+            controllers.forEach(c => {
+                ctx.beginPath();
+                ctx.rect(c.x, c.y, 7, controllerheight);
+                ctx.fillStyle = c.color;
+                ctx.fill();
+                ctx.closePath();
+            });
+
+if(document.getElementById("p1up").onmousedown) { Move("player1", "up")}
+
+    }
+    function AddBall(){
+        pongs.push(new Pong(canvas.width/2, canvas.height/2, 5, 1, "gold")); 
+    }
+    function Reset(){
+        pongs = [];
+        pointsp1 = 0;
+        pointsp2 = 0;
+        AddBall();
+    }
+    Reset()
+
+    function Move(plyr, dir){
+        let speeddd = controllerspeed;
+        if(dir == "up"){speeddd = -1*speeddd;}
+
+        // if touch top
+
+
+        if(plyr == "player1"){
+            if(controllers[0].y+controllerheight >= canvas.height){
+                controllers[0].y = canvas.height-(controllerheight*1.2);
+            }
+            else if(controllers[0].y <= 0){
+                controllers[0].y = 1;
+            }
+            else{
+                controllers[0].y += 1*(speeddd);
+            }
+        }
+        else{
+            if(controllers[1].y+controllerheight >= canvas.height){
+                controllers[1].y = canvas.height-(controllerheight*1.2);
+            }
+            else if(controllers[1].y <= 0){
+                controllers[1].y = 1;
+            }
+            else{
+                controllers[1].y += 1*(speeddd);
+            }        }
+    }
+
+    const hctrlrspeed = document.getElementById("hctrlrspeed");
+    hctrlrspeed.addEventListener("change", function(){
+        controllerspeed = hctrlrspeed.value;
+    })
+
+    function getDistance(xA, yA, xB, yB) { 
+	var xDiff = xA - xB;  var yDiff = yA - yB;
+	return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+    }
+</script> 
