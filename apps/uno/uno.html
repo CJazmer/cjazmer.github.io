@@ -53,7 +53,7 @@
 				<h1 id="toptext">UNO (Remove all Cards)</h1>
 
 				<center>
-					<div class="card" id="maincard" style="transform: rotate(0deg); margin: 0px"></div>
+					<div class="card" id="hmaincard" style="transform: rotate(0deg); margin: 0px"></div>
 					<button onclick="DrawCard()" id="drawcardbutton">Draw Card</button>
 					<div class="deck" id="deck"></div>
 				</center>
@@ -69,10 +69,11 @@
 <script>
 	// CODE -------------------------------------------------------------
 var thedeck = document.getElementById('deck');
-var maincard = document.getElementById('maincard');
+var hmaincard = document.getElementById('hmaincard');
 var drawcardbutton = document.getElementById('drawcardbutton');
 var toptext = document.getElementById('toptext');
 var colors = ["red", "blue", "green", "rgb(191, 201, 0)"];
+let deck = [];
 
 class Card {
     constructor(number, color, id) {
@@ -81,7 +82,9 @@ class Card {
 		this.id = id;
     }
 }
-var deck = [];
+let maincard = {};
+maincard = new Card(1, "red", -1);
+UpdatehMainCard();
 
 function DrawCard() {
     var ran = Math.floor(Math.random() * 9)
@@ -102,12 +105,23 @@ function ShowCards() {
     }
 }
 function UpdateIds() {
-	var theid = 0;
-	for (var c of deck) { c.id = theid; theid++;}
+	for (j = 0; j < deck.length; j++) { deck[j].id = j;}
+}
+function RemoveCard(theid){
+	let newdeck = []
+ deck.forEach(cc => {
+	if(cc.id == theid){}
+	else {newdeck.push(cc);}
+ })
+ deck = newdeck;
+ UpdateIds();
 }
 
 // Start card values
-maincard.style.backgroundColor = "red"; maincard.innerHTML = "1";
+function UpdatehMainCard(){
+hmaincard.style.backgroundColor = maincard.color; 
+hmaincard.innerHTML = maincard.number;
+}
 // 3 default cards
 function drawcards(amount){ for(i = 0; i < amount; i++) {DrawCard();}}
 drawcards(3)
@@ -123,28 +137,26 @@ document.addEventListener("click", function(obj){
 	// if its a card
    if (obj.target.className == "card"){
 
-    // If card is same color or same number
-    if(cardcolor == maincard.style.backgroundColor || cardnumber == maincard.innerHTML) {
-		// remove from deck and update main card number and color
-	var i = 0;
-	while (i < deck.length) {
-		// if valid play
-		if (deck[i].number == parseInt(maincard.innerHTML) || deck[i].color == maincard.style.backgroundColor) {
+    // If card clicked is same color or same number as the main card
+    if(cardcolor == hmaincard.style.backgroundColor || cardnumber == maincard.number) {
 		
-		// if card player clicked
-		if(cardcolor == deck[i].color && cardnumber == deck[i].number) {deck.splice(i, 1); UpdateIds();}
-		break;
-		} else {
-		++i;
-		}
-	}
-		// deck = deck.filter(o => o.color != obj.target.style.backgroundColor && o.number != parseInt(obj.target.innerHTML));
-		ShowCards();
-		maincard.style.backgroundColor = obj.target.style.backgroundColor;
-		maincard.innerHTML = obj.target.innerHTML;
+
+		maincard.color = cardcolor;
+		maincard.number = cardnumber;
+
+		deck.forEach(crd => {
+			if(crd.color == maincard.color && crd.number.toString() == maincard.number) {maincard.id = crd.id;}
+		})
+		
+		
+		UpdatehMainCard();
+		RemoveCard(maincard.id);
+		ShowCards();	
+		
 	}
     else {} // err animation
    }
+   
    if(deck.length == 0){ drawcardbutton.textContent = "Play Again"; toptext.innerHTML = "You Win";}
 	else {drawcardbutton.textContent = "Draw Card";  toptext.innerHTML = "UNO (Remove all Cards)";}
 }, false)
