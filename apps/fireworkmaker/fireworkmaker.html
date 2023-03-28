@@ -12,7 +12,7 @@
     #canvas{background-color: black; width: 75%; height: auto;}
     .bg{display: flex; height: 500px;}
 	.inputdiv{background-color: rgb(165, 165, 165); padding: 8px; transition: 0.5s;}
-	.inputdiv:hover{text-shadow: -1px 0 3px gold, 0 0 10px #ffffff; font-size: 115%;}
+	.inputdiv:hover{text-shadow: -1px 0 3px gold, 0 0 10px #ffffff;}
 	.inputdiv input{width:100%}
 	.inputdiv h2{padding: 0px; margin: 0px;}
 </style>
@@ -44,6 +44,10 @@
 					<h2>Partical Lifetime</h2>
 					<input type="range" value="9" min="1" max="10" id="rangebarlifetime"/>
 				  </div>
+				  <div class="inputdiv">
+					<h2>Launch Amount</h2>
+					<input type="range" value="90" min="10" max="500" id="rangebarlaunchamount"/>
+				  </div>
 				</div>
 				<canvas id="canvas"></canvas>
 			</div>
@@ -55,22 +59,62 @@
 <!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
-    var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d")
-	var rangebarspeed = document.getElementById("rangebarspeed");
-	var rangebarexplosioncolor = document.getElementById("rangebarexplosioncolor");
-	var rangebarnumofparticals = document.getElementById("rangebarnumofparticals");
-	var rangebaramount = document.getElementById("rangebaramount");
-	var rangebarlifetime = document.getElementById("rangebarlifetime");
+    const canvas = document.getElementById("canvas");
+	const ctx = canvas.getContext("2d")
+	const rangebarspeed = document.getElementById("rangebarspeed");
+	const rangebarexplosioncolor = document.getElementById("rangebarexplosioncolor");
+	const rangebarnumofparticals = document.getElementById("rangebarnumofparticals");
+	const rangebaramount = document.getElementById("rangebaramount");
+	const rangebarlifetime = document.getElementById("rangebarlifetime");
+	const rangebarlaunchamount = document.getElementById("rangebarlaunchamount");
 
-	var particals = [];
+	let frames = 0;
+
+	//let particals = [];
+	let fireworks = [];
+
+	class firework{
+		constructor(fx, fy, exphight){
+			this.fx = fx;
+			this.fy = fy;
+			this.exphight = exphight;
+			this.isexploding = false;
+			this.timesexploded = 0;
+			this.particals = [];
+		}
+		move(){
+			if(this.isexploding){
+			
+			}
+			else {
+				if(this.fy <= this.exphight){ this.isexploding = true;}
+				this.fy--;
+				this.fx += randomnum(-1,1);
+			}
+		}
+		fill(){
+			if(this.isexploding && this.particals.length == 0){
+				this.timesexploded++;
+
+			for(let i = 0; i < rangebarnumofparticals.value; i++){
+					var e = new partical(
+					this.fx,  // x
+					this.fy, // y
+					Math.random() * 2, // move x direction
+					Math.random() * 2  // move y direction
+				)
+				this.particals.push(e)
+			}
+		}
+		}
+	}
 
     class partical{
 		constructor(x, y, xmove, ymove){
 			this.x = x;
 			this.y = y;
 			this.xmove = xmove;
-			this.ymove = ymove
+			this.ymove = ymove;
 		}
 		life = 100;
 		move(){ // call multiple for constant movement
@@ -79,7 +123,7 @@
 		}
 	}
 
-	var interval = setInterval(update, 301 - rangebarspeed.value);
+	let interval = setInterval(update, 301 - rangebarspeed.value);
 	rangebarspeed.addEventListener('change', function(){
 		clearInterval(interval);
 		interval = setInterval(update, 301 - rangebarspeed.value);
@@ -89,32 +133,45 @@
 
 	// Make particals at start, populate array
 	function CreateParticals() {	
-	particals = []; //reset array
+	//particals = []; //reset array
 
-	// make particals
-	for(i = 0; i < rangebarnumofparticals.value; i++){
-	var e = new partical(
-	 100,  // x
-	 10, // y
-	 Math.random() * 2, // move x direction
-	 Math.random() * 2  // move y direction
-	 )
-	particals.push(e)
+	if(frames % (510 - rangebarlaunchamount.value) == 0){
+		fireworks.push(new firework(randomnum(0,canvas.width), canvas.height, canvas.height/3+(randomnum(-40,40))));
 	}
+	frames++;
     }
+	
 
 	function update() {
-		if (particals.length == 0) {CreateParticals()} // once all particals are deleted, start again
+		//if (particals.length == 0) {CreateParticals()} // once all particals are deleted, start again
+		CreateParticals()
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 	ctx.fillStyle = rangebarexplosioncolor.value;
 
-	particals.forEach(p => {
-		p.move();
-		if (p.life <= 0 ) {particals.splice(particals.indexOf(p, 1))}
-		else {p.life -= (11 - rangebarlifetime.value); ctx.globalAlpha = p.life * .01; }
+
+	fireworks.forEach(f => {
+		// if(f.timesexploded == 2){fireworks.splice(fireworks.indexOf(f, 1))}
+	if(f.timesexploded <= 1){
+		f.fill();
+
+		if(f.isexploding && f.particals.length != 0){
+			f.particals.forEach(p => {
+			p.move();
+			if (p.life <= 0 ) {f.particals.splice(f.particals.indexOf(p, 1))}
+			else {p.life -= (11 - rangebarlifetime.value);  } // ctx.globalAlpha = p.life * .01;
+			ctx.beginPath();
+			ctx.arc(p.x, p.y, rangebaramount.value, 0, 2 * Math.PI);
+			ctx.fill();
+		})
+		}
+		else{
+		f.move();
 		ctx.beginPath();
-		ctx.arc(p.x, p.y, rangebaramount.value, 0, 2 * Math.PI);
+		ctx.arc(f.fx, f.fy, rangebaramount.value, 0, 2 * Math.PI);
 		ctx.fill()
+		}
+	}
 	})
+	
 	}
 </script> 
