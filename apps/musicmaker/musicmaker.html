@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href="../../css/translatorscss.css" rel="stylesheet">
-	<title>Physics Maker</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Music Stuff</title>
 	<meta name="author" content="Conner Jasmer">
-	<meta name="description" content="Simulation you can control">
-	<meta name="keywords" content="pred, prey">
+	<meta name="description" content="Music helper">
+	<meta name="keywords" content="music">
 <style>    
 button {
     width: 100%;
@@ -18,6 +16,23 @@ select{width: 80%;}
 .key{ width: 1em; height: 8em; background-color: white; border: .1em solid black;}
 .whitekey{ background-color: white; transform: scaleX(2);}
 .blackkey{ background-color: black; height: 5em; z-index: 10;}
+#fretboard{margin: auto; width: fit-content;}
+.fretbox{
+    width: 4em;
+    height: 7em;
+    background-color: gray;
+    border: .1em solid black;
+}
+.fretboxrow{
+    display: flex;
+}
+.marker{
+    background-color: red;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 100%;
+    transform: translateX(-.8em) translateY(-4.5em);
+}
 </style>
 </head>
 
@@ -39,6 +54,10 @@ select{width: 80%;}
                 <h1>Generate a song</h1>
                 <div style="background-color: beige; padding: .5em; text-align: center;"><p>Genera: <span id="hgenera"></span> | Key: <span id="hkey"></span> | Progression: <span id="hchordnums"></span> | beat: <span id="hbeat"></span></p></div>
                 <button onclick="AddSongClick()">Add Song</button>
+
+
+                <select id="selectchords"></select>
+                <div id="fretboard"></div>
                 
             
             <footer></footer>
@@ -57,6 +76,7 @@ select{width: 80%;}
     const hbeat = document.getElementById("hbeat");
     const hpiano = document.getElementById("hpiano");
     const hplaystyle = document.getElementById("hplaystyle");
+    const fretboard = document.getElementById("fretboard");
     const arrnotes = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
 
     for(i = 0; i < 2; i++){
@@ -206,11 +226,120 @@ select{width: 80%;}
         return [arrreturn]
     }
 
-	
-   function PlayChord(chord){
-    arrnotes.forEach(n => {
-        
+
+
+
+
+
+
+
+
+
+    const guitaropenchords = [
+        {chord: "am", stringsarr: [-1, 0, 2, 2, 1, 0]},
+        {chord: "em", stringsarr: [0, 2, 2, 0, 0, 0]},
+        {chord: "c", stringsarr: [0, 3, 2, 0, 1, 0]},
+        {chord: "d", stringsarr: [-1, -1, 0, 2, 3, 2]},
+        {chord: "e", stringsarr: [0, 2, 2, 1, 0, 0]},
+        {chord: "g", stringsarr: [3, 2, 0, 0, 3, 3]},
+    ]
+    const guitarotherchords = [
+        {chord: "g", stringsarr: [3, 5, 5, 4, 3, 3]},
+        {chord: "gm", stringsarr: [3, 5, 5, 3, 3, 3]},
+        {chord: "g7", stringsarr: [3, 5, 3, 4, 3, 3]},
+        {chord: "gmaj7", stringsarr: [3, -1, 3, 4, 4, 3]},
+        {chord: "gm7", stringsarr: [3, 5, 3, 3, 3, 3]},
+        {chord: "g6", stringsarr: [3, -1, 2, 4, 3, -1]},
+        {chord: "gm6", stringsarr: [3, -1, 2, 3, 3, -1]},
+        {chord: "g9", stringsarr: [3, 5, 5, 4, 3, 5]},
+        {chord: "gm9", stringsarr: [3, 5, 5, 3, 3, 5]},
+
+
+        {chord: "c", stringsarr: [-1, 3, 5, 5, 5, 3]},
+        {chord: "cm", stringsarr: [-1, 3, 5, 5, 4, 3]},
+        {chord: "c7", stringsarr: [-1, 3, 5, 3, 4, 3]},
+        {chord: "cm7", stringsarr: [-1, 3, 5, 3, 3, 3]},
+        {chord: "c6", stringsarr: [-1, 3, 2, 2, 1, -1]},
+        {chord: "c9", stringsarr: [-1, 3, 2, 3, 3, 3]},
+        {chord: "cm9", stringsarr: [-1, 3, 1, 3, 3, -1]},
+        {chord: "cmaj9", stringsarr: [-1, 3, 2, 4, 3, -1]},
+
+
+
+    ]
+
+    const selectchords = document.getElementById("selectchords");
+    guitarotherchords.forEach(o => {
+    
+    selectchords.innerHTML += `<option value="${o.chord}">${o.chord}</option>`;
     })
-   }
-    function randomnum(min, max){return Math.floor(Math.random() * (max - min + 1)) + min}
+    selectchords.addEventListener("change", ShowChord)
+
+
+
+
+
+
+
+    let oNumofrows = 5;
+    let oNumofcols = 11;
+
+
+    MakeFretboard("guitar");
+    ShowChord();
+    function MakeFretboard(thetype){
+        let thehtml = "";
+
+        if(thetype == "guitar"){
+            for(h = 0; h < oNumofcols; h++){
+                thehtml += `<div class="fretboxrow">`;
+                for(i = 0; i < oNumofrows; i++){
+                thehtml += `<div class="fretbox" id="row${h}col${i}"></div>`;
+                }
+                thehtml += `</div>`;
+            }
+
+
+
+        }
+        fretboard.innerHTML = thehtml;
+    }
+    function ShowChord(){
+        
+
+        let countt = 0;
+        ClearMarkers()
+        guitarotherchords.forEach(o => {
+    if(selectchords.value == o.chord){
+
+        o.stringsarr.forEach(s => {
+
+        let adddiv = `<div class="marker" style="translateX(-.8em) translateY(-4.5em)"></div>`;
+        if(s == 0){adddiv = `<div class="marker" style="transform: translateY(-.5em) translateX(-0.9em)"></div>`;}
+
+        if(countt >= oNumofrows){
+        adddiv = `<div class="marker" style="transform: translateX(3em) translateY(-6em)"></div>`;
+        document.getElementById(`row${s}col${oNumofrows-1}`).innerHTML += adddiv;
+        }
+        else if(s >= 0){
+            document.getElementById(`row${s}col${countt}`).innerHTML = adddiv;
+        }
+        countt++;
+        })
+
+
+    }
+
+
+})
+}
+
+function ClearMarkers(){
+    for(h = 0; h < oNumofcols; h++){
+                for(i = 0; i < oNumofrows; i++){
+                document.getElementById(`row${h}col${i}`).innerHTML = "";
+                }
+            }
+}
+    
 </script> 

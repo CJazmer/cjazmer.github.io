@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Code Writer</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Code writer in a borwser!">
+	<meta name="keywords" content="code, writer, visual studio">
+	<style>        
+    input{
+        width: 100%;
+        min-width: 90%;
+        min-height: 20em;
+        height: fit-content;
+        padding: .1em;
+    }
+    .thebutton{
+        min-width: 100%; 
+        height: fit-content; 
+        padding: 1em 0em 1em 0em;
+    }
+    .textdiv{
+        color: white;
+    }
+    </style>
+</head>
+
+<body>
+        <div id="layoutpagenav"></div>
+
+        <h1 style="color: gold; text-align: center;">Colorful Lights</h1>
+        <label for="numbers">Language:</label>
+        <select name="numbers" id="drpdwn">
+            <option value="Javascript">Javascript</option>
+           <option value="HTML">HTML</option>
+           <option value="CSS">CSS</option>
+        </select>
+            <input type="text" id="txtarea"></input>
+            <div id="txtareadiv" class="textdiv"></div>
+            <footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+	const txtarea = document.getElementById("txtarea");
+    const txtareadiv = document.getElementById("txtareadiv");
+
+    const drpdwn = document.getElementById("drpdwn");
+    let thelang = "HTML";
+
+    drpdwn.addEventListener("change", ChangeLang);
+    function ChangeLang(){
+        thelang = drpdwn.value;
+        console.log(thelang);
+    }
+
+    txtarea.addEventListener("change", Update);
+    function Update(){
+        let txt = txtarea.value;
+        
+        
+        txt = txt.replaceAll("<", "&lt");
+        txt = txt.replaceAll(">", "&gt");
+
+            txtareadiv.innerHTML = txt;
+            console.log(txt);
+
+        
+
+    }
+</script>

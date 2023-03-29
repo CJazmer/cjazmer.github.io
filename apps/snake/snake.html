@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Snake</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Snake game made with javascript canvas">
+	<meta name="keywords" content="snake">
+<style>    
+    canvas{
+        width: 100%;
+        max-height: 30em;
+        background-color: black;
+    }
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+			<div id="layoutpagenav"></div>
+
+             
+                <div id="gamebord"></div>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const gamebord = document.getElementById("gamebord");
+    let snakecolor = "rgb(0, 225, 0)";
+
+  
+    class Food{
+        constructor(id, x, y){
+            this.id = id;
+            this.x = x;
+            this.y = y;
+        }
+        updateindex(){
+
+        }
+    }
+
+    setInterval(Update, 100);
+    function Update(){
+        
+    }
+        
+</script> 

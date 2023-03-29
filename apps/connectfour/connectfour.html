@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href="../../css/translatorscss.css" rel="stylesheet">
 	<title>Connect 4</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Conner Jasmer">
 	<meta name="description" content="Connect four game.">
 	<meta name="keywords" content="connect, four">
@@ -173,7 +171,7 @@ function StartGameButton(){
     if(document.getElementById("playerwhite").checked) {players.push(new ClassPlayer(players.length, "White", "rgb(255, 255, 255)"));}
     if(document.getElementById("playerorange").checked) {players.push(new ClassPlayer(players.length, "Orange", "rgb(255, 127, 0)"));}
     if(document.getElementById("henablediagonal").checked == false) {diagonalenabled = false;}
-    
+
     numtowin = document.getElementById("hnumtowin").value;
     numrows = document.getElementById("hnumrows").value;
     numcols = document.getElementById("hnumcols").value;
