@@ -50,7 +50,8 @@
 			<div id="layoutpagenav"></div>
 
 			<div id="navflex">
-				<h1 id="toptext">UNO (Remove all Cards)</h1>
+				<h1 id="toptext">UNO SOLO (Remove all Cards)</h1>
+				<p><span id="hnumofmoves"></span> Moves</p>
 
 				<center>
 					<div class="card" id="hmaincard" style="transform: rotate(0deg); margin: 0px"></div>
@@ -74,6 +75,7 @@ var drawcardbutton = document.getElementById('drawcardbutton');
 var toptext = document.getElementById('toptext');
 var colors = ["red", "blue", "green", "rgb(191, 201, 0)"];
 let deck = [];
+let numofmoves = 0;
 
 class Card {
     constructor(number, color, id) {
@@ -87,8 +89,9 @@ maincard = new Card(1, "red", -1);
 UpdatehMainCard();
 
 function DrawCard() {
-    var ran = Math.floor(Math.random() * 9)
-    var ran2 = Math.floor(Math.random() * colors.length)
+	numofmoves++;
+    let ran = Math.floor(Math.random() * 9)
+    let ran2 = Math.floor(Math.random() * colors.length)
 
         var card = new Card(ran, colors[ran2], deck.length);
         deck.push(card);
@@ -96,6 +99,7 @@ function DrawCard() {
 }
 function ShowCards() {
     thedeck.innerHTML = "";
+	hnumofmoves.innerHTML = numofmoves;
     for (var c of deck) {
         var div = document.createElement('div');
         thedeck.appendChild(div);
@@ -122,20 +126,28 @@ function UpdatehMainCard(){
 hmaincard.style.backgroundColor = maincard.color; 
 hmaincard.innerHTML = maincard.number;
 }
+
+
+function ResetGame(){
 // 3 default cards
 function drawcards(amount){ for(i = 0; i < amount; i++) {DrawCard();}}
-drawcards(3)
+drawcards(3);
+numofmoves = 0;
+ShowCards();
 
+
+}
+ResetGame();
 
 // click event for everything, obj is the thing clicked on
 document.addEventListener("click", function(obj){
 	var cardcolor = obj.target.style.backgroundColor;
 	var cardnumber = obj.target.innerHTML;
 	
-	if(obj.target.textContent == "Play Again") {drawcards(3);}
+	if(obj.target.textContent == "Play Again") {ResetGame();}
 
-	// if its a card
-   if (obj.target.className == "card"){
+	// if the thing clicked is a card, and not the main card
+   if (obj.target.className == "card" && obj.target.id != "hmaincard"){
 
     // If card clicked is same color or same number as the main card
     if(cardcolor == hmaincard.style.backgroundColor || cardnumber == maincard.number) {
@@ -148,16 +160,17 @@ document.addEventListener("click", function(obj){
 			if(crd.color == maincard.color && crd.number.toString() == maincard.number) {maincard.id = crd.id;}
 		})
 		
-		
+		numofmoves++;	
+
 		UpdatehMainCard();
 		RemoveCard(maincard.id);
-		ShowCards();	
+		ShowCards();
 		
 	}
     else {} // err animation
    }
    
    if(deck.length == 0){ drawcardbutton.textContent = "Play Again"; toptext.innerHTML = "You Win";}
-	else {drawcardbutton.textContent = "Draw Card";  toptext.innerHTML = "UNO (Remove all Cards)";}
+	else {drawcardbutton.textContent = "Draw Card";  toptext.innerHTML = "UNO SOLO (Remove all Cards)";}
 }, false)
 </script> 
