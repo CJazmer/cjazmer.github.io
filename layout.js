@@ -30,7 +30,7 @@ layoutpageFooter.style = "text-align: center; padding: .4em; background-color: g
 let layouthead = document.getElementsByTagName('head')[0];
 
 // StyleSheet
-layouthead.innerHTML += `<link href="../css/layoutcss.css" rel="stylesheet">`;
+layouthead.innerHTML += `<link href="/css/layoutcss.css" rel="stylesheet">`;
 
 // Page icon / Disable doubletap zoom (user-scalable=no)
 layouthead.innerHTML += `
