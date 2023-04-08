@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Colorful Lights</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Cool css">
+	<meta name="keywords" content="css, lights">
+	<style>    
+    .acolor{
+        width: 5em;
+        height: 5em;
+    }    
+    </style>
+</head>
+
+<body>
+        <div id="layoutpagenav"></div>
+
+        <select id="hcolors"></select>
+        <div id="hdiv"></div>
+
+      
+            <footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+	const hcolors = document.getElementById("hcolors");
+    const hdiv = document.getElementById("hdiv");
+
+    const thecolors = [
+        {colors: ["red", "green"], names: ["christmas"]},
+        {colors: ["green", "yellow", "red"], names: ["reggae"]},
+        {colors: ["red", "white", "blue"], names: ["slavic", "usa", "french"]},
+        {colors: ["red"], names: ["cherry"]},
+        {colors: ["orange", "purple", "black"], names: ["fall / halloween"]},
+    ];
+    let thecolorobj = thecolors[0];
+
+
+    thecolors.forEach(c => {
+        hcolors.innerHTML += `<option>${c.names[0]}</option>`;  
+    });
+
+    hcolors.addEventListener("change", changed);
+    function changed(){
+        hdiv.innerHTML = ``;
+
+        thecolors.forEach(w = {
+            // if(w[0] == hcolors.value){thecolorobj = w};
+        });
+
+        thecolorobj.colors.forEach(i => {
+            hdiv.innerHTML += `<div class="acolor" style="background-color:${i};"></div>`;
+        })
+    }
+
+</script>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shape Simulation</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random shapes">
+	<meta name="keywords" content="shape, maker, simulation">
+<style>    
+.hailmary{
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    background-color: aqua;
+    border: 0.1em solid royalblue;
+}
+.glorybe{
+    width: 3em;
+    height: 3em;
+    background-color: royalblue;
+    border: 0.1em solid aqua;
+}
+.cross{
+    width: 4em;
+    height: 5em;  
+    background-color: gold;
+    text-align: center;
+    font-size: 100%;
+    border-radius: 40%;
+}
+.circle{
+    border-radius: 100%;
+    transition: 0.2s;
+    margin-top: 1em;
+}
+.circle:hover{
+    transform: scale(1.1);
+    filter: hue-rotate(120deg);
+}
+#rosarydiv{
+    background-color: rgb(0, 70, 70);
+    
+    padding: .5em;
+}
+#hprayers{
+    color:white;
+}
+.pname{
+    background-color: rgb(144, 255, 255);
+    color: black;
+    padding: 1em;
+    font-weight: bolder;
+    margin: 0em;
+}
+.ptext{
+    background-color: rgb(0, 70, 70);
+    margin: 0em;
+    padding: .3em;
+}
+</style>
+</head>
+
+<body>
+
+    <div id="layoutpagenav"></div>
+    <div id="rosarydiv"></div>
+    <div id="hprayers"></div>
+
+
+    <footer></footer>
+
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const rosarydiv = document.getElementById("rosarydiv");
+    const hprayers = document.getElementById("hprayers");
+
+    const prayers = [
+        {name: "hailmary", words: `
+            Hail Mary, full of grace,
+            The Lord is with thee.
+            Blessed art thou among women,
+            and blessed is the fruit of thy womb, Jesus.
+            Holy Mary, Mother of God,
+            pray for us sinners, now,
+            and at the hour of our death. Amen.`
+        },
+        {name: "ourfather", words: `
+            Our Father, Who art in heaven, 
+            Hallowed be Thy Name. 
+            Thy Kingdom come. 
+            Thy Will be done, 
+            on earth as it is in Heaven.
+
+            Give us this day our daily bread. 
+            And forgive us our trespasses, 
+            as we forgive those who trespass against us. 
+            And lead us not into temptation, 
+            but deliver us from evil. Amen.`
+        },
+        {name: "glorybe", words: `
+            Glory be to the Father, the Son, and the Holy Spirit;
+            as it was in the beginning, is now, and ever shall be,
+            world without end.
+            Amen.`
+        },
+        {name: "hailholyqueen", words: `
+            Hail, holy Queen, mother of mercy,
+            our life, our sweetness, and our hope.
+            To you we cry, poor banished children of Eve;
+            to you we send up our sighs,
+            mourning and weeping in this valley of tears.
+            Turn, then, most gracious advocate,
+            your eyes of mercy toward us;
+            and after this, our exile,
+            show unto us the blessed fruit of your womb, Jesus.
+            O clement, O loving, O sweet Virgin Mary.`
+        },
+        {name: "apostlescreed", words: `
+            I believe in God,
+            the Father almighty,
+            Creator of heaven and earth,
+            and in Jesus Christ, his only Son, our Lord,
+            who was conceived by the Holy Spirit,
+            born of the Virgin Mary,
+            suffered under Pontius Pilate,
+            was crucified, died and was buried;
+            he descended into hell;
+            on the third day he rose again from the dead;
+            he ascended into heaven,
+            and is seated at the right hand of God the Father almighty;
+            from there he will come to judge the living and the dead.
+
+            I believe in the Holy Spirit,
+            the holy catholic Church,
+            the communion of saints,
+            the forgiveness of sins,
+            the resurrection of the body,
+            and life everlasting.
+            Amen.`
+        },
+    ];
+
+    rosarydiv.innerHTML += `
+    <div title="Sign of Cross, Your Petition, Apostles Creed" class="cross">t</div>
+    <div title="Our Father" class="glorybe circle"></div>
+    <div title="hailmary" class="hailmary circle"></div>
+    <div title="hailmary" class="hailmary circle"></div>
+    <div title="hailmary" class="hailmary circle"></div>
+    <div title="Our Father" class="glorybe circle"></div>
+    <div title="Hail Holy Queen, St Michael, sign of cross" class="cross"></div>
+    `;
+ 
+for(x = 0; x < 5; x++){
+    rosarydiv.innerHTML += `<div title="Glory Be, Oh My Jesus, Our Father" class="glorybe circle"></div>`;
+    for(i = 0; i < 10; i++){
+        rosarydiv.innerHTML += `<div title="Hail Mary" class="hailmary circle"></div>`;
+    }
+}
+
+prayers.forEach(p => {
+    hprayers.innerHTML += `
+    <div> 
+        <p class="pname">${p.name}</p>
+        <p class="ptext">${p.words}</p>
+    </div>
+    `;
+})
+
+</script> 

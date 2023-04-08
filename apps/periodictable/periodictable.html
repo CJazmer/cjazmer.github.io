@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Periodic Table</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="People generator">
+	<meta name="keywords" content="jazmer, apps">
+	<style>     
+        a{
+            text-decoration: none;
+        }   
+		.square{
+            width: 3em;
+            height: 3em;
+            margin: 0.05em;
+            border: 0.1em solid black;
+            background-color: white;
+            color: black;
+            text-align: center;
+            transition: .2s;
+        }
+        .square:hover{
+            transform: scale(1.1);
+        }
+        .invisiblesquare{
+            width: 3em;
+            height: 3em;
+            margin: 0.15em;
+        }
+        #ptable{
+            width: fit-content;
+            margin: auto;
+            background-color: tan;
+        }
+        .row{
+            display: flex;
+            width: 100%;
+        }
+        .name{
+            font-size: 55%;
+            margin: 0em 0em auto 0em;
+        }
+        .symbol{
+            font-weight: bolder;
+            margin: auto 0em 0em 0em;
+        }
+    </style>
+</head>
+
+<body>
+		<div class="themeblackgoldback">
+			<div id="layoutpagenav"></div>
+
+            <div id="ptable"></div>
+
+            
+
+		</div>
+        <footer></footer>
+
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const ptable = document.getElementById("ptable");
+
+    // Alkali Metal, Alkali Earth Metal, Noble Gas, Halogen, Noble Gas33333 
+    const pedriodictabledatabase = [
+        {symbol: "H", name: "Hydrogen", numtoskip: 16, category: "other"},
+        {symbol: "He", name: "Helium", numtoskip: -1, category: "Noble Gas"},
+        {symbol: "Li", name: "Lithium", numtoskip: 0, category: "Alkali Metal"},
+        {symbol: "Be", name: "Beryllium", numtoskip: 10, category: "Alkali Earth Metal"},
+        {symbol: "B", name: "Boron", numtoskip: 0, category: "Metalloid"},
+        {symbol: "C", name: "Carbon", numtoskip: 0, category: "Other Non Metal"},
+        {symbol: "N", name: "Nitrogen", numtoskip: 0, category: "Other Non Metal"},
+        {symbol: "O", name: "Oxygen", numtoskip: 0, category: "Other Non Metal"},
+        {symbol: "F", name: "Fluorine", numtoskip: 0, category: "Halogen"},
+        {symbol: "Ne", name: "Neon", numtoskip: -1, category: "Noble Gas"},
+        {symbol: "Na", name: "Sodium", numtoskip: 0, category: "Alkali Metal"},
+        {symbol: "Mg", name: "Magnesium", numtoskip: 10, category: "Alkali Earth Metal"},
+        {symbol: "Al", name: "Aluminum", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Si", name: "Silicon", numtoskip: 0, category: "Metalloid"},
+        {symbol: "P", name: "Phosphorus", numtoskip: 0, category: "Other Non Metal"},
+        {symbol: "S", name: "Sulfur", numtoskip: 0, category: "Other Non Metal"},
+        {symbol: "Cl", name: "Chlorine", numtoskip: 0, category: "Halogen"},
+        {symbol: "Ar", name: "Argon", numtoskip: -1, category: "Noble Gas"},
+        {symbol: "K", name: "Potassium", numtoskip: 0, category: "Alkali Metal"},
+        {symbol: "Ca", name: "Calcium", numtoskip: 0, category: "Alkali Earth Metal"},
+        {symbol: "Sc", name: "Scandium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ti", name: "Titanium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "V", name: "Vanadium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Cr", name: "Chromium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Mn", name: "Manganese", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Fe", name: "Iron", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Co", name: "Cobalt", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ni", name: "Nickel", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Cu", name: "Copper", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Zn", name: "Zinc", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ga", name: "Galium", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Ge", name: "Germanium", numtoskip: 0, category: "Metalloid"},
+        {symbol: "As", name: "Arsenic", numtoskip: 0, category: "Metalloid"},
+        {symbol: "Se", name: "Selenium", numtoskip: 0, category: "Other Non Metal"},
+        {symbol: "Br", name: "Bromine", numtoskip: 0, category: "Halogen"},
+        {symbol: "Kr", name: "Krypton", numtoskip: -1, category: "Noble Gas"},
+        {symbol: "Rb", name: "Rubidium", numtoskip: 0, category: "Alkali Metal"},
+        {symbol: "Sr", name: "Strontium", numtoskip: 0, category: "Alkali Earth Metal"},
+        {symbol: "Y", name: "Yttrium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Zr", name: "Zicronium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Nb", name: "Niobium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Mo", name: "Molybdenum", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Tc", name: "Technetium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ru", name: "Ruthenium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Rh", name: "Rhodium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Pd", name: "Palladium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ag", name: "Silver", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Cd", name: "Cadmium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "In", name: "Indium", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Sn", name: "Tin", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Sb", name: "Antimony", numtoskip: 0, category: "Metalloid"},
+        {symbol: "Te", name: "Tellurium", numtoskip: 0, category: "Metalloid"},
+        {symbol: "I", name: "Iodine", numtoskip: 0, category: "Halogen"},
+        {symbol: "Xe", name: "Xenon", numtoskip: -1, category: "Noble Gas"},
+        {symbol: "Cs", name: "Caesium", numtoskip: 0, category: "Alkali Metal"},
+        {symbol: "Ba", name: "Barium", numtoskip: 0, category: "Alkali Earth Metal"},
+        {symbol: "??", name: "", numtoskip: 0},
+        {symbol: "Hf", name: "Hafnium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ta", name: "Tantalum", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "W", name: "Tungsten", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Re", name: "Rhenium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Os", name: "Osmium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ir", name: "Iridium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Pt", name: "Platinum", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Au", name: "Gold", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Hg", name: "Mercury", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Ti", name: "Thallium", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Pb", name: "Lead", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Bi", name: "Bismuth", numtoskip: 0, category: "Other Metal"},
+        {symbol: "Po", name: "Polonium", numtoskip: 0, category: "Metalloid"},
+        {symbol: "At", name: "Astatine", numtoskip: 0, category: "Halogen"},
+        {symbol: "Rn", name: "Radon", numtoskip: -1, category: "Noble Gas"},
+        {symbol: "Fr", name: "Francium", numtoskip: 0, category: "Alkali Metal"},
+        {symbol: "Ra", name: "Radium", numtoskip: 0, category: "Alkali Earth Metal"},
+        {symbol: "?", name: "", numtoskip: 0},
+        {symbol: "Rf", name: "Rutherfordium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Db", name: "Dubnium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Sg", name: "Seaborgium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Bh", name: "Bohrium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Hs", name: "Hassium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Mt", name: "Meitnerium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Ds", name: "Darmstadtium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Rg", name: "Roentgenium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Cn", name: "Copernicium", numtoskip: 0, category: "Transition Metal"},
+        {symbol: "Uut", name: "Ununtrium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Fl", name: "Flerovium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Uup", name: "Ununpentium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Lv", name: "Livermorium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Uus", name: "Ununseptium", numtoskip: 0, category: "Unknown"},
+        {symbol: "Uuo", name: "Ununoctium", numtoskip: 0, category: "Unknown"},
+    ];
+    const clrs = [
+        {name: "Alkali Metal", color: "red"},
+        {name: "Alkali Earth Metal", color: "orange"},
+        {name: "Transition Metal", color: "yellow"},
+        {name: "Hologen", color: "red"},
+        {name: "Other Metal", color: "green"},
+        {name: "Metalloid", color: "aqua"},
+        {name: "Other Non Metal", color: "cadetblue"},
+        {name: "Halogen", color: "pink"},
+        {name: "Noble Gas", color: "purple"},
+        {name: "Unknown", color: "grey"},
+    ]
+
+    ptable.innerHTML = "";
+    let theHTML = `<div class="row">`;
+    pedriodictabledatabase.forEach(o => {
+        let thecolor = "white";
+        clrs.forEach(c => { if(c.name == o.category) {thecolor = c.color;}})
+
+        theHTML += `
+        <a href="https://en.wikipedia.org/wiki/${o.name}" target="_blank"><div class="square" style="background-color: ${thecolor || "white"}"><p class="symbol">${o.symbol}</p><p class="name">${o.name}</p></div></a>`;
+
+        if(o.numtoskip == -1){theHTML += `</div>`};
+        if(o.numtoskip == -1){theHTML += `<div class="row">`};
+        if(o.numtoskip > 0){
+            for(i = 0; i < o.numtoskip; i++){
+            theHTML += `<div class="invisiblesquare"></div>`;
+            }
+        }
+        
+    })
+
+    ptable.innerHTML = theHTML;
+
+
+    var url = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&origin=*&page=Most%20common%20words%20in%20Spanish';
+
+fetch(url)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response){
+    html_code = response["parse"]["text"]["*"];
+    parser = new DOMParser();
+    html = parser.parseFromString(html_code, "text/html");
+    var tables = html.querySelectorAll(".wikitable");
+    console.log(tables);
+
+    tables.forEach(t => {console.log(t)})
+  })
+
+</script>

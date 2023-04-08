@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        #question{
+            background-color: rgb(255, 203, 106);
+            width: 100%;
+            height: fit-content;
+            padding: .5em 0em 0em 0em;
+            text-align: center;
+            margin: 0em;
+            font-weight: bolder;
+            font-size: 1.5em;
+        }
+        #questiontext{
+            background-color: rgb(255, 223, 162);
+            margin: 0em;
+            padding: .5em;
+            min-height: 5em;
+            font-weight: bolder;
+            color: orangered;
+            text-align: center;
+            font-size: 1.4em;
+        }
+        #btnreveal{
+            width: 100%;
+            height: fit-content;
+            padding: .5em 0em .5em 0em;
+        }
+        #htmlhint{
+           width: 100%;
+           height: 1.3em; 
+           font-style: italic;
+           text-align: center;
+           background-color: rgb(255, 203, 106);
+        }
+        #words{
+            background-color: gray;
+        }
+        #words p{
+            background-color: rgb(255, 210, 125);
+            padding: .1em;
+            margin-bottom: .1em;
+        }
+	</style>
+</head>
+
+<body>
+	<div id="main">
+		<div id="underbanner" style="justify-content:center;">
+            <div id="questioninfo"></div>
+			<div id="question"></div>
+            <div id="htmlhint"></div>
+            <div id="questiontext"></div>
+            <button id="btnreveal" onclick="btnClicked()">Next</button>
+            <div id="words"></div>
+		</div>
+	</div>
+	<h1 onclick="window.location.href='../indexapps.html'">Return to Apps</h1>
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const question = document.getElementById("question");
+    const questiontext = document.getElementById("questiontext");
+    const questioninfo = document.getElementById("questioninfo");
+    const htmlhint = document.getElementById("htmlhint");
+    const btnreveal = document.getElementById("btnreveal");
+    const words = document.getElementById("words");
+
+    const Spanish1 = [
+        {english: `'quiero' means 'I want'`, otherlang: ``, hint: ``},
+        {english: `say: I want noun.`, otherlang: `quiero noun`, hint: ``},
+        {english: `'ahora' means 'now'`, otherlang: ``, hint: ``},
+        {english: `say: now I want noun.`, otherlang: `ahora quiero noun`, hint: ``},
+        {english: `'y' means 'and'`, otherlang: ``, hint: ``},
+        {english: `say: I want noun and noun.`, otherlang: `quiero noun y noun`, hint: `'y' means 'and'`},
+        {english: `Whats the word for 'now'.`, otherlang: `ahora`, hint: ``},
+        {english: `say: I want noun now.`, otherlang: `quiero noun ahora`, hint: ``},
+        {english: `say: I don't want noun.`, otherlang: `No quiero noun`, hint: `put 'no' at start to negate sentences'`},
+        {english: `say: because I don't want noun.`, otherlang: `porque no quiero noun`, hint: ``},
+        {english: `say: because I don't want noun now.`, otherlang: `porque no quiero noun ahora`, hint: ``},
+    ];
+    const SpanishNouns = [
+        {english: "food", otherlang: "comida"},
+        {english: "water", otherlang: "agua"},
+    ];
+    let indexnum = -1;
+    let lessonlength = Spanish1.length;
+    
+btnClicked();
+
+    function btnClicked(){
+        if(btnreveal.innerHTML == `Next`){
+            if(indexnum < lessonlength-1){
+                indexnum++;
+                question.innerHTML = Spanish1[indexnum].english.replace(/noun/g, SpanishNouns[0].english);
+                questiontext.innerHTML = `...`;
+                htmlhint.innerHTML = Spanish1[indexnum].hint || ``;
+
+                if(!question.innerHTML.includes(`.`)){ // '.' is special char that means, have a the Show Button
+                    btnreveal.innerHTML = `Next`;
+
+                    if(question.innerHTML.includes(`means`)){ 
+                        words.innerHTML += `<p>${question.innerHTML}</p>`;
+                    }
+                }
+                else{
+                    question.innerHTML = question.innerHTML.toString().replace(`.`,``);
+                    btnreveal.innerHTML = `Show`;
+                }
+            }
+            else{console.log("Lesson Complete");}
+        }
+        else{
+            question.innerHTML = Spanish1[indexnum].english.replace(/noun/g, SpanishNouns[0].english);
+            questiontext.innerHTML = Spanish1[indexnum].otherlang.replace(/noun/g, SpanishNouns[0].otherlang);
+            question.innerHTML = question.innerHTML.toString().replace(`.`,``);
+            btnreveal.innerHTML = `Next`
+        }
+    }
+
+    
+
+    /*
+    Context Learning) Spanish with paul, LanguageTransfer
+    Grammer) Schools
+
+    
+    */
+</script>

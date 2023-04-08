@@ -6,36 +6,46 @@
 	<meta name="description" content="Apps made by Jazmer">
 	<meta name="keywords" content="jazmer, apps">
 	<style>        
-		#canvas{background-color: rgb(255, 255, 255); width: 90%; height: auto; align-self: center;}
-        .controlscontainer{
+		#canvas{
+            background-color: rgb(255, 255, 255); 
+            width: 80%; height: 20em; align-self: center;}
+        #controlscontainer{
             background-color: darkgoldenrod;
             width: 100%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-evenly;
         }
-        .controlscontainer div{
-            display: flex;
+        #controlscontainer p{
+            background-color: rgb(108, 77, 0);
+            color:white;
+            margin: 0em;
+            min-width: 5em;
+        }
+        #controlscontainer div{
+            margin: .5em 0em .5em .5em;
             background-color: goldenrod;
-            width: fit-content;
-            padding: .3em;
-            border: .1em solid gold;
-            border-radius: 1em;
-            margin-right: .1em;
-            justify-content: center;
-            align-items: center;
         }
-        .controlscontainer div p{
-            font-size: large;
-            color: black;
-            height: fit-content;
-            margin: 0px 0px 0px 0px;
+        #imgtool{
+            width: 4em;
+            height: 4em;
         }
-        .controlscontainer div input{
-            font-size: large;
-            color: black;
+        table{
+			background-color: rgb(47, 34, 0);
+            padding: 1em;
+            width: 100%;
+		}
+        th{text-align: right;}
+        td{text-align: left; margin-right: .5em;}
+        .settingsdiv p{
+            background-color: goldenrod;
+            color:black;
+            padding: .5em;
+            margin: 0em;
+        }
+        .settingsdiv button{
+            width: 100%;
             height: fit-content;
-            margin: 0px 0px 0px .4em;
+            padding: .8em;
         }
     </style>
 </head>
@@ -46,11 +56,17 @@
 
 			<div id="navflex">
 
-			<h1>Painter</h1>
             <canvas id="canvas"></canvas>
 
-            <div class="controlscontainer">
-                <div><p>Brush Size</p><input type="range" id="inputbrushsize" value="10" min="1" max="60"></div>
+            <div id="controlscontainer">
+                <div class="controlholder" onclick="SwitchTool('')">
+                    <p class="controlheading">Tool</p>
+                    <img id="imgtool">
+                </div>
+                <div>
+                    <p>Size</p>
+                    <input type="range" id="inputbrushsize" value="10" min="1" max="60">
+                </div>
                 <div><p>Transparency</p><input type="range"/></div>
                 <div><p>color</p><input type="color" id="brushcolor" style="height: 2em;"></div>
                 <div><p>Brush Type</p>
@@ -61,6 +77,41 @@
                 </div>
             </div>
 
+            <div class="settingsdiv">
+                <p>Fill Screen</p>
+                <table>
+                    <tr><th>Sections</th><td><input type="number" value="3" id="fillamount"></td></tr>
+                    <tr><th>Vertical</th><td><input type="checkbox" id="filldirection" checked="checked"></td></tr>
+                    <tr><th>Colors</th><td><input type="text" id="fillcolors" value="blue, white, red"></td></tr>
+                </table>
+                <button onclick="btnFill()">Fill</button>
+                <select id="htmlflagslist"></select>
+            </div>
+
+            <div class="settingsdiv">
+                <p>Create a Grid</p>
+                <table>
+                    <tr><th>Num Columns</th><td><input type="number" value="5" id="gridnumcolumns"></td></tr>
+                    <tr><th>Num Rows</th><td><input type="number" value="5" id="gridnumrows"></td></tr>
+                    <tr><th>Line Color</th><td><input type="color"  id="gridcolor"></td></tr>
+                    <tr><th>Line Width</th><td><input type="range" min="1" max="20" value="1" id="gridwidth"></td></tr>
+                </table>
+                <button onclick="btnGrid()">Create Grid</button>
+            </div>
+
+            <div class="settingsdiv">
+                <p>Create a Celtic Knot</p>
+                <table>
+                    <tr><th>Num Columns</th><td><input type="number" value="5" id="knotnumcolumns"></td></tr>
+                    <tr><th>Num Rows</th><td><input type="number" value="5" id="knotnumrows"></td></tr>
+                    <tr><th>Line Color</th><td><input type="color"  id="knotcolor" value="#22cc00"></td></tr>
+                    <tr><th>OutLine Width</th><td><input type="range" min="1" max="10" value="1" id="knotoutlinewidth"></td></tr>
+                    <tr><th>Has Weave</th><td><input type="checkbox" checked="checked" id="knothasweave"></td></tr>
+                </table>
+                <button onclick="btnKnot()">Create Knot</button>
+            </div>
+
+
 			</div>
         </div>
             <footer></footer>
@@ -70,14 +121,17 @@
 
 <!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
+
 <script>
-    var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d");
-    var inputbrushsize = document.getElementById("inputbrushsize");
-    var brushcolor = document.getElementById("brushcolor");
-    var inputbrushtype = document.getElementById("inputbrushtype");
-    var xmouse = 0;
-    var ymouse = 0;
+    const canvas = document.getElementById("canvas");
+	const ctx = canvas.getContext("2d");
+    const inputbrushsize = document.getElementById("inputbrushsize");
+    const brushcolor = document.getElementById("brushcolor");
+    const inputbrushtype = document.getElementById("inputbrushtype");
+    const imgtool = document.getElementById("imgtool");
+    let xmouse = 0;
+    let ymouse = 0;
+    let currenttool = "brush";
 
     function draw(shape){
         if(shape == "square") {
@@ -95,12 +149,37 @@
             ctx.closePath();
         }
     }
-    function mousehover(e){
-        xmouse = e.pageX - 120;
-        ymouse = e.pageY - 120;
+    function Moussehover(e){
+        let pos = getMousePos(canvas, e);
+        xmouse = pos.x;
+        ymouse = pos.y;
         draw(inputbrushtype.value);
     }
 
-    canvas.addEventListener("mousemove", mousehover);
+    canvas.addEventListener("mousemove", Moussehover);
+
+function getMousePos(c, evt) {
+  var rect = c.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+
+SwitchTool()
+function SwitchTool(tool){
+if(currenttool == `brush`){
+    imgtool.src = `./images/brush.png`;
+    currenttool = `shapes`;
+}
+else{
+    imgtool.src = `./images/shapes.png`;
+    currenttool = `brush`;
+}
+}
+
 
 </script>
+
+<script src="./flagmaker.js"></script>
+<script src="./celticknotmaker.js"></script>
