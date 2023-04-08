@@ -10,12 +10,12 @@ canvas {
     width: 100%;
     height: 20em;
     margin: 0em;
-    background-color: tan;
+    background-color: rgb(27, 27, 27);
 
 }
 .holderdiv {
 width: fit-content;
-background-color: blanchedalmond;
+background-color: rgb(137, 137, 137);
 margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
@@ -51,27 +51,25 @@ p {margin: 0em;}
 
 			<div class="bg">
                 
-                <div style="background-color: beige; padding: .5em; text-align: center;"><p>Time Passed: <span id="hGameTime"></span> seconds | Total: <span id="htotal"></span></p></div>
+                <div style="background-color: rgb(201, 201, 201); padding: .5em; text-align: center;"><p>Time Passed: <span id="hGameTime"></span> seconds | Particals: <span id="htotal"></span></p></div>
 				<canvas id="canvas"></canvas>
                 <div>
                     <div style="background-color: wheat; display: flex; padding: 0px; margin: 0em; justify-content: space-evenly;">
-                    <p><span id="hcrownpred"></span>Preds <span id="dPreds"></span><span id="harrowpred"></span></p>
-                    vs
-                    <p><span id="hcrownprey"></span>Preys <span id="dPreys"></span><span id="harrowprey"></span></p>
                 </div>
-
-
-
-                
 			</div>
             <div class="holderdiv">
-                <p class="heading">Add Preys/Preds</p>
+                <p class="heading">Add Particals</p>
                 <table>
-                    <tr><th>Type</th><td><select id="hType"><option value="prey">Prey</option><option value="pred">Pred</option></select></td></tr>
-                    <tr><th>Amount</th><td><input type="text" id="hAmount"></td></tr>
+                    <tr><th>Color</th><td><select id="hColor"><option value="aqua">blue</option><option value="red">red</option></select></td></tr>
+                    <tr><th>Amount</th><td><input type="text" id="hAmount" value="1"></td></tr>
                 </table>
-                <button onclick="btnclick()">Add</button>
+                <button onclick="btnAdd()">Add</button>
                 <button onclick="ClearBlobs()">Clear All</button>
+            </div>
+            <div>
+                <table id="particalsettings">
+
+                </table>
             </div>
             
             <footer></footer>
@@ -85,25 +83,44 @@ p {margin: 0em;}
 <script>
     const canvas = document.getElementById("canvas");
 	const ctx = canvas.getContext("2d")
+    const particalsettingsdiv = document.getElementById("particalsettings");
     // h = from HTML
     
 	let blobs = [];
+    let blobsettings = [];
 
     class blob{
-		constructor(id, x, y, type){
+		constructor(id, x, y, color){
             this.id = id;
 			this.x = x;
 			this.y = y;
-            this.type = type;
+            this.color = color;
 		}
         move(){
             // boundaries left and right
             if(this.x >= canvas.width) {this.x -= 5;}
             else if (this.x <= 0) {this.x += 5;}
             else {
-                this.x += 2;
-                blobs.forEach(b => {
-                })
+
+            blobs.forEach(bl => {
+                let yneg = 1;   
+                    if(bl.y < this.y){ yneg = -1;} else{yneg = 1;}
+
+                let xneg = 1;   
+                    if(bl.x < this.x){ xneg = -1;} else{xneg = 1;}
+
+                if(this.color == "red" && bl.color=="aqua"){
+                        this.x += (getDistance(this.x, bl.x, 0, 0)/200)*xneg;
+                        this.y += (getDistance(0, 0, this.y, bl.y)/200)*yneg;
+                }
+                else if(this.color == "aqua" && bl.color=="red"){
+                    this.x += (getDistance(this.x, bl.x, 0, 0)/200)*xneg;
+                    this.y += (getDistance(0, 0, this.y, bl.y)/200)*yneg;
+                }
+                else{
+
+                }
+            });
 
              }
 
@@ -117,27 +134,40 @@ p {margin: 0em;}
         }
 	}
 
+    blobsettings.push(new blob(blobsettings.length, 0, 0, "red"));
+    blobsettings.push(new blob(blobsettings.length, 0, 0, "aqua"));
+    CreateBlobs(2, "red");
+    CreateBlobs(2, "aqua");
+
+
+    particalsettingsdiv.innerHTML = `<tr><th>Name</th><th>attracts</th></tr>`;
+    blobsettings.forEach(o => {
+        particalsettingsdiv.innerHTML += `<tr><th>${o.color}</th><td></td></tr>`;
+    })
+
+
     canvas.addEventListener("click", CanvasClick);
  // Add button clicked, Create circles with entered values (amount, type (pred or prey))
  function CanvasClick(e){
     var rect = canvas.getBoundingClientRect();
 
-    var rrr = new blob(blobs.length, e.pageX, e.pageY, "attract")
-	blobs.push(rrr)
+    var rrr = new blob(blobs.length, e.pageX, e.pageY, "aqua")
+	blobs.push(rrr);
     }
 
-	setInterval(update, 50);
 
 	
-	function CreateBlobs(type, amount) {
+    
+
+	function CreateBlobs(amount, thecolor) {
 	for(i = 0; i < amount; i++){
-	var e = new blob(blobs.length, randomnum(0, canvas.width), randomnum(0, canvas.height), type)
+	var e = new blob(blobs.length, randomnum(0, canvas.width), randomnum(0, canvas.height), thecolor)
 	blobs.push(e)
 	}
     }
     function ClearBlobs(){ blobs = []; }
 
-
+	setInterval(update, 50);
 	function update() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -145,15 +175,22 @@ p {margin: 0em;}
         b.move();
 	
 
-    ctx.fillStyle = "green";
+    ctx.fillStyle = b.color;
         ctx.beginPath();
 		ctx.arc(b.x, b.y, 5, 0, Math.PI * 2)
 		ctx.fill()
         ctx.closePath();
     })
+    document.getElementById("htotal").innerHTML = blobs.length;
     }
+
+    function btnAdd(){
+        const hColor = document.getElementById("hColor").value;
+        const hAmount = parseInt(document.getElementById("hAmount").value) || 1;
+        CreateBlobs(hAmount, hColor);
+    }
+
    
-    function randomnum(min, max){return Math.floor(Math.random() * (max - min + 1)) + min}
     function getDistance(xA, yA, xB, yB) { 
 	var xDiff = xA - xB;  var yDiff = yA - yB;
 	return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
