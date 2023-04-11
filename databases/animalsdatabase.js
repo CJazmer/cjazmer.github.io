@@ -16,6 +16,7 @@ const animalsdatabasespider = [
     {name: "Harvest Spider", commonness: "very common", family: "", tags: ""},
     {name: "Yellow Garden Spider", commonness: "", family: "", tags: ""},
     {name: "Wolf Spider", commonness: "", family: "", tags: "", description: "Wolf spiders don't spin webs to catch prey, but rather use their good eyesite to catch prey on the ground"},
+    {name: "White Porch Spider", commonness: "", family: "", tags: ""},
 ];
 const animalsdatabasebirds = [
     {name: "Black Capped Chickadee", commonness: "", family: "", tags: ""},
