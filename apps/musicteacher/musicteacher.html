@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Music Stuff</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Music helper">
+	<meta name="keywords" content="music">
+<style>    
+#categories{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: green;
+}
+.box{
+font-family:sans-serif;
+width: 8em;
+height: 5em;
+padding: .4em;
+margin: .4em;
+border-radius: 10%;
+border: .2em solid rgb(0, 53, 0);
+text-align: center;
+background-color: lightgreen;
+transition: .4s;
+}
+.box:hover{
+    transform: translateY(-.2em);
+    filter: brightness(1.4);
+}
+</style>
+</head>
+
+<body>
+    <div id="musicnav"></div>
+	<div id="wrapper">
+        <div id="categories"></div>
+    </div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script src="./musicteacherlayout.js"></script>
+<script src="./musicteacherdatabase.js"></script>
+<script>
+    const hcategories = document.getElementById("categories");
+
+    musicteacherdatabase.forEach(c => {
+        hcategories.innerHTML += `<div class='box' onclick="Clicked(this)">${c.title}</div>`;
+    });
+
+    function Clicked(t){
+        localStorage.setItem("currentmusictopic", t.innerHTML)
+        window.location.href = "./categoryinfo.html";
+    }
+
+</script> 

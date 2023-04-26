@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Music Stuff</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Music helper">
+	<meta name="keywords" content="music">
+<style>    
+*{font-family:sans-serif;}
+h1{
+background-color: goldenrod;
+color: black;
+font-weight: bolder;
+padding: 1em;
+font-size: larger;
+margin: 0em;
+border: .2em solid rgb(59, 42, 0);
+}
+p{
+background-color: goldenrod;
+padding: .5em;
+margin: 0em;
+}
+table{
+    background-color: goldenrod;
+    border: .4em solid rgb(33, 28, 0);
+}
+table th{padding: .2em 0em .2em 0em; border: .1em solid black; background-color: gold;}
+img{
+    width: 100%;
+}
+</style>
+</head>
+
+<body>
+    <div id="musicnav"></div>
+	<div id="wrapper">
+        <div id="categories"></div>
+    </div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script src="./musicteacherlayout.js"></script>
+<script src="./musicteacherdatabase.js"></script>
+<script>
+    const hcategories = document.getElementById("categories");
+    let currentmusictopic = getcurrentmusictopic() || musicteacherdatabase[0];
+    console.log(getcurrentmusictopic())
+        hcategories.innerHTML = currentmusictopic.thehtml;
+
+</script> 
