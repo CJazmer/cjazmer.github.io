@@ -176,21 +176,29 @@ const musicteacherdatabase = [
     },
 ];
 
-const AfroCaribbeanGenresDatabase = [
-    {name: "Salsa", description: `Piano, Bass`},
+
+
+
+
+const LatinGenres = [
+    {name: "Reggae", description: `1) Drummer (1+2+) <br> 2) Bass (simple catchy riff) <br> 3) guitar or piano play chords on 'and+' <br> 4) Soloing and Singer <br> *add a swing to make it groovy <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2RNTTtuUuFXlzXAiPC3F8I?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Rumba Flamenca", description: `*Instrumental Spanish guitar sounds nice, don't need a singer but it helps <br> 1) Nylon Guitar Strumming pattern <br> 2) Nylon Guitar soloing in minor key (phrygian or harmonic minor scale) <br> 3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2Jqf2FjO5svRlx2oQCKalL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Salsa", description: `1) Piano (tumbao or montuno rhythm) <br> 2) Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 3) Percussion (Congas, Bongo, Timbales) <br> 4) Bass <br> 5) Brass (can do on piano) <br> *The piano is the hardest part to get right <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Mambo", description: ``},
     {name: "Merengue", 
-    description: `Fast paced regaton rythem, Strong stomp beat on 1, Merengue Piano Riff, Bass hits on 1`},
-    {name: "Cumbia", description: ``},
-    {name: "Bachata", description: `Thump on down beat, straight beat. Electric Guitar Rhythm. Shaker or Guiro hitting 4th or 8th notes. Bongo hitting rolls, Bass hitting `},
-    {name: "Son", description: `Guitar Rhythm (hit up down up), Bass, Shakers, Tres or double string guitar, `},
+    description: `*Fast paced, Stomp on down beat <br> 1) Shaker/Metal Guiro (fast chachacha rhythm, Thump on downbeat) <br> 2) Merengue Piano Riff <br> 2) Bass hits on 1 <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3siEGGlQ6GzeAqymjxOXq0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> `},
+    {name: "Cumbia", description: `1) Bass (Triad) <br> 2) Shaker (chachacha) & Thump on downbeat <br> 3) Soloing (piano or guitar) <br> 4) Congas & Bongos  <br> 5) Chord played on and + beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gsl75gtb2HYTTcxDQO1Ku?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Bachata", description: `Thump on down beat, straight beat <br> 1) Electric Guitar Rhythm <br> 2) Shaker or Guiro hitting 4th or 8th notes <br> 3) Bongo (martillo) and hitting rolls <br> 4) Bass hitting on down beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1XPVNFpAgjuvQaeeHas6d1?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Son", description: `1) Guitar Rhythm (hit up down up) <br> 2) Bass (tumbao rhythm) <br> 3) Tres or double string guitar <br> 4) Shakers <br> 5) Bongo, Clave, Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Guajira", 
-    description: `1) Piano rhythm, 2) Guiro, 3) bass, 4) bongo & conga`},
-    {name: "Chachacha"},
-    {name: "Bolero", description: `Slow paced and roll on second beat (4bar)`},
-    {name: "Cuban Rumba", description: `Gaguancó is a sub genre of Rumba`},
-    {name: "Samba", description: `1) Guitar finger pick rhythm, 2) Shaker, 3)bass, 4)Hand drum`},
-    {name: "Bosa Nova"},
-    
+    description: `1) Piano (guajira rhythm) <br> 2) bass <br> 3) Guiro (chachachaaa) <br> 4) bongo & conga (tumbao) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5DbWZLRryLT3U6wLgomr3N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Chachachá", description: `*Has chachachá sound in rhythm, chill and slower music <br> 1) Guiro & shaker (chachachaaa) <br> 2) Piano (chill) <br> 3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WhlQabInaIYuMjMbhh4bw?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Bolero", description: `Slow paced, has a roll (B r r - B - B -) *r is roll <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Banda", description: `Mexican Banda styles (Banda, Norteño, Ranchera) <br> 1) Drums (Banda Tambora & Timbales) <br> 2) Brass (Trumpet Trombone) <br> 3) Clarinet <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5aeJrTDl9Z7oS18VEK67pM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Mariachi", description: ``},
+    {name: "Corridos", description: `3/4 Tempo. 1) 12 Sting Guitar rhythm 2) Clean Guitar soloing `},
+    {name: "Cuban Rumba & Guaguanco", description: `Gaguancó is a sub genre of Rumba`},
+    {name: "Samba & Bossa Nova", description: `1) Guitar finger pick rhythm, 2) Shaker, 3)bass, 4)Hand drum`},    
     {name: "Calypso"},
     {name: "Changüí", 
     description: `Tres/12String rhythm, Shaker (chachacha), bass, clave (2 hits)`},
@@ -205,24 +213,34 @@ const AfroCaribbeanGenresDatabase = [
 // Tresillo, Claves, chachacha
 const FlamencoGenres = [];
 const AmericanGenres = [
-    {name: "Blues"},
+    {name: "Standard Blues", description: `(1+2+) beat <br> 1) Drummer (B - K -) "boots and kats" beat <br> 2) Bass <br> 3) Guitar/Piano 4) harmonica`},
+    {name: "Fast Blues", description: `(1,2) feel <br> 1) Drummer (B K) "one two" beat <br> 2) Bass (Walking) <br> 3) Guitar/Piano 4) harmonica <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1Rf18QB2meMf8FP4CyaqQn?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Slow Blues", description: `(1+a2+a) count in 3 <br> 1) Drums (B - - K - B) 3/4 Temo <br> 2) Bass (play on B 'bass drum') <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/05Te3BNuXNYDOcOE1jiHlX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Shuffle Blues", description: `(1,2) feel with swing *odd time signature <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3bOA0biVTQ9SSLFQSONCK0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Funk", description: `1) Drums (1+2+) or gogo beat (B - K - - B K ) (B - - - K - - K - K B - K - - -) <br> 2) Groovy Bass (Add some slap, keep it simple an catchy) <br> 3) Rhythm Guitar (strum 16 notes press down on fretbord to play the chords on the hits/accents) <br> 4) Keybord (organ) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2NPs8J8BJPPFVrtNm9yFji?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Hip-Hop & Rap", description: `1) Drums gogo beat. example: (B - - - K - - B - - B - K - - -) <br> 2) Bass (play on bass drum hits)`},
+    {name: "RnB", description: `1) Drummer (gogo beat / chill hiphop) <br> 2) Keybord <br> 3) Singer <br> 4) bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2lR6DVk8az4v71SfulYpiV?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Soul"},
-    {name: "Gospel"},
-    {name: "R&B"},
 
-    {name: "Funk"},
-    {name: "Hip-Hop"},
-    {name: "Hip-Hop"},
-
-    {name: "Country"},
-    {name: "Bluegrass"},
+    {name: "Country", description: `1) Guitar (acoustic steel string) <br> 2) Drums <br> 3) Bass (back and forth) <br> 4) Stings (on Piano, or Violin) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4I0GncowfucFWJLbwFMvHh?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Bluegrass", description: `*The crazy fast paced American music <br> 1) Banjo (fingerpicking) <br> 2) Bass (play on Alternating 1st and 5th) <br> 2) Drums (fast 1,2) <br> 3) Mandolin <br> 4) Violin/Fiddle (soloing playing fast notes)`},
     {name: "Folk"},
 
     {name: "Rock"},
     {name: "Metal"},
 ];
+const WorldGenres = [
+    {name: "Dabke", description: `1) Darbuka drum (dembow beat) <br> 2) Mijwiz or Keybord soloing <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2dhFD0aRQoEo21dSwKwtpO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Waltz", description: `3/4 tempo <br> 1) Piano or Acordian ("low high high" rhythm) <br> 2) Soloing (string instrument, fast alternate picking 16 notes) <br> 3) drum (3/4 time) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6DRt5a5WCHMLjl6EvoLEmr?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Polka", description: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3Zv1kftHhgYeDb5WxChtvP?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Russian Folk", description: ``}
+];
 const OtherGenres = [
-    {name: "Reggae"}
+];
+const GenreDatabase = [
+    {category: `Latin`, arr: LatinGenres},
+    {category: `USA`, arr: AmericanGenres},
+    {category: `Other World Genres`, arr: WorldGenres},
 ];
 
 function getcurrentmusictopic(){
@@ -231,4 +249,13 @@ function getcurrentmusictopic(){
         if(m.title == localStorage.getItem("currentmusictopic")){asdfasdf = m}
     })
     return asdfasdf;
+}
+function getgenero(thename){
+    var qwer = null;
+    GenreDatabase.forEach(o => {
+        o.arr.forEach(n => {
+            if(thename == n.name){qwer = n}
+        })
+    })
+    return qwer;
 }

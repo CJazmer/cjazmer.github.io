@@ -25,18 +25,62 @@ font-weight: 900;
 font-size: 1.4em;
 background-color: lightgreen;
 transition: .4s;
+cursor: pointer;
 }
 .box:hover{
     transform: translateY(-.2em);
     filter: brightness(1.4);
 }
-
+.generos{
+display: flex;
+flex-direction: row;
+overflow-x: scroll;
+padding: .5em;
+background-color:chocolate;
+}
+.listbox{
+    min-width:fit-content;
+    height: fit-content;
+    padding: 1em;
+    margin-right: .3em;
+    border-radius: 10%;
+    background-color: orange;
+    text-align: center;
+    font-weight: 900;
+    transition: .1s;
+    cursor: pointer;
+}
+.listbox:hover{
+    transform: translateY(-.2em); 
+}
+#name{
+    width: 100%;
+    padding: 1em 0em 1em .5em;
+    background-color:forestgreen;
+    font-weight: 900;
+}
+#desc{
+    width: 100%;
+    padding: 1em 0em 1em .5em;
+    min-height: 6em;
+    background-color: rgb(113, 205, 113);
+}
+.title{
+    background-color:chocolate;
+    padding: .2em 0em .2em 0em;
+    font-weight: 900;
+}
 </style>
 </head>
 
 <body>
     <div id="musicnav"></div>
 	<div id="wrapper">
+        <div id="allgeneros"></div>
+        <div class="generos" id="generos2"></div>
+        <div id="name"></div>
+        <div id="desc"></div>
+
         <div id="categories"></div>
     </div>
 </body>
@@ -48,14 +92,34 @@ transition: .4s;
 <script src="./musicteacherdatabase.js"></script>
 <script>
     const hcategories = document.getElementById("categories");
+    const allgeneros = document.getElementById("allgeneros");
+    const hgeneros2 = document.getElementById("generos2");
 
-    musicteacherdatabase.forEach(c => {
-        hcategories.innerHTML += `<div class='box' onclick="Clicked(this)">${c.title}</div>`;
+    var thehtml = "";
+    GenreDatabase.forEach(g => {
+        thehtml += `<div class='title'>${g.category}</div><div class='generos'>`;
+
+        g.arr.forEach(i => {
+            thehtml += `<div class='listbox' onclick='ClickedGenre(this)'>${i.name}</div>`;
+        });
+        thehtml += "</div>"
     });
+    allgeneros.innerHTML = thehtml;
+
+    musicteacherdatabase.forEach(i => {
+        hcategories.innerHTML += `<div class='box' onclick="Clicked(this)">${i.title}</div>`;
+    })
+
+  
+
 
     function Clicked(t){
         localStorage.setItem("currentmusictopic", t.innerHTML)
         window.location.href = "./categoryinfo.html";
+    }
+    function ClickedGenre(t){
+        document.getElementById("name").innerHTML = t.innerHTML;
+        document.getElementById("desc").innerHTML = getgenero(t.innerHTML).description ?? "...";
     }
 
 </script> 
