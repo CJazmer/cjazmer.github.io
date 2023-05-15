@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+		.lesson{
+			width: 100%;
+			background-color: tan;
+			height: fit-content;
+			padding: 1em 0em 1em 1em;
+            margin-bottom: .2em;
+            font-weight: bolder;
+		}
+        .lesson:hover {
+            filter: brightness(1.4);
+        }
+	</style>
+</head>
+
+<body>
+    <div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner">
+			<div id="lessonslist"></div>
+		</div>
+		<div id="languagesdiv"></div>
+
+	</div>
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+
+<script>
+const lessonslist = document.getElementById("lessonslist");
+console.log(getcurrentlangobj().lessonsobjs)
+
+// German.lessonsobjs[name, lessonsarr].lessonsarr
+getcurrentlangobj().lessonsobjs.forEach(lesn => {
+    lessonslist.innerHTML += `<div class="lesson" onclick="window.location.href='./contextlern.html'">${lesn.name}</div>`
+});
+</script>

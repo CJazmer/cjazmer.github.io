@@ -1,6 +1,8 @@
 :root {
     --colorbackground: background-color: linear-gradient(90deg, rgba(165,94,33,1) 0%, rgba(169,146,44,1) 100%);
-    --colormain: rgb(167, 43, 43); 
+    --color1: gold;
+    --color2: goldenrod;; 
+    --color3: rgb(84, 60, 0);; 
     --white: #ffffff;
     --mainwidth: 80%;
   }
@@ -16,30 +18,20 @@ body {
 }
 #main {
     margin: 0 auto;
-    background-color: var(--colormain);
+    background-color: var(--color3);
     width: var(--mainwidth);
     height: 700px;
     display: flex;
     flex-wrap: wrap;
     align-self: center;
 }
-#topbanner {
-    margin: .5em;
-    padding: 20px;
-    background-color: rgb(90, 90, 90);
-    justify-content: space-between;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: fit-content;
-    width: 100%;
-}
 #underbanner {
     margin: .5em;
-    background-color: rgb(128 128 128);
+    background-color: var(--color3);
     justify-content: space-evenly;
     width: 100%;
-    height: 75%;
+    height: 100%;
+    overflow-x: scroll;
 }
 .row {
     display: flex;
@@ -74,19 +66,6 @@ body {
     border: 4px solid white
     
 ;}
-#homebutton {
-    border-radius: 50%;
-    width: 70px;
-    height: 100%;
-    line-height: 2px;
-    font-size: 0px;
-    border: 4px solid black;
-    transform: translateX(-50%);
-}
-#homebutton:hover {
-    background-color:gold;
-    border: 4px solid white;
-}
 
 
 

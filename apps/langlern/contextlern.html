@@ -52,23 +52,25 @@
 </head>
 
 <body>
+    <div id="langlernnavbar"></div>
 	<div id="main">
 		<div id="underbanner" style="justify-content:center;">
             <div id="questioninfo"></div>
 			<div id="question"></div>
             <div id="htmlhint"></div>
-            <div id="questiontext"></div>
+            <div id="questiontext" onclick="playagain()"></div>
             <button id="btnreveal" onclick="btnClicked()">Next</button>
             <div id="words"></div>
 		</div>
 	</div>
-	<h1 onclick="window.location.href='../indexapps.html'">Return to Apps</h1>
 </body>
 <footer></footer>
 </html>
 
 <!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
+<script src="./languagedatabase.js"></script>
+<script src="./langlernlayout.js"></script>
 <script>
     const question = document.getElementById("question");
     const questiontext = document.getElementById("questiontext");
@@ -77,58 +79,62 @@
     const btnreveal = document.getElementById("btnreveal");
     const words = document.getElementById("words");
 
-    const Spanish1 = [
-        {english: `'quiero' means 'I want'`, otherlang: ``, hint: ``},
-        {english: `say: I want noun.`, otherlang: `quiero noun`, hint: ``},
-        {english: `'ahora' means 'now'`, otherlang: ``, hint: ``},
-        {english: `say: now I want noun.`, otherlang: `ahora quiero noun`, hint: ``},
-        {english: `'y' means 'and'`, otherlang: ``, hint: ``},
-        {english: `say: I want noun and noun.`, otherlang: `quiero noun y noun`, hint: `'y' means 'and'`},
-        {english: `Whats the word for 'now'.`, otherlang: `ahora`, hint: ``},
-        {english: `say: I want noun now.`, otherlang: `quiero noun ahora`, hint: ``},
-        {english: `say: I don't want noun.`, otherlang: `No quiero noun`, hint: `put 'no' at start to negate sentences'`},
-        {english: `say: because I don't want noun.`, otherlang: `porque no quiero noun`, hint: ``},
-        {english: `say: because I don't want noun now.`, otherlang: `porque no quiero noun ahora`, hint: ``},
-    ];
-    const SpanishNouns = [
-        {english: "food", otherlang: "comida"},
-        {english: "water", otherlang: "agua"},
-    ];
     let indexnum = -1;
-    let lessonlength = Spanish1.length;
+    console.log(getcurrentlangobj());
+    let choosenlang = getcurrentlangobj();
+    let thelesson = choosenlang.lessonsobjs[0].lesson;
+// 3 german, 8 spanish, 9 french, 10 hindi, 16 polish, 17 brazil portugese, 18 russian, 19 mandarin chinese
+
+    
     
 btnClicked();
 
     function btnClicked(){
+        console.log(window.speechSynthesis.getVoices());
+
         if(btnreveal.innerHTML == `Next`){
-            if(indexnum < lessonlength-1){
+            if(indexnum < thelesson.length-1){
                 indexnum++;
-                question.innerHTML = Spanish1[indexnum].english.replace(/noun/g, SpanishNouns[0].english);
                 questiontext.innerHTML = `...`;
-                htmlhint.innerHTML = Spanish1[indexnum].hint || ``;
+                htmlhint.innerHTML = thelesson[indexnum].hint || ``;
+                var msg = new SpeechSynthesisUtterance(thelesson[indexnum].english);
+                msg.voice = window.speechSynthesis.getVoices()[6];
+                window.speechSynthesis.speak(msg);
 
-                if(!question.innerHTML.includes(`.`)){ // '.' is special char that means, have a the Show Button
+                if(thelesson[indexnum].otherlang == ""){ // '.' is special char that means, have a the Show Button
                     btnreveal.innerHTML = `Next`;
-
-                    if(question.innerHTML.includes(`means`)){ 
-                        words.innerHTML += `<p>${question.innerHTML}</p>`;
-                    }
+                    question.innerHTML = thelesson[indexnum].english;
+                    words.innerHTML += `<p>${question.innerHTML}</p>`;
                 }
                 else{
-                    question.innerHTML = question.innerHTML.toString().replace(`.`,``);
+                    question.innerHTML = thelesson[indexnum].english;
                     btnreveal.innerHTML = `Show`;
+                    btnreveal.style.backgroundColor = `yellow`;
                 }
             }
-            else{console.log("Lesson Complete");}
+            else{
+                console.log("Lesson Complete");
+            }
         }
-        else{
-            question.innerHTML = Spanish1[indexnum].english.replace(/noun/g, SpanishNouns[0].english);
-            questiontext.innerHTML = Spanish1[indexnum].otherlang.replace(/noun/g, SpanishNouns[0].otherlang);
-            question.innerHTML = question.innerHTML.toString().replace(`.`,``);
-            btnreveal.innerHTML = `Next`
+        else{ // show button is clicked
+            question.innerHTML = thelesson[indexnum].english;
+            questiontext.innerHTML = thelesson[indexnum].otherlang;
+            btnreveal.innerHTML = `Next`;
+            btnreveal.style.backgroundColor = `lime`;
+
+                    var msg2 = new SpeechSynthesisUtterance(thelesson[indexnum].otherlang);
+                    msg2.voice = window.speechSynthesis.getVoices()[choosenlang.audioindex];
+                    window.speechSynthesis.speak(msg2);
         }
     }
 
+    function playagain(){
+        if(questiontext.innerHTML != "..."){
+            var msg = new SpeechSynthesisUtterance(questiontext.innerHTML);
+            msg.voice = window.speechSynthesis.getVoices()[choosenlang.audioindex];
+            window.speechSynthesis.speak(msg);
+        }
+    }
     
 
     /*

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        #lettersholder{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            background-color: rgb(157, 112, 0);
+            justify-content: space-evenly;
+        }
+		.letterbox{
+			width: 3.5em;
+            height: 3.5em;
+            padding: .5em;
+            margin: .2em;
+            border-radius: 10%;
+			text-align: center;
+			background-color: gold;
+            border: .2em solid rgb(255, 228, 78);
+            transition: .3s;
+            cursor: pointer;
+		}
+        .letterbox:hover{
+            transform: scale(1.1);
+        }
+        .letter{
+            font-weight: 900;
+            font-size: larger;
+        }
+        .letterdesc{
+            font-size: small;
+            line-height:0px;
+            margin: 0px;
+        }
+        #info{
+            width: 100%;
+            background-color: goldenrod;
+            padding: .2em;
+        }
+	</style>
+</head>
+
+<body>
+	<div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner">
+            <button class="thebutton">Practice</button>
+			<div class="langg" id="lettersholder"></div>
+            <div id="info"></div>
+		</div>
+		<div id="languagesdiv"></div>
+
+	</div>
+
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./soundsdatabase.js"></script>
+<script src="./langlernlayout.js"></script>
+
+<script>
+
+const lettersdiv = document.getElementById("lettersholder");
+const hinfo = document.getElementById("info");
+let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+
+let thearr = null;
+let theinfoarr = [""];
+
+soundsdatabase.forEach(i => {
+    if(i.name == currentlang){thearr = i.arr; theinfoarr = i.info;};
+});
+
+thearr.forEach(o => {
+    lettersdiv.innerHTML += `<div class="letterbox" onclick="LetterClicked(${o.audio})"><span class="letter">${o.letter}</span><br><span class="letterdesc">${o.sound}</span></div>`;
+});
+theinfoarr.forEach(i => {
+    hinfo.innerHTML += `<div class="infodiv">${i}</div>`;
+})
+function LetterClicked(o){
+
+}
+
+</script>

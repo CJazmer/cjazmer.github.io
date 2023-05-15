@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        #vocablist{
+            width: 100%;
+            height: fit-content;
+            padding: 1em 0em 1em .2em;
+        }
+		.vocabbox{
+			width: 5em;
+            min-width: 5em;
+            height: 3em;
+            min-height: 3em;
+			background-color: grey;
+			height: fit-content;
+			padding: 1em 0em 1em 1em;
+            border: .2em solid rgb(255, 232, 103);
+            border-radius: 5%;
+            margin-right: .2em;
+            font-weight: bolder;
+            cursor: pointer;
+            transition: .2s;
+		}
+        .vocabbox:hover {
+            filter: brightness(1.4);
+        }
+        .vocabboxsholder{
+            width: 100%;
+            padding: .4em;
+            background-color: goldenrod;
+            display: flex;
+            overflow-x: scroll;
+        }
+        .vocabtitle{
+            width: 100%;
+            background-color: gold;
+            padding: .5em;
+            font-weight: 900;
+        }
+	</style>
+</head>
+
+<body>
+    <div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner">
+			<div id="vocablist">
+
+            </div>
+		</div>
+		<div id="languagesdiv"></div>
+
+	</div>
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+
+<script>
+const vocablist = document.getElementById("vocablist");
+const arrlessonslist = ["colors", "numbers", "food"]
+let currentlang = localStorage.getItem("currentlang");
+console.log(getcurrentlangobj().lessonsobjs);
+
+// German.lessonsobjs[name, lessonsarr].lessonsarr
+let theHTML = ``;
+let thecolor = "gold";
+
+// Fills up screen with lesson boxes using the languagedatabase.js file
+VocabDatabase.forEach(vd => {
+theHTML += `<div class='vocabtitle'>${vd.name}</div><div class='vocabboxsholder'>`;
+vd.arr.forEach(lesnobj => {
+thecolor = "gold";
+    lesnobj.arr.forEach(wrd => { // greys out if lesson has null word / missing words
+        // Greys out if no data in lesson
+        if(wrd[currentlang] == null || wrd[currentlang] == ""){thecolor = "grey";}
+    })
+    theHTML += `<div class='vocabbox' style='background-color:${thecolor}' onclick="Clicked(this)">${lesnobj.name}</div>`;
+})
+theHTML += `</div>`;
+})
+vocablist.innerHTML = theHTML;
+
+// When Language box is clicked, switch pages "vlessonoverview"
+function Clicked(h){
+    localStorage.setItem("currentvocablesson", h.innerHTML) || "Colors";
+    console.log(h.innerHTML);
+
+    // if not greyed out when clicked, go to next page
+    if(h.style.cssText == "background-color: grey;"){alert("lesson not made yet")}
+    else {
+    window.location.href="./vlessonoverview.html";
+    }
+}
+</script>
