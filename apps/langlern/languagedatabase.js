@@ -59,6 +59,19 @@ lesson: [
     {english: `use die when word is female`, otherlang: ``, hint: ``},
     {english: `the table, the cat`, otherlang: `der tisch, die katze`, hint: `katze is female`},
 ]},
+{name: "Conujation", 
+lesson: [
+    // {english: `Pronouns: I/Ich | you/du | he/er she/sie it/es | we/wir | they/sie`, otherlang: ``, hint: ``},
+    {english: `All verbs end in 'en'. replace en with ending`, otherlang: ``, hint: ``},
+    {english: `learnen means learn, `, otherlang: ``, hint: ``},
+
+    {english: `I learn and you learn`, otherlang: `Ich lerne und du lernst`, hint: ``},
+    {english: `he learns and we learn`, otherlang: `er lernt und wir lernen`, hint: ``},
+    {english: `I learn and they learn`, otherlang: `Ich lerne und sie lernen`, hint: ``},
+    {english: `they learn and we learn`, otherlang: `sie lernen und wir lernen`, hint: `we/they have same ending`},
+
+]
+}
 ];
 const Russianlessonobjs = [
 {name: `Russian 1`,
@@ -88,6 +101,9 @@ lesson: [
 {english: `Me and you eat`, otherlang: `Wǒ hé nǐ chī`, hint: ``},
 ]},
 ];
+const GermanSentences = [
+{otherlang: "", }
+];
 
 
 const clrsarr = [
@@ -106,6 +122,7 @@ const clrsarr = [
 ]
 const languagedatabase = [
     {name: `spanish`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: Spanishlessonobjs, audioindex: 8},
+    {name: `french`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: Spanishlessonobjs, audioindex: 8},
     {name: `german`, langfam: `Germanic`, colors:clrsarr[1], lessonsobjs: Germanlessonobjs, audioindex: 3},
     {name: `swedish`, langfam: `Germanic (north)`, colors:clrsarr[1], lessonsobjs: null, audioindex: 3},
     {name: `polish`, langfam: `Slavic (west)`, colors:clrsarr[3], lessonsobjs: Polishlessonobjs, audioindex: 16},
@@ -114,6 +131,7 @@ const languagedatabase = [
     {name: `swahili`, langfam: `Bantu`, colors:clrsarr[11], lessonsobjs: null, audioindex: 0},
     {name: `hawaiian`, langfam: `Polynesian`, colors:clrsarr[10], lessonsobjs: null, audioindex: 0},
     {name: `arabic`, langfam: `Semetic`, colors:clrsarr[5], lessonsobjs: null, audioindex: 0},
+    {name: `turkish`, langfam: `Turkic`, colors:clrsarr[8], lessonsobjs: null, audioindex: 0},
 ];
 
 
@@ -132,24 +150,24 @@ const vColors = [
     {english: "white", spanish: "blanco", german: `weiß`, swedish: "vit", russian: `бе́лый`, arabic: "أَبْيَضْ", questionextra: "<div style='background-color:white; width:1em; height:1em; border-radius:100%'></div>"},
 ]
 const vNumbers = [
-  {english: "0", spanish: "cero", portuguese: "zero", russian: "нуль", polish: "zero",       german: "null", swahili: "sifuri", lakota: "0???", chinese: "..."},
-  {english: "1", spanish: "uno", portuguese: "um", russian: "один", polish: "jeden",         german: "eins", swahili: "moja", lakota: "waŋží", chinese: "一"},
-  {english: "2", spanish: "dos", portuguese: "dois", russian: "два", polish: "dwa",          german: "zwei", swahili: "mbili", lakota: "núŋpa", chinese: "二"},
-  {english: "3", spanish: "tres", portuguese: "tres", russian: "три", polish: "trzy",        german: "drei", swahili: "tatu", lakota: "yámni", chinese: "三"},
-  {english: "4", spanish: "cuatro", portuguese: "quatro", russian: "четыре", polish: "cztery",german: "vier", swahili: "nne", lakota: "tópa", chinese: "四"},
-  {english: "5", spanish: "cinco", portuguese: "cinco", russian: "пять", polish: "piec",     german: "fünf", swahili: "tano", lakota: "záptaŋ", chinese: "五"},
-  {english: "6", spanish: "seis", portuguese: "seis", russian: "шесть", polish: "szesc",     german: "sechs", swahili: "sita", lakota: "šákpe", chinese: "六"},
-  {english: "7", spanish: "siete", portuguese: "sete", russian: "Семь", polish: "siedem",    german: "sieben", swahili: "saba", lakota: "šakówiŋ", chinese: "七"},
-  {english: "8", spanish: "ocho", portuguese: "oito", russian: "вóсемь", polish: "osiem",    german: "acht", swahili: "nane", lakota: "šaglógaŋ", chinese: "八"},
-  {english: "9", spanish: "nueve", portuguese: "nove", russian: "девять", polish: "dziewiec",german: "neun", swahili: "tisa", lakota: "napčíyuŋka", chinese: "九"},
-  {english: "10", spanish: "dies", portuguese: "dez", russian: "десять", polish: "dziesiec", german: "zehn", swahili: "kumi", lakota: "wikčémna", chinese: "十"}
+  {english: "0", spanish: "cero", portuguese: "zero", russian: "нуль", polish: "zero",       german: "null", swahili: "sifuri", lakota: "0???", chinese: "...", french: "zéro"},
+  {english: "1", spanish: "uno", portuguese: "um", russian: "один", polish: "jeden",         german: "eins", swahili: "moja", lakota: "waŋží", chinese: "一", french: "un"},
+  {english: "2", spanish: "dos", portuguese: "dois", russian: "два", polish: "dwa",          german: "zwei", swahili: "mbili", lakota: "núŋpa", chinese: "二", french: "deux"},
+  {english: "3", spanish: "tres", portuguese: "tres", russian: "три", polish: "trzy",        german: "drei", swahili: "tatu", lakota: "yámni", chinese: "三", french: "trois"},
+  {english: "4", spanish: "cuatro", portuguese: "quatro", russian: "четыре", polish: "cztery",german: "vier", swahili: "nne", lakota: "tópa", chinese: "四", french: "quatre"},
+  {english: "5", spanish: "cinco", portuguese: "cinco", russian: "пять", polish: "piec",     german: "fünf", swahili: "tano", lakota: "záptaŋ", chinese: "五", french: "cinq"},
+  {english: "6", spanish: "seis", portuguese: "seis", russian: "шесть", polish: "szesc",     german: "sechs", swahili: "sita", lakota: "šákpe", chinese: "六", french: "six"},
+  {english: "7", spanish: "siete", portuguese: "sete", russian: "Семь", polish: "siedem",    german: "sieben", swahili: "saba", lakota: "šakówiŋ", chinese: "七", french: "sept"},
+  {english: "8", spanish: "ocho", portuguese: "oito", russian: "вóсемь", polish: "osiem",    german: "acht", swahili: "nane", lakota: "šaglógaŋ", chinese: "八", french: "huit"},
+  {english: "9", spanish: "nueve", portuguese: "nove", russian: "девять", polish: "dziewiec",german: "neun", swahili: "tisa", lakota: "napčíyuŋka", chinese: "九", french: "neuf"},
+  {english: "10", spanish: "dies", portuguese: "dez", russian: "десять", polish: "dziesiec", german: "zehn", swahili: "kumi", lakota: "wikčémna", chinese: "十", french: "dix"}
 ]
 const vAnimals = [
-    {english: "dog", spanish: "perro", russian: "собака (sabaka)", hawaiian: "ʻīlio", oneida: "é·lhal", lakota: "šúŋka", arabic: "كَلْب"},
-    {english: "cat", spanish: "gato", russian: "кот", hawaiian: "pōpoki", oneida: "takó·s (dagosh)", lakota: "igmú", arabic: "قِط"},
-    {english: "bird", spanish: "pajaro", russian: "птица", hawaiian: "manu", oneida: "otsiˀtʌ́haˀ (ojitaha)", lakota: "ziŋtkála", arabic: "طائ"},
-    {english: "fish", spanish: "pez", russian: "рыба", hawaiian: "i'a", oneida: "kʌ́tsi (gaji)", lakota: "hoǧáŋ", arabic: "سَمَك"},
-    {english: "chicken", spanish: "pollo", russian: "курица", hawaiian: "moa", oneida: "kitkit", lakota: "?", arabic: "دَجاج"}
+    {english: "dog", spanish: "perro", german: "der Hund", russian: "собака (sabaka)", hawaiian: "ʻīlio", oneida: "é·lhal", lakota: "šúŋka", arabic: "كَلْب"},
+    {english: "cat", spanish: "gato", german: "die Katze", russian: "кот", hawaiian: "pōpoki", oneida: "takó·s (dagosh)", lakota: "igmú", arabic: "قِط"},
+    {english: "bird", spanish: "pajaro", german: "der Vogel", russian: "птица", hawaiian: "manu", oneida: "otsiˀtʌ́haˀ (ojitaha)", lakota: "ziŋtkála", arabic: "طائ"},
+    {english: "fish", spanish: "pez", german: "der Fisch", russian: "рыба", hawaiian: "i'a", oneida: "kʌ́tsi (gaji)", lakota: "hoǧáŋ", arabic: "سَمَك"},
+    {english: "chicken", spanish: "pollo", german: "das Huhn", russian: "курица", hawaiian: "moa", oneida: "kitkit", lakota: "?", arabic: "دَجاج"}
   ]
   const vFruit = [
     {english: "apple", spanish: "manzana", portugese: "", polish: "jabłko", russian: "яблоко", hawaiian: "", german: "der Apfel", arabic: "تُفّاح"},
@@ -169,13 +187,39 @@ const vAnimals = [
     {english: "sandwich", spanish: "sandwich", german: "das Sandwich"},
     {english: "salt", spanish: "sal", german: "das Salz"},
   ];
-  const vNature = [
-    {english: "fire", spanish: "fuego", russian: "огонь 'agon'", hawaiian: "ahi", lakota: "pȟéta", oneida: "o·tsísteˀ", arabic: "نار"},
-    {english: "sun", spanish: "sol", russian: "солнце", hawaiian: "lā", lakota: "wí", oneida: "", arabic: "شَّمس"},
-    {english: "moon", spanish: "luna", russian: "луна", hawaiian: "mahina", lakota: "haŋwí", oneida: "wehní·taleˀ (waynidale)", arabic: "قَمَر"},
-    {english: "sky", spanish: "cielo", russian: "небо 'nyeba'", hawaiian: "lani", lakota: "maȟpíya", oneida: "", arabic: "سَماء"},
-    {english: "star", spanish: "estrella", russian: "звезда", hawaiian: "hoku", lakota: "wičháȟpi", oneida: "", arabic: "نَجْم"}
+  const vLandscape = [
+    {english: "plant", spanish: "planta", german: "die Pflanze", russian: "растение", hawaiian: "", lakota: "", oneida: "", arabic: ""},
+    {english: "fire", spanish: "fuego", german: "das Feuer", russian: "огонь", hawaiian: "ahi", lakota: "pȟéta", oneida: "o·tsísteˀ", arabic: "نار"},
+    {english: "sun", spanish: "sol", german: "die Sonne", russian: "солнце", hawaiian: "lā", lakota: "wí", oneida: "", arabic: "شَّمس"},
+    {english: "moon", spanish: "luna", german: "der Mond", russian: "луна", hawaiian: "mahina", lakota: "haŋwí", oneida: "wehní·taleˀ (waynidale)", arabic: "قَمَر"},
+    {english: "mountain", spanish: "montaña", german: "der Berg"},
+    {english: "tree", spanish: "árbol", german: "der Baum"},
+    {english: "leaf", spanish: "hoja", german: "das Blatt"},
+    {english: "forest", spanish: "bosque", german: "der Wald"},
+    {english: "sea", spanish: "mar", german: "das Meer"},
+    {english: "star", spanish: "la estrella", german: "der Stern", russian: "звезда", hawaiian: "hoku", lakota: "wičháȟpi", oneida: "", arabic: "نَجْم"},
   ]
+  const vWeather = [
+    {english: "sky", spanish: "el cielo", german: "der Himmel", russian: "небо", hawaiian: "lani", lakota: "maȟpíya", oneida: "", arabic: "سَماء"},
+    {english: "cloud", spanish: "la nube", german: "die Wolke"},
+    {english: "storm", spanish: "la tormenta", german: "der Sturm"},
+    {english: "rain", spanish: "la lluvia", german: "der Regen"},
+    {english: "snow", spanish: "la nieve", german: "der Schnee"},
+  ];
+  const vWorld = [
+    {english: "people", spanish: "gente", german: "die Leute"},
+    {english: "country", spanish: "país", german: "das Land"},
+    {english: "flag", spanish: "bandera", german: "die Flagge"},
+    {english: "city", spanish: "ciudad", german: "die Stadt"},
+    {english: "building", spanish: "edificio", german: "das Gebäude"},
+    {english: "neighborhood", spanish: "barrio", german: "die Nachbarschaft"},
+    {english: "street", spanish: "calle", german: "die Straße"},
+    {english: "car", spanish: "carro", german: "das Auto"},
+    {english: "boat", spanish: "bote", german: "das Boot"},
+    {english: "plane", spanish: "avión", german: "das Flugzeug"},
+    {english: "sidewalk", spanish: "banqueta", german: "der Gehweg"},
+    {english: "yard", spanish: "patio", german: "das Yard"},
+  ];
   const vBody = [
     {english: "head", spanish: "cabeza", german: "der Kopf"},
     {english: "hair", spanish: "pelo", german: "die Haare"},
@@ -191,46 +235,72 @@ const vAnimals = [
     {english: "shoe", spanish: "zapato", portugese: "sapato", german: "der Schuh"},
   ];
   const vTime = [
-    {english: "second", german: "der Zweite"},
-    {english: "minute", german: "die Minute"},
-    {english: "hour", german: "die Stunde"},
-    {english: "day", german: "der Tag"},
-    {english: "night", german: "die Nacht"},
-    {english: "week", german: "die Woche"},
-    {english: "month", german: "der Monat"},
-    {english: "year", german: "das Jahr"},
+    {english: "today", spanish: "hoy", german: "heute"},
+    {english: "tomorrow", spanish: "mañana", german: "morgen"},
+    {english: "yesterday", spanish: "ayer", german: "gestern"},
+    {english: "now", spanish: "ahora", german: "jetzt"},
+    {english: "later", spanish: "más tarde", german: "später"},
+    {english: "again", spanish: "otra vez", german: "wieder"},
+
+    {english: "second", spanish: "segundo", german: "der Zweite"},
+    {english: "minute", spanish: "minuto", german: "die Minute"},
+    {english: "hour", spanish: "hora", german: "die Stunde"},
+    {english: "day", spanish: "día", german: "der Tag"},
+    {english: "night", spanish: "noche", german: "die Nacht"},
+    {english: "week", spanish: "semana", german: "die Woche"},
+    {english: "month", spanish: "mes", german: "der Monat"},
+    {english: "year", spanish: "año", german: "das Jahr"},
+
+    {english: "spring", spanish: "primavera", german: "der Frühling"},
+    {english: "summer", spanish: "verano", german: "der Sommer"},
+    {english: "fall", spanish: "otoño", german: "der Herbst"},
+    {english: "winter", spanish: "invierno", german: "der Winter"},
+
   ];
   const vRoom = [
-    {english: "room", german: "das Zimmer"},
-    {english: "table", german: "der Tisch"},
-    {english: "chair", german: "der Stuhl"},
-    {english: "seat", german: "der Sitz"},
-    {english: "book", german: "das Buch"},
-    {english: "door", german: "die Tür"},
-    {english: "bed", german: "das Bett"},
-    {english: "floor", german: "der Boden"},
-    {english: "roof", german: "das Dach"},
-    {english: "wall", german: "die Wand"},
-    {english: "exit", german: "der Ausgang"},
+    {english: "room", spanish: "cuarto", german: "das Zimmer"},
+    {english: "table", spanish: "mesa", german: "der Tisch"},
+    {english: "chair", spanish: "silla", german: "der Stuhl"},
+    {english: "seat", spanish: "asiento", german: "der Sitz"},
+    {english: "book", spanish: "libro", german: "das Buch"},
+    {english: "door", spanish: "puerta", german: "die Tür"},
+    {english: "bed", spanish: "cama", german: "das Bett"},
+    {english: "floor", spanish: "piso", german: "der Boden"},
+    {english: "roof", spanish: "techo", german: "das Dach"},
+    {english: "wall", spanish: "pared", german: "die Wand"},
+    {english: "exit", spanish: "salida", german: "der Ausgang"},
   ];
   const vFamily = [
-    {english: "dad", german: "der Papa"},
-    {english: "mom", german: "die Mama"},
-    {english: "sister", german: "die Schwester"},
-    {english: "brother", german: "der Bruder"},
-    {english: "grandpa", german: "der Opa"},
-    {english: "grandma", german: "die Oma"},
-    {english: "man", german: "der Mann"},
-    {english: "woman", german: "die Frau"},
-    {english: "kid", german: "das Kind"},
+    {english: "dad", spanish: "padre", german: "der Papa"},
+    {english: "mom", spanish: "madre", german: "die Mama"},
+    {english: "sister", spanish: "hermana", german: "die Schwester"},
+    {english: "brother", spanish: "hermano", german: "der Bruder"},
+    {english: "grandpa", spanish: "abuelo", german: "der Opa"},
+    {english: "grandma", spanish: "abuela", german: "die Oma"},
+    {english: "man", spanish: "hombre", german: "der Mann"},
+    {english: "woman", spanish: "mujer", german: "die Frau"},
+    {english: "kid", spanish: "niño", german: "das Kind"},
   ];
   const vMain = [
+    {english: "there is/are", spanish: "hay", german: "...", russian: "есть"},
+    {english: "this/that is", spanish: "...", german: "das", russian: "это"},
+    {english: "hi", spanish: "hola", german: "hallo"},
+    {english: "yes", spanish: "sí", german: "ja"},
+    {english: "no", spanish: "no", german: "nein"},
+    {english: "and", spanish: "y", german: "und"},
+    {english: "thanks", spanish: "gracias", german: "danke"},
+    {english: "please", spanish: "por favor", german: "bitte"},
+    {english: "here", spanish: "aquí", german: "hier"},
+    {english: "there", spanish: "alla", german: "dort"},
+
     {english: "what", spanish: "qué", german: "was"},
     {english: "where", spanish: "dónde", german: "wo"},
     {english: "why", spanish: "por qué", german: "warum"},
     {english: "when", spanish: "cuando", german: "wenn"},
     {english: "how", spanish: "cómo", german: "wie"},
 
+    {english: "with", spanish: "con", german: "mit"},
+    {english: "without", spanish: "sin", german: "ohne"},
     {english: "food", spanish: "comida", german: "das Essen"},
     {english: "water", spanish: "agua", german: "das Wasser"},
     {english: "money", spanish: "dinero", german: "das Geld"},
@@ -245,8 +315,6 @@ const VocabDatabase = [
         {name: "Main1", arr: vMain},
         {name: "Numbers", arr: vNumbers},
         {name: "Colors",  arr: vColors},
-        {name: "Animals",  arr: vAnimals},
-        {name: "Nature",  arr: vNature},
         {name: "Fruit",  arr: vFruit},
         {name: "Time",  arr: vTime},
         {name: "Room",  arr: vRoom},
@@ -258,10 +326,18 @@ const VocabDatabase = [
         {name: "Family",  arr: vFamily},
         {name: "Body",  arr: vBody},
         {name: "Cloths",  arr: vCloths},
+        {name: "World",  arr: vWorld},
+    ]
+},
+{name: "Nature", 
+    arr: [
+        {name: "Animals",  arr: vAnimals},
+        {name: "Landscape",  arr: vLandscape},
+        {name: "Weather",  arr: vWeather},
     ]
 },
 ];
-
+// german: in, auf, an, mit, von, zu, aus...
 
 
 
@@ -298,4 +374,17 @@ responsiveVoice.getVoices().forEach(i => {
 })
 return r;
 }
+
+function getcurrentlessonarr(){
+let clssn = localStorage.getItem("currentgrammarlesson");
+let r = getcurrentlangobj().lessonsobjs[0];
+
+getcurrentlangobj().lessonsobjs.forEach(les => {
+    if(les.name == clssn) {r = les.lesson}
+})
+
+console.log(`returned ${r}`);
+return r;
+}
 // console.log(responsiveVoice.getVoices())
+console.log(localStorage);

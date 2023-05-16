@@ -46,6 +46,11 @@ console.log(getcurrentlangobj().lessonsobjs)
 
 // German.lessonsobjs[name, lessonsarr].lessonsarr
 getcurrentlangobj().lessonsobjs.forEach(lesn => {
-    lessonslist.innerHTML += `<div class="lesson" onclick="window.location.href='./contextlern.html'">${lesn.name}</div>`
+    lessonslist.innerHTML += `<div class="lesson" onclick="Clicked('${lesn.name}')">${lesn.name}</div>`
 });
+
+function Clicked(p){
+	localStorage.setItem("currentgrammarlesson", p);
+	window.location.href='./contextlern.html';
+}
 </script>

@@ -3,6 +3,7 @@
 <head>
 	<link href="langlerncss.css" rel="stylesheet">
 	<title>LangLern</title>
+    <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Conner Jasmer">
 	<meta name="description" content="Learn Languages">
@@ -68,12 +69,14 @@
 <script src="/layout.js"></script>
 <script src="./soundsdatabase.js"></script>
 <script src="./langlernlayout.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
 
 <script>
 
 const lettersdiv = document.getElementById("lettersholder");
 const hinfo = document.getElementById("info");
 let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+let apiVoiceName = getapivoice();
 
 let thearr = null;
 let theinfoarr = [""];
@@ -83,13 +86,13 @@ soundsdatabase.forEach(i => {
 });
 
 thearr.forEach(o => {
-    lettersdiv.innerHTML += `<div class="letterbox" onclick="LetterClicked(${o.audio})"><span class="letter">${o.letter}</span><br><span class="letterdesc">${o.sound}</span></div>`;
+    lettersdiv.innerHTML += `<div class="letterbox" onclick="LetterClicked('${o.audio}')"><span class="letter">${o.letter}</span><br><span class="letterdesc">${o.sound}</span></div>`;
 });
 theinfoarr.forEach(i => {
     hinfo.innerHTML += `<div class="infodiv">${i}</div>`;
 })
-function LetterClicked(o){
-
+function LetterClicked(n){    
+    new Audio(`./audio/${n}.mp3`).play()
 }
 
 </script>

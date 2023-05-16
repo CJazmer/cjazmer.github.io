@@ -85,7 +85,8 @@
     let indexnum = -1;
     console.log(getcurrentlangobj());
     let choosenlang = getcurrentlangobj();
-    let thelesson = choosenlang.lessonsobjs[0].lesson;
+
+    let thelesson = getcurrentlessonarr();
 
     // Gets appriate voice for the language choosen
 let apiVoiceName = getapivoice();
