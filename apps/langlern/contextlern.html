@@ -71,6 +71,8 @@
 <script src="../../layout.js"></script>
 <script src="./languagedatabase.js"></script>
 <script src="./langlernlayout.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
 <script>
     const question = document.getElementById("question");
     const questiontext = document.getElementById("questiontext");
@@ -78,13 +80,15 @@
     const htmlhint = document.getElementById("htmlhint");
     const btnreveal = document.getElementById("btnreveal");
     const words = document.getElementById("words");
+    let currentlang = localStorage.getItem("currentlang") || "spanish";
 
     let indexnum = -1;
     console.log(getcurrentlangobj());
     let choosenlang = getcurrentlangobj();
     let thelesson = choosenlang.lessonsobjs[0].lesson;
-// 3 german, 8 spanish, 9 french, 10 hindi, 16 polish, 17 brazil portugese, 18 russian, 19 mandarin chinese
 
+    // Gets appriate voice for the language choosen
+let apiVoiceName = getapivoice();
     
     
 btnClicked();
@@ -122,17 +126,22 @@ btnClicked();
             btnreveal.innerHTML = `Next`;
             btnreveal.style.backgroundColor = `lime`;
 
-                    var msg2 = new SpeechSynthesisUtterance(thelesson[indexnum].otherlang);
-                    msg2.voice = window.speechSynthesis.getVoices()[choosenlang.audioindex];
-                    window.speechSynthesis.speak(msg2);
-        }
+            /*
+            var msg2 = new SpeechSynthesisUtterance(thelesson[indexnum].otherlang);
+            msg2.voice = window.speechSynthesis.getVoices()[choosenlang.audioindex];
+            window.speechSynthesis.speak(msg2); 
+            */
+            responsiveVoice.setDefaultVoice(apiVoiceName);
+            responsiveVoice.speak(thelesson[indexnum].otherlang); 
+
+
+       }
     }
 
     function playagain(){
         if(questiontext.innerHTML != "..."){
-            var msg = new SpeechSynthesisUtterance(questiontext.innerHTML);
-            msg.voice = window.speechSynthesis.getVoices()[choosenlang.audioindex];
-            window.speechSynthesis.speak(msg);
+            responsiveVoice.setDefaultVoice(apiVoiceName);
+            responsiveVoice.speak(questiontext.innerHTML); 
         }
     }
     

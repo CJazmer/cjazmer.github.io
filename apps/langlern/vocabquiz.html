@@ -52,6 +52,7 @@
 <script src="/layout.js"></script>
 <script src="./langlernlayout.js"></script>
 <script src="./soundsdatabase.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
 
 <script>
 var questiondiv = document.getElementById("questiondiv");
@@ -69,6 +70,8 @@ let langbutton = "english";
 let QuestionInEnglish = false;
 console.log(localStorage.getItem("currentvocablesson"));
 
+// Gets appriate voice for the language choosen
+let apiVoiceName = getapivoice();
 
 NewQuestion();
 function NewQuestion(){
@@ -110,9 +113,10 @@ buttons[randomnum(0,buttons.length-1)].innerHTML = currentarr[answerindex][langb
 // Button clicked, check if correct answer
 function Clicked(b) {
 if(b.innerHTML == currentarr[answerindex][langbutton]) {
-    let msg = new SpeechSynthesisUtterance(b.innerHTML);
-    msg.voice = window.speechSynthesis.getVoices()[getcurrentlangobj().audioindex];
-    window.speechSynthesis.speak(msg);
+    
+    responsiveVoice.setDefaultVoice(apiVoiceName);
+    responsiveVoice.speak(b.innerHTML);
+
     b.innerHTML += "✅"
     setTimeout(function timer() {
         NewQuestion();

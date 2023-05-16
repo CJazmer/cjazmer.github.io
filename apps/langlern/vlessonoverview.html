@@ -75,6 +75,7 @@
 <script src="./languagedatabase.js"></script>
 <script src="/layout.js"></script>
 <script src="./langlernlayout.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
 
 <script>
 const vocabwords = document.getElementById("vocabwords");
@@ -82,7 +83,9 @@ const vocabtitle = document.getElementById("vocabtitle");
 let currentlang = localStorage.getItem("currentlang");
 let currentvocablesson = getcurrentvocablesson();
 console.log(currentvocablesson.arr);
-
+console.log(responsiveVoice.getVoices())
+// Gets appriate voice for the language choosen
+let apiVoiceName = getapivoice();
 let theHTML = ``;
 vocabtitle.innerHTML = currentvocablesson.name
 
@@ -96,9 +99,13 @@ theHTML += `
 vocabwords.innerHTML = theHTML;
 
 function WordClicked(thetext){
+    /* the old way, now i use an API
     let msg = new SpeechSynthesisUtterance(thetext);
     msg.voice = window.speechSynthesis.getVoices()[getcurrentlangobj().audioindex];
     window.speechSynthesis.speak(msg);
+    */
+    responsiveVoice.setDefaultVoice(apiVoiceName);
+    responsiveVoice.speak(thetext); 
 }
 function Clicked(){
     window.location.href="./vocabquiz.html";
