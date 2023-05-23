@@ -167,7 +167,9 @@ const vAnimals = [
     {english: "cat", spanish: "gato", german: "die Katze", russian: "кот", hawaiian: "pōpoki", oneida: "takó·s (dagosh)", lakota: "igmú", arabic: "قِط"},
     {english: "bird", spanish: "pajaro", german: "der Vogel", russian: "птица", hawaiian: "manu", oneida: "otsiˀtʌ́haˀ (ojitaha)", lakota: "ziŋtkála", arabic: "طائ"},
     {english: "fish", spanish: "pez", german: "der Fisch", russian: "рыба", hawaiian: "i'a", oneida: "kʌ́tsi (gaji)", lakota: "hoǧáŋ", arabic: "سَمَك"},
-    {english: "chicken", spanish: "pollo", german: "das Huhn", russian: "курица", hawaiian: "moa", oneida: "kitkit", lakota: "?", arabic: "دَجاج"}
+    {english: "chicken", spanish: "pollo", german: "das Huhn", russian: "курица", hawaiian: "moa", oneida: "kitkit", lakota: "?", arabic: "دَجاج"},
+    {english: "cow", spanish: "vaca", german: "die Kuh", russian: "корова", hawaiian: "?", oneida: "?", lakota: "?", arabic: "بقرة"},
+    {english: "pig", spanish: "cerdo", german: "das Schwein", russian: "свинья", hawaiian: "?", oneida: "?", lakota: "?", arabic: "خنزير"},
   ]
   const vFruit = [
     {english: "apple", spanish: "manzana", portugese: "", polish: "jabłko", russian: "яблоко", hawaiian: "", german: "der Apfel", arabic: "تُفّاح"},
@@ -178,12 +180,16 @@ const vAnimals = [
     {english: "watermelon", spanish: "sandía", portugese: "melancia", polish: "arbuz", russian: "арбуз", hawaiian: "", german: "die Wassermelone", arabic: "بَطّيخ"},    
   ]
   const vFood = [
-    {english: "bread", spanish: "pan", german: "das Brot"},
+    {english: "food", spanish: "la comida", german: "das Essen"},
+    {english: "drink", spanish: "la bebida", german: "das Getränk"},
     {english: "beer", spanish: "cerveza", german: "das Bier"},
+    {english: "ice", spanish: "el hielo", german: "das Eis"},
+    {english: "bread", spanish: "pan", german: "das Brot"},
+    {english: "rice", spanish: "arroz", german: "der Reis"},
+    {english: "meat", spanish: "la carne", german: "das Fleisch"},
     {english: "onion", spanish: "cebolla", german: "die Zwiebel"},
     {english: "cheese", spanish: "queso", german: "der Käse"},
     {english: "peppers", spanish: "pimientos", german: "der Pfeffer"},
-    {english: "rice", spanish: "arroz", german: "der Reis"},
     {english: "sandwich", spanish: "sandwich", german: "das Sandwich"},
     {english: "salt", spanish: "sal", german: "das Salz"},
   ];
@@ -221,18 +227,31 @@ const vAnimals = [
     {english: "yard", spanish: "patio", german: "das Yard"},
   ];
   const vBody = [
-    {english: "head", spanish: "cabeza", german: "der Kopf"},
-    {english: "hair", spanish: "pelo", german: "die Haare"},
-    {english: "eye", spanish: "ojo", german: "das Auge"},
-    {english: "arm", spanish: "brazo", german: "der Arm"},
-    {english: "leg", spanish: "pierna", german: "das Bein"},
-    {english: "foot", spanish: "pie", german: "der Fuß"},
+    {english: "body", spanish: "cuerpo", german: "der Körper"},
+    {english: "head", spanish: "la cabeza", german: "der Kopf"},
+    {english: "face", spanish: "la cara", german: "das Gesicht"},
+    {english: "eye", spanish: "el ojo", german: "das Auge"},
+    {english: "mouth", spanish: "la boca", german: "der Mund"},
+    {english: "nose", spanish: "la naris", german: "die Nase"},
+    {english: "ear", spanish: "la oreja", german: "das Ohr"},
+    {english: "beard", spanish: "la barba", german: "der Bart"},
+    {english: "hair", spanish: "el pelo", german: "die Haare"},
+    {english: "eye", spanish: "el ojo", german: "das Auge"},
+    {english: "arm", spanish: "el brazo", german: "der Arm"},
+    {english: "hand", spanish: "la mano", german: "die Hand"},
+    {english: "hand & arm", spanish: "...", german: "..."},
+    {english: "leg", spanish: "la pierna", german: "das Bein"},
+    {english: "foot", spanish: "el pie", german: "der Fuß"},
   ]
   const vCloths = [
-    {english: "cloths", spanish: "ropa", portugese: "roupa", german: "die Kleidung"},
-    {english: "shirt", spanish: "camiseta", portugese: "camisa", german: "das Hemd"},
+    {english: "cap", spanish: "la gorra", portugese: "", german: "die Kappe"},
+    {english: "glasses", spanish: "gafas/lentes", portugese: "", german: "die Brille"},
+    {english: "cloths", spanish: "la ropa", portugese: "roupa", german: "die Kleidung"},
+    {english: "shirt", spanish: "la camiseta", portugese: "camisa", german: "das Hemd"},
     {english: "pants", spanish: "pantalones", portugese: "calça", german: "die Hose"},
-    {english: "shoe", spanish: "zapato", portugese: "sapato", german: "der Schuh"},
+    {english: "socks", spanish: "los calcetines", portugese: "", german: "die Socken"},
+    {english: "shoe", spanish: "el zapato", portugese: "sapato", german: "der Schuh"},
+    {english: "necklace", spanish: "el collar", german: "die Halskette"},
   ];
   const vTime = [
     {english: "today", spanish: "hoy", german: "heute"},
@@ -270,6 +289,16 @@ const vAnimals = [
     {english: "wall", spanish: "pared", german: "die Wand"},
     {english: "exit", spanish: "salida", german: "der Ausgang"},
   ];
+  const vLanguage = [
+    {english: "language", spanish: "el idioma", german: "die Sprache"},
+    {english: "word", spanish: "la palabra", german: "das Wort"},
+    {english: "sentence", spanish: "la frase", german: "der Satz"},
+    {english: "spanish", spanish: "español", german: "Spanisch"},
+    {english: "english", spanish: "inglés", german: "Englisch"},
+    {english: "russian", spanish: "ruso", german: "Russisch"},
+    {english: "german", spanish: "alemán", german: "Deutsch"},
+    {english: "arabic", spanish: "árabe", german: "Arabisch"},
+  ];
   const vFamily = [
     {english: "dad", spanish: "padre", german: "der Papa"},
     {english: "mom", spanish: "madre", german: "die Mama"},
@@ -296,6 +325,7 @@ const vAnimals = [
     {english: "what", spanish: "qué", german: "was"},
     {english: "where", spanish: "dónde", german: "wo"},
     {english: "why", spanish: "por qué", german: "warum"},
+    {english: "who", spanish: "quién", german: "wer"},
     {english: "when", spanish: "cuando", german: "wenn"},
     {english: "how", spanish: "cómo", german: "wie"},
 
@@ -307,6 +337,59 @@ const vAnimals = [
     {english: "house", spanish: "casa", german: "das Haus"},
     {english: "phone", spanish: "celular", german: "das Telefon"},
     {english: "job", spanish: "trabajo", german: "die Arbeit"},
+  ];
+  const vEntertainment = [
+    {english: "tv", spanish: "la tele", german: "das Fern"},
+    {english: "sport", spanish: "deporte", german: "der Sport"},
+    {english: "team", spanish: "equipo", german: "das Team"},
+    {english: "music", spanish: "música", german: "die Musik"},
+    {english: "song", spanish: "canción", german: "das Lied"},
+    {english: "movie", spanish: "película", german: "der Film"},
+    {english: "photo", spanish: "la foto", german: "das Foto"},
+    {english: "message", spanish: "mensaje", german: "die Nachricht"},
+  ];
+  const vVerbs1 = [
+    {english: "want", spanish: "querer (quier)", german: "wollen"},
+    {english: "need, have to", spanish: "necesitar", german: "müssen"},
+    {english: "eat", spanish: "comer", german: "essen"},
+    {english: "drink", spanish: "tomar |take|", german: "trinken"},
+    {english: "know", spanish: "saber", german: "wissen"},
+    {english: "do, make", spanish: "hacer", german: "machen"},
+    {english: "play", spanish: "jugar", german: "spielen"},
+    {english: "play (instrument)", spanish: "tocar |touch|", german: "..."},
+    {english: "live", spanish: "vivir", german: "leben"},
+    {english: "say/tell", spanish: "decir", german: "sagen"},
+    {english: "use", spanish: "usar", german: "benutzen"},
+  ];
+  const vVerbs2 = [
+    {english: "sleep", spanish: "dormir", german: "schlafen"},
+    {english: "work", spanish: "trabajar", german: "arbeiten"},
+    {english: "drive", spanish: "manejar", german: "fahren"},
+    {english: "turn off", spanish: "prender", german: "..."},
+    {english: "turn on", spanish: "apagar", german: "..."},
+    {english: "clean", spanish: "limpiar", german: "sauber"},
+    {english: "read", spanish: "leer", german: "lesen"},
+    {english: "write", spanish: "escribir", german: "schreiben"},
+    {english: "draw", spanish: "dibujar", german: "zeichnen"},
+
+    {english: "call", spanish: "llamar", german: "rufen"},
+
+    /*
+    {english: "open", spanish: "abrir", german: "öffnen"},
+    {english: "close", spanish: "cerrar", german: "schließen"},
+    {english: "push", spanish: "empujar", german: "drücken"},
+    {english: "pull", spanish: "jalar", german: "ziehen"},
+    */
+  ];
+  const SpanishVerbs = [
+    {english: "subir", spanish: "go/turn up, climb"},
+    {english: "bajar", spanish: "go/turn down, descend"},
+    {english: "tomar", spanish: "drink, take"},
+    {english: "hacer", spanish: "do, make"},
+    {english: "querer (quier)", spanish: "want"},
+    {english: "aprender", spanish: "learn"},
+    {english: "montar", spanish: "Ride, Setup/PutTogether"},
+    {english: "Ayudar", spanish: "help"},
   ];
 
 const VocabDatabase = [
@@ -327,6 +410,7 @@ const VocabDatabase = [
         {name: "Body",  arr: vBody},
         {name: "Cloths",  arr: vCloths},
         {name: "World",  arr: vWorld},
+        {name: "Language",  arr: vLanguage},
     ]
 },
 {name: "Nature", 
@@ -334,6 +418,12 @@ const VocabDatabase = [
         {name: "Animals",  arr: vAnimals},
         {name: "Landscape",  arr: vLandscape},
         {name: "Weather",  arr: vWeather},
+    ]
+},
+{name: "Verbs", 
+    arr: [
+        {name: "Verbs1",  arr: vVerbs1},
+        {name: "Verbs2",  arr: vVerbs2},
     ]
 },
 ];
