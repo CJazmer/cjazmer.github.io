@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Uno</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Solo Uno game">
+	<meta name="keywords" content="Uno">
+<style>
+    .card {
+		font-size: 200%;
+		background-color:red;
+		color: azure;
+		font-weight: 600;
+		width:4em;
+		height:7em;
+		padding:.2em;
+		border: .1em solid black;
+		border-radius: 20px;
+		text-align:left;
+		vertical-align: center;
+		position:relative;
+		transform: rotate(2deg);
+		transition: 0.2s;
+		margin-left: -2em;
+		margin-top: -5.5em;
+    }
+    .card:hover {
+        font-size: 210%;
+		border: .1em solid white;
+		transform: translateY(-30px) rotate(5deg);
+    }
+	.carddown{
+		width:4em;
+		height:7em;
+		border: .1em solid black;
+		border-radius: 20px;
+		background-image: radial-gradient(black, grey);
+		transition: 0.2s;
+		margin-left: -2em;
+		margin-top: -1em;
+	}
+	#maincard {
+		rotate: 0deg;
+	}
+	#drawcardbutton{
+		width:4em;
+		height:7em;	
+		border: .1em solid black;
+		border-radius: 20px;
+		background-image: radial-gradient(grey, black);
+		color: white;
+	}
+    .deck {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+		padding-left: 5.5em;
+		padding-top: 13em;
+		justify-content: center;
+		background-color: forestgreen;
+    }
+	.aideck{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 2em;
+		background-color: forestgreen;
+	}
+	.middledeck{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 2em;
+		background-color: lightgreen;
+	}
+	#toptext{
+		padding: 1em;
+		margin: 0em 0em -2em 0em;
+		text-align: center;
+		font-weight: bold;
+		background-color: lightgreen;
+	}
+    
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff5a00 0%, #ff3300 100%);">
+			<div id="layoutpagenav"></div>
+
+					<div class="aideck" id="aideck"></div>
+					<p id="toptext"></p>
+					<div class="middledeck">
+					<div class="card" id="hmaincard" style="transform: rotate(0deg); margin: 0px"></div>
+					<button onclick="DrawCardClicked(this)" id="drawcardbutton">Draw Card</button>
+				</div>
+					<div class="deck" id="playerdeck"></div>
+
+				<footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+	// CODE -------------------------------------------------------------
+var thedeck = document.getElementById('playerdeck');
+var haideck = document.getElementById('aideck');
+var hmaincard = document.getElementById('hmaincard');
+var drawcardbutton = document.getElementById('drawcardbutton');
+var toptext = document.getElementById('toptext');
+var colors = ["red", "blue", "green", "rgb(191, 201, 0)"];
+var values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "🚫", "🔄", "+2", "+4🌈", "🌈"]
+let playerdeck = [];
+let aideck = [];
+let playersturn = true;
+let gameended = false;
+
+
+class Card {
+    constructor(number, color, id) {
+        this.number = number;
+        this.color = color;
+		this.id = id;
+    }
+}
+let maincard = {};
+maincard = new Card(1, "red", -1);
+ResetGame();
+
+function DrawCard(p) {
+    var card = new Card(values[randomnum(0,values.length-1)], colors[randomnum(0,colors.length-1)], playerdeck.length);
+    if(card.number.includes("🌈")){card.color = "rgb(50, 50, 50)"}
+	
+	if(p == "player"){playerdeck.push(card);}
+	else{aideck.push(card);}
+    UpdateGame();
+}
+function drawcards(amount, playr){ for(i = 0; i < amount; i++) {DrawCard(playr);}}
+function UpdateGame(){
+    thedeck.innerHTML = "";
+	haideck.innerHTML = "";
+	playerdeck.forEach(c => {
+		thedeck.innerHTML += `<div class="card" style="background-color: ${c.color}" onclick="DeckCardClicked(this)">${c.number}</div>`;
+	})
+	aideck.forEach(c => {
+		haideck.innerHTML += `<div class="carddown" style="background-color: ${c.color}" onclick="DeckCardClicked(this)"></div>`;
+	})
+	hmaincard.style.backgroundColor = maincard.color; 
+	hmaincard.innerHTML = maincard.number;
+	if(aideck.length == 0){EndGame("You Lose")}
+	if(playerdeck.length == 0){EndGame("You Win")}
+}
+function UpdateIds() {
+	for (j = 0; j < playerdeck.length; j++) { playerdeck[j].id = j;}
+	for (j = 0; j < aideck.length; j++) { aideck[j].id = j;}
+}
+function RemoveCard(theid, p){
+	let newdeck = []
+
+	if(p == "player"){
+ playerdeck.forEach(cc => {
+	if(cc.id == theid){}
+	else {newdeck.push(cc);}
+ })
+ playerdeck = newdeck;
+}
+else{
+	aideck.forEach(cc => {
+	if(cc.id == theid){}
+	else {newdeck.push(cc);}
+ })
+ aideck = newdeck;	
+}
+ UpdateIds();
+}
+
+function AIMakeMove(){
+
+	let ccc = null;
+if(!gameended){
+	aideck.forEach(c => {
+		if(c.color == maincard.color || c.number == maincard.number || c.number.includes("🌈")){
+			ccc = c;
+		}
+	})
+	
+	setTimeout(function timer() { 
+
+		if(ccc != null){
+			maincard.color = ccc.color;
+			maincard.number = ccc.number;
+
+			if(ccc.number.includes("+2")){drawcards(2, "player")}
+			if(ccc.number.includes("+4")){drawcards(4, "player")}
+			if(ccc.number.includes("🌈")){
+			maincard.color = colors[randomnum(0,colors.length-1)];
+			}
+
+			UpdateIds();
+			RemoveCard(ccc.id, "ai");
+			UpdateGame();
+			if(aideck.length == 0){EndGame("You Lose");}
+		}
+		else{drawcards(1, "ai");}
+		SwitchTurn("player");
+		drawcardbutton.innerHTML = "Draw Card"; 
+
+	}, 3000); // 2sec
+}
+	
+}
+
+function ResetGame(){
+	// 3 default cards
+	playerdeck = [];
+	aideck = [];
+	drawcards(3, "player");
+	drawcards(3, "ai");
+
+	SwitchTurn("player");
+	drawcardbutton.innerHTML = "Draw Card";
+	gameended = false;
+	UpdateGame();
+}
+ResetGame();
+
+function SwitchTurn(p){
+if(p == "player"){
+	playersturn = true;
+	toptext.innerHTML = "Your Turn";
+}
+else{
+	playersturn = false;
+	toptext.innerHTML = "AI's Turn...";
+	AIMakeMove();
+}
+}
+
+// Middle DrawCard card clicked
+function DrawCardClicked(t){
+	 if(t.innerHTML == "Draw Card"){drawcards(1, "player"); t.innerHTML = "..."; AIMakeMove();}
+else if(t.innerHTML == "Play Again"){ResetGame();}
+}
+
+// One of the cards in the deck clicked
+function DeckCardClicked(t){
+
+if(!gameended && playersturn){
+	if(maincard.color == t.style.backgroundColor || maincard.number == t.innerHTML || t.style.backgroundColor == "rgb(50, 50, 50)"){
+		maincard.color = t.style.backgroundColor;
+		maincard.number = t.innerHTML;
+		drawcardbutton.innerHTML = "...";
+
+		if(t.innerHTML.includes("+2")){drawcards(2, "ai")}
+		if(t.innerHTML.includes("+4")){drawcards(4, "ai")}
+		
+		playerdeck.forEach(crd => {
+			if(crd.color == maincard.color && crd.number.toString() == maincard.number) {maincard.id = crd.id;}
+		})
+		RemoveCard(maincard.id, "player");
+		
+		if(t.innerHTML.includes("🌈")){
+			maincard.color = colors[randomnum(0,colors.length-1)];
+		}
+		UpdateGame();
+
+		// check if win
+		if(playerdeck.length == 0){ EndGame("You Win");}
+		else { SwitchTurn("ai"); }
+	}
+}
+}
+function EndGame(t){
+	gameended = true;
+	drawcardbutton.textContent = "Play Again";
+	toptext.innerHTML = t;
+}
+
+</script> 

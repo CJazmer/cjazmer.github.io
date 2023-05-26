@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Random Info Generator</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.cardup{
+            width: 7em;
+            height: 12em;
+            margin-right: .5em;
+            background-color: white;
+            border-radius: 10%;
+            border: .2em solid black;
+            text-align: center;
+        }
+        .carddown{
+            width: 7em;
+            height: 12em;
+            margin-left: -3em;
+            background-image: radial-gradient(blue, cyan);
+            border-radius: 10%;
+            border: .2em solid black;
+            text-align: center;
+        }
+        button{
+            width: 100%;
+            height: fit-content;
+        }
+        .cardholder{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: forestgreen;
+            padding: 1em;
+            margin-bottom: .1em;
+            border: .3em solid black;
+        }
+        button{
+            width: 50%;
+        }
+        #heading{
+            text-align: center;
+        }
+        .flex{
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="layoutpagenav"></div>
+
+            <div class="cardholder" id="aideck"></div>
+            <div class="cardholder" id="playerdeck"></div>
+
+            <h1 id="heading"></h1>
+            <div style="text-align: center;">You: <span id="playerscore"></span>   |   AI: <span id="aiscore"></span></div>
+            <div class="flex">
+            <button onclick="Hit()">Hit</button>
+            <button onclick="Stand()">Stand</button>
+            </div>
+            <footer></footer>
+			</div>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const playerdeck = document.getElementById("playerdeck");
+    const aideck = document.getElementById("aideck");
+    const aiscore = document.getElementById("aiscore");
+    const playerscore = document.getElementById("playerscore");
+    const heading = document.getElementById("heading");
+
+let playernums = [0, 0];
+let ainums = [0, 0];
+let playerwins = 0;
+let aiwins = 0;
+let aiDrawThreshold = 16; // if ai is under/equilto, they have to draw, if over they have to stay. 16 is default
+
+reset();
+function reset(){ 
+    heading.innerHTML = "Play!"
+playernums = [0, 0]; 
+playernums[0] = randomnum(1, 13);
+playernums[1] = randomnum(1, 13);
+
+ainums = [0, 0]; 
+ainums[0] = randomnum(1, 13);
+ainums[1] = randomnum(1, 13);
+UpdateScreen()
+}
+
+function UpdateScreen(){
+    playerdeck.innerHTML = ""; 
+    aideck.innerHTML = "";
+
+    playernums.forEach(n => {
+    playerdeck.innerHTML += `<div class="cardup">${n}</div>`;
+    });
+    for(i=0; i < ainums.length; i++){
+        if(i==0){aideck.innerHTML += `<div class="cardup">${ainums[i]}</div>`;}
+        else {aideck.innerHTML += `<div class="carddown"></div>`}
+    }
+    playerscore.innerHTML = `${SumArray(playernums)} (${playerwins} wins)`;
+    aiscore.innerHTML = `${ainums[0]}+ (${aiwins} wins)`;
+
+    if(SumArray(ainums) > 21){EndGame("win")}
+    if(SumArray(playernums) > 21){EndGame("lose")}
+}
+
+function Hit(){
+playernums.push(randomnum(1,11));
+UpdateScreen()
+if(SumArray(playernums) > 21){EndGame("lose")}
+
+}
+function Stand(){
+
+while(SumArray(ainums) <= aiDrawThreshold && SumArray(ainums) <= 21){
+    ainums.push(randomnum(1,11));
+}
+UpdateScreen();
+RevealCards();
+
+if(SumArray(playernums) == SumArray(ainums)){EndGame("draw")}
+else if(SumArray(ainums) > 21){ EndGame("win (AI Bust)")}
+else if(SumArray(playernums) > SumArray(ainums)){EndGame("win (higher num)")}
+else{EndGame("lose (AI has Higher Num)")}
+}
+function SumArray(arr){
+    let sum = 0;
+    arr.forEach(n => {sum += n});
+    return sum;
+}
+function RevealCards(){
+    aideck.innerHTML = "";
+    ainums.forEach(n => {
+    aideck.innerHTML += `<div class="cardup">${n}</div>`;
+    });
+    aiscore.innerHTML = `${SumArray(ainums)} (${aiwins} wins)`;
+}
+function EndGame(msg){
+
+    if(msg.includes("draw")){}
+    else if(msg.includes("win")){playerwins++}
+    else{aiwins++}
+
+    RevealCards();
+    heading.innerHTML = msg;
+setTimeout(function timer() {
+        reset();
+  }, 4000);
+}
+function CheckWin(){
+    if(SumArray(ainums) > 21){EndGame("win (AI Bust)")}
+    if(SumArray(playernums) > 21){EndGame("lose (Bust)")}
+}
+</script>
