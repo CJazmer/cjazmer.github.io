@@ -9,20 +9,32 @@
 		.cardup{
             width: 7em;
             height: 12em;
-            margin-right: .5em;
+            margin-right: -4em;
             background-color: white;
             border-radius: 10%;
             border: .2em solid black;
-            text-align: center;
+            padding: .5em;
         }
         .carddown{
             width: 7em;
             height: 12em;
-            margin-left: -3em;
+            padding: .5em;
+            margin-right: -4em;
             background-image: radial-gradient(blue, cyan);
             border-radius: 10%;
             border: .2em solid black;
             text-align: center;
+        }
+        .smallcard{
+            width: 3em;
+            height: 5em;
+            margin-right: -1em;
+            margin-bottom: -3em;
+        }
+        #deckview{
+            display: flex;
+            flex-wrap: wrap
+            ;
         }
         button{
             width: 100%;
@@ -34,7 +46,6 @@
             justify-content: center;
             background-color: forestgreen;
             padding: 1em;
-            margin-bottom: .1em;
             border: .3em solid black;
         }
         button{
@@ -46,6 +57,15 @@
         .flex{
             display: flex;
         }
+        .score{
+            margin: 0em;
+            padding: .5em;
+            text-align: center;
+            background-color:aquamarine;
+        }
+        #heading{
+            font-weight: 900;
+        }
     </style>
 </head>
 
@@ -53,15 +73,31 @@
 		<div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
 			<div id="layoutpagenav"></div>
 
-            <div class="cardholder" id="aideck"></div>
-            <div class="cardholder" id="playerdeck"></div>
+            <div class="cardholder" id="haideck"></div>
+            <p class="score"><span id="heading"></span> <br> You: <span id="playerscore"></span> | AI: <span id="aiscore"></span> <br> 
+                 <label for="numbers">Bet:</label>
+            <select name="numbers" id="myid">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50" selected>50</option>
+                <option value="100" selected>100</option>
+                <option value="200" selected>200</option>
+            </select>
+                 <span id="hmoney"></span>
+            </p>
+            <div class="cardholder" id="hplayerdeck"></div>
 
-            <h1 id="heading"></h1>
-            <div style="text-align: center;">You: <span id="playerscore"></span>   |   AI: <span id="aiscore"></span></div>
             <div class="flex">
             <button onclick="Hit()">Hit</button>
             <button onclick="Stand()">Stand</button>
+            <button onclick="DoubleDown()">Double Down</button>
+            <button onclick="Split()">Split</button>
             </div>
+            <button onclick="ShuffleDeck()">Shuffle</button>
+
+            <p class="score">Move: <span id="themove"></span> | CardCount: <span id="hcardcount"></span> <br> Num of Decks: <span id="hnumofdecks"></span></p>
+            <div id="deckview"></div>
             <footer></footer>
 			</div>
 		</div>
@@ -71,94 +107,213 @@
 <!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
-    const playerdeck = document.getElementById("playerdeck");
-    const aideck = document.getElementById("aideck");
+    const hplayerdeck = document.getElementById("hplayerdeck");
+    const haideck = document.getElementById("haideck");
     const aiscore = document.getElementById("aiscore");
     const playerscore = document.getElementById("playerscore");
     const heading = document.getElementById("heading");
+    const themove = document.getElementById("themove");
+    const hdeckview = document.getElementById("deckview");
+    const hmoney = document.getElementById("hmoney");
+    const hcardcount = document.getElementById("hcardcount");
+    const hnumofdecks = document.getElementById("hnumofdecks");
 
-let playernums = [0, 0];
-let ainums = [0, 0];
+// ♥️♠️♦️♣️
+const defaultdeck = [
+    "A♠️", "2♠️", "3♠️", "4♠️", "5♠️", "6♠️", "7♠️", "8♠️", "9♠️", "10♠️", "J♠️", "Q♠️", "K♠️",
+    "A♥️", "2♥️", "3♥️", "4♥️", "5♥️", "6♥️", "7♥️", "8♥️", "9♥️", "10♥️", "J♥️", "Q♥️", "K♥️",
+    "A♦️", "2♦️", "3♦️", "4♦️", "5♦️", "6♦️", "7♦️", "8♦️", "9♦️", "10♦️", "J♦️", "Q♦️", "K♦️",
+    "A♣️", "2♣️", "3♣️", "4♣️", "5♣️", "6♣️", "7♣️", "8♣️", "9♣️", "10♣️", "J♣️", "Q♣️", "K♣️",
+];
+let deck = defaultdeck;
+let playerdeck = [];
+let aideck = [];
 let playerwins = 0;
 let aiwins = 0;
+let playermoney = 200;
+let currentbet = 20;
 let aiDrawThreshold = 16; // if ai is under/equilto, they have to draw, if over they have to stay. 16 is default
+let ShowAllCards = true;
+let gameended = false;
+let payoutMultip = 1.5; // 1.5 is '3 to 2' which is standard
+let numofdecks = 1;
+let cardcount = 0;
 
 reset();
 function reset(){ 
-    heading.innerHTML = "Play!"
-playernums = [0, 0]; 
-playernums[0] = randomnum(1, 13);
-playernums[1] = randomnum(1, 13);
+    heading.innerHTML = "Play!";
+    gameended = false;
+    ShuffleDeck();
 
-ainums = [0, 0]; 
-ainums[0] = randomnum(1, 13);
-ainums[1] = randomnum(1, 13);
-UpdateScreen()
+aideck = []; 
+DrawCard("ai");
+DrawCard("ai");
+
+playerdeck = []; 
+DrawCard("player");
+DrawCard("player");
+UpdateScreen();
 }
 
 function UpdateScreen(){
-    playerdeck.innerHTML = ""; 
-    aideck.innerHTML = "";
+    hplayerdeck.innerHTML = ""; 
+    haideck.innerHTML = "";
+    hmoney.innerHTML = `$${playermoney}`;
 
-    playernums.forEach(n => {
-    playerdeck.innerHTML += `<div class="cardup">${n}</div>`;
+    playerdeck.forEach(n => {
+    hplayerdeck.innerHTML += `<div class="cardup">${n}</div>`;
     });
-    for(i=0; i < ainums.length; i++){
-        if(i==0){aideck.innerHTML += `<div class="cardup">${ainums[i]}</div>`;}
-        else {aideck.innerHTML += `<div class="carddown"></div>`}
+    for(i=0; i < aideck.length; i++){
+        if(i==0){haideck.innerHTML += `<div class="cardup">${aideck[i]}</div>`;}
+        else {haideck.innerHTML += `<div class="carddown"></div>`}
     }
-    playerscore.innerHTML = `${SumArray(playernums)} (${playerwins} wins)`;
-    aiscore.innerHTML = `${ainums[0]}+ (${aiwins} wins)`;
+    playerscore.innerHTML = `${SumArray(playerdeck)} (${playerwins} wins)`;
+    aiscore.innerHTML = `${ToNum(aideck[0])} (${aiwins} wins)`;
 
-    if(SumArray(ainums) > 21){EndGame("win")}
-    if(SumArray(playernums) > 21){EndGame("lose")}
+    if(SumArray(aideck) > 21){EndGame("win")}
+    if(SumArray(playerdeck) > 21){EndGame("lose")}
+    themove.innerHTML = BestMove(SumArray(playerdeck), SumArray(aideck));
+    if(deck.length <= 4){ShuffleDeck()};
+    if(ShowAllCards){ShowDeckView()};
+
+    cardcount = 0;
+    deck.forEach(c => {
+        if(ToNum(c) <= 6){cardcount--;} // fliped
+        if(ToNum(c) >= 10){cardcount++;}
+    })
+    hcardcount.innerHTML = cardcount;
+    hnumofdecks.innerHTML = numofdecks;
 }
 
+
+// Player Moves -------------------------------
 function Hit(){
-playernums.push(randomnum(1,11));
-UpdateScreen()
-if(SumArray(playernums) > 21){EndGame("lose")}
-
+if(!gameended){
+    DrawCard("player");
+    UpdateScreen()
+    if(SumArray(playerdeck) > 21){EndGame("lose")}
 }
+}
+
 function Stand(){
+if(!gameended){
+    while(SumArray(aideck) <= 21 && SumArray(aideck) <= aiDrawThreshold){
+        DrawCard("ai");
+    }
+    UpdateScreen();
+    RevealCards();
 
-while(SumArray(ainums) <= aiDrawThreshold && SumArray(ainums) <= 21){
-    ainums.push(randomnum(1,11));
+    if(SumArray(playerdeck) == SumArray(aideck)){EndGame("draw")}
+    else if(SumArray(aideck) > 21){ EndGame("win (AI Bust)")}
+    else if(SumArray(playerdeck) > SumArray(aideck)){EndGame("win (higher num)")}
+    else{EndGame("lose (AI has Higher Num)")}
 }
-UpdateScreen();
-RevealCards();
+}
+// draw card, double bet
+function DoubleDown(){
+if(!gameended){
+    Hit();
+    Stand();
+}
+}
+function Split(){
+    if(!gameended){
 
-if(SumArray(playernums) == SumArray(ainums)){EndGame("draw")}
-else if(SumArray(ainums) > 21){ EndGame("win (AI Bust)")}
-else if(SumArray(playernums) > SumArray(ainums)){EndGame("win (higher num)")}
-else{EndGame("lose (AI has Higher Num)")}
+    }  
 }
-function SumArray(arr){
-    let sum = 0;
-    arr.forEach(n => {sum += n});
-    return sum;
-}
+
+
 function RevealCards(){
-    aideck.innerHTML = "";
-    ainums.forEach(n => {
-    aideck.innerHTML += `<div class="cardup">${n}</div>`;
+    haideck.innerHTML = "";
+    aideck.forEach(n => {
+    haideck.innerHTML += `<div class="cardup">${n}</div>`;
     });
-    aiscore.innerHTML = `${SumArray(ainums)} (${aiwins} wins)`;
+    aiscore.innerHTML = `${SumArray(aideck)} (${aiwins} wins)`;
 }
-function EndGame(msg){
 
+function EndGame(msg){
+    gameended = true;
     if(msg.includes("draw")){}
-    else if(msg.includes("win")){playerwins++}
-    else{aiwins++}
+    else if(msg.includes("win")){
+        playerwins++; 
+        playermoney += (currentbet * payoutMultip);
+    }
+    else{
+        aiwins++;
+        playermoney -= currentbet;
+    }
 
     RevealCards();
     heading.innerHTML = msg;
-setTimeout(function timer() {
-        reset();
-  }, 4000);
+    setTimeout(function timer() {
+            reset();
+    }, 4000);
 }
-function CheckWin(){
-    if(SumArray(ainums) > 21){EndGame("win (AI Bust)")}
-    if(SumArray(playernums) > 21){EndGame("lose (Bust)")}
+
+function BestMove(plr, ai){
+    let r = "...";
+    plr = ToNum(plr);
+    ai = ToNum(ai);
+
+if(plr >= 17){r = "Stand"}
+else if((plr == 10 || plr == 11) && ai <= 8){r = "Double Down"}
+else if(plr <= 16 && ai >= 7){r = "Hit"}
+else if(ai <= aiDrawThreshold){r = "stand"}
+else if(ai > aiDrawThreshold){r = "hit"}
+
+return r;
+}
+
+// Useful Functions -------------------
+function ToNum(n){
+    try{
+n = n.replace("♥️", "");
+n = n.replace("♠️", "");
+n = n.replace("♦️", "");
+n = n.replace("♣️", "");
+n = n.replace("J", "10");
+n = n.replace("Q", "10");
+n = n.replace("K", "10");
+n = n.replace("A", "11");
+n = parseInt(n);
+    }catch{}
+return n;
+}
+function SumArray(arr){
+    let sum = 0;
+    arr.forEach(n => {sum += ToNum(n)});
+    return sum;
+}
+function DrawCard(playr){
+if(!gameended){
+    if(playr == "player"){
+        playerdeck.push(deck[0]);
+    }
+    else{
+        aideck.push(deck[0]);
+    }
+    deck.shift();
+}
+}
+function ShuffleDeck(){
+    let tempdeck = [];
+    for(i = 0; i < numofdecks; i++){
+        tempdeck.push.apply(tempdeck, defaultdeck); // its a string and not array!!!
+    }
+    deck = [];
+
+    while(tempdeck.length > 0){
+        let r = randomnum(0, tempdeck.length-1);
+        deck.push(tempdeck[r]);
+        tempdeck.splice(r, 1)
+    }
+    ShowDeckView();
+    UpdateScreen();
+}
+function ShowDeckView(){
+    hdeckview.innerHTML = "";
+    deck.forEach(c => {
+        hdeckview.innerHTML += `<div class="cardup smallcard">${c}</div>`;
+    });
 }
 </script>
