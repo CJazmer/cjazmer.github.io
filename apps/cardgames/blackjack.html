@@ -93,13 +93,13 @@
             <p class="score"><span id="heading"></span> (<span id="themove"></span>) <br>
                  You: <span id="playerscore"></span> | AI: <span id="aiscore"></span> <br> 
                  <label for="numbers">Bet:</label>
-            <select name="numbers" id="myid">
+            <select name="numbers" id="dropdowncurrentbet">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20" selected>20</option>
-                <option value="50" selected>50</option>
-                <option value="100" selected>100</option>
-                <option value="200" selected>200</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
             </select>
                  <span id="hmoney"></span>
             </p>
@@ -151,6 +151,7 @@
     const hmoney = document.getElementById("hmoney");
     const hcardcount = document.getElementById("hcardcount");
     const hnumofdecks = document.getElementById("hnumofdecks");
+    const dropdowncurrentbet = document.getElementById("dropdowncurrentbet");
 
 // ♥️♠️♦️♣️
 const defaultdeck = [
@@ -236,8 +237,8 @@ function UpdateScreen(){
 function Hit(){
 if(!gameended){
     DrawCard("player");
-    CheckForWinner()
-    UpdateScreen()
+    UpdateScreen();
+    if(SumArray(playerdeck) > 21){EndGame("Lose (You Busted)")};
 }
 }
 
@@ -254,8 +255,13 @@ if(!gameended){
 // draw card, double bet
 function DoubleDown(){
 if(!gameended){
-    Hit();
-    Stand();
+    // Double bet, then set back to normal
+    payoutMultip *= 2;
+    currentbet *= 2;
+    Hit();  
+    if(!gameended){Stand();}  
+    payoutMultip /= 2;
+    currentbet /= 2;
 }
 }
 function Split(){
@@ -277,7 +283,7 @@ function RevealCards(){
 function EndGame(msg){
     gameended = true;
     if(msg.includes("draw")){}
-    else if(msg.includes("win")){
+    else if(msg.toLowerCase().includes("win")){
         playerwins++; 
         playermoney += (currentbet * (payoutMultip - 1));
         MoneyGain += (currentbet * (payoutMultip - 1));
@@ -369,7 +375,7 @@ function ApplyRules(){
     ShowCardTotal = document.getElementById("checkboxshowcardtotal").checked;
     showBestMove = document.getElementById("checkboxshowbestmove").checked;
     numofdecks = parseInt(document.getElementById("inputnumofdecks").value) || 1;
-    playermoney = parseInt(document.getElementById("inputplayermoney").value) || 1;
+    playermoney = parseInt(document.getElementById("inputplayermoney").value) || 200;
 
     if(numofdecks < 1){numofdecks = 1}
     ShuffleDeck();
