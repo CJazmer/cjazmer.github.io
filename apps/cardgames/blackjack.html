@@ -33,12 +33,16 @@
         }
         #deckview{
             display: flex;
-            flex-wrap: wrap
-            ;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+            padding-bottom: 3em;
+            height: 10em;
+            background-color: gray;
         }
         button{
             width: 100%;
-            height: fit-content;
+            height: 2.5em;
+            max-height: 2.5em;
         }
         .cardholder{
             display: flex;
@@ -50,12 +54,14 @@
         }
         button{
             width: 50%;
+            border-radius: .2em;
         }
         #heading{
             text-align: center;
         }
         .flex{
             display: flex;
+            background-color: lightgreen;
         }
         .score{
             margin: 0em;
@@ -66,6 +72,16 @@
         #heading{
             font-weight: 900;
         }
+        table{
+            margin: 1em auto 1em auto;
+            background-color: aquamarine;
+            border: .2em solid blue;
+            border-radius: 4%;
+            padding: .5em;
+        }
+        table tr button{
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -74,7 +90,8 @@
 			<div id="layoutpagenav"></div>
 
             <div class="cardholder" id="haideck"></div>
-            <p class="score"><span id="heading"></span> <br> You: <span id="playerscore"></span> | AI: <span id="aiscore"></span> <br> 
+            <p class="score"><span id="heading"></span> (<span id="themove"></span>) <br>
+                 You: <span id="playerscore"></span> | AI: <span id="aiscore"></span> <br> 
                  <label for="numbers">Bet:</label>
             <select name="numbers" id="myid">
                 <option value="5">5</option>
@@ -86,17 +103,34 @@
             </select>
                  <span id="hmoney"></span>
             </p>
-            <div class="cardholder" id="hplayerdeck"></div>
-
             <div class="flex">
-            <button onclick="Hit()">Hit</button>
-            <button onclick="Stand()">Stand</button>
-            <button onclick="DoubleDown()">Double Down</button>
-            <button onclick="Split()">Split</button>
+                <button onclick="Hit()">Hit</button>
+                <button onclick="Stand()">Stand</button>
+                <button onclick="DoubleDown()">Double Down</button>
+                <button onclick="Split()">Split</button>
             </div>
-            <button onclick="ShuffleDeck()">Shuffle</button>
-
-            <p class="score">Move: <span id="themove"></span> | CardCount: <span id="hcardcount"></span> <br> Num of Decks: <span id="hnumofdecks"></span></p>
+            <div class="cardholder" id="hplayerdeck"></div>
+            
+            <table>
+                <tr><th>Num of Decks</th><td><input type="number" value="1" id="inputnumofdecks"></td></tr>
+                <tr><th>Show Best Move</th><td><input type="checkbox" checked="checked" id="checkboxshowbestmove"></td></tr>
+                <tr><th>Show Card Total</th><td><input type="checkbox" checked="checked" id="checkboxshowcardtotal"></td></tr>
+                <tr>
+                    <th>Payout</th>
+                    <td>
+                        <select name="numbers" id="dropdownpayout">
+                            <option value="1.5">3 to 2 (1.5x) *standard</option>
+                            <option value="1.2">6 to 5 (1.2x)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr><th>Set Money</th><td><input type="number" value="1" id="inputplayermoney"></td></tr>
+                <tr>
+                    <th><button onclick="ShuffleDeck()">Shuffle Deck</button></th>
+                    <td><button onclick="ApplyRules()" style="background-color: greenyellow;">Apply Settings</button></td>
+                </tr>
+            </table>
+            <p class="score"> CardCount: <span id="hcardcount"></span> | Num of Decks: <span id="hnumofdecks"></span></p>
             <div id="deckview"></div>
             <footer></footer>
 			</div>
@@ -130,19 +164,24 @@ let playerdeck = [];
 let aideck = [];
 let playerwins = 0;
 let aiwins = 0;
+let gamesplayed = 0;
 let playermoney = 200;
 let currentbet = 20;
 let aiDrawThreshold = 16; // if ai is under/equilto, they have to draw, if over they have to stay. 16 is default
 let ShowAllCards = true;
+let ShowCardTotal = true;
 let gameended = false;
+let showBestMove = true;
 let payoutMultip = 1.5; // 1.5 is '3 to 2' which is standard
 let numofdecks = 1;
 let cardcount = 0;
+let MoneyGain = 0;
 
 reset();
 function reset(){ 
     heading.innerHTML = "Play!";
     gameended = false;
+    cardcount = 0;
     ShuffleDeck();
 
 aideck = []; 
@@ -158,7 +197,7 @@ UpdateScreen();
 function UpdateScreen(){
     hplayerdeck.innerHTML = ""; 
     haideck.innerHTML = "";
-    hmoney.innerHTML = `$${playermoney}`;
+    hmoney.innerHTML = `$${playermoney} (Gain $${MoneyGain})`;
 
     playerdeck.forEach(n => {
     hplayerdeck.innerHTML += `<div class="cardup">${n}</div>`;
@@ -167,14 +206,21 @@ function UpdateScreen(){
         if(i==0){haideck.innerHTML += `<div class="cardup">${aideck[i]}</div>`;}
         else {haideck.innerHTML += `<div class="carddown"></div>`}
     }
-    playerscore.innerHTML = `${SumArray(playerdeck)} (${playerwins} wins)`;
-    aiscore.innerHTML = `${ToNum(aideck[0])} (${aiwins} wins)`;
 
-    if(SumArray(aideck) > 21){EndGame("win")}
-    if(SumArray(playerdeck) > 21){EndGame("lose")}
-    themove.innerHTML = BestMove(SumArray(playerdeck), SumArray(aideck));
+    if(ShowCardTotal){
+        playerscore.innerHTML = `${SumArray(playerdeck)} (${playerwins} wins)`;
+        aiscore.innerHTML = `${ToNum(aideck[0])} (${aiwins} wins)`;
+    }
+    else{
+        playerscore.innerHTML = "";
+        aiscore.innerHTML = "";
+    }
+
+    if(showBestMove && !gameended){themove.innerHTML = BestMove(SumArray(playerdeck), SumArray(aideck));}
+    else{themove.innerHTML = ""}
     if(deck.length <= 4){ShuffleDeck()};
-    if(ShowAllCards){ShowDeckView()};
+    if(ShowAllCards){ShowDeckView()}
+    else{hdeckview.innerHTML = ""}
 
     cardcount = 0;
     deck.forEach(c => {
@@ -182,7 +228,7 @@ function UpdateScreen(){
         if(ToNum(c) >= 10){cardcount++;}
     })
     hcardcount.innerHTML = cardcount;
-    hnumofdecks.innerHTML = numofdecks;
+    hnumofdecks.innerHTML = `${numofdecks} (${deck.length} cards left)`;
 }
 
 
@@ -190,8 +236,8 @@ function UpdateScreen(){
 function Hit(){
 if(!gameended){
     DrawCard("player");
+    CheckForWinner()
     UpdateScreen()
-    if(SumArray(playerdeck) > 21){EndGame("lose")}
 }
 }
 
@@ -200,13 +246,9 @@ if(!gameended){
     while(SumArray(aideck) <= 21 && SumArray(aideck) <= aiDrawThreshold){
         DrawCard("ai");
     }
+    CheckForWinner()
     UpdateScreen();
     RevealCards();
-
-    if(SumArray(playerdeck) == SumArray(aideck)){EndGame("draw")}
-    else if(SumArray(aideck) > 21){ EndGame("win (AI Bust)")}
-    else if(SumArray(playerdeck) > SumArray(aideck)){EndGame("win (higher num)")}
-    else{EndGame("lose (AI has Higher Num)")}
 }
 }
 // draw card, double bet
@@ -219,6 +261,7 @@ if(!gameended){
 function Split(){
     if(!gameended){
 
+        CheckForWinner()
     }  
 }
 
@@ -236,13 +279,16 @@ function EndGame(msg){
     if(msg.includes("draw")){}
     else if(msg.includes("win")){
         playerwins++; 
-        playermoney += (currentbet * payoutMultip);
+        playermoney += (currentbet * (payoutMultip - 1));
+        MoneyGain += (currentbet * (payoutMultip - 1));
     }
     else{
         aiwins++;
         playermoney -= currentbet;
+        MoneyGain -= currentbet;
     }
 
+    gamesplayed++;
     RevealCards();
     heading.innerHTML = msg;
     setTimeout(function timer() {
@@ -255,29 +301,30 @@ function BestMove(plr, ai){
     plr = ToNum(plr);
     ai = ToNum(ai);
 
-if(plr >= 17){r = "Stand"}
-else if((plr == 10 || plr == 11) && ai <= 8){r = "Double Down"}
-else if(plr <= 16 && ai >= 7){r = "Hit"}
-else if(ai <= aiDrawThreshold){r = "stand"}
-else if(ai > aiDrawThreshold){r = "hit"}
+    if((ToNum(playerdeck[0]) == ToNum(playerdeck[1])) && playerdeck.length == 2 && playerdeck[0] != "10"){r = "<b>Split</b> *always split, except for 10s";}
+    else if(plr >= 17){r = "<b>Stand</b> *you're too high"}
+    else if((plr == 10 || plr == 11) && ai <= 8){r = "<b>Double Down</b>"}
+    else if(plr <= 16 && ai >= 7){r = "Hit"}
+    else if(ai <= aiDrawThreshold){r = "stand"}
+    else if(ai > aiDrawThreshold){r = "hit"}
 
-return r;
+    return r;
 }
 
 // Useful Functions -------------------
 function ToNum(n){
     try{
-n = n.replace("♥️", "");
-n = n.replace("♠️", "");
-n = n.replace("♦️", "");
-n = n.replace("♣️", "");
-n = n.replace("J", "10");
-n = n.replace("Q", "10");
-n = n.replace("K", "10");
-n = n.replace("A", "11");
-n = parseInt(n);
+    n = n.replace("♥️", "");
+    n = n.replace("♠️", "");
+    n = n.replace("♦️", "");
+    n = n.replace("♣️", "");
+    n = n.replace("J", "10");
+    n = n.replace("Q", "10");
+    n = n.replace("K", "10");
+    n = n.replace("A", "11");
+    n = parseInt(n);
     }catch{}
-return n;
+    return n;
 }
 function SumArray(arr){
     let sum = 0;
@@ -309,11 +356,34 @@ function ShuffleDeck(){
     }
     ShowDeckView();
     UpdateScreen();
+    console.log("Deck Shuffled");
 }
 function ShowDeckView(){
     hdeckview.innerHTML = "";
     deck.forEach(c => {
         hdeckview.innerHTML += `<div class="cardup smallcard">${c}</div>`;
     });
+}
+function ApplyRules(){
+    payoutMultip = parseFloat(document.getElementById("dropdownpayout").value) || 1.5;
+    ShowCardTotal = document.getElementById("checkboxshowcardtotal").checked;
+    showBestMove = document.getElementById("checkboxshowbestmove").checked;
+    numofdecks = parseInt(document.getElementById("inputnumofdecks").value) || 1;
+    playermoney = parseInt(document.getElementById("inputplayermoney").value) || 1;
+
+    if(numofdecks < 1){numofdecks = 1}
+    ShuffleDeck();
+    UpdateScreen();
+
+    console.log(`Num of Decks: ${numofdecks} \nPayout: ${payoutMultip}x \nShow Card Total: ${ShowCardTotal}`);
+}
+function CheckForWinner(){
+    if(!gameended){
+    if(SumArray(playerdeck) == SumArray(aideck)){EndGame("draw")}
+    else if(SumArray(aideck) > 21){EndGame("Win (Dealer Busted)")}
+    else if(SumArray(playerdeck) > 21){EndGame("Lose (You Busted)")}
+    else if(SumArray(playerdeck) > SumArray(aideck)){EndGame("Win (higher num)")}
+    else if(SumArray(playerdeck) < SumArray(aideck)){EndGame("Lose (lower num)")}
+    }
 }
 </script>
