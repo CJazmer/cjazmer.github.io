@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Roulette</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.numbox{
+            width: 3em;
+            height: 3em;
+            margin: 0em;
+            background-color: brown;
+            border: .1em solid white;
+            text-align: center;
+            font-weight: 900;
+            color: white;
+            transition: .1s;
+        }
+        .numbox:hover{
+            transform: scale(1.1);
+        }
+        #board{
+            padding: .2em;
+            height: 11em;
+            background-color: gray;
+            display: flex;
+            flex-direction: column-reverse;
+            flex-wrap: wrap;
+            justify-content: right;
+            justify-items: right;
+        }
+        .btnholder{
+            width: 100%;
+            display: flex;
+        }
+        .btnholder button{
+            width: 100%;
+            height: 2em;
+            color: white;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        #infoboard{
+            width: 100%;
+            min-height: 2em;
+            background-image: radial-gradient(lightgreen, green);
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+        table{
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="layoutpagenav"></div>
+
+            <table>
+                <tr><td><p>Red Wins: <span id="hredwins">0</span></p></td><td><p>| Black Wins <span id="hblackwins">0</span></p></td></tr>
+            </table>
+            <div id="infoboard"></div>   
+            <div id="board"></div>
+
+            <div class="btnholder">
+                <button onclick="ChangeBet('first 12')">1st 12</button>
+                <button onclick="ChangeBet('second 12')">2nd 12</button>
+                <button onclick="ChangeBet('thrid 12')">3rd 12</button>
+            </div>
+            <div class="btnholder">
+                <button onclick="ChangeBet('left side')">1-18</button>
+                <button onclick="ChangeBet('even')">Even</button>
+                <button onclick="ChangeBet('red')" style="background-color: red;">Red</button>
+                <button onclick="ChangeBet('black')" style="background-color: black">Black</button>
+                <button onclick="ChangeBet('odd')">Odd</button>
+                <button onclick="ChangeBet('right side')">19-36</button>
+            </div>
+            <button style="width: 100%;" onclick="Spin()">Spin!</button>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+const board = document.getElementById("board");
+const infoboard = document.getElementById("infoboard");
+const hblackwins = document.getElementById("hblackwins");
+const hredwins = document.getElementById("hredwins");
+
+let playermoney = 500;
+let betamount = 50;
+let WinNumber = 0;
+let CurrentBet = 1;
+ChangeBet(1);
+let NumberHistory = [];
+
+for(i=1; i <= 36; i++){
+    let clr = "black";
+    if(NumIsRed(i)){ clr = "red"};
+
+    board.innerHTML += `<div class="numbox" style="background-color: ${clr}" onclick="ChangeBet(${i})">${i}</div>`;
+}
+
+function ChangeBet(b){
+    CurrentBet = b;
+    infoboard.innerHTML = `Current Bet: ${b} | Bet Amount: $${betamount} | Money: $${playermoney} (gain $${playermoney - 500})`;
+}
+function Spin(){
+    WinNumber = randomnum(1,36);
+    let message = "...";
+    playermoney -= betamount;
+
+    if(CurrentBet == "red" && NumIsRed(WinNumber)){message = "You Win! (Color Red)"; playermoney += betamount;}
+    else if(CurrentBet == "black" && !NumIsRed(WinNumber)){message = "You Win! (Color Black)"; playermoney += betamount;}
+    else if(CurrentBet == "even" && (WinNumber%2 == 0)){message = "You Win! (Even Number)"; playermoney += betamount;}
+    else if(CurrentBet == "odd" && (WinNumber%2 != 0)){message = "You Win! (Odd Number)"; playermoney += betamount;}
+    else if(CurrentBet == "right side" && WinNumber >= 19){message = "You Win! (Left Side 1-18)"; playermoney += betamount;}
+    else if(CurrentBet == "left side" && WinNumber <= 18){message = "You Win! (Right Side 19-36)"; playermoney += betamount;}
+    else if(typeof WinNumber != "string" && WinNumber == CurrentBet){message = "You Win! (Number Landed on)"}
+    else{ message = "You Lose"}
+    infoboard.innerHTML = `Number: ${WinNumber} | Your Bet: ${CurrentBet}`;
+
+    NumberHistory.push(WinNumber);
+    UpdateInfoBoard();
+    infoboard.innerHTML = message;
+}
+function UpdateInfoBoard(){
+    let redwins = 0; 
+    let blackwins = 0;
+    NumberHistory.forEach(n => { 
+        if(NumIsRed(n)){redwins++}
+        else{blackwins++}
+    })
+    let redwinpercent = redwins / (redwins + blackwins);
+    let blackwinpercent = 1 - redwinpercent;
+    hredwins.innerHTML = `${redwins} (${Math.floor(redwinpercent*100)}%)`;
+    hblackwins.innerHTML = `${blackwins} (${Math.floor(blackwinpercent*100)}%)`;
+
+    console.log(`redwin: ${redwins} | blackwins: ${blackwins} \n RedPercent: ${redwinpercent}% | BlackPercent: ${blackwinpercent}`)
+}
+
+
+function NumIsRed(num){
+    let r = false;
+    const rednums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 36, 34];
+    rednums.forEach(i => { if(num == i){r = true} })
+    return r;
+}
+</script>
