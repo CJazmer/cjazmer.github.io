@@ -20,7 +20,7 @@
 		vertical-align: center;
 		position:relative;
 		transform: rotate(2deg);
-		transition: 0.2s;
+		transition: 0.7s;
 		margin-left: -2em;
 		margin-top: -5.5em;
     }
@@ -43,8 +43,8 @@
 		rotate: 0deg;
 	}
 	#drawcardbutton{
-		width:4em;
-		height:7em;	
+		min-width:6.5em;
+		min-height:10.5em;
 		border: .1em solid black;
 		border-radius: 20px;
 		background-image: radial-gradient(grey, black);
@@ -80,7 +80,16 @@
 		font-weight: bold;
 		background-color: lightgreen;
 	}
-    
+    table{
+		background-color: lightgreen;
+		padding: .4em;
+		border-radius: 10%;
+		margin: 1em auto 1em auto;
+	}
+	table button{
+		width: 100%;
+		height: 2em;
+	}
 </style>
 </head>
 
@@ -95,6 +104,21 @@
 					<button onclick="DrawCardClicked(this)" id="drawcardbutton">Draw Card</button>
 				</div>
 					<div class="deck" id="playerdeck"></div>
+					<table>
+						<tr><th>AI Turn Speed</th><td>
+							<select id="dropdownaiturnspeed">
+								<option value="300">Very Fast</option>
+								<option value="1000">Fast</option>
+								<option value="2000" selected>Normal</option>
+								<option value="4000">Slow</option>
+							 </select>
+						</td></tr>
+						<tr><th>Show AI Cards</th><td><input type="checkbox" id="checkboxshowaicards"></td></tr>
+						<tr><td><button onclick="ResetGame()">Restart</button></td><td><button onclick="ApplySettings()">Apply Settings</button></td></tr>
+					</table>
+					<table>
+						<tr><th>Win Ratio</th><td id="hwinratio"></td></tr>
+					</table>
 
 				<footer></footer>
 		</div>
@@ -110,12 +134,17 @@ var haideck = document.getElementById('aideck');
 var hmaincard = document.getElementById('hmaincard');
 var drawcardbutton = document.getElementById('drawcardbutton');
 var toptext = document.getElementById('toptext');
+const hwinratio = document.getElementById('hwinratio');
 var colors = ["red", "blue", "green", "rgb(191, 201, 0)"];
-var values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "🚫", "🔄", "+2", "+4🌈", "🌈"]
+var values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "🚫", "🔄", "+2", "+4🌈", "🌈"];
 let playerdeck = [];
 let aideck = [];
 let playersturn = true;
 let gameended = false;
+let playerwins = 0;
+let playerlosses = 0;
+let aianswermiliseconds = 2000;
+let showaicards = false;
 
 
 class Card {
@@ -127,30 +156,37 @@ class Card {
 }
 let maincard = {};
 maincard = new Card(1, "red", -1);
-ResetGame();
 
 function DrawCard(p) {
     var card = new Card(values[randomnum(0,values.length-1)], colors[randomnum(0,colors.length-1)], playerdeck.length);
     if(card.number.includes("🌈")){card.color = "rgb(50, 50, 50)"}
 	
-	if(p == "player"){playerdeck.push(card);}
+	if(p == "player" && playersturn){playerdeck.push(card);}
 	else{aideck.push(card);}
     UpdateGame();
 }
 function drawcards(amount, playr){ for(i = 0; i < amount; i++) {DrawCard(playr);}}
+
 function UpdateGame(){
     thedeck.innerHTML = "";
 	haideck.innerHTML = "";
 	playerdeck.forEach(c => {
 		thedeck.innerHTML += `<div class="card" style="background-color: ${c.color}" onclick="DeckCardClicked(this)">${c.number}</div>`;
 	})
+	if(showaicards)
 	aideck.forEach(c => {
+		haideck.innerHTML += `<div class="card" style="background-color: ${c.color}; width:2em; height:4em; margin:0em" onclick="DeckCardClicked(this)">${c.number}</div>`;
+	})
+	else{
+		aideck.forEach(c => {
 		haideck.innerHTML += `<div class="carddown" style="background-color: ${c.color}" onclick="DeckCardClicked(this)"></div>`;
 	})
+	}
 	hmaincard.style.backgroundColor = maincard.color; 
 	hmaincard.innerHTML = maincard.number;
 	if(aideck.length == 0){EndGame("You Lose")}
 	if(playerdeck.length == 0){EndGame("You Win")}
+	hwinratio.innerHTML = `Wins: ${playerwins} | Losses: ${playerlosses} | Games: ${playerwins + playerlosses}`;
 }
 function UpdateIds() {
 	for (j = 0; j < playerdeck.length; j++) { playerdeck[j].id = j;}
@@ -202,18 +238,22 @@ if(!gameended){
 			RemoveCard(ccc.id, "ai");
 			UpdateGame();
 			if(aideck.length == 0){EndGame("You Lose");}
+			if(ccc.number.includes("🚫") || ccc.number.includes("🔄")){AIMakeMove()}
+			else{SwitchTurn("player");}
 		}
-		else{drawcards(1, "ai");}
-		SwitchTurn("player");
+		else{drawcards(1, "ai"); SwitchTurn("player")}
+		
 		drawcardbutton.innerHTML = "Draw Card"; 
 
-	}, 3000); // 2sec
+	}, aianswermiliseconds); // 2sec
+	UpdateGame()
 }
 	
 }
 
 function ResetGame(){
 	// 3 default cards
+	playerlosses--; // adds loss so i have to delete it
 	playerdeck = [];
 	aideck = [];
 	drawcards(3, "player");
@@ -255,7 +295,7 @@ if(!gameended && playersturn){
 
 		if(t.innerHTML.includes("+2")){drawcards(2, "ai")}
 		if(t.innerHTML.includes("+4")){drawcards(4, "ai")}
-		
+
 		playerdeck.forEach(crd => {
 			if(crd.color == maincard.color && crd.number.toString() == maincard.number) {maincard.id = crd.id;}
 		})
@@ -268,14 +308,31 @@ if(!gameended && playersturn){
 
 		// check if win
 		if(playerdeck.length == 0){ EndGame("You Win");}
-		else { SwitchTurn("ai"); }
+		else { 
+			if(t.innerHTML.includes("🚫") || t.innerHTML.includes("🔄")){ drawcardbutton.innerHTML = "Draw Card"}
+			else{SwitchTurn("ai");}
+		}
 	}
 }
 }
 function EndGame(t){
+if(!gameended){
 	gameended = true;
+	if(t.toLowerCase().includes("win")){
+		playerwins++;
+	}
+	else{
+		playerlosses++;
+	}
 	drawcardbutton.textContent = "Play Again";
 	toptext.innerHTML = t;
+}
+}
+function ApplySettings(){
+	showaicards = document.getElementById("checkboxshowaicards").checked;
+	aianswermiliseconds = document.getElementById("dropdownaiturnspeed").value;
+	UpdateGame();
+
 }
 
 </script> 

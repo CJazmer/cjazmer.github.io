@@ -7,17 +7,17 @@
 	<meta name="keywords" content="random, info, generator">
 	<style>
 		.cardup{
-            width: 5em;
-            height: 9em;
-            margin-right: -4em;
+            width: 4em;
+            height: 7em;
+            margin-right: -3em;
             background-color: white;
             border-radius: 10%;
             border: .2em solid black;
             padding: .5em;
         }
         .carddown{
-            width: 5em;
-            height: 9em;
+            width: 4em;
+            height: 7em;
             padding: .5em;
             margin-right: -4em;
             background-image: radial-gradient(blue, cyan);
@@ -43,6 +43,7 @@
             width: 100%;
             height: 2.5em;
             max-height: 2.5em;
+            border-radius: .2em;
         }
         .cardholder{
             display: flex;
@@ -52,14 +53,11 @@
             padding: 1em;
             border: .3em solid black;
         }
-        button{
-            width: 50%;
-            border-radius: .2em;
-        }
         #heading{
             text-align: center;
         }
         .flex{
+            min-width: 100%;
             display: flex;
             background-color: lightgreen;
         }
@@ -134,7 +132,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr><th>Set Money</th><td><input type="number" value="1" id="inputplayermoney"></td></tr>
+                <tr><th>Set Money</th><td><input type="number" value="200" id="inputplayermoney"></td></tr>
                 <tr>
                     <th><button onclick="ShuffleDeck()">Shuffle Deck</button></th>
                     <td><button onclick="ApplyRules()" style="background-color: greenyellow;">Apply Settings</button></td>
@@ -153,6 +151,10 @@
                 <b>CardCount:</b> +0.5% in your favor for every +1 true count (bet higher)<br>
                 <i>!Splitting and soft/Ace decks don't work yet!</i>
             </p>
+            <table>
+                <tr><th>Win Rate</th><td id="hwinrate"></td></tr>
+                <tr><th>Money Gain</th><td id="hmoneystats"></td></tr>
+            </table>
             <footer></footer>
 			</div>
 		</div>
@@ -173,6 +175,8 @@
     const hcardcount = document.getElementById("hcardcount");
     const hnumofdecks = document.getElementById("hnumofdecks");
     const dropdowncurrentbet = document.getElementById("dropdowncurrentbet");
+    const hwinrate = document.getElementById("hwinrate");
+    const hmoneystats = document.getElementById("hmoneystats");
 
 // ♥️♠️♦️♣️
 const defaultdeck = [
@@ -199,6 +203,7 @@ let payoutMultip = 1.5; // 1.5 is '3 to 2' which is standard
 let numofdecks = 1;
 let runningcount = 0;
 let MoneyGain = 0;
+let startmoney = 200;
 let doubleddown = false;
 
 reset();
@@ -225,7 +230,7 @@ function UpdateScreen(){
 
     for(i=0; i<playerdeck.length; i++){
         let styl = ""
-        if(i == 2 && doubleddown){styl = "transform: translateX(2em) translateY(-3em) rotate(-90deg)"}
+        if(i == 2 && doubleddown){styl = "transform: translateX(-2em) translateY(1em) rotate(-90deg)"}
         hplayerdeck.innerHTML += `<div class="cardup" style="${styl}">${playerdeck[i]}</div>`;
     }
     for(i=0; i < aideck.length; i++){
@@ -234,8 +239,8 @@ function UpdateScreen(){
     }
 
     if(ShowCardTotal){
-        playerscore.innerHTML = `${SumArray(playerdeck)} (${playerwins} wins)`;
-        aiscore.innerHTML = `${ToNum(aideck[0])} (${aiwins} wins)`;
+        playerscore.innerHTML = `${SumArray(playerdeck)}`;
+        aiscore.innerHTML = `${ToNum(aideck[0])}`;
     }
     else{
         playerscore.innerHTML = "";
@@ -257,6 +262,11 @@ function UpdateScreen(){
     })
     hcardcount.innerHTML = `${runningcount} (true: ${Math.floor(runningcount/(deck.length / 52).toFixed(0))})`;
     hnumofdecks.innerHTML = `${numofdecks} (${deck.length} cards left (${(deck.length / 52).toFixed(1)} Decks left))`;
+    hwinrate.innerHTML = `(${Math.floor((playerwins/gamesplayed)*100)||0}%) | Wins: ${playerwins} | Loses: ${aiwins}`;
+    let sign = "+"; if(MoneyGain < 0){sign=""}
+    hmoneystats.innerHTML = `$${startmoney} to $${playermoney} | ${sign}$${MoneyGain} (${sign + (MoneyGain/startmoney).toFixed(1)}%)`;
+    document.getElementById("inputplayermoney").value = playermoney;
+    if(SumArray(playerdeck) == 21){EndGame("Win (Blackjack!)")}
 }
 
 
@@ -330,10 +340,11 @@ function RevealCards(){
     aideck.forEach(n => {
     haideck.innerHTML += `<div class="cardup">${n}</div>`;
     });
-    aiscore.innerHTML = `${SumArray(aideck)} (${aiwins} wins)`;
+    aiscore.innerHTML = `${SumArray(aideck)}`;
 }
 
 function EndGame(msg){
+if(!gameended){
     gameended = true;
     if(msg.includes("draw")){}
     else if(msg.toLowerCase().includes("win")){
@@ -353,6 +364,7 @@ function EndGame(msg){
     setTimeout(function timer() {
             reset();
     }, 4000);
+}
 }
 
 function BestMove(plr, ai){
@@ -447,4 +459,5 @@ function CheckForWinner(){
     else if(SumArray(playerdeck) < SumArray(aideck)){EndGame("Lose (lower num)")}
     }
 }
+dropdowncurrentbet.addEventListener("change", function(){currentbet = dropdowncurrentbet.value})
 </script>

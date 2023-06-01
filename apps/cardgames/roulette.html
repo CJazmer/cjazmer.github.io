@@ -22,7 +22,9 @@
         }
         #board{
             padding: .2em;
-            height: 11em;
+            height: 10em;
+            width: 40em;
+            margin: 0em auto 0em auto;
             background-color: gray;
             display: flex;
             flex-direction: column-reverse;
@@ -31,7 +33,8 @@
             justify-items: right;
         }
         .btnholder{
-            width: 100%;
+            width: 40em;
+            margin: 0em auto 0em auto;
             display: flex;
         }
         .btnholder button{
@@ -43,7 +46,6 @@
         #infoboard{
             width: 100%;
             min-height: 2em;
-            background-image: radial-gradient(lightgreen, green);
             text-align: center;
         }
         p{
@@ -51,18 +53,31 @@
         }
         table{
             margin: auto;
+            width: fit-content;
         }
     </style>
 </head>
 
 <body>
-		<div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+		<div class="wrapper" style="background-image: radial-gradient(lightgreen, green)">
 			<div id="layoutpagenav"></div>
 
             <table>
                 <tr><td><p>Red Wins: <span id="hredwins">0</span></p></td><td><p>| Black Wins <span id="hblackwins">0</span></p></td></tr>
             </table>
-            <div id="infoboard"></div>   
+            <table>
+                <tr><th>Bet</th><td>
+                    <select id="selectbetamout">
+                        <option value="20">$20</option>
+                        <option value="50" selected>$50</option>
+                        <option value="100">$100</option>
+                        <option value="200">$200</option>
+                        <option value="500">$500</option>
+                        <option value="1000">$1000</option>
+                     </select> on <span id="infoboard"></span>
+                </td></tr>
+                <tr><th>Money</th><td><p id="hmoney"></p></td></tr>
+            </table>
             <div id="board"></div>
 
             <div class="btnholder">
@@ -91,6 +106,8 @@ const board = document.getElementById("board");
 const infoboard = document.getElementById("infoboard");
 const hblackwins = document.getElementById("hblackwins");
 const hredwins = document.getElementById("hredwins");
+const selectbetamout = document.getElementById("selectbetamout");
+const hmoney = document.getElementById("hmoney");
 
 let playermoney = 500;
 let betamount = 50;
@@ -105,26 +122,27 @@ for(i=1; i <= 36; i++){
 
     board.innerHTML += `<div class="numbox" style="background-color: ${clr}" onclick="ChangeBet(${i})">${i}</div>`;
 }
+UpdateInfoBoard();
 
 function ChangeBet(b){
     CurrentBet = b;
-    infoboard.innerHTML = `Current Bet: ${b} | Bet Amount: $${betamount} | Money: $${playermoney} (gain $${playermoney - 500})`;
+    infoboard.innerHTML = `(${b})`;
 }
 function Spin(){
     WinNumber = randomnum(1,36);
+    betamount = selectbetamout.value;
     let message = "...";
-    playermoney -= betamount;
 
-    if(CurrentBet == "red" && NumIsRed(WinNumber)){message = "You Win! (Color Red)"; playermoney += betamount;}
-    else if(CurrentBet == "black" && !NumIsRed(WinNumber)){message = "You Win! (Color Black)"; playermoney += betamount;}
-    else if(CurrentBet == "even" && (WinNumber%2 == 0)){message = "You Win! (Even Number)"; playermoney += betamount;}
-    else if(CurrentBet == "odd" && (WinNumber%2 != 0)){message = "You Win! (Odd Number)"; playermoney += betamount;}
-    else if(CurrentBet == "right side" && WinNumber >= 19){message = "You Win! (Left Side 1-18)"; playermoney += betamount;}
-    else if(CurrentBet == "left side" && WinNumber <= 18){message = "You Win! (Right Side 19-36)"; playermoney += betamount;}
+    if(CurrentBet == "red" && NumIsRed(WinNumber)){message = "You Win! (Color Red)"; playermoney += betamount*GetPayoutMilt("red");}
+    else if(CurrentBet == "black" && !NumIsRed(WinNumber)){message = "You Win! (Color Black)"; playermoney += betamount*GetPayoutMilt("black");}
+    else if(CurrentBet == "even" && (WinNumber%2 == 0)){message = "You Win! (Even Number)"; playermoney += betamount*GetPayoutMilt("even");}
+    else if(CurrentBet == "odd" && (WinNumber%2 != 0)){message = "You Win! (Odd Number)"; playermoney += betamount*GetPayoutMilt("odd");}
+    else if(CurrentBet == "right side" && WinNumber >= 19){message = "You Win! (Left Side 1-18)"; playermoney += betamount*GetPayoutMilt("right side");}
+    else if(CurrentBet == "left side" && WinNumber <= 18){message = "You Win! (Right Side 19-36)"; playermoney += betamount*GetPayoutMilt("left side");}
     else if(typeof WinNumber != "string" && WinNumber == CurrentBet){message = "You Win! (Number Landed on)"}
-    else{ message = "You Lose"}
-    infoboard.innerHTML = `Number: ${WinNumber} | Your Bet: ${CurrentBet}`;
+    else{ message = "You Lose"; playermoney -= betamount;}
 
+    infoboard.innerHTML = `Number: ${WinNumber} | Your Bet: ${CurrentBet}`;
     NumberHistory.push(WinNumber);
     UpdateInfoBoard();
     infoboard.innerHTML = message;
@@ -140,6 +158,7 @@ function UpdateInfoBoard(){
     let blackwinpercent = 1 - redwinpercent;
     hredwins.innerHTML = `${redwins} (${Math.floor(redwinpercent*100)}%)`;
     hblackwins.innerHTML = `${blackwins} (${Math.floor(blackwinpercent*100)}%)`;
+    hmoney.innerHTML = `$${playermoney} (gain $${playermoney - 500})`;
 
     console.log(`redwin: ${redwins} | blackwins: ${blackwins} \n RedPercent: ${redwinpercent}% | BlackPercent: ${blackwinpercent}`)
 }
@@ -150,5 +169,15 @@ function NumIsRed(num){
     const rednums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 36, 34];
     rednums.forEach(i => { if(num == i){r = true} })
     return r;
+}
+function GetPayoutMilt(n){
+    let r = 0;
+    if(n == "red" || n == "black"){r = 1}
+    else if(n == "odd" || n == "even"){r = 1}
+    else if(n == "left side" || n == "right side"){r = 1}
+    else if(n == "first 12" || n == "second 12" || n == "third 12"){r = 2}
+    else if("number"){r = 32}
+
+return r;
 }
 </script>
