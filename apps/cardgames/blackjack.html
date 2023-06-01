@@ -185,7 +185,7 @@ const defaultdeck = [
     "A♦️", "2♦️", "3♦️", "4♦️", "5♦️", "6♦️", "7♦️", "8♦️", "9♦️", "10♦️", "J♦️", "Q♦️", "K♦️",
     "A♣️", "2♣️", "3♣️", "4♣️", "5♣️", "6♣️", "7♣️", "8♣️", "9♣️", "10♣️", "J♣️", "Q♣️", "K♣️",
 ];
-let deck = defaultdeck;
+let deck = [].concat(defaultdeck);
 let playerdeck = [];
 let aideck = [];
 let playerwins = 0;
@@ -207,11 +207,11 @@ let startmoney = 200;
 let doubleddown = false;
 
 reset();
+ShuffleDeck();
 function reset(){ 
     heading.innerHTML = "Play!";
     gameended = false;
     runningcount = 0;
-    ShuffleDeck();
 
 aideck = []; 
 DrawCard("ai");
@@ -260,11 +260,11 @@ function UpdateScreen(){
         if(ToNum(c) <= 6){runningcount--;} // fliped
         if(ToNum(c) >= 10){runningcount++;}
     })
-    hcardcount.innerHTML = `${runningcount} (true: ${Math.floor(runningcount/(deck.length / 52).toFixed(0))})`;
+    hcardcount.innerHTML = `${runningcount} (true: ${Math.floor(runningcount/(deck.length / 52))})`;
     hnumofdecks.innerHTML = `${numofdecks} (${deck.length} cards left (${(deck.length / 52).toFixed(1)} Decks left))`;
-    hwinrate.innerHTML = `(${Math.floor((playerwins/gamesplayed)*100)||0}%) | Wins: ${playerwins} | Loses: ${aiwins}`;
+    hwinrate.innerHTML = `${Math.floor((playerwins/gamesplayed)*100)||0}% | Wins: ${playerwins} | Loses: ${aiwins}`;
     let sign = "+"; if(MoneyGain < 0){sign=""}
-    hmoneystats.innerHTML = `$${startmoney} to $${playermoney} | ${sign}$${MoneyGain} (${sign + (MoneyGain/startmoney).toFixed(1)}%)`;
+    hmoneystats.innerHTML = `$${startmoney} to $${playermoney} | ${sign}$${MoneyGain} (${sign + Math.floor((MoneyGain/startmoney)*100)}%)`;
     document.getElementById("inputplayermoney").value = playermoney;
     if(SumArray(playerdeck) == 21){EndGame("Win (Blackjack!)")}
 }

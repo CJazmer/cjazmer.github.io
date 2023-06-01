@@ -22,15 +22,14 @@
         }
         #board{
             padding: .2em;
-            height: 10em;
+            height: 11em;
             width: 40em;
             margin: 0em auto 0em auto;
-            background-color: gray;
+            background-color: green;
             display: flex;
             flex-direction: column-reverse;
             flex-wrap: wrap;
-            justify-content: right;
-            justify-items: right;
+            justify-content: center;
         }
         .btnholder{
             width: 40em;
@@ -53,7 +52,32 @@
         }
         table{
             margin: auto;
+            padding: .4em;
             width: fit-content;
+            background-color: aquamarine;
+            border: .2em solid black;
+        }
+        td p{text-align: left; margin: 0em;}
+        table tr{border: 1em solid black;}
+        table tr td button{width: 100%; height: 2em;}
+        .bet{
+            margin: 0em auto 0em auto;
+            width: 40em;
+            background-color: green;
+            color:white;
+        }
+        #hmaintext{
+            margin: 0em;
+            padding: .5em;
+        }
+        .spinbtn{
+            background-image: radial-gradient(yellow, goldenrod);
+        }
+        .tips{
+            background-color: aquamarine;
+            margin: 0em;
+            padding: .5em;
+            text-align: left;
         }
     </style>
 </head>
@@ -63,27 +87,29 @@
 			<div id="layoutpagenav"></div>
 
             <table>
-                <tr><td><p>Red Wins: <span id="hredwins">0</span></p></td><td><p>| Black Wins <span id="hblackwins">0</span></p></td></tr>
-            </table>
-            <table>
-                <tr><th>Bet</th><td>
-                    <select id="selectbetamout">
-                        <option value="20">$20</option>
-                        <option value="50" selected>$50</option>
-                        <option value="100">$100</option>
-                        <option value="200">$200</option>
-                        <option value="500">$500</option>
-                        <option value="1000">$1000</option>
-                     </select> on <span id="infoboard"></span>
-                </td></tr>
                 <tr><th>Money</th><td><p id="hmoney"></p></td></tr>
+                <tr><th>Your Wins: </td><td><p id="hyourwins"></p></td></tr>
+                <tr><th>Color Wins: </td><td><p id="hcolorwins"></p></td></tr>
+                <tr><th>Even Wins: </td><td><p id="hevenwins"></p></td></tr>
+                <tr><th>Side Wins: </td><td><p id="hsidewins"></p></td></tr>
             </table>
+            <p id="hmaintext"></p>
+            <p class="bet">
+                <select id="selectbetamout">
+                    <option value="20">$20</option>
+                    <option value="50" selected>$50</option>
+                    <option value="100">$100</option>
+                    <option value="200">$200</option>
+                    <option value="500">$500</option>
+                    <option value="1000">$1000</option>
+                 </select> on <span id="infoboard"></span>
+                </p>
             <div id="board"></div>
 
             <div class="btnholder">
                 <button onclick="ChangeBet('first 12')">1st 12</button>
                 <button onclick="ChangeBet('second 12')">2nd 12</button>
-                <button onclick="ChangeBet('thrid 12')">3rd 12</button>
+                <button onclick="ChangeBet('third 12')">3rd 12</button>
             </div>
             <div class="btnholder">
                 <button onclick="ChangeBet('left side')">1-18</button>
@@ -93,7 +119,15 @@
                 <button onclick="ChangeBet('odd')">Odd</button>
                 <button onclick="ChangeBet('right side')">19-36</button>
             </div>
-            <button style="width: 100%;" onclick="Spin()">Spin!</button>
+            <button style="width: 100%;" onclick="Spin()" class="spinbtn">Spin!</button>
+            <table>
+                <tr><th># of Spins</th><td><input type="number" id="numofspins" value="10"></td></tr>
+                <tr><td><button onclick="Reset()">Reset All</button></td><td><button onclick="AutoSpin()">AutoSpin</button></td></tr>
+            </table>
+            <p class="tips">
+                The Win/Loss rate for everything doesn't make any difference because the odds will always be 50/50<br>
+                The highest chance of winning you can have is betting on 50/50 chances like Even, Black, First half... There is no strategy that guarantees steady income unlike BlackJack
+            </p>
             <footer></footer>
 		</div>
 </body>
@@ -104,18 +138,40 @@
 <script>
 const board = document.getElementById("board");
 const infoboard = document.getElementById("infoboard");
-const hblackwins = document.getElementById("hblackwins");
-const hredwins = document.getElementById("hredwins");
 const selectbetamout = document.getElementById("selectbetamout");
+const numofspins = document.getElementById("numofspins");
 const hmoney = document.getElementById("hmoney");
+const hmaintext = document.getElementById("hmaintext");
+const hcolorwins = document.getElementById("hcolorwins");
+const hevenwins = document.getElementById("hevenwins");
+const hsidewins = document.getElementById("hsidewins");
+const hyourwins = document.getElementById("hyourwins");
 
 let playermoney = 500;
+let playerlosses = 0;
 let betamount = 50;
 let WinNumber = 0;
 let CurrentBet = 1;
 ChangeBet(1);
 let NumberHistory = [];
+hmaintext.innerHTML = "Place Bet and Spin!";
 
+function Reset(){
+    CreateBoard();
+    playermoney = 500;
+    betamount = 50;
+    WinNumber = 0;
+    CurrentBet = 1;
+    playerlosses = 0;
+    NumberHistory = [];
+    hmaintext.innerHTML = "Place Bet and Spin!";
+    ChangeBet(1);
+    UpdateInfoBoard();
+}
+Reset();
+
+function CreateBoard(){
+    board.innerHTML = "";
 for(i=1; i <= 36; i++){
     let clr = "black";
     if(NumIsRed(i)){ clr = "red"};
@@ -123,10 +179,11 @@ for(i=1; i <= 36; i++){
     board.innerHTML += `<div class="numbox" style="background-color: ${clr}" onclick="ChangeBet(${i})">${i}</div>`;
 }
 UpdateInfoBoard();
+}
 
 function ChangeBet(b){
     CurrentBet = b;
-    infoboard.innerHTML = `(${b})`;
+    infoboard.innerHTML = `(${b}) x${GetPayoutMilt(b)} payout`;
 }
 function Spin(){
     WinNumber = randomnum(1,36);
@@ -139,28 +196,42 @@ function Spin(){
     else if(CurrentBet == "odd" && (WinNumber%2 != 0)){message = "You Win! (Odd Number)"; playermoney += betamount*GetPayoutMilt("odd");}
     else if(CurrentBet == "right side" && WinNumber >= 19){message = "You Win! (Left Side 1-18)"; playermoney += betamount*GetPayoutMilt("right side");}
     else if(CurrentBet == "left side" && WinNumber <= 18){message = "You Win! (Right Side 19-36)"; playermoney += betamount*GetPayoutMilt("left side");}
-    else if(typeof WinNumber != "string" && WinNumber == CurrentBet){message = "You Win! (Number Landed on)"}
-    else{ message = "You Lose"; playermoney -= betamount;}
+    else if(typeof CurrentBet != "string" && WinNumber == CurrentBet){message = "You Win! (Number Landed on)"; playermoney += betamount*GetPayoutMilt("number");}
+    else if(CurrentBet == "first 12"){}
+    else if(CurrentBet == "second 12"){}
+    else if(CurrentBet == "third 12"){
+        message = `You Win! (landed on ${CurrentBet})`;
+        playermoney += betamount*GetPayoutMilt("first 12")
+    }
 
-    infoboard.innerHTML = `Number: ${WinNumber} | Your Bet: ${CurrentBet}`;
+    else{ message = "You Lose"; playermoney -= betamount; playerlosses++;}
+
     NumberHistory.push(WinNumber);
     UpdateInfoBoard();
-    infoboard.innerHTML = message;
+    hmaintext.innerHTML = `<b>${WinNumber}</b> ${message}`;
 }
 function UpdateInfoBoard(){
     let redwins = 0; 
     let blackwins = 0;
+    let evenwins = 0;
+    let oddwins = 0;
+    let rightwins = 0;
+    let leftwins = 0;
     NumberHistory.forEach(n => { 
         if(NumIsRed(n)){redwins++}
         else{blackwins++}
+        if(n%2 == 0){evenwins++}
+        else{oddwins++}
+        if(n >= 19){rightwins++;}
+        else{leftwins++;}
     })
-    let redwinpercent = redwins / (redwins + blackwins);
-    let blackwinpercent = 1 - redwinpercent;
-    hredwins.innerHTML = `${redwins} (${Math.floor(redwinpercent*100)}%)`;
-    hblackwins.innerHTML = `${blackwins} (${Math.floor(blackwinpercent*100)}%)`;
-    hmoney.innerHTML = `$${playermoney} (gain $${playermoney - 500})`;
+    let totalplays = redwins + blackwins;
 
-    console.log(`redwin: ${redwins} | blackwins: ${blackwins} \n RedPercent: ${redwinpercent}% | BlackPercent: ${blackwinpercent}`)
+    hyourwins.innerHTML = `Spins: ${totalplays}<br>Win: ${totalplays-playerlosses} (${Math.floor(((totalplays-playerlosses)/totalplays)*100)||0}%)<br>Loss: ${playerlosses} (${Math.floor((playerlosses/totalplays)*100)||0}%)`;
+    hcolorwins.innerHTML = `Red: ${redwins} (${Math.floor((redwins/totalplays)*100)||0}%)<br>Black: ${blackwins} (${Math.floor((blackwins/totalplays)*100)||0}%)`;
+    hevenwins.innerHTML = `Even: ${evenwins} (${Math.floor((evenwins/totalplays)*100)||0}%)<br>Odd: ${oddwins} (${Math.floor((oddwins/totalplays)*100)||0}%)`;
+    hsidewins.innerHTML = `Right: ${rightwins} (${Math.floor((rightwins/totalplays)*100)||0}%)<br>Left: ${leftwins} (${Math.floor((leftwins/totalplays)*100)||0}%)`;
+    hmoney.innerHTML = `$${playermoney} (gain $${playermoney - 500})`;
 }
 
 
@@ -179,5 +250,11 @@ function GetPayoutMilt(n){
     else if("number"){r = 32}
 
 return r;
+}
+function AutoSpin(){
+    let spns = parseInt(numofspins.value)||1;
+    for(i=0; i<spns; i++){
+        Spin();
+    }
 }
 </script>

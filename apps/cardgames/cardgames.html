@@ -34,6 +34,23 @@
             flex-wrap: wrap;
             justify-content: center;
         }
+        .heading{
+            margin: 0em;
+            padding: 1em;
+            background-image: radial-gradient(gold, goldenrod);
+        }
+        button{
+            width: 8em;
+            border-radius: 10%;
+            background-image: radial-gradient(white, gold);
+        }
+        .flex{
+            background-color: rgb(255, 238, 143);
+            padding: .5em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
     </style>
 </head>
 
@@ -41,10 +58,16 @@
     <div id="layoutpagenav"></div>
 
 		<div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
-			<h1 style="text-align: center; margin: 0em; padding: 1em">Games</h1>
+			<h1 style="text-align: center; margin: 0em; padding: 1em" class="heading">$Casino Games$</h1>
+        <div class="flex">
             <button onclick="window.location.href='./blackjack.html'">BlackJack</button>
             <button onclick="window.location.href='./roulette.html'">Roulette</button>
-			<button onclick="window.location.href='./uno.html'">Uno</button>
+            <button onclick="window.location.href='./war.html'">War</button>
+        </div>
+            <h1 style="text-align: center; margin: 0em; padding: 1em"  class="heading">Other Games</h1>
+        <div class="flex">
+            <button onclick="window.location.href='./uno.html'">Uno</button>
+        </div>
             <footer></footer>
 			</div>
 		</div>
