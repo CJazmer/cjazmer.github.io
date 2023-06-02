@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Uno</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Solo Uno game">
+	<meta name="keywords" content="Uno">
+<style>
+    .square{
+        width: 4em;
+        height: 4em;
+        border: .1em solid black;
+    }
+    .square:hover{
+        filter:hue-rotate(30deg);
+    }
+    .row{
+        display: flex;
+        width:fit-content
+    }
+    #board{
+        margin: 0em auto 0em auto;
+        background-color: black;
+        width: fit-content;
+    }
+	#toptext{
+		padding: 1em;
+		margin: 0em 0em -2em 0em;
+		text-align: center;
+		font-weight: bold;
+		background-color: lightgreen;
+	}
+    table{
+		background-color: lightgreen;
+		padding: .4em;
+		border-radius: 10%;
+		margin: 1em auto 1em auto;
+	}
+	table button{
+		width: 100%;
+		height: 2em;
+	}
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff5a00 0%, #ff3300 100%);">
+			<div id="layoutpagenav"></div>
+            <div id="board"></div>
+            <table>
+                <tr><th>Rows</th><td><input type="number" id="therows" value="8"></td></tr>
+                <tr><th>Cols</th><td><input type="number" id="thecols" value="8"></td></tr>
+                <tr><th></th><td><button onclick="CreateGame()">Create Board</button></td></tr>
+            </table>
+
+				<footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+const board = document.getElementById('board');
+let playerchips = 12;
+let aichips = 12;
+CreateBoard(8,8); // standard
+
+function CreateBoard(rows, cols){
+    let thehtml = "";
+    let clr = "red";
+    for(r=0; r<rows; r++){
+        thehtml += `<div class="row">`;
+        for(c=0; c<cols; c++){
+            if((c+r)%2==0){clr="orange"}
+            else{clr="red"}
+            thehtml += `<div class="square" style="background-color: ${clr}" id="r${r}c${c}" onclick="SquareClicked('r${r}c${c}')"></div>`;
+        }
+        thehtml += `</div>`;
+    }
+    board.innerHTML = thehtml;
+}
+function CreateGame(){
+    CreateBoard(
+        parseInt(document.getElementById("therows").value || 8), 
+        parseInt(document.getElementById("thecols").value || 8), 
+    )
+}
+function SquareClicked(id){
+    console.log(id);
+}
+
+</script> 

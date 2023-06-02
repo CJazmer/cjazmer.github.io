@@ -15,6 +15,7 @@
             border-radius: 10%;
             border: .2em solid black;
             padding: .5em;
+            text-align: left;
         }
         .carddown{
             width: 4em;
@@ -24,15 +25,6 @@
             background-image: radial-gradient(blue, cyan);
             border-radius: 10%;
             border: .2em solid black;
-            text-align: center;
-        }
-        #deckview{
-            display: flex;
-            flex-wrap: wrap;
-            overflow-y: scroll;
-            padding-bottom: 3em;
-            height: 10em;
-            background-color: gray;
         }
         button{
             width: 100%;
@@ -49,6 +41,7 @@
             border: .3em solid black;
             overflow-x: scroll;
             width: 100%;
+            max-width: 100%;
         }
         #heading{
             text-align: center;
@@ -67,16 +60,21 @@
         }
         .bigcardholder{
             width: 40%;
+            display: flex;
+            overflow-x: scroll;
             min-height: 10em;
             justify-content: center;
+            padding-left: 4em;
         }
         .bigcard{
-            width: 5em;
+            min-width: 5em;
             height: 9em;
-            margin: 0em auto 0em auto;
+            margin: 0em 0em 0em -4em;
             background-color: white;
             border: .2em solid black;
             border-radius: 10%;
+            text-align: left;
+            padding: .5em 0em 0em .5em;
         }
         .midscorething{
             width: 20%;
@@ -118,31 +116,34 @@
                         <span id="hscore"></span><br>
                         <span id="htitle"></span>
                    </p>
-                   <button onclick="NextMove()">Next Move</button>
+                   <button onclick="NextMove()" id="btnnextmove">Next Move</button>
                 </div>
                 <div class="bigcardholder" id="hbigaicard"></div>
             </div>
             <div class="cardholder" id="hplayerdeck"></div>
-            
-            <table>
-                <tr><th>Set Money</th><td><input type="number" value="200" id="inputplayermoney"></td></tr>
-                <tr>
-                    <th><button onclick="Reset()">Reset Game</button></th>
-                    <td><button onclick="ApplyRules()" style="background-color: greenyellow;">Apply Settings</button></td>
-                </tr>
-            </table>
-            <div id="deckview"></div>
-
-            <p class="tips">
-                <b>Setup:</b> 1 Deck, 2 or more players, split the deck evenly among players<br>
-                <b>Rank (Low to High):</b> 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, Joker<br>
-                <b>How to Play: </b> deck <br>
-            </p>
             <table>
                 <tr><th>Card Wins</th><td id="hcardwins"></td></tr>
                 <tr><th>Game Wins</th><td id="hgamewins"></td></tr>
                 <tr><th>Money Gain</th><td id="hmoneystats"></td></tr>
             </table>
+            <table>
+                <tr><th>Payout</th><td>
+                    <select id="dropdownbetmult">
+                        <option value="1" selected>1x *Default</option>
+                        <option value="2">2x</option>
+                     </select>
+                </td></tr>
+                <tr><th>Betting Mode</th><td><input type="checkbox" id="checkboxbettingmode" checked="checked"></td></tr>
+                <tr>
+                    <th><button onclick="Reset()">Reset Game</button></th>
+                    <td><button onclick="ApplyRules()" style="background-color: greenyellow;">Apply Settings</button></td>
+                </tr>
+            </table>
+            <p class="tips">
+                <b>Setup:</b> 1 Deck, 2 or more players, split the deck evenly among players<br>
+                <b>Rank (Low to High):</b> 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, Joker<br>
+                <b>How to Play: </b> deck <br>
+            </p>
             <footer></footer>
 			</div>
 		</div>
@@ -160,6 +161,8 @@
     const htitle = document.getElementById("htitle");
     const hgamewins = document.getElementById("hgamewins");
     const hcardwins = document.getElementById("hcardwins");
+    const hmoneystats = document.getElementById("hmoneystats");
+    const btnnextmove = document.getElementById("btnnextmove");
 
 // ♥️♠️♦️♣️
 const defaultdeck = [
@@ -173,22 +176,30 @@ let playerdeck = [];
 let aideck = [];
 let cardwins = 0;
 let gamewins = 0;
+let gamesplayed = 0;
 let cardchallenges = 0;
+let iswar = false;
+let WarDrawCardAmount = 4;
+let WarStreak = 1;
+let gameended = false;
+let payoutmult = 1;
+let playermoney = 200;
+let moneygain = 0;
+let currentbet = 20;
 
 Reset();
-UpdateScreen();
 
 function Reset(){
+    gameended = false;
+    deck = [].concat(defaultdeck);
     ShuffleDeck()
     for(i=0; i<deck.length/2; i++){
         aideck.push(deck[i]);
     }
     deck = deck.slice(deck.length/2, deck.length);
     playerdeck = [].concat(deck);
-    deck = [];
-
-
-    
+    deck = [];  
+    UpdateScreen()
 }
 function UpdateScreen(){
     hplayerdeck.innerHTML = "";
@@ -201,8 +212,13 @@ aideck.forEach(c => {
     haideck.innerHTML += `<div class="carddown"></div>`;
 })
 
+if(playerdeck.length == 0){EndGame("loss")}
+else if(aideck.length == 0){EndGame("win")}
+moneygain = playermoney - 200;
 hscore.innerHTML = `You: ${playerdeck.length} | AI: ${aideck.length}`;
 hcardwins.innerHTML = `Wins: ${cardwins} | Losses: ${cardchallenges-cardwins}`;
+hgamewins.innerHTML = `Games: ${gamesplayed} <br>Wins: ${gamewins} (${Math.floor(gamewins/gamesplayed)*100||0}%) <br>Losses: ${gamesplayed-gamewins} (${Math.floor((gamesplayed-gamewins)/gamesplayed)*100||0}%)`;
+hmoneystats.innerHTML = `$200 to $${playermoney} | Gain: $${moneygain} (${Math.floor((moneygain/200)*100)||0}%)`;
 }
 function ShuffleDeck(){
     olddeck = [].concat(deck);
@@ -214,25 +230,77 @@ function ShuffleDeck(){
     }
 }
 function NextMove(){
-    plr = ValueOf(playerdeck[0]);
-    ai = ValueOf(aideck[0]);
+    if(btnnextmove.innerHTML == "Play Again"){
+        Reset();
+    }
+    else if(!gameended) {
+    let plr = ValueOf(playerdeck[0]);
+    let ai = ValueOf(aideck[0]);
 
     hbigplayercard.innerHTML = `<div class="bigcard">${playerdeck[0]}</div>`;
     hbigaicard.innerHTML = `<div class="bigcard">${aideck[0]}</div>`;
-
-    if(plr == ai){ // WAR!!!
-        htitle.innerHTML = "WAR!"
+   
+    if(iswar){
+        if(playerdeck.length <= WarDrawCardAmount){EndGame("loss")}
+        else if(aideck.length <= WarDrawCardAmount){EndGame("win")}
+        else {
+        for(i=0; i<WarDrawCardAmount; i++){
+            hbigplayercard.innerHTML += `<div class="bigcard">${playerdeck[i+1]}</div>`;
+            hbigaicard.innerHTML += `<div class="bigcard">${aideck[i+1]}</div>`;
+        }
+        // Draw War
+        if(ValueOf(playerdeck[WarDrawCardAmount*WarStreak]) == ValueOf(aideck[WarDrawCardAmount*WarStreak])){
+            WarStreak++;
+            alert("wardraw");
+        }
+        // Win War
+        else if(ValueOf(playerdeck[WarDrawCardAmount*WarStreak]) > ValueOf(aideck[WarDrawCardAmount*WarStreak])){ 
+            htitle.innerHTML = "Win";
+            for(i=0; i<WarDrawCardAmount; i++){
+                playerdeck.push(aideck[0]);
+                playerdeck.push(playerdeck[0]);
+                aideck.shift();
+                playerdeck.shift();
+            }
+            iswar = false;
+            WarStreak = 1;
+            playermoney += currentbet*payoutmult;
+        }
+        // Lose War
+        else{ 
+            htitle.innerHTML = "Loss";
+            for(i=0; i<WarDrawCardAmount; i++){
+                aideck.push(playerdeck[0]);
+                aideck.push(aideck[0]);
+                playerdeck.shift();
+                aideck.shift();
+            }
+            iswar = false;
+            WarStreak = 1;
+            playermoney -= currentbet;
+        }
+    }   
     }
-    else if(plr > ai){ // Player Wins
+    else if(plr == ai){ // WAR!!!
+        htitle.innerHTML = "WAR!";
+        iswar = true;
+    }
+    else if(plr > ai){ // Player Wins (add both cards to end of playerdeck)
         htitle.innerHTML = "Win";
         playerdeck.push(aideck[0]);
+        playerdeck.push(playerdeck[0]);
         aideck.shift();
+        playerdeck.shift();
         cardwins++;
+        playermoney += currentbet*payoutmult;
     }
     else{ // AI Wins
         htitle.innerHTML = "Loss";
         aideck.push(playerdeck[0]);
+        aideck.push(aideck[0]);
+        aideck.shift();
         playerdeck.shift();
+        playermoney -= currentbet;
     }
     cardchallenges++;
 
@@ -240,14 +308,30 @@ function NextMove(){
 
     UpdateScreen();
 }
+}
+
 function ValueOf(num){
     const cardvalues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]; 
-    num = num.slice(0,-2); // Remove card type club/heart/spade...
     let val = 0;
-    for(i=0; i<cardvalues.length; i++){
-    if(num == cardvalues[i]){val = i+2}
+    for(i=0; i<cardvalues.length-1; i++){
+    if(num.includes(cardvalues[i])){val = i+2}
     };
     return val;
+}
+function EndGame(msg){
+    if(msg == "win"){ // Win
+        gamewins++;
+        htitle.innerHTML = "Game Win";
+    }
+    else{ // Loss
+        htitle.innerHTML = "Game Loss";
+    }
+    gameended = true;
+    btnnextmove.innerHTML = "Play Again";
+    gamesplayed++;
+}
+function ApplySettings(){
+    payoutmult = parseInt(document.getElementById("dropdownbetmult").value);
 }
 
 </script>
