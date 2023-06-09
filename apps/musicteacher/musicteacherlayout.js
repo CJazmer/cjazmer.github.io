@@ -17,8 +17,9 @@ document.head.innerHTML += `
     justify-content: space-evenly;
 }
 #musicnav button{
-width: 8em;
-height: 2em;
+width: 49%;
+height: 3em;
+background-color: lightgreen;
 }
 </style>
 `;
