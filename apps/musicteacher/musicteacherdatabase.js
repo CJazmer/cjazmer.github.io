@@ -17,9 +17,11 @@ const musicteacherdatabase = [
     {title: "Hand Precussion🪘", thehtml: `
     <img src="./assets/handdrumslabled.jpg">    
     <h1>Conga</h1>
-        <p>Traditional set has 3 congas, Tumba (lowest), Tres dos (middle), Quinto (smallest). Tumba on right, TresDos in middle, and Quinto on left</p>
+        <p>Popular to have 2 congas held up with a stand. Smaller conga (quinto) on left. Bigger conga (Tumba) on right. Quinto (smallest). <br>
+        In Afro-Latin music like Cuban Rumba, 3 or more congas can be used. Quinto is in between your legs, Tumba to your left and TresDos/Middle conga to your right<br>
+        Main Tones: Bass, Open, Slap</p>
     <h1>Bongó</h1>
-        <p>Place between legs holding it with your knees. Small drum on left side. Bongo Del Monte is lower pitch bongo used in cuba with the smaller drum on the right side.</p>
+        <p>Place between legs holding it with your knees. Small drum (macho) on left side. Big drum (hembra) on right side. "Bongo Del Monte" is an uncommon lower pitch bongo used in Cuba with the smaller drum on the right side instead. "Martillo" is the most popular rhythm for latin music (H-L-H-L)</p>
     <h1>Cajon</h1>
         <p>Cajon means box in spanish. Sit on it and hit the front face. 2 Types: Cajon with snare inside, and cajon without a snare.</p>
     <h1>Djembé</h1>
@@ -188,44 +190,51 @@ const musicteacherdatabase = [
 
 const LatinGenres = [
     {name: "Reggae", description: `1) Drummer (1+2+) <br> 2) Bass (simple catchy riff) <br> 3) guitar or piano play chords on 'and+' <br> 4) Soloing and Singer <br> *add a swing to make it groovy <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2RNTTtuUuFXlzXAiPC3F8I?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Rumba Flamenca", description: `*Instrumental Spanish guitar sounds nice, don't need a singer but it helps (tresillo rhythm) <br> 1) Nylon Guitar Strumming pattern *NO PICK* (down up down up hit up down up) <br> 2) Nylon Guitar soloing in minor key (phrygian or harmonic minor scale) <br> 3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2Jqf2FjO5svRlx2oQCKalL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Reggaeton", description: `1) Drum/HandDrum (Tresillo Dembow beat) (b - - k b - k -) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6WfFQdxkZQnOOeMqpz4cTF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Cumbia", description: `1) Bass (Triad outlining chord) (o - - - o - o -) <br> 2) Metal Guira or Shaker (chachacha) (o - o o) & Thump on downbeat <br> 3) Soloing (piano or guitar) <br> 4) Timbales (cascara on sides, hit cowbell on off beat, use clave/jamblock) <br> 5) Congas/bongos <br> 6) Chord played on and + beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gsl75gtb2HYTTcxDQO1Ku?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Rumba Flamenca", description: `*Instrumental Spanish guitar sounds nice, don't need a singer but it helps (tresillo rhythm) <br> 1) Nylon Guitar Strumming pattern *NO PICK* <br> (slap up down up) <br> (down up down up slap up down up) <br> (down up down UP tap up slap up) <br><br> 2) Nylon Guitar soloing in minor key (phrygian or harmonic minor scale) <br> 3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2Jqf2FjO5svRlx2oQCKalL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Reggaeton", description: `1) Drum/HandDrum (Tresillo Dembow beat) (L - - H L - H -) <br> 2) Guitar (Dembow strum (down up down UP slap up DOWN up)) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6WfFQdxkZQnOOeMqpz4cTF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Cumbia", description: `*Use a footpedal to add a thump to the downbeat <br><br> 1) Timbales (side of timbales (chachacha) (o - o o)) Hit Cowbel/JamBlock on downbeat <br> 1) or Metal Guira (chachacha) <br> 2) Bass (Triad outlining chord) (L - - - M - H -) & Guitar/Piano chord (- - o -) <br> 3) Solo on guitar/piano (solo using 16th notes and spaces) <br> 4) Congas/bongos <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gsl75gtb2HYTTcxDQO1Ku?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Bachata", description: `Thump on down beat, straight beat <br> 1) Guitar Fingerpick rhythm (B - - - B - B -) or bachata soloing <br> 2) Metal Guira hitting 8th notes (derecho) or 4th notes (majao) <br> 3) Bongo (martillo) and hitting rolls <br> 4) Bass (B - - B B - B -) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7xcIEQqJ2QIAJISBoNYN2e?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Salsa", description: `1) Piano (montuno rhythm) (o - o o - o - o - o - o - o - o) <br> 2) Timbales (Cascara on cowbell to add energy) (o - o - o o o o - o - o o - o o) <br> 3) Bass (Tresillo (play last 2 beats) (- - - o - - o -) rushed feel) <br> 4) Congas (tumbao) (- - k - - - b b) <br> 5) Metal Guira/Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 6) Brass (can do on piano) <br> *Piano is the hardest part to get right (You can play bass (tresillo) and piano (montuno) riff at the same time!) <br> *Hitting metal sound (cascara on cowbell) and horns gives salsa its sound <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Salsa", description: `*Bugalu, Mambo, Timba <br><br> 1) Piano (montuno rhythm (M - H L - M - M - H - L - H - M)) or ('Tumbao' (L M H L) with Tresillo bass (L - - M - -H -))  Thumb and Pinky play octive from eachother same note/beat <br> 2) Timbales (Cascara on cowbell to add energy) (o - o - o o o o - o - o o - o o) <br> 3) Bass (Tresillo (play last 2 beats) (- - - o - - o -) rushed feel) <br> 4) Congas (tumbao) (- - k - - - b b) <br> 5) Metal Guira/Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 6) Brass (can do on piano) <br> *Piano is the hardest part to get right (You can play bass (tresillo) and piano (montuno) riff at the same time!) <br> *Hitting metal sound (cascara on cowbell) and horns gives salsa its sound <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Merengue", 
     description: `*Fast paced, Stomp on down beat <br> 1) Metal Guira (fast chachacha rhythm (o - o o) or fast scrape on down beat) *Thump on downbeat <br> 2) Piano (merengue (o oo o o o o o o o) or cascara rhythm on piano for energy (o - o - o o o o - o - o o - o o)) <br> 3) Bass hits on 1 <br> * you can play both piano riff and bass at the same time on piano and have a foot pedal that adds the thump on down beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3N3D8G6KUEDqNynKqIJr9Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Son", description: `1) Guitar Rhythm (hit up down up) or Tres/Double string (montuno rhythm) <br> 2) Bass (trelillo rhythm last 2 beats) (- - - o - - o -) <br> 3) Bongo (Martillo or Tumbao rhythm) <br> 4) Shakers (chachacha rhythm) (o - o o) <br> 5) Clave (son clave mostly 2/3) and Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Bolero", description: `Slow paced straight beat, has a roll on 2nd beat (B r r - B - B -) *r is roll <br> 1) Guitar/Tres/Piano Chords <br> 2) Shaker/Guira (constant 8th notes (roll on 2 & 3 beat) <br> 3) Bass (tresillo rhythm outline chord) (o - - - o - o -) <br> 4) congas & bongo (steady 8th notes tumbao accents) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Bolero", description: `Very Slow paced straight beat, has a roll on 2nd beat (B r r - B - B -) *r is roll <br> 1) Guitar/Tres/Piano Chords <br> 2) Shaker/TimbaleSides (constant 8th notes (roll on 2 & 3 beat) <br> 3) Bass (Tresillo Rhythm L - - - M - H -) <br> 4) Congas (- - H - - L H L) <br> 4) Bongo (martillo rhythm) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Guajira", 
-    description: `1) Piano (guajira rhythm) <br> 2) bass (tresillo (last 2 notes) double notes) (- - - o o - o o) <br> 3) Wooden Guiro (chachachaaa) (o - o o) <br> 4) bongo & conga (tumbao) (- - k - - - b b) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5DbWZLRryLT3U6wLgomr3N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Chachachá", description: `*Has chachachá sound in rhythm, bass and piano riff are different <br> 1) Wooden Guiro & shaker (chachachaaa) <br> 2) Bass (H H L - H L - -) <br> 3) Timbales hit cowbell on down beat <br> 4) Piano with this rhythm (- o o o) <br> 4) congas (tumbao) (- - k - - - b b) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WhlQabInaIYuMjMbhh4bw?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    description: `1) Piano (guajira rhythm (L H M L M H M H - H H H M H M M L)) <br> 2) bass (tresillo (last 2 notes) double notes) (- - - M M - H H  |  - - - M M - L L) <br> 3) Wooden Guiro (chachachaaa) (o - o o) <br> 4) bongo & conga (tumbao) (- - H - - - L L) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5DbWZLRryLT3U6wLgomr3N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Chachachá", description: `*Has chachachá sound in rhythm, bass and piano riff are different <br> 1) Wooden Guiro & shaker (chachachaaa) <br> 2) Bass (M - H L - - M M) <br> 3) Timbales hit cowbell on down beat <br> 4) Piano with this rhythm (- o o o) <br> 5) congas (tumbao) (- - H - - - L L) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WhlQabInaIYuMjMbhh4bw?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Banda", description: `Mexican Banda styles (Banda, Norteño, Ranchera) <br> 1) Drums (Banda Tambora & Timbales) <br> 2) Brass (Trumpet Trombone) <br> 3) Clarinet <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5aeJrTDl9Z7oS18VEK67pM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Mariachi", description: `Count in 3 <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3vNnzNTui9QxmvowzjDBg3?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Corridos", description: `3/4 Tempo. 1) 12 Sting Guitar rhythm 2) Clean Guitar soloing <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6rhvQESe2dmJFULuQfEXAY?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Cuban Rumba", description: `Gaguancó is a sub genre of Rumba <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5V7Z3yUE7hG7jLnUTbVWIM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Samba", description: `1) Guitar finger pick rhythm <br> 2) Shaker (continuous 8th notes) Stomp on down beat <br> 3) Bass <br> 4) Hand drum`},    
     {name: "Bossa Nova", description: ``},
     {name: "Calypso", description: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4IbkHr9p1laOfeHE6qWWK7?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Mambo", description: `Bing band latin music`},
     {name: "Changüí", 
-    description: `1) Tres/12StringGuitar rhythm <br> 2) Metal Guira (chachacha) <br> 3) bass/marímbula <br> 4) Bongo del monte <br> 5) clave (2 hits)`},
+    description: `* Like a shuffle blues (count in 3s to 12) <br> 
+    1) Maracas & Guira (chachacha o - o o) Both are played at the same time traditionally (Metal Guira is rarely used in cuban music, but this genre is an exception) <br> 
+    2) Bongo (- - H - - - L -) (bongo is played reversed (macho/SmallDrum on right side). "Bongo del Monte" is a lower pitched bongo <br> 
+    3) Bass/Marímbula <br> 
+    2) Conga (o - o o - o o - o o - o) <br> 2) Tres/Guitar (Pasacalle rhythm (L M H L M H L - - - - -)) | Coro: (L M H - L M H M H H H H M M M M) <br> 
+    5) Clave (Tresillo last two notes) (- - - o - - o -) *Like a Blues Shuffle`},
 ];
 // rhythms 
-// bongo (martillo)
 // conga (tumbao)
 // piano (montuno)
 // maraca (chachacha)
 // camana ()
-// clave ()
-// Tresillo, Claves, chachacha
+
+// ALL Main Rhythms =================================
+// chachacha (o - o o)
+// tresillo (o - - o - - o -)
+// cascara son clave 2/3 ()
+
 const FlamencoGenres = [];
 const AmericanGenres = [
     {name: "Standard Blues", description: `(1+2+) beat <br> 1) Drummer (B - K -) "boots and kats" beat <br> 2) Bass <br> 3) Guitar/Piano 4) harmonica`},
     {name: "Fast Blues", description: `(1,2) feel <br> 1) Drummer (B K) "one two" beat <br> 2) Bass (Walking) <br> 3) Guitar/Piano 4) Harmonica <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1Rf18QB2meMf8FP4CyaqQn?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Slow Blues", description: `(1+a2+a) count in 3 <br> 1) Drums (B - - K - B) 3/4 Temo <br> 2) Bass (play on B 'bass drum') <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/05Te3BNuXNYDOcOE1jiHlX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Shuffle Blues", description: `(1,2) feel with swing *odd time signature <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3bOA0biVTQ9SSLFQSONCK0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Funk", description: `1) Drums (1+2+) or gogo beat (B - K - - B K ) (B - - - K - - K - K B - K - - -) <br> 2) Groovy Bass (Add some slap, keep it simple an catchy) <br> 3) Rhythm Guitar (strum 16 notes press down on fretbord to play the chords on the hits/accents) <br> 4) Keybord (organ) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2NPs8J8BJPPFVrtNm9yFji?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Funk", description: `1) Drums (1+2+) or gogo beat (B - K - - B K ) (B - - - K - - K - K B - K - - -) <br> 2) Groovy Bass (Add some slap, keep it simple an catchy) <br> 3) Rhythm Guitar (strum 16 notes press down on fretbord to play the chords on the hits/accents <br> (o o o o o o - o - o o o - - - -)) <br> 4) Keybord (organ) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2NPs8J8BJPPFVrtNm9yFji?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Hip-Hop & Rap", description: `1) Drums gogo beat. example: (B - - - K - - B - - B - K - - -) <br> 2) Bass (play on bass drum hits)`},
     {name: "RnB", description: `1) Drummer (gogo beat / chill hiphop) <br> 2) Keybord <br> 3) Singer <br> 4) bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2lR6DVk8az4v71SfulYpiV?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Soul"},
@@ -238,6 +247,53 @@ const AmericanGenres = [
     {name: "Metal", description: `1) Guitar <br>2) Drums <br>3) Bass`},
 ];
 const WorldGenres = [
+    {name: "Rhythms", description: `
+
+    
+    `},
+    {name: "Rumba", description: `
+    Afro-Latin Drumming Rumba Rhythms (Not mainstream) <br><br>
+
+    <b>===== Cuban Patterns =====</b> <br>
+    Guaguanco (L-H--H--L-------L-) [3/2 Rumba Clave] *Man & Woman dancing<br>
+    Yambú? (- - - H H - L -)(o-oo-o-o-) [3/2 Yambu Clave] *man and woman dancing, very old style<br>
+    Columbia (S - O O - -) [6/8 son clave 3/2] *Man only dance, from the countryside
+    Songo (- - S - M M L L - M - - M M L L) <br>
+    Bembe1 (O S - O S -) *High Conga <br>
+    Bembe2 (- - S - O O) *Mid Conga  *6/8 Tumbao<br>
+    Bembe3 (B - O - B - | O O S S S -)*Low Conga <br>
+    Bembe Clave (o-o--o-o-o--)<br>
+    Bembe Bell (o-o-oo-o-o-o) <br>
+    Danson (- - S - L - H - - - S L - L H -) <br>
+    Mosambique NY(H - S L H H - H - H H L M M - -) <br>
+    Mosambique? (H - H - - - S - - H H L - - L -) <br><br>
+
+    <b>===== Others =====</b> <br>
+    Guarapachangueo (- L - - L - t t t ---S-S--|---S--j----S-S--) [3/2 rumba clave] *Dominican <br> 
+    Candombe (---L-H-----LH---)) [3/2 son clave] *Uruguay Rumba <br>
+    Abakuá (H H - - L - | H H M M L -) *Nigerian/Cuban<br><br>
+
+    <b>===== All Claves Combinations=====</b> <br>
+    Son   clave 2/3 (--o-o---o--o--o-) <br>
+    Rumba clave 2/3 (--o-o---o--o---o) <br>
+    Bossa clave 2/3 (--o--o--o--o--o-) <br>
+    Son   clave 3/2 (o--o--o---o-o---) <br>
+    Rumba clave 3/2 (o--o---o--o-o---) <br>
+    Bossa clave 3/2 (o--o--o---o--o--) <br>
+    6/8 son   clave 2/3 (-o-o--o-o-o-) <br>
+    6/8 rumba clave 2/3 (-o-o--o-o--o) <br>
+    6/8 bossa clave 2/3 (-o--o-o-o-o-) <br>
+    6/8 son   clave 3/2 (o-o-o--o-o--) <br>
+    6/8 rumba clave 3/2 (o-o--o-o-o--) <br>
+    6/8 son   clave 3/2 (o-o-o--o--o-) <br>
+    Columbia  clave (o-o-oo-o-o-o)<br>
+    Yambú clave (o--oo--oo-o-o---) <br><br>
+
+    ===== Other Common Patterns ===== <br>
+    Tumbao (- - S - - - B B -)<br>
+
+    <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5V7Z3yUE7hG7jLnUTbVWIM?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+
     {name: "Dabke دبكة", description: `From the Levantine region (Lebanon, Syria, Palestine, Jordan, Iraq) <br> 1) Darbuka drum (dembow beat) <br> 2) Mijwiz or Keybord soloing <br> 3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2dhFD0aRQoEo21dSwKwtpO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Khaleeji خليجي", description: `From the Gulf region (Saudi Arabia, UAE, Kuwait, Qatar) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7IM1C4p47DaJBK7Ff8TqkR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Sufi صوفية", description: `1) Piano Chords <br> 2) Flute/Soloing <br><br><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1wFPeUTC5XhUPdpNB0TR2v?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
