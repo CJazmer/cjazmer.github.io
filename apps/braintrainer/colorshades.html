@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Number Sensing</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random shapes">
+	<meta name="keywords" content="shape, maker, simulation">
+<style>    
+	button{
+		width: 100%;
+    }
+    canvas{
+        width: 100%;
+        height: 15em;
+        background-color: wheat;
+    }
+    #answer{
+        width: 100%;
+        height: 2em;
+        background-color: rgb(217, 157, 78);
+        margin: 0em;
+        text-align: center;
+    }
+    table{
+        background-color: lightslategray;
+        padding: .5em;
+        margin: 0em auto 0em auto;
+    }
+</style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+
+		<canvas id="canvas"></canvas>
+        <button onclick="Clicked()">Next</button>
+        <p id="answer"></p>
+        <table>
+            <tr><th>Num of Stripes</th><td><input type="number" id="hstripes" value="5"></td></tr>
+        </table>
+        <!-- Dot size variation -->
+        <footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const hanswer = document.getElementById("answer");
+const hstripes = document.getElementById("hstripes");
+let answer = 0;
+DrawStripes();
+
+function DrawStripes(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let columns = hstripes.value;
+    let answer = 2;
+    let color = "rgb(225, 200, 0)";
+
+
+    var ystart = 0; var count = 0;
+    answer = randomnum(1, (columns-1));
+    ctx.lineWidth = 3;
+
+        for (var i = 1; i < columns+1; i++) { 
+            
+            // Color (if more stripes than colors, it repeats)
+            if(i == answer) {ctx.fillStyle = "rgb(225, 208, 0)"}
+            else {ctx.fillStyle = color}
+
+            ctx.beginPath();
+            ctx.fillRect(0, ystart, canvas.width, canvas.height / columns + 1); // +1 covers empty gap
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(0, ystart, canvas.width, canvas.height / columns + 1);
+            ctx.closePath(); 
+            ystart += (canvas.height / columns); // change start y position for next stripe
+        }
+}
+function Clicked(){
+    DrawStripes();
+}
+</script> 

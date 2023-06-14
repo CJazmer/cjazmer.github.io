@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Music Stuff</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Music helper">
+	<meta name="keywords" content="music">
+<style>    
+button {
+    width: 100%;
+    height: fit-content;
+}
+#hthenote{
+    background-color: antiquewhite;
+    text-align: center;
+    margin:0em;
+}
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+            <div id="layoutpagenav"></div>
+
+                <button onclick="Clicked()">Play</button>
+                <button onclick="Show()">Show</button>
+                <p id="hthenote"></p>
+            
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js" integrity="sha512-jduERlz7En1IUZR54bqzpNI64AbffZWR//KJgF71SJ8D8/liKFZ+s1RxmUmB+bhCnIfzebdZsULwOrbVB5f3nQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/layout.js"></script>
+<script>
+    // h = from HTML
+    const arrnotes = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
+    const arrsimple = ["c", "d", "e", "f", "g", "a", "b"];
+    const hthenote = document.getElementById("hthenote");
+    let thenote = "";
+
+    function Clicked(){
+        let r = arrnotes[randomnum(0,arrnotes.length-1)];
+        thenote = r;
+
+        const synth = new Tone.Synth().toDestination();
+        const now = Tone.now()
+        synth.triggerAttackRelease(`${r}4`, "8n", now);
+    }
+    function Show(){
+        hthenote.innerHTML = thenote;
+    }
+    
+</script> 

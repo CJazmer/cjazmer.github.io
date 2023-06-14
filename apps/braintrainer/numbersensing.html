@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Number Sensing</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random shapes">
+	<meta name="keywords" content="shape, maker, simulation">
+<style>    
+	button{
+		width: 100%;
+    }
+    canvas{
+        width: 100%;
+        height: 15em;
+        background-color: wheat;
+    }
+    #answer{
+        width: 100%;
+        height: 2em;
+        background-color: rgb(217, 157, 78);
+        margin: 0em;
+        text-align: center;
+    }
+    table{
+        background-color: lightslategray;
+        padding: .5em;
+        margin: 0em auto 0em auto;
+    }
+</style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+
+		<canvas id="canvas"></canvas>
+        <button onclick="Clicked()">Next</button>
+        <p id="answer"></p>
+        <table>
+            <tr><th>Min Dots</th><td><input type="number" id="hminnum" value="1"></td></tr>
+            <tr><th>Max Dots</th><td><input type="number" id="hmaxnum" value="6"></td></tr>
+            <tr><th>Dot Color</th><td><input type="color" id="hcolor" value="rgb(255, 255, 0)"></td></tr>
+        </table>
+        <!-- Dot size variation -->
+        <footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const hanswer = document.getElementById("answer");
+const hcolor = document.getElementById("hcolor");
+const hminnum = document.getElementById("hminnum");
+const hmaxnum = document.getElementById("hmaxnum");
+let minnum = 1;
+let maxnum = 6;
+let answer = 0;
+let p = 5;
+
+function DrawDots(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let ramount = randomnum(1,maxnum);
+    answer = ramount;
+    CheckParams();
+    ctx.fillStyle = hcolor.value;
+
+    for(i=0; i<ramount; i++){
+        let rw = randomnum(5,canvas.width-5);
+        let rh = randomnum(5,canvas.height-5)
+
+        ctx.beginPath();
+        ctx.arc(rw, rh, 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+    };
+}
+function Clicked(){
+    DrawDots();
+    hanswer.innerHTML = answer;
+}
+function CheckParams(){
+    if(hminnum.value < 1){hminnum.value = 1}
+    if(hmaxnum.value < 1){hminnum.value = 6}
+    if(hminnum.value > hmaxnum.value){hminnum.value = 1; hmaxnum.value = 6};
+}
+</script> 
