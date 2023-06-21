@@ -6,12 +6,11 @@ const musicteacherdatabase = [
         <p>4 cymbal types: High-Hat, Crash, Ride, Splash. Leave a gap between the Highhat cymbals so they're not touching when in rest position. </p>
     <h1>Snare</h1>
         <p>Use the "throw off" switch to turn on and off the snare. The black circle in the center is called the "power dot" or "batter". It's a heaver part that protects the drum from hard hits and adds a different sound. The "Gel Pads / Moongel" is used to dampen the drum and stop the resonating. Put the gel pads near the edge of your cymbal to cut the ringing</p>
-    <h1>Drum Sticks</h1>
-        <p>Drum StickMost drums sticks have a number and letter. The number is the stick thickness (7 thinnest, 2 thickest, 5 is middle/default). Letter is the tip shape (A "acorn", B "Barrel")</p>
-    <h1>Brushes & Rods</h1>
-        <p>Rods are much quieter than drumsticks and can be used to soften the sound. Brushes can make sweeping sound for generas like jazz.</p>
+    <h1>Accessories</h1>
+        <p>Drum Sticks: Most drums sticks have a number and letter. The number is the stick thickness (7 thinnest, 2 thickest, 5 is middle/default). Letter is the tip shape (A "acorn", B "Barrel")<br>
+        Rods/Brushes: are much quieter than drumsticks and can be used to soften the sound. Brushes can make sweeping sound for generas like jazz</p>
     <h1>Most common brands</h1>
-        <p></p>
+        <p>Most common brands ranked highest to lowest: (Drum Workshop, Yamaha, Pearl, Ludwig, Tama, Gretsch)</p>
     `
     },
     {title: "Hand Precussion🪘", thehtml: `
@@ -70,6 +69,15 @@ const musicteacherdatabase = [
         <b>Acoustic-Eletric:</b> Acoustic guitar that also can plug in!<br>
         <b>Fret or Fretless:</b> Frets are the little bars that sparate the fretboard into notes. Fretless instruments allow to play all tones.
         </p>
+    <h1>Instruments</h1>
+        <p>
+        Guitar: (E A D G B E). Guitars are either steel or nylon string. Majority are steel in the USA, nylon strings are found on flamenco/spanishy and classical guitars which are acoustic. (drop d tuning: DADGBE)<br>
+        Bass: (E A D G) same tuning as guitar just 1 octive down. If you have 5 or more strings, strings are added before E <br>
+        Ukulele: (G C E A) Hawaiian instrument great for music beginers. It's the gateway drug of the music world because many people will try another instrument like guitar after playing for a bit <br>
+        Banjo: American folk instrument usually used to fingerpick rhythms for Bluegrass Music. <br> Use FingerPicks to play <br> There's different Fingerpick rhythms "rolls" to learn. "Drone string" is the 5th string<br>
+        Mandolin: American folk instrument played in Bluegrass/Country music<br>
+        Oud: Fretless middle eastern guitar <br>
+        </p>
     <h1>Gadgets</h1>
         <p>
         Picks: Used to pluck and strum the strings<br>
@@ -80,81 +88,115 @@ const musicteacherdatabase = [
         Stand: Holds instrument up off the floor. Some stands can hold up to 3 instruments<br>
         Strap: <br>
         </p> 
-    <img src="./assets/gadgets.jpg">   
-    <h1>Guitar</h1>
-        <p>
-        Tuning: E A D G B E (Thickest to Thinnest string)<br>
-        Guitars are either steel or nylon string. Majority are steel in the USA, nylon strings are found on flamenco/spanishy and classical guitars which are acoustic.
-        </p>
-    <h1>Bass</h1>
-        <p>
-        Basses are very important in filling in space in music and are often underrated <br>
-        Tuning: E A D G (Same as Guitar, 1 octive below) <br>
-        5 String Tuning: B E A D G
-        </p>
-    <h1>Ukulele</h1>
-        <p>
-        Hawaiian instrument great for music beginers. It's the gateway drug of the music world because many people will try another instrument like guitar after playing for a bit <br>
-        Tuning: G C E A (Thickest to Thifnest string)
-        </p>
-    <h1>Banjo</h1>
-        <p>American folk instrument usually used to fingerpick rhythms for Bluegrass Music. <br> Use FingerPicks to play <br> There's different Fingerpick rhythms "rolls" to learn <br> "Drone string" is the 5th string</p>
-    <h1>Mandolin</h1>
-        <p>American folk instrument played in Bluegrass/Country music</p>
+    <img src="./assets/gadgets.jpg">  
+    <img src="https://www.gak.co.uk/blog/wp-content/uploads/2016/11/acoustic_guitar_diagram-e1428680792528.jpg">  
     <h1>Pickups</h1>
         <p>On electric string instruments.<br> 3 Main Types: Single Coil, Humbucker, P90</p>
         <img src="./assets/pickuptypeslabled.jpg">
-    <h1>World Instruments</h1>
-    <h1>Oud</h1>
-        <p>Fretless middle eastern guitar</p>
     `
     },
     {title: "Brass Instruments🎺", thehtml: `
-    <p>Brass instruments make noise by buzzing your lips into a mouthpiece</p>
-    <h1>Trumpet</h1>
-    <h1>French Horn</h1>
-    <h1>Trombone</h1>
-        <p>Plays notes like a fretless instrument because of the slider. There are 7 standard slide positions
-    <h1>Tuba</h1>
-    <h1>Euphonium</h1>
-    <p>Like a mini tuba</p>
+        <p>Brass instruments make noise by buzzing your lips into a mouthpiece</p>
+    <h1>Main Instruments</h1>
+        <p>Trumpet: 3 valves<br>
+        Trombone: Plays notes like a fretless instrument because of the slider. There are 7 standard slide positions<br>
+        Tuba: Huge <br>
+        Euphonium: Like a mini tuba<br>
+        French Horn: </p>
+    <h1>Parts of Instrumet</h1>
+        <p>
+        Valves: used to change notes<br>
+        Slide: used to tune instrument since metal expands/contracts (trombone uses slide to play notes)<br>
+        finger buttons: Where you place fingers on valves, come in many colors.<br>
+        Colors: Gold(brass), Silver(nickel/silver), Black. Or plastic brass instruments come in all colors and are cheap!
+        </p>
+    <h1>Accessories</h1>
+        <p>Mouthpiece, Valve Oil, Mute(straight, cup, harmon, practice...)</p>
+        <img src="http://musixcool.com/members/musixcool/inst_all/brass.jpg">
     `
     },
     {title: "Woodwind Instruments🎷", thehtml: `
     <p>Woodwind Instruments make sound by blowing air into a mouthpiece</p>
-    <h1>Flute</h1>
-    <h1>Clarinet</h1>
-    <h1>Saxophone</h1>
-    <p>Types: Alto, Tenor, Baritone</p>
-    <h1>Oboe</h1>
-    <h1>Bassoon</h1>
+    <h1>Main Woodwinds</h1>
+        <p>Flute: <br>
+        Clarinet: <br>
+        Saxophone: types Alto, Tenor, Baritone<br>
+        Oboe: <br>
+        Basson: </p>
+    <h1>Accessories</h1>
+        <p>Mouthpiece, Reed, ligature, stand & case</p>
+    <img src="http://cdn.thinglink.me/api/image/694916106132914176/1024/10/scaletowidth/0/0/1/1/false/true?wait=true"/>
     `
     },
     {title: "Mixers🎚️", thehtml: `
-    <h1>Analog & Digital</h1>
-        <p></p>
-    <h1>Volume</h1>
-        <p></p>
-    <h1>Static Sound</h1>
-        <p>Turn off "Phantom Power / +48v</p>
-    `
+    <h1>My Advise</h1>
+        <p>
+        Get one with combo inputs that takes both XLR and TS/Instrument cables in the same hole. I prefer digital because they're very compact and both analog & digital mixers need power anyway. You can have 32 input small digital mixer with 8 channels because you can change between layers (1-8) (9-16) (17-25) (25-32). Also digital mixers have effects and have "Scribble Strips" that display the channel number, instrument emoji, and name for each channel that you can customize. You can save layouts, have a screen to view EQ, and record with digital mixers.<br>"Interface" is use for recording an instrument, but they're useless now because mixers can record and save music also.</p>   
+    <h1>Analog vs Digital</h1>
+        <p>
+        Analog Mixers have control knobs for each channel/column.
+        Digital Mixers have one section for EQ, Gain, Compressor, Pan... for all channels. You select one channel at a time to control. Each Section has a on/off button and a View button to show section (EQ, Pan...) on the big screen. Each channel has a select button, fader, mute, and a mini Display with channel name, number, and custom emojis like guitar/keyboard.
+        </p>
+    <h1>EQ</h1>
+        <p>
+            <b>High</b>(bright/airy/tinny), <b>Mid</b>(warm/clear), <b>Low</b>(bassy/deep/thumping)<br>
+            Gain Knob: turn up/down selected frequency<br>
+            Freq Knob: fine tuner, move up/down frequency for more control<br>
+            Q Knob: How wide/spread across frequencies to affect "quality factor"
+        </p>
+    <h1>Other Processors</h1>
+        <p>
+        Gain Volume: Incoming signal volume. Boost/Reduce volume to get in the middle/yellow zone<br>
+        Fader Volume: Volume sliders at the bottom, the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale<br>
+        Main Volume: Volume for everything<br>
+        Mute: Quickly mute channel without moving with your faders setup<br>
+        Gate: Removes all sound that is quieter that a given threshold<br>
+        Compressor/Dynamics: Makes volume stay evenly loud. Treshold lowers volume if volume goes over it. Can use for vocals, drums... to reduce loudness changes. If drummer is hitting hard or soft the volume will be closer<br>
+        LowCut / HPF: button that removes very low freq. like the annoying rumble from handling mics or the stage rumble from unnecessary low frequences. Turn LowCut on to reduce very low bassyness.<br>
+        Ø: Invert audio signal<br>
+        PhantomPower/+48v: only used to condenser mics which are in studios, dynamic/stage mics don't need it<br>
+        Solo/PFL: Isolates a channel to hear for testing.  1) "Solo in Place (SIP)" Mutes all other channels execpt the channel you just pressed. OR "Prefader Listening (PFL)" No channels mute, but all solo activated channels output to headphone jack so you can listen to it isolated) "AfterFader Listening(AFL)"<br>
+        FX: add effect volume to channel for whatever the current effect is<br>
+        PAD/26dB: Reduces input gain by 26dB if input loud with little gain / peaking <br>
+        </p>
+    <h1>All Main Effects</h1>
+        <p>
+        Reverb: (room, hall, stage) <br>
+        Echo/Delay: Repeated sound after you play<br>
+        Distortion: overdrive(clean, powerful, tube amp) (dirty)<br>
+        Chorus/Flanger: doubles sound like 2 instruments playing, one slightly out of tune. Phaser(adds slo auto wawa)<br>
+        Tremelo: Volume Pulsating <br>
+        Wah: wa/waw funky sound<br>
+        Pitch Shift: plays another note that harmonizes with you <br>
+        Ocataver: Raise/Lower pitch
+        </p>
+    <h1>Common Problems</h1>
+        <p>
+        Static/Hissing: Turn off "Phantom Power / +48v"
+        </p>    `
     },
     {title: "Speakers🔊", thehtml: `
-    <h1>Active & Passive</h1>
-        <p>Active is powered and has plugin or battery. Passive does'nt have power source and needs amplifier.</p>
+    <h1>Active</h1>
+        <p>Normal speaker, powered and has plugin or battery.</p>
+    <h1>Passive</h1>
+        <p>Passive does'nt have power source and needs amplifier (annoying because you need an amplifier and be careful with oms not to overpower and damage your speaker). Peak & Continuous power capacity are on the speaker lable and show how much power the speaker can handle.</p>
     <h1>Subwoofer "subs"</h1>
         <p>For the bass and low frequencies. Low frequencies radiate evenly in all directions unlike mid and high range.</p>
     <h1>Monitor</h1>
         <p>Smaller speaker that faces towards player to hear themself play.</p>
+    <h1>What to get?</h1>
+        <p>Get an active tower speaker. They fold up, the tower is the speaker, and the bottom is the subwoofer all in one!</p>
     `
     },
     {title: "Mics🎤", thehtml: `
     <h1>Active & Passive</h1>
         <p>Active is powered and has plugin or battery. Passive does'nt have power source and needs amplifier.</p>
     <h1>Stage🎤 & Studio🎙️ mics</h1>
-        <p>Stage/Dynamic mics 🎤 are used for live performances because they're durable and reduce feedback. <br> Studio/Condenser mics 🎙️ are used for recording and more sensitive to noise.</p>
+        <p>Stage/Dynamic mics 🎤 are used for live performances because they're durable and reduce feedback. <br> Studio/Condenser mics 🎙️ are used for recording in studios and more sensitive to noise.</p>
     <h1>Mic Attachments</h1>
-        <p>Pop Filter: reducing the poping puff sound from "p" and "b" usually for studio/condensor mics since they're sensitive. <br> Mic Covers & Muffs: are the fuzzy things that block the wind and breath and keep them clean from dust.</p>
+        <p>Pop Filter: is a flat mesh object put in front of a mic to reduce the poping puff sound from "p" and "b" usually for studio/condensor mics since they're sensitive. <br>
+        Mic Covers & Muffs: are the fuzzy things that block the wind and breath and keep them clean from dust.</p>
+        <img src="https://tse1.mm.bing.net/th?id=OIP.4YBeuNt7ehtq7k2rXVx8AgHaEH&pid=Api&P=0&h=180">
     `
     },
     {title: "Cables🪢", thehtml: `
@@ -166,15 +208,16 @@ const musicteacherdatabase = [
         <b>TRS 1/8in:</b> "Headphone jack"<br>
         <b>RA:</b> stands for Right Angle
         </p>
-        <p>Everything plugs into the snake input. The snake output plugs into the mixer</p>
     <h1>Balanced & Unbalanced</h1>
-        <p>...</p>
+        <p>Balanced cable is resistant to hissing noise cause by nearby electronics, unbalanced is not. The only time this matters is if you have a very long cable running past electronics, otherwise normal/short cables won't pickup much interference</p>
     <h1>Adapters</h1>
-        <p>A little device that converts chord tips. Attach the adapter on the tip.</p>
-    <h1>Snake Cables</h1>
-        <p>An extencion chord for all your inputs.</p>
-    <h1>Stage Box</h1>
-        <p>...</p>
+        <p>A little device that converts chord tips. Attach the adapter on the cable tip to convert cable type. Example: TS 1/4 cable attach a TRS 1/8 adapter to the tip of the cable and the cord is now (TS 1/4 to TRS 1/8)</p>
+    <h1>Stage Box / Snake Cable</h1>
+        <p>
+        In big shows, the mixer will be far from stage in the back so a Extension Cable is used to plug in all inputs and bring them to the back<br>
+        Snake/AnalogStageBox: An extencion chord for all your inputs. Thick output cord because of multiple cords for each input bundled together<br>
+        DigitalStageBox: a box to plug in all inputs with a much smaller output cable than a snake/analog stagebox</p>
+    <img src="https://producerhive.com/wp-content/uploads/2020/12/audio-cable-types-music-production-1024x545.jpg"/>
     `
     },
     {title: "Other", thehtml: `
