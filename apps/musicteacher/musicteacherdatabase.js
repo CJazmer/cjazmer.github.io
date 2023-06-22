@@ -131,33 +131,35 @@ const musicteacherdatabase = [
     {title: "Mixers🎚️", thehtml: `
     <h1>My Advise</h1>
         <p>
-        Get one with combo inputs that takes both XLR and TS/Instrument cables in the same hole. I prefer digital because they're very compact and both analog & digital mixers need power anyway. You can have 32 input small digital mixer with 8 channels because you can change between layers (1-8) (9-16) (17-25) (25-32). Also digital mixers have effects and have "Scribble Strips" that display the channel number, instrument emoji, and name for each channel that you can customize. You can save layouts, have a screen to view EQ, and record with digital mixers.<br>"Interface" is use for recording an instrument, but they're useless now because mixers can record and save music also.</p>   
+        Get digital mixer with combo inputs (takes both XLR and TS/Instrument cables in the same hole). I prefer digital because they're very compact and both analog & digital mixers need power anyway. You can have 32 input small digital mixer with 8 channels because you can change between layers (1-8) (9-16) (17-25) (25-32). Also digital mixers have effects and have "Scribble Strips" that display the channel number, instrument emoji, and name for each channel that you can customize. You can save layouts, have a screen to view EQ, and record with digital mixers.<br>"Interface" is use for recording an instrument, but they're useless now because mixers can record and save music also.</p>   
     <h1>Analog vs Digital</h1>
         <p>
-        Analog Mixers have control knobs for each channel/column.
-        Digital Mixers have one section for EQ, Gain, Compressor, Pan... for all channels. You select one channel at a time to control. Each Section has a on/off button and a View button to show section (EQ, Pan...) on the big screen. Each channel has a select button, fader, mute, and a mini Display with channel name, number, and custom emojis like guitar/keyboard.
+        <b>Analog Mixers</b> have control knobs for each channel/column<br>
+        <b>Digital Mixers</b> have one section for EQ, Gain, Compressor, Pan... for all channels. You select one channel at a time to control. Each Section has a on/off button and a View button to show section (EQ, Pan...) on the big screen. Each channel has a select button, fader, mute, and a mini Display with channel name, number, and custom emojis like guitar/keyboard.<br>
+        <b>Scenes:</b> Save all setting, faders, everything as a scene. You can save/load scenes to quickly have your setup. Digital mixers have a scene section on the board, click the view button to see/load your scenes. 
         </p>
     <h1>EQ</h1>
         <p>
             <b>High</b>(bright/airy/tinny), <b>Mid</b>(warm/clear), <b>Low</b>(bassy/deep/thumping)<br>
-            Gain Knob: turn up/down selected frequency<br>
+            Gain Knob: turn up/down volume on the selected frequency<br>
             Freq Knob: fine tuner, move up/down frequency for more control<br>
-            Q Knob: How wide/spread across frequencies to affect "quality factor"
+            Q Knob: How wide/spread across frequencies to affect. Called "quality factor"
         </p>
     <h1>Other Processors</h1>
         <p>
-        Gain Volume: Incoming signal volume. Boost/Reduce volume to get in the middle/yellow zone<br>
-        Fader Volume: Volume sliders at the bottom, the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale<br>
-        Main Volume: Volume for everything<br>
-        Mute: Quickly mute channel without moving with your faders setup<br>
-        Gate: Removes all sound that is quieter that a given threshold<br>
-        Compressor/Dynamics: Makes volume stay evenly loud. Treshold lowers volume if volume goes over it. Can use for vocals, drums... to reduce loudness changes. If drummer is hitting hard or soft the volume will be closer<br>
-        LowCut / HPF: button that removes very low freq. like the annoying rumble from handling mics or the stage rumble from unnecessary low frequences. Turn LowCut on to reduce very low bassyness.<br>
-        Ø: Invert audio signal<br>
-        PhantomPower/+48v: only used to condenser mics which are in studios, dynamic/stage mics don't need it<br>
-        Solo/PFL: Isolates a channel to hear for testing.  1) "Solo in Place (SIP)" Mutes all other channels execpt the channel you just pressed. OR "Prefader Listening (PFL)" No channels mute, but all solo activated channels output to headphone jack so you can listen to it isolated) "AfterFader Listening(AFL)"<br>
-        FX: add effect volume to channel for whatever the current effect is<br>
-        PAD/26dB: Reduces input gain by 26dB if input loud with little gain / peaking <br>
+        <b>Gain Volume:</b> Incoming signal volume. Boost/Reduce volume to get in the middle/yellow zone<br>
+        <b>Fader Volume:</b> Volume sliders at the bottom, the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale<br>
+        <b>Main Volume:</b> Volume for everything<br>
+        <b>Mute:</b> Quickly mute channel without moving with your faders setup<br>
+        <b>Gate:</b> Removes all sound that is quieter that a given threshold<br>
+        <b>Compressor/Dynamics:</b> Makes volume stay evenly loud. Treshold lowers volume if volume goes over it. Can use for vocals, drums... to reduce loudness changes. If drummer is hitting hard or soft the volume will be closer<br>
+        <b>LowCut / HPF:</b> button that removes very low freq. like the annoying rumble from handling mics or the stage rumble from unnecessary low frequences. Turn LowCut on to reduce very low bassyness.<br>
+        <b>Ø:</b> Invert audio signal<br>
+        <b>PhantomPower/+48v:</b> only used to condenser mics which are in studios, dynamic/stage mics don't need it<br>
+        <b>Solo/PFL:</b> Isolates a channel to hear for testing.  1) "Solo in Place (SIP)" Mutes all other channels execpt the channel you just pressed. OR "Prefader Listening (PFL)" No channels mute, but all solo activated channels output to headphone jack so you can listen to it isolated) "AfterFader Listening(AFL)"<br>
+        <b>FX:</b> add effect volume to channel for whatever the current effect is<br>
+        <b>PAN:</b> how much is on left & right speaker. If paned all the way left, 100% channel volume is on left speaker. Paned middle (default) comes out 50/50 both L and R outputs/speakers<br>
+        <b>PAD/26dB:</b> Reduces input gain by 26dB if input loud with little gain / peaking <br>
         </p>
     <h1>All Main Effects</h1>
         <p>
@@ -170,10 +172,17 @@ const musicteacherdatabase = [
         Pitch Shift: plays another note that harmonizes with you <br>
         Ocataver: Raise/Lower pitch
         </p>
+    <h1>How to Mix</h1>
+        <p>1) Mute everything, faders down<br>
+        2) Plug in instruments/mics<br>
+        3) raise fader to 0db (usually a mark 3/4 up) with gain lowerd all the way. Bring up gain slowly until channel signal is in middle when instruments playing for each channel (called Gain Staging). If each channel doesn't have a volume meter, Use the Solo/PFL to change the main meter as the individual channel meter<br>
+        4) Mix the EQ, Cut Lows/Highs...</p>
     <h1>Common Problems</h1>
         <p>
-        Static/Hissing: Turn off "Phantom Power / +48v"
-        </p>    `
+        Static/Hissing: Turn off "Phantom Power / +48v"<br>
+        FeedBack: put mics behind speakers or point away, turn down mics and sing closer to them. Make sure mic is dynamic and unidirectional (only picks up sound 1 direction)
+        </p>  
+        <img src="https://virtuosocentral.com/wp-content/uploads/2020/06/sections-of-a-mixer.png">  `
     },
     {title: "Speakers🔊", thehtml: `
     <h1>Active</h1>
@@ -181,16 +190,14 @@ const musicteacherdatabase = [
     <h1>Passive</h1>
         <p>Passive does'nt have power source and needs amplifier (annoying because you need an amplifier and be careful with oms not to overpower and damage your speaker). Peak & Continuous power capacity are on the speaker lable and show how much power the speaker can handle.</p>
     <h1>Subwoofer "subs"</h1>
-        <p>For the bass and low frequencies. Low frequencies radiate evenly in all directions unlike mid and high range.</p>
+        <p>For the bass and low frequencies, Subwoofer placed low on floor. Low frequencies radiate evenly in all directions unlike mid and high range.</p>
     <h1>Monitor</h1>
         <p>Smaller speaker that faces towards player to hear themself play.</p>
     <h1>What to get?</h1>
-        <p>Get an active tower speaker. They fold up, the tower is the speaker, and the bottom is the subwoofer all in one!</p>
+        <p>Get an "portable active column" speaker like the "JBL EON MK2". They fold up, the tower is the speaker, and the bottom is the subwoofer all in one! Also 4hr long battery powered charges when pluged in.</p>
     `
     },
     {title: "Mics🎤", thehtml: `
-    <h1>Active & Passive</h1>
-        <p>Active is powered and has plugin or battery. Passive does'nt have power source and needs amplifier.</p>
     <h1>Stage🎤 & Studio🎙️ mics</h1>
         <p>Stage/Dynamic mics 🎤 are used for live performances because they're durable and reduce feedback. <br> Studio/Condenser mics 🎙️ are used for recording in studios and more sensitive to noise.</p>
     <h1>Mic Attachments</h1>
@@ -220,9 +227,29 @@ const musicteacherdatabase = [
     <img src="https://producerhive.com/wp-content/uploads/2020/12/audio-cable-types-music-production-1024x545.jpg"/>
     `
     },
-    {title: "Other", thehtml: `
-    <h1>Slatwall</h1>
-        <p>Used to hang instruments with ease.</p>
+    {title: "How to Run a Band", thehtml: `
+    <h1>Setup</h1>
+    <p>
+    1) Start a group chat (FB Messenger). What u calling yourselfs? Where u practicing? Whos plaing what?<br>
+    2) SongList: Make a list of all the songs yall know & want to do. 
+    Try songs at practice to see if it has potential<br>
+    3) SetList: Make a list of your best songs in the order you'll play at gigs so you know exactly what to play<br>
+    4) Equipment: 2 Foldable Speakers that includes (speaker, subwoofer, battery...) like the "JBL EON MK2", Mixer(small analog or digital for more inputs), Dynamic Mics, Bag(XLR & Instrument Cables, Tuners, Capos, Picks, drum key)
+    </p>
+    <h1>Be Sucessful Checklist</h1>
+        <p>1) Personalities: you need people you can trust. If you have talented musicians, it doesn't matter if someone is controlling/close minded/drama/arguing. You need nice/openminded people. You shouldn't be afraid to share feedback. <br>
+        2) Same goals?: is everone excided about playing, or are they just kind of there. Don't be too controlling alow others to give feedback<br> 
+        3) Drugs: its fine to hang with friends and drink & smoke, but if you want to improve it's best to actually practice.</p>
+    <h1>How to Practice</h1>
+        <p>1) Stop playing songs your already good at: its fun to just play the songs yall have down already, but then your not improving anything.<br> 
+        2) Pick songs before practicing so your prepared. either message or talk about it</p>
+    <h1>Wise Words</h1>
+        <p>People will start jamming then become more serious by making a band. Sometimes the "seriousness" takes the fun away from people instead of jamming. <br>
+        Pay attention to others when playing (signals when ending, changing, singing), don't be in your own bubble<br> 
+        BE DIFFERENT: if you start a generic metal band and theres 20 others in the area, why would they choose you over all the others?? Look into different genres, same shirts/hats, or something that makes you stand out<br>
+        Drums + Bass are your foundation in american music</p>
+    <h1>Other junk</h1>
+        <p>Slatwall: Used to hang instruments with ease.</p>
     `
     },
 ];
@@ -273,11 +300,11 @@ const LatinGenres = [
 
 const FlamencoGenres = [];
 const AmericanGenres = [
-    {name: "Standard Blues", description: `(1+2+) beat <br> 1) Drummer (B - K -) "boots and kats" beat <br> 2) Bass <br> 3) Guitar/Piano 4) harmonica`},
-    {name: "Fast Blues", description: `(1,2) feel <br> 1) Drummer (B K) "one two" beat <br> 2) Bass (Walking) <br> 3) Guitar/Piano 4) Harmonica <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1Rf18QB2meMf8FP4CyaqQn?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Slow Blues", description: `(1+a2+a) count in 3 <br> 1) Drums (B - - K - B) 3/4 Temo <br> 2) Bass (play on B 'bass drum') <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/05Te3BNuXNYDOcOE1jiHlX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "1+2+", description: `(1+2+) beat <br> 1) Drummer (B - K -) "boots and kats" beat <br> 2) Bass <br> 3) Guitar/Piano 4) harmonica`},
+    {name: "1, 2 Beat", description: `(1,2) feel <br> 1) Drummer (B K) "one two" beat <br> 2) Bass (Walking) <br> 3) Guitar/Piano 4) Harmonica <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1Rf18QB2meMf8FP4CyaqQn?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Slow Blues", description: `(1+a2+a) count in 3 <br> 1) Drums (B - - K - B) 3/4 Temo <br> 2) Bass (play on B 'bass drum') <br> 3) Keyboard: Pad/organ holding chords <br> 4) Clean Guitar soloing pentatonic scale<br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/05Te3BNuXNYDOcOE1jiHlX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Shuffle Blues", description: `(1,2) feel with swing *odd time signature <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3bOA0biVTQ9SSLFQSONCK0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Funk", description: `1) Drums (1+2+) or gogo beat (B - K - - B K ) (B - - - K - - K - K B - K - - -) <br> 2) Groovy Bass (Add some slap, keep it simple an catchy) <br> 3) Rhythm Guitar (strum 16 notes press down on fretbord to play the chords on the hits/accents <br> (o o o o o o - o - o o o - - - -)) <br> 4) Keybord (organ) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2NPs8J8BJPPFVrtNm9yFji?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Funk", description: `*Funk/Disco <br> 1) Drums (1+2+) or gogo beat (B - K - - B K ) (B - - - K - - K - K B - K - - -) <br> 2) Groovy Bass (Add some slap, keep it simple an catchy) <br> 3) Rhythm Guitar (clean/wawa) (strum 16 notes press down on fretbord to play the chords on the hits/accents <br> (o o o o o o - o - o o o - - - -)) <br> 4) Keybord (organ) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2NPs8J8BJPPFVrtNm9yFji?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Hip-Hop & Rap", description: `1) Drums gogo beat. example: (B - - - K - - B - - B - K - - -) <br> 2) Bass (play on bass drum hits)`},
     {name: "RnB", description: `1) Drummer (gogo beat / chill hiphop) <br> 2) Keybord <br> 3) Singer <br> 4) bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2lR6DVk8az4v71SfulYpiV?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Soul"},
