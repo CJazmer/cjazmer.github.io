@@ -199,7 +199,7 @@ const musicteacherdatabase = [
     },
     {title: "Mics🎤", thehtml: `
     <h1>Stage🎤 & Studio🎙️ mics</h1>
-        <p>Stage/Dynamic mics 🎤 are used for live performances because they're durable and reduce feedback. <br> Studio/Condenser mics 🎙️ are used for recording in studios and more sensitive to noise.</p>
+        <p>Stage/Dynamic mics 🎤 are used for live performances because they're durable and reduce feedback. <br> Studio/Condenser mics 🎙️ are used for recording in studios and more sensitive to noise (require Phantom Power from mixer or batteries).</p>
     <h1>Mic Attachments</h1>
         <p>Pop Filter: is a flat mesh object put in front of a mic to reduce the poping puff sound from "p" and "b" usually for studio/condensor mics since they're sensitive. <br>
         Mic Covers & Muffs: are the fuzzy things that block the wind and breath and keep them clean from dust.</p>
@@ -248,8 +248,16 @@ const musicteacherdatabase = [
         Pay attention to others when playing (signals when ending, changing, singing), don't be in your own bubble<br> 
         BE DIFFERENT: if you start a generic metal band and theres 20 others in the area, why would they choose you over all the others?? Look into different genres, same shirts/hats, or something that makes you stand out<br>
         Drums + Bass are your foundation in american music</p>
+    <h1>Band Tiers</h1>
+        <p>
+        <b>(I)</b> "Jammin buddies". Some guys that get together and play some songs, not much structure<br>
+        <b>(II)</b> "Gigging". Plays gigs for small crowds. Has a list of songs and comfortable playing for small crowds<br>
+        <b>(III)</b> "Has Followers". Has a well-rehearsed SetList/SongOrder that can take anywhere to put on a show and play in front on 100+ people. Actually sounds good, people show up to see them whether that be a few or lots. Can preform up to 4hrs (with break). Loud enough for big crowds (have equipment, mixer, speakers) don't be obnoxiously loud, but enough to cover a big area<br>
+        <b>(IIII)</b> "SemiFamous". Performs at concerts, big following. Goes on tour around the country (Stick Figure)<br>
+        <b>(V)</b> "Famous" Can travel internationally (The Beatles, GipsyKings, Rolling Stones, Buddy Guy, BBKing)
+        </p>
     <h1>Other junk</h1>
-        <p>Slatwall: Used to hang instruments with ease.</p>
+        <p>Slatwall: wall with inward horizontal lines to hang instruments.</p>
     `
     },
 ];
@@ -267,7 +275,7 @@ const LatinGenres = [
     {name: "Salsa", description: `*Bugalu, Mambo, Timba <br><br> 1) Piano (montuno rhythm (M - H L - M - M - H - L - H - M)) or ('Tumbao' (L M H L) with Tresillo bass (L - - M - -H -))  Thumb and Pinky play octive from eachother same note/beat <br> 2) Timbales (Cascara on cowbell to add energy) (o - o - o o o o - o - o o - o o) <br> 3) Bass (Tresillo (play last 2 beats) (- - - o - - o -) rushed feel) <br> 4) Congas (tumbao) (- - k - - - b b) <br> 5) Metal Guira/Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 6) Brass (can do on piano) <br> *Piano is the hardest part to get right (You can play bass (tresillo) and piano (montuno) riff at the same time!) <br> *Hitting metal sound (cascara on cowbell) and horns gives salsa its sound <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Merengue", 
     description: `*Fast paced, Stomp on down beat <br> 1) Metal Guira (fast chachacha rhythm (o - o o) or fast scrape on down beat) *Thump on downbeat <br> 2) Piano (merengue (o oo o o o o o o o) or cascara rhythm on piano for energy (o - o - o o o o - o - o o - o o)) <br> 3) Bass hits on 1 <br> * you can play both piano riff and bass at the same time on piano and have a foot pedal that adds the thump on down beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3N3D8G6KUEDqNynKqIJr9Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Son", description: `1) Guitar Rhythm (hit up down up) or Tres/Double string (montuno rhythm) <br> 2) Bass (trelillo rhythm last 2 beats) (- - - o - - o -) <br> 3) Bongo (Martillo or Tumbao rhythm) <br> 4) Shakers (chachacha rhythm) (o - o o) <br> 5) Clave (son clave mostly 2/3) and Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Son", description: `*Son Cubano, Guaracha <br><br> 1) Guitar Rhythm (hit up down up) or Tres/Double string (montuno rhythm) <br> 2) Bass (trelillo rhythm last 2 beats) (- - - o - - o -) <br> 3) Bongo (Martillo or Tumbao rhythm) <br> 4) Shakers (chachacha rhythm) (o - o o) <br> 5) Clave (son clave mostly 2/3) and Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Bolero", description: `Very Slow paced straight beat, has a roll on 2nd beat (B r r - B - B -) *r is roll <br> 1) Guitar/Tres/Piano Chords <br> 2) Shaker/TimbaleSides (constant 8th notes (roll on 2 & 3 beat) <br> 3) Bass (Tresillo Rhythm L - - - M - H -) <br> 4) Congas (- - H - - L H L) <br> 4) Bongo (martillo rhythm) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Guajira", 
     description: `1) Piano (guajira rhythm (L H M L M H M H - H H H M H M M L)) <br> 2) bass (tresillo (last 2 notes) double notes) (- - - M M - H H  |  - - - M M - L L) <br> 3) Wooden Guiro (chachachaaa) (o - o o) <br> 4) bongo & conga (tumbao) (- - H - - - L L) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5DbWZLRryLT3U6wLgomr3N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
