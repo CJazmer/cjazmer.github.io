@@ -252,7 +252,7 @@ const musicteacherdatabase = [
         <p>
         <b>(I)</b> "Jammin buddies". Some guys that get together and play some songs, not much structure<br>
         <b>(II)</b> "Gigging". Plays gigs for small crowds. Has a list of songs and comfortable playing for small crowds<br>
-        <b>(III)</b> "Has Followers". Has a well-rehearsed SetList/SongOrder that can take anywhere to put on a show and play in front on 100+ people. Actually sounds good, people show up to see them whether that be a few or lots. Can preform up to 4hrs (with break). Loud enough for big crowds (have equipment, mixer, speakers) don't be obnoxiously loud, but enough to cover a big area<br>
+        <b>(III)</b> "Has Followers". Has a well-rehearsed SetList/SongOrder that can take anywhere to put on a show and play in front on 100+ people. Actually sounds good, people show up to see them whether that be a few or lots. Can preform up to 4hrs (with break). Loud enough for big crowds (have equipment, mixer, speakers) don't be obnoxiously loud, but enough to cover a big area. Usually at least 2 people singing to harmonize *makes a big difference<br>
         <b>(IIII)</b> "SemiFamous". Performs at concerts, big following. Goes on tour around the country (Stick Figure)<br>
         <b>(V)</b> "Famous" Can travel internationally (The Beatles, GipsyKings, Rolling Stones, Buddy Guy, BBKing)
         </p>

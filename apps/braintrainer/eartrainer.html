@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Music Stuff</title>
+	<title>Perfect Pitch Trainer</title>
 	<meta name="author" content="Conner Jasmer">
 	<meta name="description" content="Music helper">
 	<meta name="keywords" content="music">
@@ -14,6 +14,8 @@ button {
     background-color: antiquewhite;
     text-align: center;
     margin:0em;
+    font-size: 5em;
+    min-height: 2em;
 }
 </style>
 </head>
@@ -24,7 +26,14 @@ button {
 
                 <button onclick="Clicked()">Play</button>
                 <button onclick="Show()">Show</button>
+                <label for="numbers">Choose a Set:</label>
+                    <select name="numbers" id="htheset">
+                    <option value="all">All</option>
+                    <option value="normal">Only Normal</option>
+                    <option value="sharps">Only sharp/flats</option>
+                    </select>
                 <p id="hthenote"></p>
+                <img style="margin: 0em auto 0em auto;width: fit-content;" src="https://i.pinimg.com/originals/2b/3d/fb/2b3dfb799f17776638512aa318164220.jpg">
             
             <footer></footer>
 		</div>
@@ -36,12 +45,18 @@ button {
 <script src="/layout.js"></script>
 <script>
     // h = from HTML
-    const arrnotes = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
+    let arrnotes = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
     const arrsimple = ["c", "d", "e", "f", "g", "a", "b"];
     const hthenote = document.getElementById("hthenote");
+    const htheset = document.getElementById("htheset");
+
     let thenote = "";
 
     function Clicked(){
+        if(htheset.value == "all"){arrnotes = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"]}
+        if(htheset.value == "normal"){arrnotes = ["c", "d", "e", "f", "g", "a", "b"]}
+        if(htheset.value == "sharps"){arrnotes = ["c#", "d#", "f#", "g#", "a#"]}
+
         let r = arrnotes[randomnum(0,arrnotes.length-1)];
         thenote = r;
 
@@ -51,6 +66,10 @@ button {
     }
     function Show(){
         hthenote.innerHTML = thenote;
+        const synth = new Tone.Synth().toDestination();
+        const now = Tone.now()
+        synth.triggerAttackRelease(`${thenote}4`, "8n", now);
+
     }
     
 </script> 

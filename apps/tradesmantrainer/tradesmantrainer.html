@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tradesman Trainer</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.holder{
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            width: 100%;
+            padding: .5em 0em .5em 0em;
+            background-color: goldenrod;
+        }
+        .btn{
+            padding: .5em;
+            margin-right: .4em;
+            background-color: gold;
+            border: .2em solid black;
+            border-radius: 10%;
+            min-width: 6em;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #infodiv{
+            width: 100%;
+            min-height: 8em;
+            padding: .5em;
+            background-color: lightgoldenrodyellow;
+        }
+        .title{
+            width: 100%;
+            background-color: gold;
+            margin: 0em;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="gohere"></div>
+            <div id="infodiv"></div>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+const categories = [    
+    {name: "Outdoor", 
+   arr: [
+   {name: "Utility Locating🏳️", desc: `811 is the national call-before-you-dig number<br> 
+    <p>Clues: Access chambers, Pits, Valves, Warning signs/markings. Sometimes there'll be "detectable marking tape" or "tracer wire" burried next to cables to make detection easier. If there's no powerlines then electric cables are underground<br><br>
+    APWA Color Code (red: eletric) (yellow: gas, oil) (orange: signal) (blue: water) (green: sewer) (pink: temporary marking) (white: proposed exavation) (purple: natural water irrigation)</p>
+    <img src="https://blackburnflag.com/wp-content/uploads/2020/02/Blackburn-flag-color-codes-800.jpg">
+    <img src="http://www.safesitellc.com/wp-content/uploads/2019/04/Private-Locate-Drawing-Info-Graphic-Safe-Site-Utility-Locating-Company.jpg">`},
+
+    {name: "Roofing🏠", desc: `
+    <p>*Nailgun, Knife, KneePads, PitchHopper<br>
+    1) Lay & Nail the Felt Underlayment fabric<br>
+    2) Lay & Nail Shingles. Don't hang shingles off roof, it's ok to have small gap from edge. Shingles overlap eachother covering the nails on middle line. Nailgun on middle line just above squares 5 nail pattern on full shingels (o---o-o-o---o). Start on bottom corner of roof and make starecase shape and add on from there</p>
+    <img src="https://apolloroofers.com/app/uploads/2020/02/roof-parts.jpg">
+    `},
+    {name: "Siding🏠", desc: `
+    <p>Wall Types: Stucco, Vinyl, Brick, Stone, Wood<br><br>
+        1) Nail on HouseWrap Felt layer<br> 
+       2) Nail siding onto wall using holes on top. Start putting siding on bottom and work up<br>
+       3) Siding Corner pieces</p>
+    <img src="https://i0.wp.com/www.sidingcost.org/wp-content/uploads/2017/04/siding-contractor.jpg?w=750&ssl=1">
+    <img src="https://best-stucco.com/wp-content/uploads/2022/04/stucco-vs-vinyl-siding-600x400.png">
+    `},
+    {name: "Patio/Paths🧱", desc: `
+    *Level, Tamper or WoodPlank to flatten <br>
+    1) Dig space & Compact dirt, better to dig more than less because you can always fill space in rather than redo digging<br>
+    2) Lay weed barrier fabric <br>
+    3) Sand layer then flaten & level out<br>
+    4) Place tiles on sand, leave gap between to fill with sand<br>
+    Make sure tiles are level and same height as other slabs<br>
+    <img src="https://i.pinimg.com/originals/d9/54/4f/d9544f2c10c25c9f8f34f05de0a4b069.jpg">
+    `},
+    {name: "Wood Working🪚", desc: `
+    <p>Hammer, SmallSaw, MeasureTape, ChalkLine</p>
+    `},
+
+    {name: "Landscaping🏠", desc: ``},
+    {name: "Power Lines⚡", desc: `
+    <p>"Lineman" is a powerline worker <br>
+    </p>`},
+    ]},
+    {name: "Indoor", 
+   arr: [
+   {name: "Wiring⚡", desc: `
+    <p>*WireCutter/Striper, Multimeter, AdjustableWrench, SkrewdriverSet, ElectricalTape, Pliers, FishTape<br>
+        Electrical Panel: main electrical controller with switches found in home basements<br>
+        Switch Box: lightswitch holder, nail it into stud<br>
+        Saddle Box: ceiling fan holder on ceiling<br>
+        Junction Box: <br>
+        Receptacle/Outlet: <br><br>
+
+        Neutral Blade is bigger<br>
+        (Amps: how fast electricity is moving)(Volts: strength of a power source)(ohms: resistance in the circuit)(Watts: power produced by electrical energy)
+        <img src="https://i.pinimg.com/originals/88/08/0b/88080b99ab68c559d6a2dfa44b46a9bf.jpg">
+    </p>
+    `},
+    {name: "Plumbing🔧", desc: `
+    <p></p>`},
+    {name: "HVAC💨", desc: `
+    <p>
+        Furnace: main duct/air heater in basment that all ducts connect to<br>
+        Air Conditioner: big square AC unit outside your house that blows out hot air with fan<br>
+        Thermostat: controller on wall you use to set tempature<br>
+        Duct: metal tubes that carry air around house. Snaps together easy. 
+        </p>
+    `},
+    {name: "Painting🟫", desc: `
+    <p>Always remove access paint from brush to avoid messyness. (Tools Brush: PaintRoller & ExtensionPole, PaintRollerTray, SandBlock)<br><br>
+        (1) CleanWall: Remove Switches/Things on wall or tape up. Fill in holes with "Putty Knife & Spackling Paste", Sand down with "SandingBlock"<br>
+        (2) PaintBrush: paint all corners and around switches/windows<br>
+        (3) PaintRoller & Tray: fill in rest of the wall, roll up & sideways after dipping to avoid throwing paint on ground<br>
+        (4) 2nd Layer: paint wall again exact same way when 1st layer is dry (most people paint 2 layers for better quality)<br><br>
+        Crown Molding: covers corners of walls for decoration<br>
+        Fill in Gaps by using "Expanding Foam" easily<br>
+        Hole Repair: small holes use PuttyKnife & Spackling Paste. For Big holes cut the hole out into a bigger square, buy drywall board and cut it a bit smaller than the square hole but leave tape on, apply Spackling Paste over hole and put cutdrywall board over hole and apply more Spackling paste on top<br>
+        </p>
+        <img src="https://d4c5gb8slvq7w.cloudfront.net/eyJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjcwMCwiaGVpZ2h0IjozOTR9fSwiYnVja2V0IjoiZmluZWhvbWVidWlsZGluZy5zMy50YXVudG9uY2xvdWQuY29tIiwia2V5IjoiYXBwXC91cGxvYWRzXC8yMDAwXC8wMVwvMTExMTI2MzJcLzAyMTEyODA4Mi1tYWluLTcwMHgzOTQuanBnIn0=">`},
+    {name: "Flooring🟫", desc: `
+    <p>
+        Bare Floor Types: concrete, hardwood<br><br>
+        Before doing make sure your at bare floor (tackstrips are removed unless you want carpet) Also remove any mortarspots sticking out with scraper and vacuum<br><br>
+        <b>Carpet:</b> TackStrips (nails angled at wall). Padding layer staple down, don't cover TackStrips. Can cut into many pieces doesn't matter because no one will see it. -> Carpet is in 1 piece bigger than floor, spread it out and cut (Leave access space don't undercut) cutout holes for airvents<br><br>
+        <b>Vinyl:</b> Layout the FloorTileUnderlayment (no nailing required) -> Place vinyl boards ontop (boards click together, use TappingBlock/PullBar & Mallet) Vinyl can look like wood & stone, can also cut easy to remove, push into tackstrips and push carpet edge down<br><br>
+        <b>VinylTiles:</b> Flooring Primer (let fully dry) -> Place Tiles <br><br>
+        <b>Tile:</b> Thinset -> place tiles use "tile spacers" to space even<br><br>
+        
+        Shoe Molding: covers up floor corners, usually nailed into wall</p>
+        <img src="https://floortechie.com/wp-content/uploads/2020/04/Roberts-70-193A-Super-360-sq-60-in.-x-72-ft.-x-3-mm-Felt-Cushion-Roll-Flooring-Underlayment-768x475.jpg">
+        <img src="https://i.pinimg.com/originals/3c/9f/ef/3c9fef5cc5f69790565d31f920ffe352.jpg">`},
+    ]},
+];
+
+const gohere = document.getElementById("gohere");
+const infodiv = document.getElementById("infodiv");
+
+let thehtml = "";
+
+categories.forEach(c => {
+    thehtml += `<p class='title'>${c.name}</p><div class="holder">`;
+    c.arr.forEach(a => {
+        thehtml += `<div class="btn" onclick="Clicked('${a.name}')">${a.name}</div>`;
+    })
+    thehtml += "</div>"
+});
+gohere.innerHTML = thehtml;
+
+
+function Clicked(infooo){
+    
+categories.forEach(c => {
+    c.arr.forEach(a => {
+        if(a.name == infooo){infodiv.innerHTML = a.desc;}
+    })
+});
+if(infodiv.innerHTML == ""){infodiv.innerHTML = "..."};
+}
+</script>

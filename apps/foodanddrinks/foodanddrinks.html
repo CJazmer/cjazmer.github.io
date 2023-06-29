@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Food and Drinks</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.holder{
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            width: 100%;
+            padding: .5em 0em .5em 0em;
+            background-color: goldenrod;
+        }
+        .btn{
+            padding: .5em;
+            margin-right: .4em;
+            background-color: gold;
+            border: .2em solid black;
+            border-radius: 10%;
+            min-width: 5em;
+            text-align: center;
+        }
+        #infodiv{
+            width: 100%;
+            min-height: 8em;
+            padding: .5em;
+            background-color: lightgoldenrodyellow;
+        }
+        .title{
+            width: 100%;
+            background-color: gold;
+            margin: 0em;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="gohere"></div>
+            <div id="infodiv"></div>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+const categories = [    
+   {name: "Ingredients", 
+   arr: [
+    {name: "Basic Alcohols", desc: `Vodka (water + ethanol), Gin (grains), Tequila (agaves), Wine (grapes), Rum (sugarcane/molasses), Whiskey (graines, aged in barrels)`},
+    {name: "Dry Vermouth", desc: ``},
+    {name: "Simple Syrup", desc: `Sugar (2/3) + Water (1/3)`},
+    {name: "Cointreau", desc: ``},
+    {name: "Bitters", desc: ``},
+    {name: "Vermouth🍸", desc: ``},
+    {name: "Molasses", desc: ``},
+    {name: "Onion Powder🧂", desc: ``},
+    {name: "Garlic Powder🧂", desc: ``},
+    {name: "Sugar🧂", desc: ``},
+    {name: "Cayenne🌶️", desc: ``},
+    {name: "Salt & Pepper🧂", desc: ``},
+    {name: "Lime/Lemon Juice", desc: ``},
+    {name: "Vinegar🫒", desc: ``},
+    {name: "Olive Oil🫒", desc: ``},
+    ]},
+    {name: "Cocktails", 
+    arr: [
+    {name: "Martini 🇺🇸", desc: `Gin + Dry Vermouth. 2:1 ratio`},
+    {name: "Margarita 🇲🇽", desc: `Tequila, LimeJuice + Cointreau`},
+    {name: "Bloody Mary 🇺🇸", desc: `Vodka (3) + TomatoJuice (6) + LemonJuice (1)`},
+    {name: "Piña Colada 🇵🇷", desc: `WhiteRum (50%) + PineappleJuice (25%) + CoconutCream (25%)`},
+    {name: "Cosmo 🇺🇸", desc: `Vodka (40%) + CranberryJuice (20%) + Cointreau (20%) + LimeJuice (10%)`},
+    {name: "Mimosa 🇬🇧", desc: `Champagne (50%) + OrangeJuice (50%)`},
+    {name: "Mojito 🇨🇺", desc: `Rum (50%) + LimeJuice (25%) + SimpleSyrup (20%), Filded with Ice and Mint Leaves`},
+    {name: "Old Fashioned 🇺🇸", desc: `Whiskey/Burbon (60%) + SimpleSyrup (10%) + Bitter Dashes + Sodawater`},
+    {name: "Negroni 🇮🇹", desc: `Sweet Vermouth (1) + Campari (1) + Gin (1)`},
+    {name: "Daiquiri 🇨🇺", desc: `WhiteRum (66%) + LimeJuice (33%) + SimpleSyrup (16%)`},
+    ]},
+    {name: "Drinks",
+    arr: [
+    {name: "Kitty Cocktail", desc: `LemonLimeSoda + Cherry Juice. *Also called a Shirley Temple`},
+    {name: "Smoothies", desc: `
+        Ice, Vanilla Yogurt, Milk, Honey <br>
+        <b>Most Common Flavors</b><br>
+        1) Strawberry Banana <br>
+        2) Pineapple Coconut / Pina Colada / Tropical Island <br>
+        2) Mango Pineapple <br>
+        2) Peach Mango <br>
+    `},
+    ]},
+    {name: "Sauces",
+    arr: [
+    {name: "1000 Island 🇺🇸", desc: `Mayo (50%) + Ketchup (20%) + SweetRelish (20%)...`},
+    {name: "BBQ 🇺🇸", desc: ``},
+    {name: "Buffalo 🇺🇸", desc: `Vineger-Based-HotSauce (50%) + Butter (25%) + WhiteVinegar (10%) + WorcestershireSause (10%) + GarlicPowder (5%)`},
+    {name: "Sweet & Sour 🇨🇳", desc: ``},
+    {name: "Sweet Chili 🇹🇭", desc: ``},
+    {name: "Teriyaki 🇯🇵", desc: ``},
+    {name: "Jamaican Jerk 🇯🇲", desc: ``},
+    {name: "Queso 🇲🇽", desc: `Cheddar & MontereyJack/White Cheese 1:1 ratio is standard <br> Low heat melt and mix the cheese. Use milk to thin the mix, add powered spices to the mix`},
+    {name: "Salsa 🇲🇽", desc: ``},
+    {name: "Guacamole 🇲🇽", desc: ``},
+    {name: "Curry 🇮🇳", desc: ``},
+    {name: "Red & Green 🇲🇽", desc: ``},
+    {name: "Mole 🇲🇽", desc: ``},
+    {name: "Marinara", desc: ``},
+    ]},
+    {name: "Dishes", 
+    arr:  [
+    {name: "Tacos 🇲🇽", desc: ``},
+    {name: "Nachos 🇲🇽", desc: ``},
+    {name: "Quesadilla 🇲🇽", desc: `flower quesadilla, put cheese inside, fold and heat on medium`},
+    {name: "Chicken & Rice 🌍", desc: ``},
+    {name: "Sandwich 🇺🇸", desc: ``},
+    {name: "Sub 🇺🇸", desc: ``},
+    {name: "Pizza 🇮🇹", desc: ``},
+    {name: "Wrap 🇺🇸", desc: ``},
+    {name: "Kabobs 🇮🇷", desc: ``},
+    {name: "Onion Soup 🇫🇷", desc: ``},
+    {name: "Hibachi Soup 🇯🇵", desc: `Chicken Broth`},
+    {name: "Miso Soup 🇯🇵", desc: ``},
+    {name: "Pasta 🇮🇹", desc: ``},
+    {name: "Speghetti 🇮🇹", desc: ``},
+
+
+    // Other Mexican
+    {name: "Burrito 🇲🇽", desc: ``},
+    {name: "Fajitas 🇲🇽", desc: ``},
+    {name: "Enchaladas 🇲🇽", desc: ``},
+    {name: "Tostada 🇲🇽", desc: ``},
+    {name: "Tomales 🇲🇽", desc: ``},
+    {name: "Tacitos 🇲🇽", desc: ``},
+    {name: "Migas 🇲🇽", desc: ``},    
+    ]},
+];
+
+const gohere = document.getElementById("gohere");
+const infodiv = document.getElementById("infodiv");
+
+let thehtml = "";
+
+categories.forEach(c => {
+thehtml += `<p class='title'>${c.name}</p><div class="holder">`;
+c.arr.forEach(a => {
+    thehtml += `<div class="btn" onclick="Clicked('${a.desc}')">${a.name}</div>`;
+})
+thehtml += "</div>"
+});
+gohere.innerHTML = thehtml;
+
+
+function Clicked(infooo){
+infodiv.innerHTML = infooo || "...";
+}
+</script>

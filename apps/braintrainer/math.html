@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Perfect Pitch Trainer</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Music helper">
+	<meta name="keywords" content="music">
+<style>    
+button {
+    width: 100%;
+    height: fit-content;
+}
+#hequation{
+    background-color: antiquewhite;
+    text-align: center;
+    margin:0em;
+    font-size: 5em;
+    min-height: 2em;
+}
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+            <div id="layoutpagenav"></div>
+
+                <button onclick="Clicked()">New</button>
+                <button onclick="Show()">Show</button>
+                    <label for="numbers">Choose a Set:</label>
+                    <select name="numbers" id="hthelimit">
+                    <option value="5">1-5</option>
+                    <option value="10">1-10</option>
+                    <option value="50">1-50</option>
+                    <option value="100">1-100</option>
+                </select>
+               
+                <p id="hequation"></p>
+                <p>
+                    (5+5)(4+6)(3+7) = 10
+                </p>
+            
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js" integrity="sha512-jduERlz7En1IUZR54bqzpNI64AbffZWR//KJgF71SJ8D8/liKFZ+s1RxmUmB+bhCnIfzebdZsULwOrbVB5f3nQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/layout.js"></script>
+<script>
+    // h = from HTML
+    const hequation = document.getElementById("hequation");
+    const hthelimit = document.getElementById("hthelimit");
+
+    let thequation = "";
+    let theanswer = 0;
+
+    function Clicked(){
+        let num1 = randomnum(1, hthelimit.value);
+        let num2 = randomnum(1, hthelimit.value);
+        let r = `${num1} + ${num2}`;
+        thequation = r;
+        theanswer = num1 + num2;
+        hequation.innerHTML = thequation;
+    }
+    function Show(){
+        hequation.innerHTML = `${thequation} (${theanswer})`;
+    }
+    
+</script> 
