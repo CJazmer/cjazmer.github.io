@@ -1,5 +1,5 @@
 const eeeeee = document.getElementById("musicnav");
-eeeeee.innerHTML = `<button onclick='window.location.href="/index.html"'>Exit</button><button onclick='window.location.href="./musicteacher.html"'>Home</button>`;
+eeeeee.innerHTML = `<button onclick='window.location.href="/index.html"'>Back to Main Website</button><button onclick='window.location.href="./musicteacher.html"'>Home</button>`;
 
 
 // CSS
@@ -20,6 +20,8 @@ document.head.innerHTML += `
 width: 49%;
 height: 3em;
 background-color: lightgreen;
+font-weight: bolder;
+font-size: 1em;
 }
 </style>
 `;

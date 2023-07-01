@@ -174,15 +174,16 @@ const musicteacherdatabase = [
         </p>
     <h1>How to Mix</h1>
         <p>1) Mute everything, faders down<br>
-        2) Plug in instruments/mics<br>
-        3) raise fader to 0db (usually a mark 3/4 up) with gain lowerd all the way. Bring up gain slowly until channel signal is in middle when instruments playing for each channel (called Gain Staging). If each channel doesn't have a volume meter, Use the Solo/PFL to change the main meter as the individual channel meter<br>
+        2) Plug in all instruments/mics<br>
+        3) raise fader to 0db (usually a mark 3/4 up) with gain lowerd all the way down. Bring up gain slowly until channel signal is in middle while instrument playing. Do for each channel (called Gain Staging). If each channel doesn't have a volume meter, Use the Solo/PFL to change the main meter as the individual channel meter<br>
         4) Mix the EQ, Cut Lows/Highs...</p>
     <h1>Common Problems</h1>
         <p>
-        Static/Hissing: Turn off "Phantom Power / +48v"<br>
-        FeedBack: put mics behind speakers or point away, turn down mics and sing closer to them. Make sure mic is dynamic and unidirectional (only picks up sound 1 direction)
+        Static/Hissing: Turn off "Phantom Power / +48v". Passive speakers have more static because you send power through cables<br>
+        FeedBack: put mics behind speakers or point away, turn down mics and sing closer to them. Make sure mic is dynamic and unidirectional (only picks up sound 1 direction)<br>
+        Only 1 Speaker Working: make sure your Pan is in the middle.
         </p>  
-        <img src="https://virtuosocentral.com/wp-content/uploads/2020/06/sections-of-a-mixer.png">  `
+        <img src="https://virtuosocentral.com/wp-content/uploads/2020/06/sections-of-a-mixer.png"><img src="https://medias.audiofanzine.com/images/normal/behringer-x32-standard-2000507.jpg"> `
     },
     {title: "Speakers🔊", thehtml: `
     <h1>Active</h1>
@@ -195,6 +196,7 @@ const musicteacherdatabase = [
         <p>Smaller speaker that faces towards player to hear themself play.</p>
     <h1>What to get?</h1>
         <p>Get an "portable active column" speaker like the "JBL EON MK2". They fold up, the tower is the speaker, and the bottom is the subwoofer all in one! Also 4hr long battery powered charges when pluged in.</p>
+        <img src="https://www.audioegghead.com/wp-content/uploads/2019/02/active-vs-passive-speakers-768x512.jpg">
     `
     },
     {title: "Mics🎤", thehtml: `
@@ -253,11 +255,68 @@ const musicteacherdatabase = [
         <b>(I)</b> "Jammin buddies". Some guys that get together and play some songs, not much structure<br>
         <b>(II)</b> "Gigging". Plays gigs for small crowds. Has a list of songs and comfortable playing for small crowds<br>
         <b>(III)</b> "Has Followers". Has a well-rehearsed SetList/SongOrder that can take anywhere to put on a show and play in front on 100+ people. Actually sounds good, people show up to see them whether that be a few or lots. Can preform up to 4hrs (with break). Loud enough for big crowds (have equipment, mixer, speakers) don't be obnoxiously loud, but enough to cover a big area. Usually at least 2 people singing to harmonize *makes a big difference<br>
-        <b>(IIII)</b> "SemiFamous". Performs at concerts, big following. Goes on tour around the country (Stick Figure)<br>
+        <b>(IIII)</b> "SemiFamous". Performs at large concerts, big following. Goes on tour around the country (Stick Figure)<br>
         <b>(V)</b> "Famous" Can travel internationally (The Beatles, GipsyKings, Rolling Stones, Buddy Guy, BBKing)
         </p>
     <h1>Other junk</h1>
         <p>Slatwall: wall with inward horizontal lines to hang instruments.</p>
+    `
+    },
+    {title: "Scales and Chords", thehtml: `
+    <p>m means minor. Tri means "tritone"<br><br>
+
+    ======Scales====== (H = HalfStep/1 | W = WholeStep/2 | T = Triple Step/3)<br>
+    Full/Cromatic: ......[1 2m 2 3m 3 4 Tri 5 6m 6 7m 7] *all 11 note names*<br>
+    Major: ..................[1 - 2 - 3 4 - 5 - 6 - 7] (WWHWWWH)<br>
+    Minor: ..................[1 - 2 3m - 4 - 5 6m - 7m -] (WHWWHWW)<br>
+    Pentatonic major: [1 - 2 - 3 - - 5 - 6 - -] (WWTWT)<br>
+    Pentatonic minor: [1 - - 3m - 4 - 5 - - 7m -] (TWWTW) <br>
+    Pentatonic blues: [1 - - 3m - 4 Tri 5 - - 7m -] (TWHHTW) <br>
+    Harmonic Minor: .............[1 - 2 3m - 4 - 5 6m - - 7] (WHWWHTH) *7m -> 7*<br><br>
+
+
+    ======CHORD TYPES====== (using C for example)<br>
+    Power "chord": ....[1 - - - - - - 5] *1 and 5* <br>
+    Major: ..................[1 - - - 3 - - 5] (C) <br>
+    Minor: ..................[1 - - 3m - - - 5] (Cm or c)<br>
+    Dominant Seven: [1 - - - 3 - - 5 - - 7m -] (C7) *major with 7m*<br>
+    Major 7: ...............[1 - - - 3 - - 5 - - - 7] (Cmaj7) *major with 7*<br>
+    Minor 7: ...............[1 - - 3m - - - 5 - - 7m -] (Cm7) *minor with 7m*<br>
+    Sus4: ...................[1 - - - - 4 - 5] (Csus4) *3/3m -> 4*  not major nor minor<br>
+    Sus2: ...................[1 - 2 - - - - 5] (Csus2) *3/3m -> 2*  not major nor minor<br>
+    Augmented: .........[1 - - - 3 - - - 6m] (Caug or C+) *raised 5th / major but has 6m*<br>
+    Diminished: ..........[1 - - 3m - - 4aug] (Cdim or Co) *notes 3 steps away*<br>
+    Dominant 9: ...............[1 - - - 3 - - 5 - - - - = - 2/9] (C9) *major with 9 note of major scale. 9th/2nd are the same because only 7 notes. 8th is 1st note/octive start counting again*<br>
+    Major 9: ...............[1 - - - 3 - - 5 - - - 7 = - 2/9] (Cmaj9) *major7 with 9*<br>
+
+    Six 6:  <br><br> 
+
+    ======Vocab======<br>
+    HalfStep/Semitone = 1 step<br>
+    WholeStep/Tone === 2 steps<br>
+    Interval ========== 2 notes played at once, 1 and 3 = major 3rd interval<br>
+    Chord =========== 3+ notes played at once <br>
+    Octive =========== Same note but higher *doubled frequency*<br><br>
+
+    ======Chord Progressions======<br>
+    Notes of a scale: (I 1) (II 2) (III 3) (IV 4) (V 5) (VI 6) (VII 7)<br>
+    Uppercase = Major (V) | Lowercase = minor (v)<br>
+    [I IV V] [I V]  <br>
+    [I V vi IV] Most popular in american music<br>
+    [i VI III VII] Powerful<br>
+    [i VII VI V] Andalusian Cadence / Spanish Flamenco / Powerful<br>
+    [i VII VI VII] floaty <br>
+    [i III iv V] <br>
+    [I vi IV V] StandByMe<br>
+    [I bVII IV I]<br>
+    [IV V iii vi] Japans Popular Progression
+    <br><br>
+
+    ======Musical Notation======<br>
+
+    </p>
+
+    
     `
     },
 ];
