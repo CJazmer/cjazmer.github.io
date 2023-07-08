@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sciences</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.holder{
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            width: 100%;
+            padding: .5em 0em .5em 0em;
+            background-color: goldenrod;
+        }
+        .btn{
+            padding: .5em;
+            margin-right: .4em;
+            background-color: gold;
+            border: .2em solid black;
+            border-radius: 10%;
+            min-width: 6em;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #infodiv{
+            width: 100%;
+            min-height: 8em;
+            padding: .5em;
+            background-color: lightgoldenrodyellow;
+        }
+        .title{
+            width: 100%;
+            background-color: gold;
+            margin: 0em;
+            font-weight: 800;
+        }
+        table{
+            background-color:rgb(255, 248, 151);
+            border: .2em solid black;
+            margin: .2em;
+            border-collapse: collapse;
+
+        }
+        table tr{
+            border: .1em solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="gohere"></div>
+            <div id="infodiv"></div>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+const categories = [    
+{name: "Math", 
+   arr: [
+    {name: "Arithmatic➕", desc: `
+    <p>Arithmatic is Basic Math (add, subtract, multiply, divide)</p> 
+
+    <h1>Main</h1>
+    
+    <table>
+        <tr><th>Symbol</th><td></td></tr>
+        <tr><th>ADD➕</th><td>2 + 2 = 4 | ・・+・・=・・・・</td></tr>
+        <tr><th>Subtract➖</th><td>4 - 2 | ・・・・-・・=・・ take away 2 from 4</td></tr>
+        <tr><th>Multiply✖️</th><td>2 x 3 = 6 | (・・・) (・・・) = ・・・・・・ 3, 2 times</td></tr>
+        <tr><th>Divide➗</th><td>4/2 = 2 | ・・・・/・・ = ・・ two 2s fit into 4</td></tr>
+        <tr><th>∞</th><td>All numbers, never ending</td></tr>
+    </table> 
+    <p>Positive x Positive = Positive (2 x 2 = 4) (2 / 2 = 1)<br>
+       Positive x Negative = Negative (2 x -2 = -4) (2 / -2 = -1)<br>
+       Negative x Negative = Positive (-2 x -2 = 4) (-2 / -2 = 1)<br> Dividing is the same...
+    </p>
+
+    <h1>Number Types</h1>
+    <p>Positive nums (1, 2, 3) | Negative nums (-1, -2, -3) | "-3" means missing 3 | -3 + 3 = 0</p>
+    <table>
+        <tr><th>Type</th><td>Explained</td></tr>
+        <tr><th>Natural (N)</th><td>Basic 1,2,3...</td></tr>
+        <tr><th>Integer (Z)</th><td>Negatives</td></tr>
+        <tr><th>Rational (R)</th><td>Decimal/Fractions</td></tr>
+        <tr><th>Real Algebraic (A)</th><td></td></tr>
+        <tr><th>Real (R)</th><td></td></tr>
+    </table> 
+    <img src="http://www.assignmentpoint.com/wp-content/uploads/2017/08/Real-Numbers-1.jpg">`},
+    {name: "Algebra xy", desc: `
+    <p>Algebra is solving for letters...</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ouUaxWVJNSI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <h1>Basics</h1>
+    <p>(Normal | Opposite) (+ | -) (x | ÷) (² | √)<br>
+        Isolate a letter to see what it equals... To remove numbers, do the opposite to both sides. If you have +5 do -5, or if you have x 5 do ÷ 5...<br><br>
+        x + 5 = 10 ➡️ x = 5 *subtracted 5 from both sides so see what x equals<br>
+        x/3 = 9 ➡️ x = 27 *multiplied 3 to both sides to see what x equals</p>
+    
+    <h1>Exponents x¹²³⁴⁵⁶⁷⁸⁹</h1>
+    <p>
+        Multiply (add Xs): x²・x² = x⁴ | "(x¹・x¹)・(x¹・x¹) = x⁴"<br>
+        x⁴・x⁵ = x⁹ | "(x¹・x¹・x¹・x¹)・(x¹・x¹・x¹・x¹・x¹) = x⁹"<br>
+        Divide (subtract Xs): x⁵/x² = x³ | "(x¹・x¹・x¹・x¹・x¹/x¹・x¹)"<br>
+        x⁴/x⁶ = x⁻² | "(x¹・x¹・x¹・x¹/x¹・x¹・x¹・x¹・x¹・x¹)"<br>
+        Square (multiply Xs): (x³)⁴ = x¹²<br>
+        Flip Sign: x⁻¹ = 1/x¹ | x⁶/1 = 1/x⁻⁶<br>
+
+        Zero⁰ (equals 1): 7⁰ = 1 | x⁰ = 1 *Any Number rasied to 0 equals 1*
+    </p>
+    <h1>Polynomial Expressions "2x² + 6x + 4"</h1>
+    <p>
+        Add: (x² + 6x + 8) + (2x² + 6x - 2) = 3x² + 12x + 6<br>
+        x + x + x = 3x<br>
+        (3x² + 6x + 8) + (9x² + 7x -5) = 12x² + 13x + 3<br>
+        Subtract: (5x² -3x + 7) - (4x² -8x -11) ➡️ (5x² -3x + 7) + (-4x² +8x +11) ➡️ 1x² + 5x + 18 *if "-()" flip all signs in ()*<br>
+        Mult: x * x * x = x³<br> (a+b)² ➡️ (a+b)・(a+b) ➡️ a²+ab+ab+b² ➡️ a²+ab²+b² *Foil Method*<br>
+    </p>
+    <img src="https://www.onlinemath4all.com/images/specialproducts2.png">
+    
+    <h1>Check Work</h1>
+    <p>2x + 3 = 9 | if you got "x = 3" for your answer, replace x with 3 in the original equation and it should be true "2(3) + 3 = 9" Correct! This works for ALL math problems <br><br>
+        2x + 4y = 10 , y = 7x-5 ➡️ 2x + 4(7x-5) = 10 ➡️ 2x + 28x -20 = 10 ➡️ 30x = 30 ➡️ x = 1 *also can find values this way if you know what a letter equals plug it into equation <br>Check: 2(1) + 4(7(1)-5) = 10</p>
+
+    
+    <h1>Linear Equations (solve for x)</h1>
+    <p>(x, y) (2, 3) "2 is x, 3 is y" <br>
+        x + 3 = 10 ➡️ x = 7 | 4x = 8 ➡️ x = 2 | 3x - 5 = 13 ➡️ 3x = 18 ➡️ x = 6 <br>
+       4(2x-7) + 8 = 16 ➡️ 8x - 28 = 12 ➡️ 8x = 40 ➡️ x = 5</p>
+       
+       <h1>Inequalities ><≥≤(Interval Notation)</h1>
+       <p>3x + 7 ≥ 13➡️ 3x ≥ 6➡️ x ≥ 2<br>
+        3: -2 ≥ -3x + 4 ≥ 13➡️ -6 ≥ -3x ≥ 9➡️ 2 ≤ x ≤ -3 "x≥2" "x≤-3"<br>
+        flip sign rule: Everytime you divide/multiply by negative number, flip signs -5x > -10➡️ x < 2<br>
+        Greater or Less: open circle<br>
+         Greater/Less Equal to: Filled in circle</p>
+       <img src="https://i.ytimg.com/vi/Ww7xtG2S7IM/maxresdefault.jpg">
+       
+       <h1>Absolute Value |x|</h1>
+       <p>makes value always positive. |-2| = 2, |5| = 5, write 2 equations when solving for x (1st is normal, 2nd flip inequality sign and flip number sign to num on other side<br> ⋃, ⋂, ⊆, ⊂, ⊇, ⊃, ⊅</p>
+        <img src="https://image3.slideserve.com/5759960/6-5-x-2-312-l.jpg"><img src="https://i.ytimg.com/vi/Tj8wtlI3z08/maxresdefault.jpg">
+        
+        <h1>X & Y Intercepts</h1>
+        <p>
+            Y-intercept = x is 0 | X-intercept = y is 0<br>
+            Slop Intercept Form (y = mx + b) (rise/run)<br>
+            y = 2x + 3 *start at +3 on y* (2x is same as 2/1| up 2, right 1)<br>
+           y = -3/4x - 5 *start at -5 on y* (down 3, right 4)<br>
+           What is y-intercept of y = -2x + 6 | (0,6) y intercept plug in 0 for x, and opposite for x-intercept</p>
+
+        <h1>Standard Form (Ax + By = c) *finds intercept</h1>
+        <p>2x + 3y = 6➡️ 2x 3(0) = 6➡️ 2x = 6➡️ x = 3 *if y = 0 then x = 3 (3, 0)*</p>
+        
+        <h1>Transformations</h1>
+        <p>absolute value always has 2 mirrored lines over y axis.<br>Just put a numer in for the Y and solve for x, that'll give you a point on the graph<br>y=|x-3|+2➡️ 0=|x-3|+2➡️ x-3=2➡️ x=5 when y=0</p>
+        <img src="https://mszeilstra.weebly.com/uploads/4/8/8/8/48889683/1413873_orig.png"><img src="https://i.pinimg.com/736x/44/0e/eb/440eeb5476125ed1db653f10aafc9559.jpg">
+        
+        <h1>GCF Greatest Common Factor</h1>
+        <p>3x² - 48 = 0 same as 3(x² - 16) = 0<br>
+            x⁶ + x⁴ = 0 same as x²(x³ + x²)<br>
+            3x - 48 same as 3(x² - 16)<br>
+            3(x² - 16) same as 3(x+4)(x-4) *"Difference of perfect squares" method, one positive one negative<br>
+            x² + 10x + 24 same as (x+4)(x+6) *6 & 4 add to 10 and multiply to 24*
+        </p>
+
+        <h1>Quadratic Formula (-b±√b²-4ac)/2a</h1>
+        <p>gives you 2 answers</p>
+
+        <h1>Composite Functions f(x) or g(x) same as "y"</h1>
+        <p>Very simple "f(x)", num inside is "x". g(x) is the same just a different letter sometimes used<br>
+           f(3) = 5x + 4 ➡️ f(3) = 5(3) + 4 ➡️ f(3) = 19 *basic example <br>
+           f(g(2)) = 3x + 5,  g(x) = x²-4 ➡️ f(g(2)) = 3(2²-4) + 5 ➡️ f(g(2)) = 5 *Replace x with g(2) function<br>
+           Inverse Function: f⁻¹(x) is the opposite of f(x), flip x & y values<br>
+           f(x) = 7x-5 Normal... now lets find f⁻¹(x) <br>
+           f⁻¹(x) = 7x-5 ➡️ y = 7x-5 ➡️ x = 7y-5 ➡️ y = (x+5)/7 | f⁻¹(x) = (x+5)/7</p>
+
+        <h1>Imaginary Numbers "i"</h1>
+        <p>i = √-1 | i² = -1 | i³ = -i | i⁴ =  1</p>
+
+
+    `},
+    {name: "Geometry🛆", desc: `
+    <p>Geometry is about shapes and their sizes</p>
+    <table>
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><th>∠</th><td>angle</td></tr>
+        <tr><th>∟</th><td>Right angle 90°</td></tr>
+        <tr><th>°, deg</th><td>degree</td></tr>
+        <tr><th>π</th><td>"Pi" is the ratio of the circumference of a circle to its diameter. 3.1415...</td></tr>
+        <tr><th>X, Y, Z</th><td>x = Width | y = Height | z = Depth | XYZ can be a filler variables also</td></tr>
+
+    </table> 
+    <h1>2D Shapes</h1>
+    <p>Perimeter: length of sides (add all sides)<br>
+        Area: total area inside  (multiply Length & Height)
+    </p>
+    <img src="https://cdn.shopify.com/s/files/1/1247/5011/products/shapes_finished_1024x1024.jpg?v=1460760656">
+
+    <h1>Pythagorean Theorem a² + b² = c²</h1>
+    <img src="https://mathequalslove.net/wp-content/uploads/2020/12/Pythagorean-Theorem-Poster.png"><img src="https://image1.slideserve.com/3193820/examples-of-the-pythagorean-theorem-l.jpg">
+    <p>if a = 5, b = 12, what is c? (5²+12²=c²) (25+144=c²) (169=c²) (c = 13)</p>
+    
+
+
+
+
+    <h1>3D Shapes</h1>
+    <p>
+        Surface Area: total surface area (multiply Length & Height)</p>
+        Volume: total space inside (multiply Length & Height & Depth )
+    </p>
+
+    
+    `},
+    {name: "Trigonometry⊾", desc: `
+    <p>Trigonometry is mostly about right triangle corners and angles. <br>Find all 3 side of triangle (PythagoreanTheorem) then use Cos, Sin, Tan equations</p>
+    
+    <h1>3 Main Functions COS SIN TAN</h1>
+    <p>
+       Cos: Adjacent/Hypotenuse "cosine"<br>
+       Sin: Opposite/Hypotenuse "sine"<br>
+       Tan: Opposite/Adjacent "tangent"<br>
+       "SOH CAH TOA" is a way to remember, SOH is "Sin = Opposite/Hypotenuse", also these functions only work for right triangles
+    </p>
+
+    <h1>Right Triangle Parts</h1>
+    <p>"θ" is the corner you're calculating</p>
+    <img style="width:20em" src="https://sciencenotes.org/wp-content/uploads/2016/09/trigtriangle.png"><img src="https://i.pinimg.com/originals/0c/8d/76/0c8d76824d098c0819d82b4e10e397f2.jpg">
+
+    <h1>Pythagorean Theorem a² + b² = c²</h1>
+    
+    
+    `},
+    {name: "Probability❓", desc: `
+    <p>Probability is the study of random events</p>`},
+
+    {name: "Calculus ∫", desc: `
+    <p>Learn trigonometry first.</p>
+    
+    <h1>Integration</h1>
+    <p></p>`},
+    {name: "Physics🍎", desc: `
+    <p></p>`},
+    {name: "Topology", desc: `
+    <p>Study of shapes</p>`},
+    ]},
+    
+    {name: "Science (how everything works)", 
+   arr: [
+   {name: "Energy⚡", desc: `
+   <p>As of 2023, the most efficient energy harvest method humans have is Fission via NuclearPower. Fusion technology is in progess...</p>
+    <table>
+        <tr><th>Method (efficiency%)</th><th>How to do</th></tr>
+        <tr><th>Matter+Antimatter (100%)</th><td>0% waste. Any object/matter can be converted to pure energy. Combine matter with antimatter to neutralize into pure energy</td></tr>
+        <tr><th>Fusion (50-60%)</th><td>0 Polution</td></tr>
+        <tr><th>Fission (30-40%)</th><td>Burns Clean, Radioactive material waste can be buried or used for fuel</td></tr>
+        <tr><th>Wind (30-50%)</th><td>+Noise Polution, +Space</td></tr>
+        <tr><th>Natural Gas (15-20%)</th><td></td></tr>
+        <tr><th>Solar (15-20%)</th><td></td></tr>
+    </table>`},
+   {name: "Astronomy🔭", desc: `
+    <p></p>`},
+    {name: "Biology🧬", desc: `
+    <p></p>`},
+    ]},
+    {name: "Science Social", 
+        arr: [
+        {name: "Psychology🧠", desc: `
+        <h1>Mental Disorders</h1>
+    <table>
+        <tr><th>Depression</th><td></td><tr>
+        <tr><th>Bipolar</th><td></td><tr>
+        <tr><th>Eating Disorder</th><td></td><tr>
+        <tr><th></th><td></td><tr>
+        <tr><th></th><td></td><tr>
+        <tr><th></th><td></td><tr>
+        <tr><th></th><td></td><tr>
+    </table>
+    <h1>Neurodevelopmental Disorders</h1>
+    <table>
+        <tr><th>ADHD</th><td></td><tr>
+        <tr><th>Autism</th><td></td><tr>
+        <tr><th>Eating Disorder</th><td></td><tr>
+        <tr><th></th><td></td><tr>
+        <tr><th></th><td></td><tr>
+        <tr><th></th><td></td><tr>
+        <tr><th></th><td></td><tr>
+    </table>
+    `},
+    {name: "Linguistics🗣️", desc: `
+    <h1>Parts of Speech</h1>
+    <p><b>Noun:</b> thing [tree, hand, sky, chair, chicago, Bob]<br>
+        <b>Verb:</b> action [trip, run, look, see, think, drive]<br>
+       <b>Adverb:</b> describes verb [quickly, slowly, quietly]<br>
+       <b>Adjective:</b> describes noun []<br>
+       <b>Pronoun:</b> person [I, you, she, he, it, we, yall, they]<br>
+       <b>Conjunction:</b> connecters [and, or, because, but, so]<br>
+       <b>Interjection:</b> sayings [Yea!, Wow!, Um..., OK!, Yeehaw!, Olé!, Opa!]<br>
+       <b>Adposition:</b> shows relationship between nouns/pronouns [in, on, into, inside, to, from, above, next to] "Preposition is before ('on' the table)" "Postposition is after (5 years 'ago')"</p>
+       
+    <h1>Sounds</h1>
+    <p>Digraph: 2 letters make 1 sound. "sh"ut, "ch"urch, "Th"at<br>
+        VowelHarmony: </p>
+
+    <h1>Plural / Number</h1>
+    <p>English has singular(1 cat) & plural(2+ cats), but some languages have more specific plurals. <br>Singular(1), Dual(2), Trial(3), Quadral(4), Paucal/Some(3-10), Plural(2+)</p>
+
+    <h1>Pronouns</h1>
+    <p></p>
+    <table>
+        <tr><td>All basic pronouns...</td><th>1 person</th><th>2+ people</th><tr>
+        <tr><th>me included</th><td>I</td><td>We</td><tr>
+        <tr><th>you included</th><td>You</td><td>Yall</td><tr>
+        <tr><th>outside convo.</th><td>He/She/it</td><td>They</td><tr>
+    </table>
+    <p>We</p>
+
+    <h1>Cases or Prepositions</h1>
+
+    <h1>Verbs</h1>
+    <p>Auxiliary/Helping Verbs: odd verbs that help/describe tense, negation, questions. She "is" writing a letter. They "have" finished. "Do" you like? "Have" they arrived? He "does'nt" want to.<br><br>
+       Conjugation: verb changes based on who's talking. "To Be" in english conjugates [I am... You are... he/she/it is... we are... they are...] you don't say "i be a man" but rather "i AM a man". English verbs don't change much, but languages like spanish have all the verbs change in a predictable way</p>
+
+    <h1>Affix (attachment to word)</h1>
+    <p>
+    Prefix: start of word (RE-think)<br>
+    Infix: inside word (Cup-<u>S</u>-full)<br>
+    Suffex: end of word (Dog-S)<br>
+    Confix: start & end of word (A-hunt-ING)<br>
+    Prefix: start of word (RE-think)<br></p>
+
+    <h1>Tense</h1>
+    <p>Present: now (i work)<br>
+        Preterite: basic past (i worked)<br>
+        Imperfect: long past (i used to work)<br>
+        Conditional: "would" do, excuse tense (i would work)<br>
+        Future: will happen <br><br>
+        
+        Some languages 
+        </p>
+    <h1>Aspect & Mood</h1>
+    <h1>Language Types</h1>
+    <p>Languages in the same Families have similar words, grammer, rules...</p>
+
+    `},
+    {name: "Law⚖️", desc: `
+    <p></p>`},
+    {name: "Injury Health❤️", desc: `
+    <p>Concussion: when you get hit in the head hard. [Confusion, ]<br>
+       Sprain: joint is twisted or overstretched, Fall/Trip on ankle wrong. [pain, swelling, limited range of motion]<br>
+       Burns: Hernia:</p>
+       <img src="https://img.grepmed.com/uploads/12028/burn-grading-classification-diagnosis-degrees-original.jpeg">`},
+        ]},
+
+];
+
+const gohere = document.getElementById("gohere");
+const infodiv = document.getElementById("infodiv");
+
+let thehtml = "";
+
+categories.forEach(c => {
+    thehtml += `<p class='title'>${c.name}</p><div class="holder">`;
+    c.arr.forEach(a => {
+        thehtml += `<div class="btn" onclick="Clicked('${a.name}')">${a.name}</div>`;
+    })
+    thehtml += "</div>"
+});
+gohere.innerHTML = thehtml;
+
+
+function Clicked(infooo){
+    
+categories.forEach(c => {
+    c.arr.forEach(a => {
+        if(a.name == infooo){infodiv.innerHTML = a.desc;}
+    })
+});
+if(infodiv.innerHTML == ""){infodiv.innerHTML = "..."};
+}
+
+
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+let mainbutton = document.getElementById("mainbutton");
+
+
+</script>
