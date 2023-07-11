@@ -6,13 +6,14 @@
 	<meta name="description" content="A clock...">
 	<meta name="keywords" content="clock">
 	<style>
+        :root{--Csize: 15em}
 		.hclock{
-            width: 40em;
-            height: 40em;
-            margin: auto;
+            width: var(--Csize);
+            height: var(--Csize);
+            margin: auto 1em auto auto;
             background: rgb(255,255,255);
             background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(127,127,127,1) 100%);
-            border: 1em solid black;
+            border: .5em solid black;
             border-radius: 100%;
             text-align: center;
             display: flex;
@@ -22,28 +23,37 @@
         #htickersec{
             background-color: red;
             width: .3em;
-            height: 90%;
+            height: var(--Csize);
             position:absolute;
-            left: 50%;
-            top: 60%;
+            left: (var(--Csize)/2);
+            top: (var(--Csize)/2);
         }
         #htickermin{
             background-color: black;
             width: .4em;
-            height: 90%;
+            height: var(--Csize);
             margin: auto;
             position:absolute;
-            left: 50%;
-            top: 60%;
+            left: (var(--Csize)/2);
+            top: (var(--Csize)/2);
         }
-        #htickerhr{
+        #htickerhour{
             background-color: black;
-            width: .5em;
-            height: 90%;
+            width: .6em;
+            height: var(--Csize);
             margin: auto;
             position:absolute;
-            left: 50%;
-            top: 60%;
+            left: (var(--Csize)/2);
+            top: (var(--Csize)/2);
+        }
+        #htickeryear{
+            background-color: rgb(53, 187, 0);
+            width: .6em;
+            height: 14em;
+            margin: auto;
+            position:absolute;
+            left: (var(--Csize)/2);
+            top: (var(--Csize)/2);
         }
         #htime{
             background-color:firebrick;
@@ -51,10 +61,32 @@
             padding: 2em;
             font-weight: bolder;
         }
-        #hseason{
-            height: 2em;
-            background-color: red;
+        .flex{
+            display: flex;
+            margin: auto;
         }
+        #hnums{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        table{
+            background-color: rgb(255, 158, 158);
+            height: fit-content;
+            padding: 1em .2em 1em .2em;
+            margin: auto 0em auto 0em;
+            border: .2em solid black;
+            border-radius: .5em;
+        }
+        table tr th{
+            padding: .5em;
+        }
+        #seasonclock{
+            box-sizing: border-box;
+            border-width: .5em;
+            border-style: solid;
+            border-color: green red orange blue;
+        }
+
     </style>
 </head>
 
@@ -65,18 +97,25 @@
 			<div id="navflex">
 				
 					<h3>Realtime Clock</h3>
-                    <p id="htime"></p>
+                <div class="flex">
 					<div class="hclock">
+                        <div id="hnums"></div>
                         <div id="htickersec"></div>
                         <div id="htickermin"></div>
                         <div id="htickerhour"></div>
 					</div>
+                    <table id="timetable">
+                    </table>
+                </div>
 
-
-					<h3>Seasons</h3>
-                <div style="width: 100%; border: .4em solid black; border-radius: 2em;">
-                    <div id="hseason">
-                    </div>
+                <div class="flex">
+                    <div class="hclock" id="seasonclock">
+                        <div id="htickeryear"></div>
+					</div>
+                    <table id="seasontable">
+                    </table>
+                </div> 
+                </div>
 
 				<footer></footer>
 			</div>
@@ -89,34 +128,75 @@
 <script>
 	const hclock = document.getElementById("hclock");
     let htickersec = document.getElementById("htickersec");
-    htickersec.style.transform = `translateX(40em) translateY(40em);`;
-
     let htickermin = document.getElementById("htickermin");
     let htickerhour = document.getElementById("htickerhour");
-    let htime = document.getElementById("htime");
-    let hseason = document.getElementById("hseason");
+    let htickerday = document.getElementById("htickerday");
+    let timetable = document.getElementById("timetable");
+    let seasontable = document.getElementById("seasontable");
+    let hnums = document.getElementById("hnums");
+
+    let now = new Date();
     const events = [
-        {name: "Ramadan", timefrom: "now", timeend: "end"}
+        {name: "Summer Solstice", monthstart: 6, daystart: 20, monthend: 6, dayend: 21},
+        {name: "Winter Solstice", monthstart: 12, daystart: 21, monthend: 12, dayend: 22},
+        {name: "Fall Equinox", monthstart: 9, daystart: 22, monthend: 9, dayend: 23},
+        {name: "Spring Equinox", monthstart: 3, daystart: 20, monthend: 3, dayend: 20},
     ];
+    let season = "...";
+
 
     setInterval(tick, 100);
 let totaltime = 0;
     function tick(){
-        let now = new Date();
+        now = new Date();
         console.log(now)
-        if(now > new Date(`Wed Apr 04 2023 11:33:43 GMT-0500 (Central Daylight Time)`)){console.log('yes')}
-        else{console.log(`${now} is not bigger than Wed Apr 04`)}
 
 
-
-        htime.innerHTML = `${now.getFullYear()} ${now.getDay()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
         totaltime += 1;
         console.log("rotate("+ totaltime +"deg)");
 
-        hseason.style.width = `${totaltime}%`;
-        htickersec.style.transform = `rotate(${now.getSeconds()*4}deg)`;
-        htickermin.style.transform = `rotate(${now.getMinutes()*4}deg)`;
-        htickerhour.style.transform = `rotate(${now.getHours()}deg)`;
+        htickersec.style.transform = `rotate(${(now.getSeconds()/60)*360}deg)`;
+        htickermin.style.transform = `rotate(${(now.getMinutes()/60)*360}deg)`;
+        htickerhour.style.transform = `rotate(${(now.getHours()/12)*360}deg)`;
+        htickeryear.style.transform = `rotate(${((now.getMonth() * 30)/365)*360}deg)`;
+
+        Update()
+    }
+    function Update(){
+        // 12 months (Winter: 12 dec, 1 jan, 2 feb, | Spring: 3 mar, 4 apr, 5 may | Summer: 6 jun, 7 jul, 8 aug | Fall: 9 sep, 10 oct, 11 nov)
+        if(now.getMonth() >= 3 && now.getMonth() <= 5){season = "Spring🌸"}
+        else if(now.getMonth() >= 6 && now.getMonth() <= 8) {season = "Summer☀️"}
+        else if(now.getMonth() >= 9 && now.getMonth() <= 11) {season = "Fall🍁"}
+        else {season = "Winter❄️"}
+
+        timetable.innerHTML = `
+        <tr><th>Year: </th><td>${now.getFullYear()}</td></tr>
+        <tr><th>Month: </th><td>${now.getMonth()}/12</td></tr>
+        <tr><th>Day: </th><td>${now.getDay()}/30</td></tr>
+        <tr><th>Min: </th><td>${now.getMinutes()}/60</td></tr>
+        <tr><th>Sec: </th><td>${now.getSeconds()}/60</td></tr>
+        `;
+
+        seasontable.innerHTML = `
+        <tr><th>Season: </th><td>${season} ${now.getFullYear()}</td></tr>
+        <tr><th>Year</th><td>${Math.round((GetTotalDays()/356)*100)}% Through the year!<br>${GetTotalDays()} days so far!</td></tr>
+        `;
+
+    }
+
+    for(i=1; i<=12; i++){        
+        hnums.innerHTML += `<div style="position:absolute; left: (7.5*${i})em; top: (7.5*${i})em">${i}</div>`;
+    }
+
+    function GetTotalDays(){
+        const monthdays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let ww = now.getMonth();
+        let rr = 0;
+
+        for (i=0; i<ww; i++){
+            rr += monthdays[i];
+        }
+        return rr;
     }
     
     /*
