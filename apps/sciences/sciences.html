@@ -20,7 +20,7 @@
             background-color: gold;
             border: .2em solid black;
             border-radius: 10%;
-            min-width: 6em;
+            min-width: 6.5em;
             text-align: center;
             vertical-align: middle;
         }
@@ -46,6 +46,7 @@
         table tr{
             border: .1em solid black;
         }
+        th{padding: .2em;}
     </style>
 </head>
 
@@ -63,7 +64,7 @@
 <script src="../../layout.js"></script>
 <script>
 const categories = [    
-{name: "Math (In learning order left to right)", 
+{name: "Math (Simple -> Complex)", 
    arr: [
     {name: "Arithmatic➕", desc: `
     <p>Arithmatic is Basic Math (add, subtract, multiply, divide)</p> 
@@ -94,11 +95,11 @@ const categories = [
         <tr><th>5</th><td>10, 15, 20, [25], 30, 35, 40, 45, 50</td><tr>
         <tr><th>6</th><td>12, 18, 24, 30, [36], 42, 48, 54, 60</td><tr>
         <tr><th>7</th><td>7, 14, 21, 28, 35, 42, [49], 56, 63, 70</td><tr>
-        <tr><th>8</th><td>8, 16, 24, 32, 40, 48, 56, [64], 72, 80</td><tr>
+        <tr><th>8</th><td>16, 24, 32, 40, 48, 56, [64], 72, 80</td><tr>
         <tr><th>9</th><td>18, 27, 36, 45, 54, 63, 72, 81, [90]</td><tr>
-        <tr><th>10</th><td>10, 20, 30, 40, 50, 60, 70, 80, 90, [100]</td><tr>
-        <tr><th>11</th><td>11, 22, 33, 44, 55, 66, 77, 88, 99, 110</td><tr>
-        <tr><th>12</th><td>12, 24, 36, 48, 60, 72, 84, 96, 108, 120</td><tr>
+        <tr><th>10</th><td>20, 30, 40, 50, 60, 70, 80, 90, [100]</td><tr>
+        <tr><th>11</th><td>22, 33, 44, 55, 66, 77, 88, 99, 110</td><tr>
+        <tr><th>12</th><td>24, 36, 48, 60, 72, 84, 96, 108, 120</td><tr>
     </table>
     <img src="https://www.printablemultiplication.com/wp-content/uploads/2020/03/printable-multiplication-chart-or-printable-colorful-times-regarding-printable-multiplication-tables-chart.jpg">
     <h1>Quick math in head</h1>
@@ -107,21 +108,20 @@ const categories = [
 
     <h1>Fractions / Percents%</h1>
     <p><b>Dividend:</b> Number on top, <b>Divisor:</b> number on bottom "Dividend / Divisor"<br>
-       divide dividend by divisor to convert to decimal <br>
-       1/2 same as 0.5 | 1/4 same as 0.25<br>
-       0.5, .5, .5000000 are all the same<br>
-       Multiply or Divide both top & bottom nums and you'll have the same value (1/2 = 2/4 = 4/8...)<br>
-       ADD or SUBTRACT: 7/8 + 2/9 ➡️ 63+16/72 ➡️ 79/72 or 1 3/72 *Top: Cross Multiply | Bottom: Multiply bottoms together*<br>
-       MULTIPLY: 7/8 * 2/9 ➡️ 14/72 or 7/36 *Top: Mult. tops | Bottom: Mult. bottoms*
-       DIVIDE: 7/8 ÷ 2/9 ➡️ 63/16 or 3 15/16*Top: TopLeft x BottomRight | Bottom: BottomLeft x TopRight*
+       <b>Convert Fraction to %:</b> divide top by bottom, Mult by 100. 1/4 = 25%, 1/94 = 1%<br>
+       0.5 = .5 =.5000000 all the same<br>
+       Multiply or Divide top & bottom nums, value is still the same (1/2 = 2/4 = 4/8...)<br><br>
+       <b>ADD or SUBTRACT:</b> 7/8 + 2/9 ➡️ 63+16/72 ➡️ 79/72 or 1 3/72 *Top: Cross Multiply | Bottom: Multiply bottoms together*<br>
+       <b>MULTIPLY:</b> 7/8 * 2/9 ➡️ 14/72 or 7/36 *Top: Mult. tops | Bottom: Mult. bottoms*
+        <b>DIVIDE:</b> 7/8 ÷ 2/9 ➡️ 63/16 or 3 15/16*Top: TopLeft x BottomRight | Bottom: BottomLeft x TopRight*
     </p>
     <img src="https://s-media-cache-ak0.pinimg.com/originals/09/83/63/098363128a3969b80ff6082ef5be773b.jpg"><img src="https://2.bp.blogspot.com/-upb8sZho7Us/WWjCYvDtSXI/AAAAAAAAVdE/B3X7YtR7mrEWum3PZ4FNm5e6hoy3etnvwCLcBGAs/s1600/Picture1.png">
     
 
-    <h1>Linear Sequences</h1>
+    <h1>Linear Sequences (repeating pattern 1, 2, 3...)</h1>
     <p>Arithmetic/addition: d=1(1, 2, 3, 4) d=3(1, 4, 8, 12) d=11(11, 22, 33, 44) *d is difference<br>
         (1, 4, 8, 12) "3n+1" is the equation. +1 because starts at 1 not 0<br>
-       Geometric/Multiply: r=2(3, 6, 12, 24, 48) *r is ratio</p>
+       Geometric/Multiply: r=2(3, 6, 12, 24, 48) *r is ratio, mult itself by 2</p>
 
     
     <h1>Number Types</h1>
@@ -151,7 +151,7 @@ const categories = [
     <p>
         Multiply (add Xs): x²・x⁴ = x⁶ | "(x¹・x¹)・(x¹・x¹・x¹・x¹) = x⁶"<br>
         Divide (subtract Xs): x⁵/x² = x³ | "(x¹・x¹・x¹・x¹・x¹/x¹・x¹)" = x³ *can have negative exponents<br>
-        Square (multiply Xs): (x³)⁴ = x¹²<br>
+        Square (multiply Xs): (x³)⁴ = x¹² | (2³x⁴y⁵)² = 2⁶x⁸y¹⁰<br>
         Flip Sign: x⁻¹ = 1/x¹ | x⁶/1 = 1/x⁻⁶<br>
         Zero⁰ (equals 1): 7⁰ = 1 | x⁰ = 1 *Any Number rasied to 0 equals 1*
     </p>
@@ -311,24 +311,85 @@ const categories = [
     
     `},
     {name: "Probability❓", desc: `
-    <p>Probability is the study of random events</p>`},
+    <p>Probability is the study of random events</p>
+    
+    <h1>Lettters</h1>
+    <table>
+        <tr><th>S</th><td>"Sample space" all possible outcomes</td></tr>
+        <tr><th>A</th><td>"Answer/FillerVariable"</td></tr>
+        <tr><th>P(x)</th><td>"Probability" chance of x/answer happening</td></tr>
+        <tr><th>OR ⋃</th><td>"union" <br>nums that belong to set A or set B (A ⋃ B = {1,3,7})</td></tr>
+        <tr><th>AND ⋂</th><td>"intersection"<br>nums that belong to set A and set B (A ⋂ B = {9,14})</td></tr>
+        <tr><th>GIVEN |</th><td>"|" means GIVEN "P(A|B) = P(A⋂B)/P(B)"</td></tr>
+        <tr><th>"Independent"</th><td>if P(A|B) = P(A)</td></tr>
+        <tr><th>"Mutually Exclusive"</th><td>if P(A AND B) = 0</td></tr>
+    </table>
+    <img src="https://image3.slideserve.com/6456284/four-types-of-probability1-l.jpg">
+
+
+    <p><b>Marbles: 7 Red, 6 Green, 5 Blue, 2 Yellow. </b> Use Basic Division<br>
+           Total 7+6+5+2 = 20<br>
+           Red 7/20 = 35%<br>
+           Green 6/20 = 3/10 = 30% <br>
+           Blue 5/20 = 1/4 = 25%<br>
+           Yellow 2/20 = 1/10 = 10%<br>
+           (Red OR Blue) = 12/20 = 3/5 = 60%
+    </p>
+
+        <p> <b>3 Main Formulas --------------------</b><br>
+            GIVEN: P(B|A) = P(A AND B)/P(A) "Conditional" <br>
+            AND: P(A and B) = P(A) x P(B|A)<br>
+            OR: P(A or B) = P(A) + P(B) - P(A and B)
+           </p>
+
+       <p><b>If 2 coins are flipped, what is the probability of getting at least 1 head?</b><br>
+        S = {HH, HT, TH, TT} 4 outcomes<br>
+        A = {HH, HT, TH} 3 answers<br>
+        P(A) = 3/4 "75% Probability of A happening"</p>
+        
+       
+
+        <p><b>Propability that I enroll in science class is 30%, math class is 70%. Probability I enroll in Science GIVEN I enroll in Math is 40%.</b><br>
+           (1) What is the probability that I enroll in Science AND Math?<br>
+           (2) What is the probability that I enroll in Science OR Math?<br>
+           (3) Are these two events independent and mutually exclusive?<br><br>
+
+           What it told us: P(A) = .30, P(B) = .70, P(A|B) = .40<br>
+           (1) P(A AND B) = P(A|B) x P(B) = .40 x .70 = 28%<br>
+           (2) P(A OR B) = P(A) + P(B) - P(A AND B) = .30 + .70 - .28 = 72%<br>
+           (3) Not Independent because P(A/B) ≠ P(A), not mutually exclusive because P(A AND B) ≠ 0<br>
+           </p>
+
+        <h1>Total Combinations</h1>
+        <p>nˢ "N is character set amount" "S is number of slots"<br>
+            Password has 26 letter set (n), and 5 slots long (s) <br>
+            26⁵ = 11,881,376 password combinations</p>
+
+
+
+    `},
 
     {name: "Calculus ∫", desc: `
     <p>Area & Shape of curves that can't be solved with simple geometry. Used in physics</p>
     
-    <h1>Limits</h1>
-    <p>Line gets closer to number but never reaches it</p>
-
-    <h1>∫Integration∫ (area under curve)</h1>
+    <table>
+        <tr><th>∫ Integral</th><td>"area under curve"</td></tr>
+        <tr><th>Δ Delta</th><td>"change"</td></tr>
+    </table>
+    <h1>Integration (area under curve)</h1>
+    <p>∫[0,2] "area under curve, from 0 to 2 on x-axis"<br>
+        ∫² same as ∫[0,2], wright it either way.</p>
 
 
     <h1>Differentiation (gradient of curve)</h1>
 
     <h1>Derivatives</h1>
 
+    <h1>Limits</h1>
+    <p>Line gets closer to number but never reaches it</p>
+
+
     <p></p>`},
-    {name: "Physics🍎", desc: `
-    <p>General relativity, </p>`},
     {name: "Topology", desc: `
     <p>Study of shapes</p>`},
     ]},
@@ -339,9 +400,9 @@ const categories = [
    <p>As of 2023, the most efficient energy harvest method humans have is Fission via NuclearPower. Fusion technology is in progess...</p>
     <table>
         <tr><th>Method (efficiency%)</th><th>How to do</th></tr>
-        <tr><th>Matter+Antimatter (100%)</th><td>0% waste. Any object/matter can be converted to pure energy. Combine matter with antimatter to neutralize into pure energy</td></tr>
+        <tr><th>Antimatter (100%)</th><td>Combine matter with antimatter to neutralize into pure energy, 0% waste. Any object/matter can be converted to pure energy</td></tr>
         <tr><th>Fusion (50-60%)</th><td>0 Polution</td></tr>
-        <tr><th>Fission (30-40%)</th><td>Burns Clean, Radioactive material waste can be buried or used for fuel</td></tr>
+        <tr><th>Fission (30-40%)</th><td>Generates extreme heat and Burns Clean, Radioactive waste can be buried or used for fuel</td></tr>
         <tr><th>Wind (30-50%)</th><td>+Noise Polution, +Space</td></tr>
         <tr><th>Natural Gas (15-20%)</th><td></td></tr>
         <tr><th>Solar (15-20%)</th><td></td></tr>
@@ -350,6 +411,54 @@ const categories = [
     <p></p>`},
     {name: "Biology🧬", desc: `
     <p></p>`},
+    {name: "Chemistry🧪", desc: `
+    <h1>General Chemistry</h1>
+    <h1>Periodic Table</h1>
+    <p>Row/Period: # of atom shells<br>
+        Column/Group: # of Valence electrons<br>
+        Atomic Number: # above Letter is # of protons<br>
+        Valence Electron: electron in outtermost atom shell</p>
+    <table>
+        <tr><th>Metals</th><td></td></tr>
+        <tr><th>Transition Metals</th><td></td></tr>
+        <tr><th>Noble Gas</th><td></td></tr>
+        <tr><th>Basic Metal</th><td></td></tr>
+        <tr><th>Metalloid</th><td></td></tr>
+    </table>
+    <img src="https://www.ducksters.com/science/periodic_table_update_lg.png">
+    
+    <p>H "hydrogen" | 3H "3 hydrogens" | H20 "Hydrogen + 2 Oxygens"</p>
+
+
+    `},
+    {name: "Physics🍎", desc: `
+    <p>General relativity, </p>
+
+    <h1>Mechanics (energy & movement)</h1>
+
+    <h1>Main Equations</h1>
+    <table>
+        <tr><th>E=MC²</th><td>Kenetic Energy = Mass x SpeedOfLight²</td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th></th><td></td></tr>
+    </table>
+    <h1>8 Energy Types</h1>
+    <table>
+        <tr><th>Thermal💨</th><td>Kenetic Energy = Mass x SpeedOfLight²</td></tr>
+        <tr><th>Radiant💨</th><td></td></tr>
+        <tr><th>Light💨</th><td></td></tr>
+        <tr><th>Electrical💨</th><td></td></tr>
+        <tr><th>Mechanical💨</th><td></td></tr>
+        <tr><th>Sound💨</th><td></td></tr>
+        <tr><th>Chemical🔋</th><td></td></tr>
+        <tr><th>Nuclear🔋</th><td></td></tr>
+        <tr><th>Gravitational🔋</th><td></td></tr>
+        <tr><th>Elastic🔋</th><td>Strech</td></tr>
+    </table>
+
+
+    `},
     {name: "Climate🌎", desc: `
     <h1>Air Quality</h1>
     <p>PM2.5</p>`},
@@ -357,15 +466,73 @@ const categories = [
     {name: "Science Social", 
         arr: [
         {name: "Psychology🧠", desc: `
-        <h1>Mental Disorders</h1>
+        <h1>5 Main Personality traits</h1>
+
+        <p>
+           Openness High: open minded, trying new things, have many interests<br>
+           Openness Low: <br>
+           Extraversion High:  very social, <br>
+           Extraversion Low:  likes alone time, feels tired out after long socializing <br>
+           Conscientiousness: <br>
+           Agreeableness: <br>
+           Neuroticism: 
+        </p>
+        <table>
+            <tr><th>Name</th><th>High</th><th>Low</th><tr>
+            <tr><th>Openness</th><td></td><td></td><tr>
+            <tr><th>Extraversion</th><td>Very Social</td><td>likes alone time, feels tired out after long socializing</td><tr>
+            <tr><th>Conscientiousness</th><td></td><td></td><tr>
+            <tr><th>Agreeableness</th><td></td><td></td><tr>
+            <tr><th>Neuroticism</th><td></td><td></td><tr>
+        </table>
+        <h1>All Main Emotions (based off my research)</h1>
+        <table>
+            <tr><th>Name</th><th>intensity</th><tr>
+            <tr><th>Sad↔Happy</th><td>Greif⬅unmotivated⬅content➡inspired➡motivated➡excited<br>*How much drive/purpose*</td><tr>
+            <tr><th>Anger↔Love</th><td>Rage⬅disturbed⬅annoyed⬅acceptance➡➡love<br>**</td><tr>
+            <tr><th>Disgust-Beauty</th><td>horror⬅repulsive⬅gross⬅plesent➡pretty➡stunning➡awe <br>*How appealing something is*</td><tr>
+            <tr><th>Embarassment↔Pride</th><td>embarassed⬅insecure⬅cringe⬅confident➡powerful➡boastful➡arrogance <br>*How high you see yourself*</td><tr>
+            <tr><th>Fear↔Calm</th><td>PANIC⬅scared⬅anxious⬅vibing➡peaceful➡relaxed<br>*How in danger / in control you feel*</td><tr>
+        </table>
+        <p>Sub Emotions (mixtures) <br>
+           Sad + Embarassment = Shame<br>
+           Sad + Happy = Nostalgia/Missing<br>
+           Fear + Love = Protective<br>
+           Anger + Love = Cuteness "its so cute i just want to squeeze it"<br>
+           Humble = being proud without braging
+        </p>
+
+        <h1>All Main Tastes (based off my research)</h1>
+        <p>many people forget to mention spicy, </p>
+        <table>
+            <tr><th>Name</th><th>intensity</th><tr>
+            <tr><th>Salty</th><td></td><tr>
+            <tr><th>Sweet</th><td></td><tr>
+            <tr><th>Sour</th><td></td><tr>
+            <tr><th>Dry</th><td>Dry Mouth sensation from wine and crab apples</td><tr>
+            <tr><th>Acidic</th><td>Citrus from Lemon/Lime</td><tr>
+            
+        </table>
+
+        <h1>Main Human Desires (based off my research)</h1>
+        <table>
+            <tr><th>Name</th><th>Positive</th><th>Negative</th><tr>
+            <tr><th>Power</th><td>Leadership</td><td></td><tr>
+            <tr><th>Status</th><td>Be known, Fame, Feel special</td><tr>
+            <tr><th>Romance</th><td>Attention, Intimacy</td><tr>
+            <tr><th>Knollage</th><td></td><tr>
+            <tr><th>Independence</th><td>Freedom, Control</td><tr>
+            <tr><th>Honor</th><td>Respected</td><tr>
+            <tr><th>Health</th><td>Exercise</td><tr>
+            <tr><th>Tranquility</th><td>Safety, Relaxed</td><tr>
+            <tr><th>Revenge</th><td></td><tr>
+        </table>
+
+           <h1>Mental Disorders</h1>
     <table>
         <tr><th>Depression</th><td></td><tr>
         <tr><th>Bipolar</th><td></td><tr>
         <tr><th>Eating Disorder</th><td></td><tr>
-        <tr><th></th><td></td><tr>
-        <tr><th></th><td></td><tr>
-        <tr><th></th><td></td><tr>
-        <tr><th></th><td></td><tr>
     </table>
     <h1>Neurodevelopmental Disorders</h1>
     <table>
@@ -380,17 +547,21 @@ const categories = [
     `},
     {name: "Linguistics🗣️", desc: `
     <h1>Parts of Speech</h1>
-    <p><b>Noun:</b> thing [tree, hand, sky, chair, chicago, Bob]<br>
-        <b>Verb:</b> action [trip, run, look, see, think, drive]<br>
-       <b>Adverb:</b> describes verb [quickly, slowly, quietly]<br>
-       <b>Adjective:</b> describes noun []<br>
-       <b>Pronoun:</b> person [I, you, she, he, it, we, yall, they]<br>
-       <b>Conjunction:</b> connecters [and, or, because, but, so]<br>
-       <b>Interjection:</b> sayings [Yea!, Wow!, Um..., OK!, Yeehaw!, Olé!, Opa!]<br>
-       <b>Adposition:</b> shows relationship between nouns/pronouns [in, on, into, inside, to, from, above, next to] "Preposition is before ('on' the table)" "Postposition is after (5 years 'ago')"</p>
+    <table>
+        <tr><th>Noun</th><td>thing [tree, hand, sky, chair, chicago, Bob]</td></tr>
+        <tr><th>Verb</th><td>action [trip, run, look, see, think, drive]</td></tr>
+        <tr><th>Adverb</th><td>describes verb [quickly, slowly, quietly]</td></tr>
+        <tr><th>Adjective</th><td>describes noun []</td></tr>
+        <tr><th>Pronoun</th><td> person [I, you, she, he, it, we, yall, they]</td></tr>
+        <tr><th>Conjunction</th><td></td></tr>
+        <tr><th>Interjection</th><td>sayings [Yea!, Wow!, Um..., OK!, Yeehaw!, Olé!, Opa!]</td></tr>
+        <tr><th>Adposition</th><td>shows relationship between nouns/pronouns [in, on, into, inside, to, from, above, next to] "Preposition is before ('on' the table)" "Postposition is after (5 years 'ago')"</td></tr>
+    </table>
        
     <h1>Sounds</h1>
     <p>Digraph: 2 letters make 1 sound. "sh"ut, "ch"urch, "Th"at<br>
+        Consonant: Closed mouth sound or air restrictions (t, k, m, s, l...)<br>
+        Vowel: Open mouth sound, no air restriction (a, e, i, o, u)<br>
         VowelHarmony: </p>
 
     <h1>Plural / Number</h1>
@@ -435,7 +606,19 @@ const categories = [
 
     `},
     {name: "Law⚖️", desc: `
-    <p></p>`},
+    <p></p>
+    <h1>Law Types</h1>
+    <table>
+        <tr><th>Criminal</th><td></td></tr>
+        <tr><th>Civil</th><td></td></tr>
+        <tr><th>Human Rights</th><td></td></tr>
+        <tr><th>Administrative</th><td></td></tr>
+        <tr><th>Tort</th><td></td></tr>
+        <tr><th>Family</th><td></td></tr>
+        <tr><th>Contract</th><td></td></tr>
+        <tr><th>Property</th><td></td></tr>
+        <tr><th>International</th><td></td></tr>
+    </table>`},
     {name: "Injury Health❤️", desc: `
     <p>Concussion: when you get hit in the head hard. [Confusion, ]<br>
        Sprain: joint is twisted or overstretched, Fall/Trip on ankle wrong. [pain, swelling, limited range of motion]<br>
