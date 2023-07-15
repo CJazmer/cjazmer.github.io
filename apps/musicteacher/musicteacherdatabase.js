@@ -1,93 +1,136 @@
 const musicteacherdatabase = [
-    {title: "Drums🥁", thehtml: `
+    {title: "Percussion🥁🪘", thehtml: `
         <p>the setup below is the standard setup for right hand players. Kick, Snare, HighHat are all you need...</p>    
+        <h1>Drums Parts</h1>
         <img src="./assets/drumslabled.jpg">
-    <h1>Cymbals</h1>
-        <p>4 cymbal types: High-Hat, Crash, Ride, Splash. Leave a gap between the Highhat cymbals so they're not touching when in rest position. </p>
-    <h1>Snare</h1>
-        <p>Use the "throw off" switch to turn on and off the snare. The black circle in the center is called the "power dot" or "batter". It's a heaver part that protects the drum from hard hits and adds a different sound. The "Gel Pads / Moongel" is used to dampen the drum and stop the resonating. Put the gel pads near the edge of your cymbal to cut the ringing</p>
-    <h1>Accessories</h1>
-        <p>Drum Sticks: Most drums sticks have a number and letter. The number is the stick thickness (7 thinnest, 2 thickest, 5 is middle/default). Letter is the tip shape (A "acorn", B "Barrel")<br>
-        Rods/Brushes: are much quieter than drumsticks and can be used to soften the sound. Brushes can make sweeping sound for generas like jazz</p>
+        <table>
+        <tr><th>Kick</th><td>If too loud and bassy, put a Pillow/Blanket inside. Pedals clamp on bottom of kickdrum, Some pedals have 2 hitters so you can hit 2x as fast</td></tr>
+        <tr><th>Snare</th><td>Use the "throw off" switch to turn on and off the snare. The black circle in the center is called the "power dot" or "batter". It's a heaver part that protects the drum from hard hits and adds a different sound. The "Gel Pads / Moongel" is used to dampen the drum and stop the resonating. Put the gel pads near the edge of your cymbal to cut the ringing</td></tr>
+        <tr><th>HighHat</th><td>Use the "throw off" switch to turn on and off the snare. The black circle in the center is called the "power dot" or "batter". It's a heaver part that protects the drum from hard hits and adds a different sound. The "Gel Pads / Moongel" is used to dampen the drum and stop the resonating. Put the gel pads near the edge of your cymbal to cut the ringing</td></tr>
+        <tr><th>Cymbals</th><td>4 cymbal types: High-Hat, Crash, Ride, Splash. Leave a gap between the Highhat cymbals so they're not touching when in rest position</td></tr>
+        <tr><th>Toms</th><td>3 Toms: High, Mid, & Floor. High on right mid on left. Used for drum fills</td></tr>
+        <tr><th>DrumSticks</th><td>Most drums sticks have a number and letter. Number is stick thickness (7 thinnest, 2 thickest, 5 is middle/default). Letter is tip shape (A "acorn", B "Barrel")<br>
+            Rods/Brushes: are much quieter than drumsticks and can be used to soften the sound. Brushes can make sweeping sound for generas like jazz</td></tr>
+    </table>
+
+    <h1>Hand Percussion</h1>
+    <img src="./assets/handdrumslabled.jpg">    
+
+    <table>
+        <tr><th>Conga</th><td>
+            Popular to have 2 congas held up with a stand. Smaller conga "Quinto" on left. Bigger conga "Tumba" on right.  <br>
+            In Afro-Latin music like Cuban Rumba, 3 or more congas can be used. Quinto is in between your legs, Tumba to your left and TresDos/Middle conga to your right<br>
+            Main Tones: Bass, Open, Slap
+            </td></tr>
+        <tr><th>Bongó</th><td>
+            Place between legs holding it with your knees. Small drum (macho) on left side. Big drum (hembra) on right side.
+            "Bongo Del Monte" is an uncommon lower pitch bongo used in Cuba with the smaller drum on the right side instead. "Martillo" is the most popular rhythm for latin music (H-L-H-L-)
+        </td></tr>
+        <tr><th>Cajón</th><td>
+            Box you sit on and hit the front face. 2 Types: Cajon with snare inside, and cajon without a snare.
+        </td></tr>
+        <tr><th>Djembe</th><td>
+            African drum either tightened with rope (traditional) or tightened with a metal frame.
+        </td></tr>
+        <tr><th>Shakers</th><td>
+            Maracas or the bright color LP shakers detach. Colors are different sounds: Yellow (Light), Blue (Medium), Red (Heavy). You can attach different color shakers to get different sounds
+        </td></tr>
+        <tr><th>Tamborine</th><td>
+            Flat handheld round drum with bells on edge
+        </td></tr>
+        <tr><th>Clave</th><td>
+            2 Wooden sticks or "Jamblock" you hit to make a click sound used for special patterns in afro-latin music. Jamblocks come in different colors for different pitches
+        </td></tr>
+        <tr><th>Cowbell</th><td>
+            Types: Mambo, Cha-cha, Salsa, Timbale<br>
+            Cowbells that don't have the mount/clamp are ment to be held in hand<br>
+            Hit the cowbell with a stick, there are "cowbell beaters" but many people use drumsticks which works fine
+        </td></tr>
+        <tr><th>Timbales</th><td>
+            2 Drums played with timbale drum sticks (no tip) Smaller drum is called "agudo", bigger drum is called "grave"
+            Cascara: is a pattern you hit the side of the timbal
+            Abanicos: are "fills" that you play on the drum heads before a new measure, all abanicos end with rimshots
+            Play cascara on cowbell to add energy
+        </td></tr>
+        <tr><th>Guiro & Guira</th><td>
+            Guiro wood with grooves you slide a stick across to get a zzz sound. Used in cuban music like (guajira, chachacha) <br> Guira metal with many little holes you slide a scraper across to get a shaker sound. Used in genres like (bachata, merengue, cumbia, salsa)
+        </td></tr>
+        <tr><th>Darbuka</th><td>Middle easter belly dancing drum. Made of metal sound has very tinny sound</td></tr>
+        <tr><th>Shékere</th><td>
+            One hand on bottom, one hand above beads. Shake it!
+        </td></tr>
+        <tr><th>Cabása</th><td>
+            Shake it and hit the beads it with your hand to add accents
+        </td></tr>
+    </table>
+    <img src="./assets/smallhandlabled.jpg">    
+    <img src="./assets/handdrumtypeslabled.jpg">    
+<h1>Synthetic & Hide</h1>
+    <p>Synthetic heads last longer. Hide is brownish and has a spotty texture</p>
+    <h1>Uncommon Percussion</h1>
+    <table>
+        <tr><th>Batá</th><td>
+            Afro-Cuban Drum that lays on your lap. Drum head on each side, smaller drum head on your left side
+        </td></tr>
+        <tr><th>Tabla</th><td>
+            Roundish Indian drums with black circle in middle, has distinct familiar tone
+        </td></tr>
+        <tr><th>Mridangam</th><td>
+            indian drum that lays on your lap, drum head on left and right side, other simular instruments like the Khol
+        </td></tr>
+        <tr><th>Marimbula</th><td>
+            Afro-Cuban bass/box you sit on and pluck the metal to get bass notes used in old cuban music
+        </td></tr>
+        <tr><th>Segundo Cajon</th><td>
+            Standing cajon from Cuba
+        </td></tr>
+        <tr><th>Tambora</th><td>
+            Big drum with drum heads on left and right, many countries have their own like Dominican Republic, Mexico, Colombia...
+        </td></tr>
+        <tr><th>Bodhrán</th><td>
+            Handheld flat Irish drum
+        </td></tr>
+        <tr><th>Tambora</th><td>
+            Big drum with drum heads on left and right, many countries have their own like Dominican Republic, Mexico, Colombia...
+        </td></tr>
+    </table>
+
     <h1>Most common brands</h1>
         <p>Most common brands ranked highest to lowest: (Drum Workshop, Yamaha, Pearl, Ludwig, Tama, Gretsch)</p>
-    `
-    },
-    {title: "Hand Precussion🪘", thehtml: `
-    <img src="./assets/handdrumslabled.jpg">    
-    <h1>Conga</h1>
-        <p>Popular to have 2 congas held up with a stand. Smaller conga (quinto) on left. Bigger conga (Tumba) on right. Quinto (smallest). <br>
-        In Afro-Latin music like Cuban Rumba, 3 or more congas can be used. Quinto is in between your legs, Tumba to your left and TresDos/Middle conga to your right<br>
-        Main Tones: Bass, Open, Slap</p>
-    <h1>Bongó</h1>
-        <p>Place between legs holding it with your knees. Small drum (macho) on left side. Big drum (hembra) on right side. "Bongo Del Monte" is an uncommon lower pitch bongo used in Cuba with the smaller drum on the right side instead. "Martillo" is the most popular rhythm for latin music (H-L-H-L)</p>
-    <h1>Cajon</h1>
-        <p>Cajon means box in spanish. Sit on it and hit the front face. 2 Types: Cajon with snare inside, and cajon without a snare.</p>
-    <h1>Djembé</h1>
-        <p>African drum either tightened with rope (traditional) or tightened with a metal frame.</p>
-    <h1>Darbuka</h1>
-        <p>Middle easter belly dancing drum. Made of metal sound has very tinny sound.</p>
-        <img src="./assets/smallhandlabled.jpg">    
-    <h1>Clave</h1>
-        <p>Clave means "key" in spanish. It makes click sound used for special patterns in afro-caribbean music. The instrument is 2 sticks you hit together, but there are also Clave Blocks (the bright color things)</p>
-    <h1>Shakers & Maracas</h1>
-        <p>The bright color LP shakers detach. Colors are different sounds: Yellow (Light), Blue (Medium), Red (Heavy). You can attach different color shakers to get different sounds</p>
-    <h1>Guiro / Guira</h1>
-        <p>Guiro is wood and has grooves with a wood stick striker. Used in cuban music like (guajira, chachacha) <br> Guira is metal and has little holes with a metal fork-looking striker. Used in genres like (bachata, merengue, cumbia, salsa)</p>
-    <h1>Cowbell (Campana)</h1>
-        <p>
-        Types: Mambo, Cha-cha, Salsa, Timbale<br>
-        Cowbells that don't have the mount/clamp are ment to be held in hand<br>
-        Hit the cowbell with a stick, there are "cowbell beaters" but many people use drumsticks which works fine
-        </p>
-    <h1>Shékere</h1>
-        <p>One hand on bottom, one hand above beads. Shake it!</p>
-    <h1>Cabása</h1>
-        <p>Shake it and hit the beads it with your hand to add accents</p>
-    <h1>Batá</h1>
-        <p>Drum that lays horizontal. Drum head on each side, smaller drum head on your left side.</p>
-    <h1>Timbales</h1>
-        <p>
-         2 Drums played with timbale drum sticks (no tip) Smaller drum is called "agudo", bigger drum is called "grave" <br>
-         Cascara: is a pattern you hit the side of the timbal <br>
-         Abanicos: are "fills" that you play on the drum heads before a new measure, all abanicos end with rimshots <br> 
-         Play cascara on cowbell to add energy</p>
-    <h1>Marimbula</h1>
-        <p>A bass/box used in old cuban music,</p>
-    <h1>Segundo Cajon</h1>
-        <p>Standing cajon from Cuba</p>
-        <img src="./assets/handdrumtypeslabled.jpg">    
-    <h1>Synthetic & Hide</h1>
-        <p>Synthetic heads last longer. Hide is brownish and has a spotty texture</p>
+    <h1>Fills</h1>
+    <p>
+    1) o-o-ooooo---</p>
     `
     },
     {title: "String Instruments🎸", thehtml: `
     <h1>Main Types</h1>
         <p>
-        <b>Electric:</b> plugs into speaker<br>
-        <b>Acoustic:</b> No plugin / pickups<br>
-        <b>Acoustic-Eletric:</b> Acoustic guitar that also can plug in!<br>
-        <b>Fret or Fretless:</b> Frets are the little bars that sparate the fretboard into notes. Fretless instruments allow to play all tones.
+        <b>Electric:</b> plugs into speaker, <b>Acoustic:</b> has no plugin / pickups, <b>Acoustic-Eletric:</b> Acoustic guitar that also can plug in! <b>Fret or Fretless:</b> Frets are the little bars that sparate the fretboard into notes. Fretless instruments allow to play all tones.
         </p>
-    <h1>Instruments</h1>
-        <p>
-        Guitar: (E A D G B E). Guitars are either steel or nylon string. Majority are steel in the USA, nylon strings are found on flamenco/spanishy and classical guitars which are acoustic. (drop d tuning: DADGBE)<br>
-        Bass: (E A D G) same tuning as guitar just 1 octive down. If you have 5 or more strings, strings are added before E <br>
-        Ukulele: (G C E A) Hawaiian instrument great for music beginers. It's the gateway drug of the music world because many people will try another instrument like guitar after playing for a bit <br>
-        Banjo: American folk instrument usually used to fingerpick rhythms for Bluegrass Music. <br> Use FingerPicks to play <br> There's different Fingerpick rhythms "rolls" to learn. "Drone string" is the 5th string<br>
-        Mandolin: American folk instrument played in Bluegrass/Country music<br>
-        Oud: Fretless middle eastern guitar <br>
-        </p>
-    <h1>Gadgets</h1>
-        <p>
-        Picks: Used to pluck and strum the strings<br>
-        Tuner: Used to tune each string<br>
-        Capo: Clamp on strings to play in different keys (for open chords)<br>
-        Slide: Slide on strings to sound fretless<br>
-        String Winder: <br>
-        Stand: Holds instrument up off the floor. Some stands can hold up to 3 instruments<br>
-        Strap: <br>
-        </p> 
+    <table>
+        <tr><th></th><th>Instruments</th></tr>
+        <tr><th>Guitar</th><td>Guitars are either steel or nylon string. Majority are steel in the USA, nylon strings are found on flamenco/spanishy and classical guitars which are acoustic. (drop d tuning: DADGBE)</td></tr>
+        <tr><th>Bass</th><td>(E A D G) same tuning as guitar just 1 octive down. If you have 5 or more strings, strings are added before E</td></tr>
+        <tr><th>Ukulele</th><td>(G C E A) Hawaiian instrument great for music beginers. It's the gateway drug of the music world because many people will try another instrument like guitar after playing for a bit</td></tr>
+        <tr><th>Banjo</th><td>Bluegrass instrument usually used to fingerpick rhythms for Bluegrass Music.
+        Use FingerPicks to play
+        There's different Fingerpick rhythms "rolls" to learn. "Drone string" is the 5th string</td></tr>
+        <tr><th>Mandolin</th><td>Small Bluegrass instrument</td></tr>
+        <tr><th>Lute</th><td>Ancestor of guitar</td></tr>
+        <tr><th>Sitar</th><td>Indian instrument with many strings</td></tr>
+        <tr><th>Oud</th><td>Fretless middle eastern guitar</td></tr>
+    </table>
+    <table>
+        <tr><th></th><th>Gadgets</th></tr>
+        <tr><th>Picks</th><td>Used to pluck and strum the strings instead of using hand</td></tr>
+        <tr><th>Tuner</th><td>Used to tune each string</td></tr>
+        <tr><th>Capo</th><td>Clamp on strings to play in different keys (for open chords)</td></tr>
+        <tr><th>Stand</th><td>Holds instrument up off the floor. Some stands can hold up to 3 instruments</td></tr>
+        <tr><th>Strap</th><td>Attach to guitar and wear it</td></tr>
+        <tr><th>Slide</th><td>Slide on strings to sound fretless</td></tr>
+        <tr><th>String Winder</th><td>Wind up the guitar tuners fast & easy</td></tr>
+        <tr><th>Oil</th><td>Clean guitar body and fretboard, oil for body & oil for fretboard</td></tr>
+    </table>
     <img src="./assets/gadgets.jpg">  
     <img src="https://www.gak.co.uk/blog/wp-content/uploads/2016/11/acoustic_guitar_diagram-e1428680792528.jpg">  
     <h1>Pickups</h1>
@@ -97,12 +140,15 @@ const musicteacherdatabase = [
     },
     {title: "Brass Instruments🎺", thehtml: `
         <p>Brass instruments make noise by buzzing your lips into a mouthpiece</p>
-    <h1>Main Instruments</h1>
-        <p>Trumpet: 3 valves<br>
-        Trombone: Plays notes like a fretless instrument because of the slider. There are 7 standard slide positions<br>
-        Tuba: Huge <br>
-        Euphonium: Like a mini tuba<br>
-        French Horn: </p>
+        <img src="http://musixcool.com/members/musixcool/inst_all/brass.jpg">
+    <table>
+        <tr><th></th><th>Main Brass Instruments</th></tr>
+        <tr><th>Trumpet</th><td>3 valves</td></tr>
+        <tr><th>Trombone</th><td>Plays notes like a fretless instrument because of the slider. There are 7 standard slide positions</td></tr>
+        <tr><th>Tuba</th><td>Huge, 4 valves some have 5 valves</td></tr>
+        <tr><th>Euphonium</th><td>Like a mini tuba</td></tr>
+        <tr><th>French Horn</th><td>3 valves</td></tr>
+    </table>
     <h1>Parts of Instrumet</h1>
         <p>
         Valves: used to change notes<br>
@@ -112,20 +158,21 @@ const musicteacherdatabase = [
         </p>
     <h1>Accessories</h1>
         <p>Mouthpiece, Valve Oil, Mute(straight, cup, harmon, practice...)</p>
-        <img src="http://musixcool.com/members/musixcool/inst_all/brass.jpg">
     `
     },
     {title: "Woodwind Instruments🎷", thehtml: `
     <p>Woodwind Instruments make sound by blowing air into a mouthpiece</p>
-    <h1>Main Woodwinds</h1>
-        <p>Flute: <br>
-        Clarinet: <br>
-        Saxophone: types Alto, Tenor, Baritone<br>
-        Oboe: <br>
-        Basson: </p>
+    <img src="http://cdn.thinglink.me/api/image/694916106132914176/1024/10/scaletowidth/0/0/1/1/false/true?wait=true"/>
+    <table>
+        <tr><th></th><th>Main Woodwind Instruments</th></tr>
+        <tr><th>Flute</th><td>16-18 keys</td></tr>
+        <tr><th>Clarinet</th><td>17-18 keys</td></tr>
+        <tr><th>Saxophone</th><td>20-23 keys. Types: Alto, Tenor, Baritone</td></tr>
+        <tr><th>Oboe</th><td>20-25 keys.</td></tr>
+        <tr><th>Basson</th><td>22-25 keys.</td></tr>
+    </table>
     <h1>Accessories</h1>
         <p>Mouthpiece, Reed, ligature, stand & case</p>
-    <img src="http://cdn.thinglink.me/api/image/694916106132914176/1024/10/scaletowidth/0/0/1/1/false/true?wait=true"/>
     `
     },
     {title: "Mixers🎚️", thehtml: `
@@ -146,6 +193,7 @@ const musicteacherdatabase = [
             Q Knob: How wide/spread across frequencies to affect. Called "quality factor"
         </p>
     <h1>Other Processors</h1>
+  
         <p>
         <b>Gain Volume:</b> Incoming signal volume. Boost/Reduce volume to get in the middle/yellow zone<br>
         <b>Fader Volume:</b> Volume sliders at the bottom, the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale<br>
@@ -269,6 +317,17 @@ const musicteacherdatabase = [
     `
     },
     {title: "Scales and Chords", thehtml: `
+    <h1>======Vocab======</h1>
+    <table>
+    <tr><th>Word</th><th>Meaning</th></tr>
+    <tr><th>Half Step / Semitone</th><td>1 step</td></tr>
+    <tr><th>Whole Step / Tone</th><td>2 steps</td></tr>
+    <tr><th>Note</th><td>1 pitch</td></tr>
+    <tr><th>Chord</th><td>3+ notes played at once</td></tr>
+    <tr><th>Interval</th><td>2 notes played at once, 1 and 3 = major 3rd interval</td></tr>
+    <tr><th>Octive</th><td>Same note, but highter  *doubled frequency*</td></tr>
+    </table>
+
     <h1>======Scales======</h1>
     <table>
     <tr><th>Scale Name</th><th>Notes</th><th>Steps (Half/Whole/Tripple)</th></tr>
@@ -284,16 +343,18 @@ const musicteacherdatabase = [
     <h1>======CHORD TYPES====== (using C for example)</h1>
     <table>
     <tr><th>Chord Name</th><th>Notes</th><th>Explained</th></tr>
-    <tr><th>Power 'Chord'</th><td>[1 - - - - - - 5]</td><td>root + 5th</td></tr>
-    <tr><th>Major (C)</th><td>[1 - - - 3 - - 5]</td></tr>
+    <tr><th>Power 'Chord'</th><td>[1 - - - - - - 5] </td><td>root + 5th</td></tr>
+    <tr><th>Major (C)</th><td>[1 - - - 3 - - 5]</td><td>"Δ" is major CΔ</td></tr>
     <tr><th>Minor (Cm)</th><td>[1 - - 3m - - - 5]</td></tr>
     <tr><th>Dominant Seven (C7)</th><td>[1 - - - 3 - - 5 - - 7m -]</td><td>C + 7m</td></tr>
     <tr><th>Major 7 (Cmaj7)</th><td>[1 - - - 3 - - 5 - - - 7]</td><td>C + 7</td></tr>
     <tr><th>Minor 7 (Cm7)</th><td>[1 - - 3m - - - 5 - - 7m -]</td><td>Cm + 7m</td></tr>
-    <tr><th>Csus4</th><td>[1 - - - - 4 - 5]</td></tr>
+    <tr><th>CmM7</th><td>[1 - - 3m - - - 5 - - - 7]</td><td>Cm + 7</td></tr>
+    <tr><th>C˚7</th><td>[1 - - 3m - - 4+ - - - 7m -]</td><td>C˚ + 7m</td></tr>
+    <tr><th>C˚ / Cdim</th><td>[1 - - 3m - - 4+]</td><td>notes spaced 3 steps</td></tr>
+    <tr><th>Csus4</th><td>[1 - - - - 4 - 5]</td><td>Csus defaults to sus4 not sus2</td></tr>
     <tr><th>Csus2</th><td>[1 - 2 - - - - 5]</td></tr>
-    <tr><th>Caug / C+</th><td>[1 - - - 3 - - - 6m]</td><td>raised 5</td></tr>
-    <tr><th>Cdim / Co</th><td>[1 - - 3m - - 4aug]</td><td>notes spaced 3 steps</td></tr>
+    <tr><th>C+ / Caug</th><td>[1 - - - 3 - - - 6m]</td><td>raised 5</td></tr>
     <tr><th>Cmaj9</th><td>[1 - - - 3 - - 5 - - - 7 - - 9]</td><td>Cmaj7 + 9</td></tr>
     <tr><th>C6</th><td>[1 - - - 3 - - 5 - 6]</td><td>C + 6</td></tr>
     <tr><th>Cm6</th><td>[1 - - 3m - - - 5 - 6]</td><td>Cm + 6</td></tr>
@@ -310,18 +371,6 @@ const musicteacherdatabase = [
     <tr><th>Sad</th><td>[IV iv I]</td></tr>
     <tr><th>Heart Warming</th><td>[ii V Imaj7]</td></tr>
     </table>
-    
-    <h1>======Vocab======</h1>
-    <table>
-    <tr><th>Word</th><th>Meaning</th></tr>
-    <tr><th>Half Step / Semitone</th><td>1 step</td></tr>
-    <tr><th>Whole Step / Tone</th><td>2 steps</td></tr>
-    <tr><th>Note</th><td>1 pitch</td></tr>
-    <tr><th>Chord</th><td>3+ notes played at once</td></tr>
-    <tr><th>Interval</th><td>2 notes played at once, 1 and 3 = major 3rd interval</td></tr>
-    <tr><th>Octive</th><td>Same note, but highter  *doubled frequency*</td></tr>
-    </table>
-
     <h1>======Musical Notation======</h1>
 
     `
@@ -341,8 +390,8 @@ const LatinGenres = [
     {name: "Salsa", description: `*Bugalu, Mambo, Timba... <br><br> 1) Piano (montuno rhythm (M- H L - M - M - H - L - H - M)) or (fast(LMHLMHMH) with Tresillo bass (L--M--H-))  Thumb and Pinky play octive from eachother same note/beat <br> 2) Timbales (Cascara on cowbell to add energy) (o-o-oooo-o-oo-oo) <br> 3) Bass (Tresillo last 2 beats (---o--o-) rushed feel) <br> 4) Congas (tumbao - - H - - - L L) <br> 5) Metal Guira/Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 6) Brass (can do on piano) <br> *Piano is the hardest part to get right (You can play bass (tresillo) and piano (montuno) riff at the same time!) <br> *Hitting metal sound (cascara on cowbell) and horns gives salsa its sound <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Merengue", 
     description: `*Fast paced, Stomp on down beat <br> 1) Metal Guira (fast chachacha rhythm (o - o o) or fast scrape on down beat) *Thump on downbeat <br> 2) Piano (merengue (o oo o o o o o o o) or cascara rhythm on piano for energy (o - o - o o o o - o - o o - o o)) <br> 3) Bass hits on 1 <br> 4) Conga (H---H-L-) <br><br> * you can play both piano riff and bass at the same time on piano and have a foot pedal that adds the thump on down beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3N3D8G6KUEDqNynKqIJr9Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Son", description: `*Son Cubano, Guaracha <br><br> 1) Guitar Rhythm (hit up down up) or Tres/Piano (montuno rhythm o-oo-o-o-o-o-o-o) <br> 2) Bass (trelillo rhythm last 2 beats) (- - - o - - o -) <br> 3) Bongo (Martillo or Tumbao rhythm) <br> 4) Shakers (chachacha rhythm) (o - o o) <br> 5) Clave (son clave mostly 2/3) and Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Bolero", description: `Very Slow paced straight beat, has a roll on 2nd beat (B r r - B - B -) *r is roll <br> 1) Guitar/Tres/Piano Chords <br> 2) Shaker/TimbaleSides (constant 8th notes (roll on 2 & 3 beat) <br> 3) Bass (Tresillo Rhythm L - - - M - H -) <br> 4) Congas (- - H - - L H L) <br> 4) Bongo (martillo rhythm) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Son", description: `*Son Cubano, Guaracha, Charanga <br><br> 1) Guitar Rhythm (hit up down up) or Tres/Piano (montuno rhythm o-oo-o-o-o-o-o-o) <br> 2) Bass (trelillo rhythm last 2 beats) (- - - o - - o -) <br> 3) Bongo (Martillo or Tumbao rhythm) <br> 4) Shakers (chachacha rhythm) (o - o o) <br> 5) Clave (son clave mostly 2/3) and Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Bolero", description: `Very Slow paced straight beat, has a roll on 2nd beat (B r r - B - B -) *r is roll  (Bolero, Paso doble...) <br><br> 1) Guitar/Tres/Piano Chords <br> 2) Shaker/TimbaleSides (constant 8th notes (roll on 2 & 3 beat) <br> 3) Bass (Tresillo Rhythm L - - - M - H -) <br> 4) Congas (- - H - - L H L) <br> 4) Bongo (martillo rhythm) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Guajira", 
     description: `1) Piano (guajira rhythm (L H M L M H M H - H H H M H M M L)) <br> 2) bass (tresillo (last 2 notes) double notes) (- - - M M - H H  |  - - - M M - L L) <br> 3) Wooden Guiro (chachachaaa) (o - o o) <br> 4) bongo & conga (tumbao) (- - H - - - L L) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5DbWZLRryLT3U6wLgomr3N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Chachachá", description: `*Has chachachá sound in rhythm, bass and piano riff are different <br> 1) Wooden Guiro & shaker (chachachaaa) <br> 2) Bass (M - H L - - M M) <br> 3) Timbales hit cowbell on down beat <br> 4) Piano with this rhythm (- o o o) <br> 5) congas (tumbao) (- - H - - - L L) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WhlQabInaIYuMjMbhh4bw?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
@@ -420,20 +469,18 @@ const WorldGenres = [
     Abakuá (H H - - L - | H H M M L -) *Nigerian/Cuban<br><br>
 
     <b>===== All Claves Combinations=====</b> <br>
-    Son   clave 2/3 (--o-o---o--o--o-) <br>
-    Rumba clave 2/3 (--o-o---o--o---o) <br>
-    Bossa clave 2/3 (--o--o--o--o--o-) <br>
-    Son   clave 3/2 (o--o--o---o-o---) <br>
-    Rumba clave 3/2 (o--o---o--o-o---) <br>
-    Bossa clave 3/2 (o--o--o---o--o--) <br>
-    6/8 son   clave 2/3 (-o-o--o-o-o-) <br>
-    6/8 rumba clave 2/3 (-o-o--o-o--o) <br>
-    6/8 bossa clave 2/3 (-o--o-o-o-o-) <br>
-    6/8 son   clave 3/2 (o-o-o--o-o--) <br>
-    6/8 rumba clave 3/2 (o-o--o-o-o--) <br>
-    6/8 son   clave 3/2 (o-o-o--o--o-) <br>
-    Columbia  clave (o-o-oo-o-o-o)<br>
-    Yambú clave (o--oo--oo-o-o---) <br><br>
+    <table>
+        <tr><th>Claves</th><th>2/3</th><th>3/2</th></tr>
+        <tr><th>Son</th><td>(--o-o---o--o--o-)</td><td>(o--o--o---o-o---)</td></tr>
+        <tr><th>Rumba</th><td>(--o-o---o--o---o)</td><td>(o--o---o--o-o---)</td></tr>
+        <tr><th>Bossa</th><td>(--o--o--o--o--o-)</td><td>(o--o--o---o--o--)</td></tr>
+        <tr><th>6/8 son</th><td>(-o-o--o-o-o-)</td><td>(o-o-o--o-o--)</td></tr>
+        <tr><th>6/8 rumba</th><td>(-o-o--o-o--o)</td><td>(o-o--o-o-o--)</td></tr>
+        <tr><th>6/8 bossa</th><td>(-o--o-o-o-o-)</td><td>(o-o-o--o--o-)</td></tr>
+        <tr><th>Others</th><td>==========</td><td>==========</td></tr>
+        <tr><th>Columbia</th><td>(o-o-oo-o-o-o)</td></tr>
+        <tr><th>Yambú</th><td>(o--oo--oo-o-o---)</td></tr>
+    </table>
 
     ===== Other Common Patterns ===== <br>
     Tumbao (- - S - - - B B -)<br>
@@ -495,3 +542,34 @@ const instrumentsdatabase = [
     `
     },
 ];
+
+/*
+  <table>
+        <tr><th>Gain Volume</th><td>
+            Incoming signal volume. Boost/Reduce volume to get in the middle/yellow zone</td></tr>
+        <tr><th>Fader Volume</th><td>
+            Volume sliders at the bottom, the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale</td></tr>
+        <tr><th>Main Volume</th><td>
+            Volume fader for all channels found on right side </td></tr>
+        <tr><th>Mute</th><td>
+            Quickly mute channel without moving with your faders setup</td></tr>
+        <tr><th>Gate</th><td>
+        Removes all sound that is quieter that a given threshold</td></tr>
+        <tr><th>Compressor</th><td>
+            Makes volume stay evenly loud. Treshold lowers volume if volume goes over it. Can use for vocals, drums... to reduce loudness changes. If drummer is hitting hard or soft the volume will be closer</td></tr>
+        <tr><th>LowCut HPF</th><td>
+            button that removes very low freq. like the annoying rumble from handling mics or the stage rumble from unnecessary low frequences. Turn LowCut on to reduce very low bassyness</td></tr>
+        <tr><th>PAD 26dB</th><td>
+            Reduces input gain by 26dB if input loud with little gain / peaking</td></tr>
+        <tr><th>Ø</th><td>
+            Invert audio signal</td></tr>
+        <tr><th>Phantom +48v</th><td>
+            only used for condenser mics which are in studios, dynamic/stage mics don't need it</td></tr>
+        <tr><th>Solo PFL</th><td>
+            Isolates a channel to hear for testing.  1) "Solo in Place (SIP)" Mutes all other channels execpt the channel you just pressed. OR "Prefader Listening (PFL)" No channels mute, but all solo activated channels output to headphone jack so you can listen to it isolated) "AfterFader Listening(AFL)"</td></tr>
+        <tr><th>PAN</th><td>
+            how much sound outputs to left & right speaker. If paned all the way left, 100% channel volume is on left speaker. Paned middle (default) comes out 50/50 both L and R outputs/speakers</td></tr>
+        <tr><th>FX</th><td>
+            add effect volume to channel for whatever the current effect is</td></tr>
+    </table>
+    */
