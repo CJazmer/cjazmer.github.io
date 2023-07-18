@@ -14,29 +14,29 @@
     background-color: green;
 }
 .box{
-width: 90%;
-height: 2em;
-padding: .4em;
-margin: .4em;
-border-radius: 10%;
-border: .2em solid rgb(0, 53, 0);
-text-align: center;
-font-weight: 900;
-font-size: 1.4em;
-background-color: lightgreen;
-transition: .4s;
-cursor: pointer;
+    width: 90%;
+    height: 2em;
+    padding: .4em;
+    margin: .4em;
+    border-radius: 10%;
+    border: .2em solid rgb(0, 53, 0);
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.4em;
+    background-color: lightgreen;
+    transition: .4s;
+    cursor: pointer;
 }
 .box:hover{
     transform: translateY(-.2em);
     filter: brightness(1.4);
 }
 .generos{
-display: flex;
-flex-direction: row;
-overflow-x: scroll;
-padding: .5em;
-background-color:chocolate;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    padding: .5em;
+    background-color:chocolate;
 }
 .listbox{
     min-width:fit-content;
@@ -106,6 +106,8 @@ background-color:chocolate;
     });
     allgeneros.innerHTML = thehtml;
 
+
+    hcategories.innerHTML += `<div class='box' onclick="window.location.href='./drummachine.html'">Virtual Mixer & Beats</div>`;
     musicteacherdatabase.forEach(i => {
         hcategories.innerHTML += `<div class='box' onclick="Clicked(this)">${i.title}</div>`;
     })

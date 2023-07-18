@@ -350,7 +350,7 @@ const musicteacherdatabase = [
     <tr><th>Major 7 (Cmaj7)</th><td>[1 - - - 3 - - 5 - - - 7]</td><td>C + 7</td></tr>
     <tr><th>Minor 7 (Cm7)</th><td>[1 - - 3m - - - 5 - - 7m -]</td><td>Cm + 7m</td></tr>
     <tr><th>CmM7</th><td>[1 - - 3m - - - 5 - - - 7]</td><td>Cm + 7</td></tr>
-    <tr><th>C˚7</th><td>[1 - - 3m - - 4+ - - - 7m -]</td><td>C˚ + 7m</td></tr>
+    <tr><th>C˚7</th><td>[1 - - 3m - - 4+ - - 6 - -]</td><td>C˚ + 6</td></tr>
     <tr><th>C˚ / Cdim</th><td>[1 - - 3m - - 4+]</td><td>notes spaced 3 steps</td></tr>
     <tr><th>Csus4</th><td>[1 - - - - 4 - 5]</td><td>Csus defaults to sus4 not sus2</td></tr>
     <tr><th>Csus2</th><td>[1 - 2 - - - - 5]</td></tr>

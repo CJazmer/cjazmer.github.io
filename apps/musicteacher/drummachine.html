@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Music Stuff</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Music helper">
+	<meta name="keywords" content="music">
+<style>    
+*{font-family:sans-serif;}
+h1{
+    background-color: goldenrod;
+    color: black;
+    font-weight: bolder;
+    padding: 1em;
+    font-size: larger;
+    margin: 0em;
+    border: .2em solid rgb(59, 42, 0);
+}
+p{
+    background-color: goldenrod;
+    padding: .5em;
+    margin: 0em;
+}
+table{
+    background-color: gray;
+    width: 100%;
+    border: .4em solid rgb(33, 28, 0);
+    border-collapse: collapse;
+}
+th{
+    padding: .5em; 
+    border: .1em solid black; 
+    background-color: gold;
+}
+td{
+    padding: .3em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+tr{
+    border-collapse: collapse;
+    border: .1em solid black;
+}
+b{
+    text-decoration: underline;
+}
+.divbeat{
+    width: 2em;
+    height: 2em;
+    background-color: lightsalmon;
+    border: .2em solid orange;
+    border-radius: 20%;
+    margin-right: .2em;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+}
+button{
+    width: 100%;
+    height: 2em;
+    background-color: gold;
+}
+#mixer{
+    width: 40em;
+    height: fit-content;
+    padding: 1em .2em 1em .2em;
+    background-color: gray;
+    border: .5em solid rgb(47, 47, 47);
+    border-radius: 10%;
+    margin: auto;
+    display: flex;
+}
+.mixercolumn{
+    height: 100%;
+    width: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: center;
+}
+.fader{
+    height: 10em;
+    width: fit-content;
+    background-color: red;
+}
+.nob{
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    background-color: gainsboro;
+    border: .1em solid black;
+    cursor: grab;
+    text-align: center;
+}
+.nobholder{
+    height: 7em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(104, 104, 104);
+    
+}
+select{
+    width: 100%;
+    text-align: center;
+}
+label{color: white;}
+</style>
+</head>
+
+<body>
+    <div id="musicnav"></div>
+
+	<div id="wrapper">
+        <table id="htable">
+
+        </table>
+        <button onclick="Play(this)">Play</button>
+        <select id="hgenero"></select>
+        <label for="spd">Speed</label><input id="speedbar" name="spd" type="range" min="50" max="300" value="200">
+
+        <div id="mixer"></div>
+    </div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="/layout.js"></script>
+<script src="./musicteacherlayout.js"></script>
+<script src="./musicteacherdatabase.js"></script>
+<script>
+    const beatss = [
+        {name: "Abakuá (rumba)", instruments: [
+            {instrument: "conga", notes: "hh--l-hh--l-"},
+        ], countto: 12},
+        {name: "Bachata derecho", instruments: [
+            {instrument: "bongo", notes: "t-h-t-l-t-h-t-l-"},
+            {instrument: "shaker", notes: "oooooooooooooooo"},
+        ], countto: 16},
+        {name: "Bachata mojao", instruments: [
+            {instrument: "bongo", notes: "t-h-t-l-t-h-t-l-"},
+            {instrument: "shaker", notes: "o-o-o-o-o-o-o-o-"},
+        ], countto: 16},
+        {name: "Bembe (rumba 6/8)", instruments: [
+            {instrument: "clave", notes: "o-o--o-o-o--"},
+            {instrument: "cowbell", notes: "h-h-hh-h-h-h"},
+            {instrument: "conga", notes: "hl-hl-hl-hl-"},
+        ], countto: 12},
+        {name: "Bomba (rumba)", instruments: [
+            {instrument: "shaker", notes: "o-o-o-o-o-o-o-o-"},
+            {instrument: "clave", notes: "----------------"},
+            {instrument: "conga", notes: "l--h-hh-l--h-hh-"},
+        ], countto: 16},
+        {name: "Bossa Nova", instruments: [
+            {instrument: "shaker", notes: "oooooooooooooooo"},
+            {instrument: "clave", notes: "o--o--o---o--o--"},
+            {instrument: "conga", notes: "l--ll--ll--ll--ll-"},
+        ], countto: 16},
+        {name: "Bulerías", instruments: [
+            {instrument: "drums", notes: "bttbttbtbtbt"},
+        ], countto: 12},
+        {name: "Candombe (rumba)", instruments: [
+            {instrument: "clave", notes: "o--o--o---o-o---"},
+            {instrument: "conga", notes: "---l-h-----lh---"},
+        ], countto: 16},
+        {name: "Changuí", instruments: [
+            {instrument: "shaker", notes: "o-ooo-ooo-ooo-oo"},
+            {instrument: "clave", notes: "---o--o----o--o-"},
+        ], countto: 16},
+        {name: "Colombia (rumba 6/8)", instruments: [
+            {instrument: "clave", notes: "o-o--o-o-o--"},
+            {instrument: "conga", notes: "--s-ll--s-ll"},
+        ], countto: 12},
+        {name: "Cumbia", instruments: [
+            {instrument: "shaker", notes: "o-ooo-ooo-ooo-oo"},
+            {instrument: "drums", notes: "b---b---b---b---"},
+            {instrument: "conga", notes: "h---h-l-h---h-l-"},
+        ], countto: 16},
+        {name: "Yambú (rumba)", instruments: [
+            {instrument: "shaker", notes: "o--------------o"},
+            {instrument: "clave", notes: "o--oo--oo-o-o---"},
+            {instrument: "conga", notes: "----------------"},
+        ], countto: 16},
+        {name: "Danzón", instruments: [
+            {instrument: "shaker", notes: "----------------"},
+            {instrument: "clave", notes: "----------------"},
+            {instrument: "conga", notes: "--h-l-h---hl-lh-"},
+        ], countto: 16},
+        {name: "Salsa 2/3", instruments: [
+            {instrument: "shaker", notes: "----------------"},
+            {instrument: "cowbell", notes: "h-h-hh-h-hh-h-hh"},
+            {instrument: "clave", notes: "--o-o---o--o--o-"},
+            {instrument: "conga", notes: "--s---ll--s---ll"},
+            {instrument: "bongo", notes: "t-h-t-l-t-h-t-l-"},
+        ], countto: 16},
+        {name: "Salsa 3/2", instruments: [
+            {instrument: "clave", notes: "o--o--o---o-o---"},
+            {instrument: "cowbell", notes: "h-hh-h-hh-h-hh-h"},
+            {instrument: "conga", notes: "--s---ll--s---ll"},
+            {instrument: "bongo", notes: "t-h-t-l-t-h-t-l-"},
+        ], countto: 16},
+        {name: "Merengue", instruments: [
+            {instrument: "shaker", notes: "o-ooo-ooo-ooo-oo"},
+            {instrument: "drums", notes: "b---b---b---b---"},
+            {instrument: "conga", notes: "h---h-l-h---h-l-"},
+        ], countto: 16},
+        {name: "Songo (rumba)", instruments: [
+            {instrument: "shaker", notes: "o---o---o---o---"},
+            {instrument: "clave", notes: "--o-o---o--o---o"},
+            {instrument: "drum", notes: "---b--b----b--b-"},
+            {instrument: "conga", notes: "--l--l-l-ll--l-l"},
+        ], countto: 16},
+        {name: "Mosambique? (rumba)", instruments: [
+            {instrument: "cowbell", notes: "l-h-lh-hl-hl-h-h"},
+            {instrument: "conga", notes: "------s----l--l-"},
+        ], countto: 16},
+        {name: "Mosambique NY? (rumba)", instruments: [
+            {instrument: "conga", notes: "l--lhh-s-sls--hs"},
+        ], countto: 16},
+        {name: "Guaguanco (rumba)", instruments: [
+            {instrument: "shaker", notes: "o------oo------o"},
+            {instrument: "clave", notes: "o--o---o--o-o---"},
+            {instrument: "conga", notes: "------l-h--h--l-"},
+        ], countto: 16},
+        {name: "Guarapachangueo? (rumba)", instruments: [
+            {instrument: "clave", notes: "o--o---o--o-o---o--o---o--o-o---"},
+            {instrument: "conga", notes: "-l--l--l--s-s-----s--l----s-s--"},
+        ], countto: 32},
+        {name: "Saidi (semitic)", instruments: [
+            {instrument: "darbuka", notes: "b-k---b-b---k---"},
+            {instrument: "sagat", notes: "o-o-o-o-o-o-o-o-"},
+        ], countto: 16},
+        {name: "Baladi (semitic)", instruments: [
+            {instrument: "darbuka", notes: "bb-kb-k-"},
+            {instrument: "sagat", notes: "o-o-o-o-"},
+        ], countto: 8},
+        {name: "Malfuf (semitic)", instruments: [
+            {instrument: "darbuka", notes: "b--k--k-"},
+        ], countto: 8},
+        {name: "Ayoub (semitic)", instruments: [
+            {instrument: "darbuka", notes: "b---b-t-"},
+        ], countto: 8},
+        {name: "Reggaton", instruments: [
+            {instrument: "drums", notes: "bttkbtkt"},
+        ], countto: 8},
+    ];
+
+    //{name: "Columbia", shaker: "oooooooooooooooo", calve: "o--oo--oo-o-o---", conga: ""},
+
+
+    const htable = document.getElementById("htable");
+    const hgenero = document.getElementById("hgenero");
+    const speedbar = document.getElementById("speedbar");
+    let BeatNum = 1;
+    let NumOfBeats = 16;
+    let btnsarr = [];
+    let isplaying = false;
+
+    beatss.forEach(b => {
+        hgenero.innerHTML += `<option value="${b.name}">${b.name}</option>`;
+    })
+    hgenero.addEventListener("change", function(){ LoadBeat(GetGenero(hgenero.value)) })
+   
+    function GetGenero(n){ 
+        let r = beatss[0];
+        beatss.forEach(b => {
+            if(b.name == n){r = b}
+        })
+        return r;
+    }
+
+LoadBeat(beatss[0])
+function LoadBeat(choosenBeat){
+    btnsarr = [];
+    htable.innerHTML = "";
+    let thehtml = "";
+    NumOfBeats = choosenBeat.countto;
+    
+    choosenBeat.instruments.forEach(instr => {
+    thehtml += `<tr><th>${instr.instrument}</th><td>`;
+
+    for(i=0; i<NumOfBeats; i++){
+        thehtml += `<div class="divbeat" id="${instr.instrument.toLowerCase().replace(" ", "")}${i+1}" onclick="DivBeatClicked(this)">${instr.notes.substring(i,i+1)}</div>`;
+    }
+    thehtml += "</td></tr>";
+    })
+    htable.innerHTML = thehtml;
+
+    choosenBeat.instruments.forEach(instr => {
+        for(i=0; i<NumOfBeats; i++){
+            btnsarr.push(document.getElementById(`${instr.instrument.toLowerCase().replace(" ", "")}${i+1}`));
+        }
+    })
+    
+}
+
+function Play(btn){
+    if(btn.innerHTML == "Play"){
+        isplaying = true;
+        btn.innerHTML = "Pause";
+    }
+    else{
+        isplaying = false;
+        btn.innerHTML = "Play";
+    }
+}
+
+var ashaker = new Audio(); ashaker.src = "./assets/audio/shaker.mp3"; ashaker.volume = .5;
+var aclave = new Audio(); aclave.src = "./assets/audio/clave.mp3";
+var acongal = new Audio(); acongal.src = "./assets/audio/congal.mp3";
+var acongah = new Audio(); acongah.src = "./assets/audio/congah.mp3";
+var acongas = new Audio(); acongas.src = "./assets/audio/congas.mp3";
+var abongol = new Audio(); abongol.src = "./assets/audio/bongol.mp3";
+var abongoh = new Audio(); abongoh.src = "./assets/audio/bongoh.mp3";
+var abongot = new Audio(); abongot.src = "./assets/audio/bongot.mp3";
+var acowbellh = new Audio(); acowbellh.src = "./assets/audio/cowbellh.mp3";
+var acowbelll = new Audio(); acowbelll.src = "./assets/audio/cowbelll.mp3";
+var adrumb = new Audio(); adrumb.src = "./assets/audio/drumb.mp3";
+var adrumk = new Audio(); adrumk.src = "./assets/audio/drumk.mp3";
+var adrumt = new Audio(); adrumt.src = "./assets/audio/drumt.mp3";
+var adarbukab = new Audio(); adarbukab.src = "./assets/audio/darbukab.mp3";
+var adarbukak = new Audio(); adarbukak.src = "./assets/audio/darbukak.mp3";
+var adarbukat = new Audio(); adarbukat.src = "./assets/audio/darbukat.mp3";
+var asagat = new Audio(); asagat.src = "./assets/audio/sagat.mp3";
+
+// fader 0-100 *volume*
+let MixerValues = [
+    {name: "shaker", row: 1, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "o", audio: ashaker},
+    ],},
+    {name: "conga", row: 2, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "l", audio: acongal},
+        {letter: "h", audio: acongah},
+        {letter: "s", audio: acongas},
+    ],},
+    {name: "bongo", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "l", audio: abongol},
+        {letter: "h", audio: abongoh},
+        {letter: "t", audio: abongot},
+    ],},
+    {name: "clave", row: 1, fader: 75, high: 50, mid: 50, low: 50,  ismuted: false,
+    hits: [
+        {letter: "o", audio: aclave}
+    ],},
+    {name: "cowbell", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "l", audio: acowbelll},
+        {letter: "h", audio: acongah},
+    ],},
+    {name: "drums", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "b", audio: adrumb},
+        {letter: "k", audio: adrumk},
+        {letter: "t", audio: adrumt},
+    ],},
+    {name: "darbuka", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "b", audio: adarbukab},
+        {letter: "k", audio: adarbukak},
+        {letter: "t", audio: adarbukat},
+    ],},
+    {name: "sagat", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
+    hits: [
+        {letter: "o", audio: asagat},
+    ],},
+];
+
+
+// INTERVAL LOOP ----------------
+let interval = setInterval(NextBeat, 200);
+speedbar.addEventListener('change', function(){
+    clearInterval(interval);    
+		interval = setInterval(NextBeat, (parseInt(speedbar.max)+80) - speedbar.value);
+	})
+speedbar.value = 201;
+
+
+
+function NextBeat(){
+    if(isplaying){
+        btnsarr.forEach(b => {
+            let bID = b.id.replace(/[a-z]/gi, '')
+            let binstr = b.id.replace(/[0-9]/gi, '')
+
+            // if beat being played
+            if(bID == BeatNum){ 
+                b.style.backgroundColor =  "red";
+
+                // if instrument matches
+                MixerValues.forEach(ins => {
+                    // Find instrument
+                    if(b.id.includes(ins.name)){
+                        ins.hits.forEach(h => {
+                            if(h.letter == b.innerHTML){h.audio.load();h.audio.play();}
+                        })
+                    }
+                })
+
+            }
+            else if(b.innerHTML != "-"){b.style.backgroundColor = "orange";}
+            else{b.style.backgroundColor = "rgba(0,0,0,0)"}
+        })
+        if(BeatNum >= NumOfBeats){BeatNum = 1}
+        else{BeatNum++;}
+    }
+}
+
+function DivBeatClicked(btn){
+    let HitTypes = [{letter: "-", audio:null}]; // each hit type, [-, o, l, h]
+
+
+    MixerValues.forEach(ins => {
+        let btnInstr = btn.id.replace(/[0-9]/gi, '')
+        //if button click on same as ins
+        if(btn.id.includes(ins.name)){
+            HitTypes = HitTypes.concat(ins.hits)
+        }
+    })
+
+    // Find current HitType and move right +1, because button was clicked and wants to change
+    let HitIndex = 0;
+    for(i=0; i<=HitTypes.length-1; i++){
+        if(HitTypes[i].letter == btn.innerHTML){ HitIndex = i}
+    }
+
+    if(HitIndex >= HitTypes.length-1){HitIndex = 0}
+    else{HitIndex++}
+
+    btn.innerHTML = HitTypes[HitIndex].letter;
+}
+
+
+// MIXER
+
+let mixer = document.getElementById("mixer");
+let thehtml = "";
+
+for(i=0; i<MixerValues.length; i++){
+    thehtml += `<div class="mixercolumn">
+        <div>${MixerValues[i].name}</div>
+            <div class="nobholder">
+            <div class="nob" id="nhigh${i+1}">${MixerValues[i].high}</div>
+            <div class="nob" id="nhigh${i+1}">${MixerValues[i].mid}</div>
+            <div class="nob" id="nhigh${i+1}">${MixerValues[i].low}</div>
+            </div>
+            <button id="mute${i+1}"></button>
+            <input type="range" id="fader${i+1}" class="fader" min="0" max="100" value="${MixerValues[i].fader}" style="transform: rotate(-90deg);"/>
+        </div>`;
+}
+mixer.innerHTML = thehtml;
+
+
+// Faders
+/*
+for(j=0; j<5; j++){
+    document.getElementById(`fader${j+1}`).addEventListener("change", function(){
+        MixerValues[j].fader = parseInt(document.getElementById(`fader${j+1}`).value);
+        UpdateMixer();
+    })
+}
+*/
+document.getElementById(`fader1`).addEventListener("change", function(){
+        MixerValues[0].fader = parseInt(document.getElementById(`fader1`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader2`).addEventListener("change", function(){
+        MixerValues[1].fader = parseInt(document.getElementById(`fader2`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader3`).addEventListener("change", function(){
+        MixerValues[2].fader = parseInt(document.getElementById(`fader3`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader4`).addEventListener("change", function(){
+        MixerValues[3].fader = parseInt(document.getElementById(`fader4`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader5`).addEventListener("change", function(){
+        MixerValues[4].fader = parseInt(document.getElementById(`fader5`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader6`).addEventListener("change", function(){
+        MixerValues[5].fader = parseInt(document.getElementById(`fader6`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader7`).addEventListener("change", function(){
+        MixerValues[6].fader = parseInt(document.getElementById(`fader7`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`fader8`).addEventListener("change", function(){
+        MixerValues[7].fader = parseInt(document.getElementById(`fader8`).value);
+        UpdateMixer();
+    })
+    document.getElementById(`mute1`).addEventListener("click", function(){
+       if(MixerValues[0].ismuted){MixerValues[0].ismuted = false}
+       else {MixerValues[0].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute2`).addEventListener("click", function(){
+       if(MixerValues[1].ismuted){MixerValues[1].ismuted = false}
+       else {MixerValues[1].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute3`).addEventListener("click", function(){
+       if(MixerValues[2].ismuted){MixerValues[2].ismuted = false}
+       else {MixerValues[2].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute4`).addEventListener("click", function(){
+       if(MixerValues[3].ismuted){MixerValues[3].ismuted = false}
+       else {MixerValues[3].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute5`).addEventListener("click", function(){
+       if(MixerValues[4].ismuted){MixerValues[4].ismuted = false}
+       else {MixerValues[4].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute6`).addEventListener("click", function(){
+       if(MixerValues[5].ismuted){MixerValues[5].ismuted = false}
+       else {MixerValues[5].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute7`).addEventListener("click", function(){
+       if(MixerValues[6].ismuted){MixerValues[6].ismuted = false}
+       else {MixerValues[6].ismuted = true}
+        UpdateMixer();
+    })
+    document.getElementById(`mute8`).addEventListener("click", function(){
+       if(MixerValues[7].ismuted){MixerValues[7].ismuted = false}
+       else {MixerValues[7].ismuted = true}
+        UpdateMixer();
+    })
+
+for(j=0; j<MixerValues.length-1; j++){
+    // document.getElementById(`mute${j+1}`).addEventListener("click", function() {MuteButton(j)})
+}
+
+function MuteButton(num){
+    if(MixerValues[num].ismuted){MixerValues[num].ismuted = false}
+    else {MixerValues[num].ismuted = true}
+    UpdateMixer();
+}
+    
+
+function UpdateMixer(){
+    // Update Values
+MixerValues.forEach(v => {
+    v.hits.forEach(h => {
+        h.audio.volume = (v.fader)/100;
+        h.audio.muted = v.ismuted;
+    });
+})
+    // Update HTML Faders/Knobs
+for(i=0; i<MixerValues.length; i++){
+    document.getElementById(`fader${i+1}`).value = MixerValues[i].fader;
+    if(MixerValues[i].ismuted){document.getElementById(`mute${i+1}`).style.backgroundColor = "red";}
+    else {document.getElementById(`mute${i+1}`).style.backgroundColor = "green";}
+
+}
+}
+//MixerValues.onchange = UpdateMixer();
+</script> 
