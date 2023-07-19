@@ -15,9 +15,15 @@
 			<div id="layoutpagenav"></div>
 
 			<div id="navflex">
-				<h1>Calculator</h1>
+				<h1>Fractials</h1>
 
 				<canvas id="canvas" style="background-color: grey;"></canvas>
+				<table>
+					<tr><th>Arm #</th><td><input type="range" min="1" max="30" value="10" id="harmnum"></td></tr>
+					<tr><th>Branches</th><td><input type="range" min="1" max="20" value="10" id="hbranches"></td></tr>
+					<tr><th>Inward Tilt</th><td><input type="range" min="1" max="100" value="10" id="hinwardtilt"></td></tr>
+					<tr><th>Line Fade</th><td><input type="range" min="1" max="100" value="50" id="hlinefade"></td></td></tr>
+				</table>
 
 				<footer></footer>
 			</div>
@@ -32,19 +38,74 @@
 	var ctx = canvas.getContext("2d");
 
 
-	DrawTree(10);
-	function DrawTree(branches) {
-		// Align 0,0 with bottom middle
+	// DrawTree(10, 6,-1.1, 1, 1.5);
+	DrawTree(40, 10,-3, 1, 1.5);
 
-		for(i = 0; i < branches; i++){
-		ctx.beginPath();
-		ctx.save();
-		ctx.translate(canvas.width / 2, 10)
-		ctx.rotate(5 * Math.PI/180)
-		ctx.moveTo(0,0);
-		ctx.lineTo(0, -10);
-		ctx.stroke();
+	// arm# 
+	// branch#
+	// Line fade 1-2 decimal
+
+	function DrawTree(armnum, branches, inwardtilt, xspread, linefade) {
+		// y0 is top, y canvasheight is bottom
+
+
+
+
+	for(m = 1; m <= 2; m++){
+		let neg = 1;
+		if(m == 2){neg = -1}
+
+	for(b = 1; b <= armnum; b++){
+		let sx = canvas.width/2;
+		let sy = canvas.height;
+		ctx.lineWidth = 4;
+
+		for(i = 1; i <= branches; i++){
+			ctx.beginPath();
+			ctx.moveTo(sx,sy);
+
+			sx += (inwardtilt+i)*(b*xspread)*neg;
+			sy /= Math.pow(1+(.002*(b*b)),i);
+
+			ctx.lineTo(sx, sy);
+
+			ctx.lineWidth /= linefade
+			ctx.stroke();	
 		}
+	}
+	}
+	}
+	function DrawBeams(branches) {
+		// y0 is top, y canvasheight is bottom
+		ctx.lineWidth = 2;
+
+		for(i = 1; i <= branches; i++){
+			ctx.beginPath();
+			ctx.moveTo(canvas.width/2,canvas.height);
+			ctx.lineTo((canvas.width/2)+i*i, canvas.height/(Math.pow(1.5,i))+5);
+			ctx.stroke();
+		}
+	}
+
+
+	let harmnum = document.getElementById("harmnum");
+	let hbranches = document.getElementById("hbranches");
+	let hinwardtilt = document.getElementById("hinwardtilt");
+	let hlinefade = document.getElementById("hlinefade");
+
+	harmnum.addEventListener("change", vDrawTree)
+	hbranches.addEventListener("change", vDrawTree)
+	hinwardtilt.addEventListener("change", vDrawTree)
+	hlinefade.addEventListener("change", vDrawTree)
+
+	function vDrawTree(){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		DrawTree(
+			harmnum.value, 
+			hbranches.value, 
+			hinwardtilt.value*-1*.07, // -1 - 10
+			1, 
+			(hlinefade.value*.01)*5)
 	}
 
 </script>
