@@ -26,7 +26,7 @@ table {
     width: 100%;
     margin: 0em;
 }
-th {text-align: right;}
+th {text-align: left;}
 td select{ width: 100%;}
 button {
     width: 100%;
@@ -60,16 +60,16 @@ p {margin: 0em;}
             <div class="holderdiv">
                 <p class="heading">Add Particals</p>
                 <table>
-                    <tr><th>Color</th><td><select id="hColor"><option value="aqua">blue</option><option value="red">red</option></select></td></tr>
+                    <tr><th>Color</th><td><select id="hColor"><option value="aqua">blue</option><option value="red">red</option><option value="green">green</option></select></td></tr>
                     <tr><th>Amount</th><td><input type="text" id="hAmount" value="1"></td></tr>
                 </table>
                 <button onclick="btnAdd()">Add</button>
                 <button onclick="ClearBlobs()">Clear All</button>
-            </div>
-            <div>
-                <table id="particalsettings">
-
-                </table>
+                <p>
+                    Blue & Red attract<br>
+                    Same Colors repel<br>
+                    Green repeled from everything
+                </p>
             </div>
             
             <footer></footer>
@@ -88,6 +88,10 @@ p {margin: 0em;}
     
 	let blobs = [];
     let blobsettings = [];
+    let Physics = [
+        {name: "red", attracts: ["aqua"], mass: 9999999},
+        {name: "aqua", attracts: ["red"], mass: 9999999},
+    ];
 
     class blob{
 		constructor(id, x, y, color){
@@ -98,27 +102,41 @@ p {margin: 0em;}
 		}
         move(){
             // boundaries left and right
-            if(this.x >= canvas.width) {this.x -= 5;}
-            else if (this.x <= 0) {this.x += 5;}
+            if(this.x >= canvas.width) {this.x = canvas.width-1;}
+            else if (this.x <= 0) {this.x = 1;}
             else {
 
             blobs.forEach(bl => {
+
+                let distance = getDistance(this.x, this.y, bl.x, bl.y);
+                let kilograms = 8999999;
+                let gravforce = ((6.67*Math.pow(10,-11))*(kilograms*kilograms))/(distance*distance);
+                if(gravforce > 300) {gravforce = -1}
+                console.log(gravforce);
+
                 let yneg = 1;   
                     if(bl.y < this.y){ yneg = -1;} else{yneg = 1;}
-
                 let xneg = 1;   
                     if(bl.x < this.x){ xneg = -1;} else{xneg = 1;}
 
                 if(this.color == "red" && bl.color=="aqua"){
-                        this.x += (getDistance(this.x, bl.x, 0, 0)/200)*xneg;
-                        this.y += (getDistance(0, 0, this.y, bl.y)/200)*yneg;
+
+                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg)*gravforce;
+                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg)*gravforce;
                 }
                 else if(this.color == "aqua" && bl.color=="red"){
-                    this.x += (getDistance(this.x, bl.x, 0, 0)/200)*xneg;
-                    this.y += (getDistance(0, 0, this.y, bl.y)/200)*yneg;
+                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg)*gravforce;
+                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg)*gravforce;
                 }
+                else if(this.color == "aqua" && bl.color=="green"){
+                    gravforce *= 1.6;
+                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg)*gravforce;
+                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg)*gravforce;
+                }
+                
                 else{
-
+                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg*-1)*gravforce;
+                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg*-1)*gravforce;
                 }
             });
 
@@ -138,13 +156,7 @@ p {margin: 0em;}
     blobsettings.push(new blob(blobsettings.length, 0, 0, "aqua"));
     CreateBlobs(2, "red");
     CreateBlobs(2, "aqua");
-
-
-    particalsettingsdiv.innerHTML = `<tr><th>Name</th><th>attracts</th></tr>`;
-    blobsettings.forEach(o => {
-        particalsettingsdiv.innerHTML += `<tr><th>${o.color}</th><td></td></tr>`;
-    })
-
+    CreateBlobs(4, "green");
 
     canvas.addEventListener("click", CanvasClick);
  // Add button clicked, Create circles with entered values (amount, type (pred or prey))
@@ -194,5 +206,10 @@ p {margin: 0em;}
     function getDistance(xA, yA, xB, yB) { 
 	var xDiff = xA - xB;  var yDiff = yA - yB;
 	return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+    }
+    function AbsoluteValue(num){
+        let r = num;
+        if(num < 0){r *= -1}
+        return r;
     }
 </script> 
