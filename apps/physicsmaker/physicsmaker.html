@@ -15,22 +15,29 @@ canvas {
 }
 .holderdiv {
 width: fit-content;
-background-color: rgb(137, 137, 137);
-margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
+padding: .5em;
+border: .2em solid rgb(80, 0, 0);
+background-color: rgb(225, 142, 0);
+margin-left: 2em auto 0em auto;
 }
 table {
     background-color: blanchedalmond;
     border: .2em solid black;
-    width: 100%;
-    margin: 0em;
+    width: fit-content;
+    margin: auto;
+    border-collapse: collapse;
 }
-th {text-align: left;}
+th {
+    text-align: center;
+    border: .1em solid black;
+    padding: .4em;
+}
+td {width: fit-content;}
 td select{ width: 100%;}
+td input{ width: 7em;}
 button {
-    width: 100%;
-    height: fit-content;
+    width: 50%;
+    max-height: 2em;
 }
 p {margin: 0em;}
 .heading{
@@ -57,21 +64,31 @@ p {margin: 0em;}
                     <div style="background-color: wheat; display: flex; padding: 0px; margin: 0em; justify-content: space-evenly;">
                 </div>
 			</div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+            <div>
+                <select id="hsaves" style="width: 100%;"></select>
+                <table id="particalsettings"></table>
+                <div style="display: flex;">
+                    <button onclick="UpdateValues()">Update</button>
+                    <button onclick="AddPartical()">New Partical+</button>
+                </div>
+            </div>
+
             <div class="holderdiv">
                 <p class="heading">Add Particals</p>
+
                 <table>
-                    <tr><th>Color</th><td><select id="hColor"><option value="aqua">blue</option><option value="red">red</option><option value="green">green</option></select></td></tr>
+                    <tr><th>Color</th><td><select id="hColor"><option value="aqua">aqua</option><option value="red">red</option><option value="green">green</option></select></td></tr>
                     <tr><th>Amount</th><td><input type="text" id="hAmount" value="1"></td></tr>
                 </table>
-                <button onclick="btnAdd()">Add</button>
-                <button onclick="ClearBlobs()">Clear All</button>
-                <p>
-                    Blue & Red attract<br>
-                    Same Colors repel<br>
-                    Green repeled from everything
-                </p>
+                <div style="display: flex;">
+                    <button onclick="btnAdd()">Add</button>
+                    <button onclick="ClearBlobs()">Clear All</button>
+                </div>
             </div>
-            
+        </div>
+
             <footer></footer>
 		</div>
 	</div>
@@ -84,14 +101,36 @@ p {margin: 0em;}
     const canvas = document.getElementById("canvas");
 	const ctx = canvas.getContext("2d")
     const particalsettingsdiv = document.getElementById("particalsettings");
+    const hgametime = document.getElementById("hgametime");
+    const hColor = document.getElementById("hColor");
+    const hsaves = document.getElementById("hsaves");
+
     // h = from HTML
-    
+    let defaultcolors = ["red", "aqua", "green", "yellow", "white", "pink", "orange", "lime"]
 	let blobs = [];
     let blobsettings = [];
     let Physics = [
-        {name: "red", attracts: ["aqua"], mass: 9999999},
-        {name: "aqua", attracts: ["red"], mass: 9999999},
+        {name: "red", attracts: ["aqua"], repels: ["red"], mass: 200000},
+        {name: "aqua", attracts: ["red", "green"], repels: ["aqua"], mass: 300000},
+        {name: "green", attracts: [], repels: ["red", "aqua", "green"], mass: 200000},
     ];
+    let Saves = [
+    {name: "Default", 
+        table: [
+            {name: "red", attracts: ["aqua"], repels: ["red"], mass: 200000},
+            {name: "aqua", attracts: ["red", "green"], repels: ["aqua"], mass: 300000},
+            {name: "green", attracts: [], repels: ["red", "aqua", "green"], mass: 200000},
+        ],
+        spawn: [{name: "red", amount: 2}, {name: "aqua", amount: 5}, {name: "green", amount: 6}]
+        },
+        {name: "Small LifeForms", 
+        table: [
+            {name: "aqua", attracts: ["green"], repels: ["aqua"], mass: 300000},
+            {name: "green", attracts: [], repels: ["aqua"], mass: 200000},
+        ],
+        spawn: [{name: "aqua", amount: 10}, {name: "green", amount: 10}]
+        },
+    ]
 
     class blob{
 		constructor(id, x, y, color){
@@ -101,62 +140,59 @@ p {margin: 0em;}
             this.color = color;
 		}
         move(){
-            // boundaries left and right
-            if(this.x >= canvas.width) {this.x = canvas.width-1;}
-            else if (this.x <= 0) {this.x = 1;}
+            // boundaries left, right, up, down
+            if (this.y <= 0) { this.y += 5; }
+            else if (this.y >= canvas.height) { this.y -= 5;}
+
+            if(this.x >= canvas.width) { this.x = canvas.width-1;}
+            else if (this.x <= 0) { this.x = 1;}
             else {
 
-            blobs.forEach(bl => {
+                Physics.forEach(p => {
+                    blobs.forEach(bl => {
 
-                let distance = getDistance(this.x, this.y, bl.x, bl.y);
-                let kilograms = 8999999;
-                let gravforce = ((6.67*Math.pow(10,-11))*(kilograms*kilograms))/(distance*distance);
-                if(gravforce > 300) {gravforce = -1}
-                console.log(gravforce);
+                        let distance = getDistance(this.x, this.y, bl.x, bl.y);
+                        let yneg = 1;   
+                            if(bl.y < this.y){ yneg = -1;} else{yneg = 1;}
+                        let xneg = 1;   
+                            if(bl.x < this.x){ xneg = -1;} else{xneg = 1;}
+                            
 
-                let yneg = 1;   
-                    if(bl.y < this.y){ yneg = -1;} else{yneg = 1;}
-                let xneg = 1;   
-                    if(bl.x < this.x){ xneg = -1;} else{xneg = 1;}
+                            // p = Default Partical settings
+                            // a = color this.color needs to attract to
+                            // r = color this.color needs to repel from
+                            // bl = blob on screen looping through
+                    if(this.color == p.name){
+                        p.attracts.forEach(a => {
+                            if(bl.color == a){
+                                let gravforce = ((6.67*Math.pow(10,-11))*(p.mass*p.mass))/(distance*distance);
+                                if(gravforce > 200) {gravforce = -1}
 
-                if(this.color == "red" && bl.color=="aqua"){
+                                this.x += ((AbsoluteValue(this.x - bl.x))*xneg)*gravforce;
+                                this.y += ((AbsoluteValue(this.y - bl.y))*yneg)*gravforce;
+                            }
+                        })
+                        p.repels.forEach(r => {
+                            if(bl.color == r){
+                                let gravforce = ((6.67*Math.pow(10,-11))*(p.mass*p.mass))/(distance*distance);
+                                if(gravforce > 300) {gravforce = -1}
 
-                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg)*gravforce;
-                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg)*gravforce;
-                }
-                else if(this.color == "aqua" && bl.color=="red"){
-                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg)*gravforce;
-                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg)*gravforce;
-                }
-                else if(this.color == "aqua" && bl.color=="green"){
-                    gravforce *= 1.6;
-                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg)*gravforce;
-                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg)*gravforce;
-                }
-                
-                else{
-                    this.x += ((AbsoluteValue(this.x - bl.x)/200)*xneg*-1)*gravforce;
-                    this.y += ((AbsoluteValue(this.y - bl.y)/200)*yneg*-1)*gravforce;
-                }
-            });
-
-             }
-
-            // boundaries up and down
-            if (this.y <= 0) {this.y += 5;}
-            else if (this.y >= canvas.height) {this.y -= 5;}
-            else {
-
-
-            }
+                                this.x += ((AbsoluteValue(this.x - bl.x))*xneg*-1)*gravforce;
+                                this.y += ((AbsoluteValue(this.y - bl.y))*yneg*-1)*gravforce;
+                            }
+                        })
+                    }
+                    });
+                })
+             }            
         }
 	}
 
     blobsettings.push(new blob(blobsettings.length, 0, 0, "red"));
     blobsettings.push(new blob(blobsettings.length, 0, 0, "aqua"));
     CreateBlobs(2, "red");
-    CreateBlobs(2, "aqua");
-    CreateBlobs(4, "green");
+    CreateBlobs(5, "aqua");
+    CreateBlobs(6, "green");
 
     canvas.addEventListener("click", CanvasClick);
  // Add button clicked, Create circles with entered values (amount, type (pred or prey))
@@ -201,6 +237,62 @@ p {margin: 0em;}
         const hAmount = parseInt(document.getElementById("hAmount").value) || 1;
         CreateBlobs(hAmount, hColor);
     }
+
+
+function MakeTable(){
+    hColor.innerHTML = ``;
+    particalsettingsdiv.innerHTML = `<tr><th>Partical</th><th>Attracts to</th><th>Repels from</th><th>Mass kg</th></tr>`;
+    for(i=0; i<Physics.length; i++){
+        particalsettingsdiv.innerHTML += `
+            <tr><th>${Physics[i].name}</th>
+            <td><input type="text" value="${Physics[i].attracts}" id="attract${i}"></td>
+            <td><input type="text" value="${Physics[i].repels}" id="repel${i}"></td>
+            <td><input type="number" value="${Physics[i].mass}" id="mass${i}"></td></tr>`;
+            hColor.innerHTML += `
+            <option value="${Physics[i].name}">${Physics[i].name}</option>
+            `;
+    }
+}
+MakeTable();
+
+    function UpdateValues(){
+        for(i=0; i<Physics.length; i++){
+            Physics[i].mass = parseInt(document.getElementById(`mass${i}`).value) || 200000;
+            Physics[i].attracts = (document.getElementById(`attract${i}`).value).split(",") || [""];
+            Physics[i].repels = (document.getElementById(`repel${i}`).value).split(",") || [""];
+        }
+        MakeTable();
+    }
+
+
+function AddPartical(){
+    if(Physics.length < defaultcolors.length && Physics[Physics.length-1].name != defaultcolors[Physics.length]){
+        Physics.push({name: defaultcolors[Physics.length], attracts:[], repels: [], mass: 200000}); 
+        MakeTable();
+        UpdateValues();
+    }
+}
+
+Saves.forEach(s => {
+    hsaves.innerHTML += `<option value="${s.name}">${s.name}</option>`;
+})
+
+hsaves.addEventListener("change", function(){
+    Saves.forEach(s => {
+        if(s.name == hsaves.value){
+
+            Physics = [].concat(s.table);
+            MakeTable();
+            UpdateValues();
+
+            ClearBlobs();
+            s.spawn.forEach(o => {
+                CreateBlobs(o.amount, o.name);
+            })
+            
+        }
+    })
+})
 
    
     function getDistance(xA, yA, xB, yB) { 
