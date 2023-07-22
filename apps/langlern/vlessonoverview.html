@@ -99,7 +99,8 @@ theHTML += `
 vocabwords.innerHTML = theHTML;
 
 function WordClicked(thetext){
-    /* the old way, now i use an API
+    /* 
+    the old way, now i use an API
     let msg = new SpeechSynthesisUtterance(thetext);
     msg.voice = window.speechSynthesis.getVoices()[getcurrentlangobj().audioindex];
     window.speechSynthesis.speak(msg);

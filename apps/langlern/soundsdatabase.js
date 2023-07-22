@@ -178,7 +178,7 @@
         {letter: "ie", sound: "ee in see", audio: "iː"},
         {letter: "ei", sound: "'eye'", audio: "ai"},
         {letter: "th", sound: "t", audio: "ta"},
-        {letter: "au/eu", sound: "oi in oil", audio: "none"},
+        {letter: "eu", sound: "oi in oil", audio: "none"},
       ],
     info: ["ALL nouns are capitalized in German!"]
 },
