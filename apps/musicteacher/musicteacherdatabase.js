@@ -233,7 +233,7 @@ const musicteacherdatabase = [
         </p>  
         <img src="https://virtuosocentral.com/wp-content/uploads/2020/06/sections-of-a-mixer.png"><img src="https://medias.audiofanzine.com/images/normal/behringer-x32-standard-2000507.jpg"> `
     },
-    {title: "Speakers🔊", thehtml: `
+    {title: "Speakers and Monitors🔊", thehtml: `
     <h1>Active</h1>
         <p>Normal speaker, powered and has plugin or battery.</p>
     <h1>Passive</h1>
@@ -241,7 +241,9 @@ const musicteacherdatabase = [
     <h1>Subwoofer "subs"</h1>
         <p>For the bass and low frequencies, Subwoofer placed low on floor. Low frequencies radiate evenly in all directions unlike mid and high range.</p>
     <h1>Monitor</h1>
-        <p>Smaller speaker that faces towards player to hear themself play.</p>
+        <p>Smaller speaker that faces towards player to hear themself play. Monitor/AuxSend output from mixer plugs into monitor input. Don't plug main output mixer into monitor input because if you turn up the main volume, the monitors will turn up too and feedback into mics.</p>
+    <h1>Ear Monitor</h1>
+        <p>Headphones that let you hear the band without needing monitor facing you. Plugin transmitter into Monitor/AuxSend output on mixer, goes to your receiver and headphones that you have cliped to you. Can have multiple headphones connected to 1 transmitter everone will hear the same mix.</p>
     <h1>What to get?</h1>
         <p>Get an "portable active column" speaker like the "JBL EON MK2". They fold up, the tower is the speaker, and the bottom is the subwoofer all in one! Also 4hr long battery powered charges when pluged in.</p>
         <img src="https://www.audioegghead.com/wp-content/uploads/2019/02/active-vs-passive-speakers-768x512.jpg">
