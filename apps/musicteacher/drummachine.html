@@ -132,7 +132,8 @@ label{color: white;}
 <script>
     const beatss = [
         {name: "Abakuá (rumba)", instruments: [
-            {instrument: "conga", notes: "hh--l-hh--l-"},
+            {instrument: "conga", notes: "l--s--l--s--"},
+            {instrument: "clave", notes: "--o-o--o-o-o"},
         ], countto: 12},
         {name: "Bachata derecho", instruments: [
             {instrument: "bongo", notes: "t-h-t-l-t-h-t-l-"},
@@ -168,9 +169,13 @@ label{color: white;}
             {instrument: "shaker", notes: "o-ooo-ooo-ooo-oo"},
             {instrument: "clave", notes: "---o--o----o--o-"},
         ], countto: 16},
+        {name: "Chachacha", instruments: [
+            {instrument: "shaker", notes: "o-ooo-ooo-ooo-oo"},
+            {instrument: "cowbell", notes: "h---h---h---h---"},
+        ], countto: 16},
         {name: "Colombia (rumba 6/8)", instruments: [
             {instrument: "clave", notes: "o-o--o-o-o--"},
-            {instrument: "conga", notes: "--s-ll--s-ll"},
+            {instrument: "conga", notes: "s-ll--s-ll--"},
         ], countto: 12},
         {name: "Cumbia", instruments: [
             {instrument: "shaker", notes: "o-ooo-ooo-ooo-oo"},
@@ -183,8 +188,7 @@ label{color: white;}
             {instrument: "conga", notes: "----------------"},
         ], countto: 16},
         {name: "Danzón", instruments: [
-            {instrument: "shaker", notes: "----------------"},
-            {instrument: "clave", notes: "----------------"},
+            {instrument: "clave", notes: "--o-o---o--o--o-"},
             {instrument: "conga", notes: "--h-l-h---hl-lh-"},
         ], countto: 16},
         {name: "Salsa 2/3", instruments: [
@@ -244,6 +248,14 @@ label{color: white;}
         {name: "Reggaton", instruments: [
             {instrument: "drums", notes: "bttkbtkt"},
         ], countto: 8},
+        {name: "Polyrhythm 2/3", instruments: [
+            {instrument: "clave", notes: "o-o-o-"},
+            {instrument: "drums", notes: "b--b--"},
+        ], countto: 6},
+        {name: "Polyrhythm 2/5", instruments: [
+            {instrument: "clave", notes: "o-o-o-o-o-"},
+            {instrument: "drums", notes: "b----b----"},
+        ], countto: 10},
     ];
 
     //{name: "Columbia", shaker: "oooooooooooooooo", calve: "o--oo--oo-o-o---", conga: ""},
@@ -349,7 +361,7 @@ let MixerValues = [
     {name: "cowbell", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
     hits: [
         {letter: "l", audio: acowbelll},
-        {letter: "h", audio: acongah},
+        {letter: "h", audio: acowbellh},
     ],},
     {name: "drums", row: 4, fader: 75, high: 50, mid: 50, low: 50, ismuted: false,
     hits: [
@@ -564,4 +576,5 @@ for(i=0; i<MixerValues.length; i++){
 }
 }
 //MixerValues.onchange = UpdateMixer();
+
 </script> 
