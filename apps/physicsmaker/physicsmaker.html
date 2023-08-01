@@ -110,23 +110,23 @@ p {margin: 0em;}
 	let blobs = [];
     let blobsettings = [];
     let Physics = [
-        {name: "red", attracts: ["aqua"], repels: ["red"], mass: 200000},
-        {name: "aqua", attracts: ["red", "green"], repels: ["aqua"], mass: 300000},
-        {name: "green", attracts: [], repels: ["red", "aqua", "green"], mass: 200000},
+        {name: "red", attracts: ["aqua"], repels: ["red"], attractforce: 200000, repelforce: 200000},
+        {name: "aqua", attracts: ["red", "green"], repels: ["aqua"], attractforce: 300000, repelforce: 200000},
+        {name: "green", attracts: [], repels: ["red", "aqua", "green"], attractforce: 200000, repelforce: 200000},
     ];
     let Saves = [
     {name: "Default", 
         table: [
-            {name: "red", attracts: ["aqua"], repels: ["red"], mass: 200000},
-            {name: "aqua", attracts: ["red", "green"], repels: ["aqua"], mass: 300000},
-            {name: "green", attracts: [], repels: ["red", "aqua", "green"], mass: 200000},
+            {name: "red", attracts: ["aqua"], repels: ["red"], attractforce: 200000, repelforce: 200000},
+            {name: "aqua", attracts: ["red", "green"], repels: ["aqua"], attractforce: 300000, repelforce: 200000},
+            {name: "green", attracts: [], repels: ["red", "aqua", "green"], attractforce: 200000, repelforce: 200000},
         ],
         spawn: [{name: "red", amount: 2}, {name: "aqua", amount: 5}, {name: "green", amount: 6}]
         },
         {name: "Small LifeForms", 
         table: [
-            {name: "aqua", attracts: ["green"], repels: ["aqua"], mass: 300000},
-            {name: "green", attracts: [], repels: ["aqua"], mass: 200000},
+            {name: "aqua", attracts: ["green"], repels: ["aqua"], attractforce: 300000, repelforce: 200000},
+            {name: "green", attracts: [], repels: ["aqua"], attractforce: 200000, repelforce: 200000},
         ],
         spawn: [{name: "aqua", amount: 10}, {name: "green", amount: 10}]
         },
@@ -165,8 +165,8 @@ p {margin: 0em;}
                     if(this.color == p.name){
                         p.attracts.forEach(a => {
                             if(bl.color == a){
-                                let gravforce = ((6.67*Math.pow(10,-11))*(p.mass*p.mass))/(distance*distance);
-                                if(gravforce > 200) {gravforce = -1}
+                                let gravforce = ((6.67*Math.pow(10,-11))*(p.attractforce*p.repelforce))/(distance*distance);
+                                if(gravforce > 1) {gravforce = -1}
 
                                 this.x += ((AbsoluteValue(this.x - bl.x))*xneg)*gravforce;
                                 this.y += ((AbsoluteValue(this.y - bl.y))*yneg)*gravforce;
@@ -174,8 +174,8 @@ p {margin: 0em;}
                         })
                         p.repels.forEach(r => {
                             if(bl.color == r){
-                                let gravforce = ((6.67*Math.pow(10,-11))*(p.mass*p.mass))/(distance*distance);
-                                if(gravforce > 300) {gravforce = -1}
+                                let gravforce = ((6.67*Math.pow(10,-11))*(p.repelforce*p.repelforce))/(distance*distance);
+                                if(gravforce > 10) {gravforce = -1}
 
                                 this.x += ((AbsoluteValue(this.x - bl.x))*xneg*-1)*gravforce;
                                 this.y += ((AbsoluteValue(this.y - bl.y))*yneg*-1)*gravforce;
@@ -241,13 +241,13 @@ p {margin: 0em;}
 
 function MakeTable(){
     hColor.innerHTML = ``;
-    particalsettingsdiv.innerHTML = `<tr><th>Partical</th><th>Attracts to</th><th>Repels from</th><th>Mass kg</th></tr>`;
+    particalsettingsdiv.innerHTML = `<tr><th>Partical</th><th>Attracts to</th><th>Repels from</th></tr>`;
     for(i=0; i<Physics.length; i++){
         particalsettingsdiv.innerHTML += `
-            <tr><th>${Physics[i].name}</th>
-            <td><input type="text" value="${Physics[i].attracts}" id="attract${i}"></td>
-            <td><input type="text" value="${Physics[i].repels}" id="repel${i}"></td>
-            <td><input type="number" value="${Physics[i].mass}" id="mass${i}"></td></tr>`;
+            <tr><th style="background-color: ${Physics[i].name}">${Physics[i].name}</th>
+            <td><input type="text" value="${Physics[i].attracts}" id="attract${i}"><br><input type="range" min="100000" max="500000" value="${Physics[i].attractforce}" id="attractforce${i}"/></td>
+            <td><input type="text" value="${Physics[i].repels}" id="repel${i}"><br><input type="range"  min="100000" max="500000" value="${Physics[i].repelforce}" id="repelforce${i}"/></td>
+            `;
             hColor.innerHTML += `
             <option value="${Physics[i].name}">${Physics[i].name}</option>
             `;
@@ -257,7 +257,8 @@ MakeTable();
 
     function UpdateValues(){
         for(i=0; i<Physics.length; i++){
-            Physics[i].mass = parseInt(document.getElementById(`mass${i}`).value) || 200000;
+            Physics[i].attractforce = parseInt(document.getElementById(`attractforce${i}`).value) || 200000;
+            Physics[i].repelforce = parseInt(document.getElementById(`repelforce${i}`).value) || 200000;
             Physics[i].attracts = (document.getElementById(`attract${i}`).value).split(",") || [""];
             Physics[i].repels = (document.getElementById(`repel${i}`).value).split(",") || [""];
         }
@@ -266,10 +267,21 @@ MakeTable();
 
 
 function AddPartical(){
-    if(Physics.length < defaultcolors.length && Physics[Physics.length-1].name != defaultcolors[Physics.length]){
-        Physics.push({name: defaultcolors[Physics.length], attracts:[], repels: [], mass: 200000}); 
-        MakeTable();
-        UpdateValues();
+    let chosnclr = "";
+    if(Physics.length < defaultcolors.length){
+
+        defaultcolors.forEach(c => {
+            Physics.forEach(p => {
+                if(p.name != c && chosnclr == ""){chosnclr = c}
+                if(chosnclr == p.name){chosnclr = ""}
+            })
+        })
+
+        if(chosnclr != ""){
+            Physics.push({name: chosnclr, attracts:[], repels: [], mass: 200000}); 
+            MakeTable();
+            UpdateValues();
+        }
     }
 }
 
