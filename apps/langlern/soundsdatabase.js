@@ -128,7 +128,7 @@
         {letter: "ão", sound: "nasal ao", audio: "aonasal"},
         {letter: "õ", sound: "nasal o", audio: "onasal"},
         ], 
-    info: ["L at the end of words sounds like w, 'Braziw' vs 'Brazil'", "s in middle of a word can sound like z 'casa'", "RR is a rolled r in portugal, in brazil it's an h"]
+    info: ["L at the end of words sounds like w, 'Braziw' vs 'Brazil'", "s in middle of a word can sound like z 'casa'", "RR is a 'h' in brazil"]
 },
 {name: "russian",
     arr: [
@@ -162,7 +162,7 @@
         {letter: "Уу", sound: "u", audio: "u"},
         {letter: "Аа", sound: "a", audio: "a"}
       ],
-    info: [""]
+    info: ["e sounds like ye", "consonants and end of words are soft/faded"]
 },
 {name: "german",
     arr: [
@@ -181,6 +181,14 @@
         {letter: "eu", sound: "oi in oil", audio: "none"},
       ],
     info: ["ALL nouns are capitalized in German!"]
+},
+{name: "swedish",
+    arr: [
+        {letter: "sj/sk", sound: "hiss", audio: ""},
+        {letter: "skj/stj", sound: "hiss", audio: ""},
+        {letter: "a", sound: "a in saw", audio: ""},
+      ],
+    info: ["-tion, hiss sound + 'on'", "ch is hiss sound sometimes"]
 },
 {name: "finnish", 
     arr: [
