@@ -77,40 +77,16 @@
                 </div>
             </div>
 
-            <div class="settingsdiv">
-                <p>Fill Screen</p>
-                <table>
-                    <tr><th>Sections</th><td><input type="number" value="3" id="fillamount"></td></tr>
-                    <tr><th>Vertical</th><td><input type="checkbox" id="filldirection" checked="checked"></td></tr>
-                    <tr><th>Colors</th><td><input type="text" id="fillcolors" value="blue, white, red"></td></tr>
-                </table>
-                <button onclick="btnFill()">Fill</button>
-                <select id="htmlflagslist"></select>
-            </div>
+            <label for="ee">Commands</label>
+            <select name="ee" id="selecter">
+            <option value="fill">Fill</option>
+            <option value="grid">grid</option>
+            <option value="celticknot">CelticKnots</option>
+            </select>
 
-            <div class="settingsdiv">
-                <p>Create a Grid</p>
-                <table>
-                    <tr><th>Num Columns</th><td><input type="number" value="5" id="gridnumcolumns"></td></tr>
-                    <tr><th>Num Rows</th><td><input type="number" value="5" id="gridnumrows"></td></tr>
-                    <tr><th>Line Color</th><td><input type="color"  id="gridcolor"></td></tr>
-                    <tr><th>Line Width</th><td><input type="range" min="1" max="20" value="1" id="gridwidth"></td></tr>
-                </table>
-                <button onclick="btnGrid()">Create Grid</button>
+            <div class="settingsdiv" id="diveditor">
+                
             </div>
-
-            <div class="settingsdiv">
-                <p>Create a Celtic Knot</p>
-                <table>
-                    <tr><th>Num Columns</th><td><input type="number" value="5" id="knotnumcolumns"></td></tr>
-                    <tr><th>Num Rows</th><td><input type="number" value="5" id="knotnumrows"></td></tr>
-                    <tr><th>Line Color</th><td><input type="color"  id="knotcolor" value="#22cc00"></td></tr>
-                    <tr><th>OutLine Width</th><td><input type="range" min="1" max="10" value="1" id="knotoutlinewidth"></td></tr>
-                    <tr><th>Has Weave</th><td><input type="checkbox" checked="checked" id="knothasweave"></td></tr>
-                </table>
-                <button onclick="btnKnot()">Create Knot</button>
-            </div>
-
 
 			</div>
         </div>
@@ -129,11 +105,13 @@
     const brushcolor = document.getElementById("brushcolor");
     const inputbrushtype = document.getElementById("inputbrushtype");
     const imgtool = document.getElementById("imgtool");
+    const selecter = document.getElementById("selecter");
     let xmouse = 0;
     let ymouse = 0;
     let currenttool = "brush";
 
     function draw(shape){
+        
         if(shape == "square") {
             ctx.beginPath();
             ctx.fillRect(xmouse, ymouse, inputbrushsize.value, inputbrushsize.value);
@@ -178,6 +156,48 @@ else{
 }
 }
 
+let diveditor = document.getElementById("diveditor");
+selecter.addEventListener("change", changeit)
+function changeit(){
+    switch (selecter.value) {
+        case "fill":
+        diveditor.innerHTML = `
+            <p>Fill Screen</p>
+            <table>
+                <tr><th>Sections</th><td><input type="number" value="3" id="fillamount"></td></tr>
+                <tr><th>Vertical</th><td><input type="checkbox" id="filldirection" checked="checked"></td></tr>
+                <tr><th>Colors</th><td><input type="text" id="fillcolors" value="blue, white, red"></td></tr>
+            </table>
+            <button onclick="btnFill()">Fill</button>
+            <select id="htmlflagslist"></select>
+        `; break;
+        case "grid":
+        diveditor.innerHTML = `
+        <p>Create a Grid</p>
+                <table>
+                    <tr><th>Num Columns</th><td><input type="number" value="5" id="gridnumcolumns"></td></tr>
+                    <tr><th>Num Rows</th><td><input type="number" value="5" id="gridnumrows"></td></tr>
+                    <tr><th>Line Color</th><td><input type="color"  id="gridcolor"></td></tr>
+                    <tr><th>Line Width</th><td><input type="range" min="1" max="20" value="1" id="gridwidth"></td></tr>
+                </table>
+                <button onclick="btnGrid()">Create Grid</button>
+        `; break;
+        case "celticknot":
+        diveditor.innerHTML = `
+        <p>Create a Celtic Knot</p>
+                <table>
+                    <tr><th>Num Columns</th><td><input type="number" value="5" id="knotnumcolumns"></td></tr>
+                    <tr><th>Num Rows</th><td><input type="number" value="5" id="knotnumrows"></td></tr>
+                    <tr><th>Line Color</th><td><input type="color"  id="knotcolor" value="#22cc00"></td></tr>
+                    <tr><th>OutLine Width</th><td><input type="range" min="1" max="10" value="1" id="knotoutlinewidth"></td></tr>
+                    <tr><th>Has Weave</th><td><input type="checkbox" checked="checked" id="knothasweave"></td></tr>
+                </table>
+                <button onclick="btnKnot()">Create Knot</button>
+        `; break;
+        default:
+            break;
+    }
+}
 
 </script>
 

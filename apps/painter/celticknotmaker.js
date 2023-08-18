@@ -1,12 +1,15 @@
 // Makes a Grid of evenly spaced vertical and horizontal lines
 // MakeGrid(5, 5, `green`, 1);
-let gridnumcolumns = document.getElementById("gridnumcolumns");
-let gridnumrows = document.getElementById("gridnumrows");
-let gridcolor = document.getElementById("gridcolor");
-let gridwidth = document.getElementById("gridwidth");
 
 function btnGrid(){
-    MakeGrid(parseInt(gridnumcolumns.value)||5, parseInt(gridnumrows.value)||5, gridcolor.value||"black", parseInt(gridwidth.value)||2)
+    let gridnumcolumns = document.getElementById("gridnumcolumns");
+    let gridnumrows = document.getElementById("gridnumrows");
+    let gridcolor = document.getElementById("gridcolor");
+    let gridwidth = document.getElementById("gridwidth");
+
+    for(s=0; s<3; s++){ // paint 3 times sense the lines are dull
+        MakeGrid(parseInt(gridnumcolumns.value)||5, parseInt(gridnumrows.value)||5, gridcolor.value||"black", parseInt(gridwidth.value)||2)
+    }
 }
 
 function MakeGrid(numcolumns, numrows, color1, linewidth){

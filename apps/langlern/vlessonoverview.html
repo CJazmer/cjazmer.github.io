@@ -87,7 +87,7 @@ console.log(responsiveVoice.getVoices())
 // Gets appriate voice for the language choosen
 let apiVoiceName = getapivoice();
 let theHTML = ``;
-vocabtitle.innerHTML = currentvocablesson.name
+vocabtitle.innerHTML = `${currentvocablesson.name} (${currentvocablesson.arr.length} words)`;
 
 currentvocablesson.arr.forEach(w => {
     if(w[currentlang] != "..."){

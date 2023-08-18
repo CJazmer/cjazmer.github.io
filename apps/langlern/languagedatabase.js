@@ -426,49 +426,49 @@ const vAnimals = [
     {english: "message", spanish: "mensaje", german: "die Nachricht"},
   ];
   const vVerbs1 = [
-    {english: "want", spanish: "querer (quier)", german: "wollen (will)", swedish: "vilija (vill)", russian: "хотеть"},
-    {english: "need, have to", spanish: "necesitar", german: "müssen", swedish: "måste", russian: ""},
-    {english: "eat", spanish: "comer", german: "essen", swedish: "äta", russian: "есть"},
-    {english: "drink", spanish: "tomar |take|", german: "trinken", swedish: "dricka (dricker)", russian: "пить"},
-    {english: "know", spanish: "saber", german: "wissen (weiß)", swedish: "veta (vet)", russian: ""},
-    {english: "think", spanish: "pensar (piens)", german: "denken", swedish: "tänka (tänker)", russian: ""},
-    {english: "remember", spanish: "recordar (recuer)", german: "denken", swedish: "minna (minns)", russian: ""},
-    {english: "do, make", spanish: "hacer", german: "machen", swedish: "göra (gör)", russian: ""},
-    {english: "give", spanish: "dar", german: "geben", swedish: "ge (ger)", russian: ""},
-    {english: "take", spanish: "...", german: "nehmen", swedish: "ta (tar)", russian: ""},
-    {english: "live", spanish: "vivir", german: "leben", swedish: "leva (lever)", russian: ""},
-    {english: "live (reside)", spanish: "vivir", german: "leben", swedish: "bo (bor)", russian: ""},
-    {english: "say/tell", spanish: "decir", german: "sagen", swedish: "säga (säger)", russian: ""},
-    {english: "speak", spanish: "hablar", german: "sprechen", swedish: "tala (talar)", russian: ""},
-    {english: "use", spanish: "usar", german: "benutzen", swedish: "använda (använder)", russian: ""},
-    {english: "learn", spanish: "aprender", german: "lernen", swedish: "lära (lär sig)", russian: ""},
-    {english: "practice", spanish: "praticar", german: "üben", swedish: "träna (tränar)", russian: ""},
-    {english: "work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: ""},
-    {english: "have", spanish: "tener (tien)", german: "haben", swedish: "ha (har)", russian: ""},
-    {english: "help", spanish: "ayudar", german: "helfen", swedish: "hjälpa (hjälper)", russian: ""},
-    {english: "like", spanish: "gustar", german: "mögen", swedish: "gilla (gillar)", russian: ""},
-    {english: "hear", spanish: "escuchar", german: "hören", swedish: "höra (hör)", russian: ""},
-    {english: "able to", spanish: "poder (pon)", german: "können", swedish: "kan", russian: ""},
-    {english: "see", spanish: "ver", german: "sehen", swedish: "ser", russian: ""},
-    {english: "buy", spanish: "comprar", german: "kaufen", swedish: "köpa (köper)", russian: ""},
-    {english: "sell", spanish: "vender", german: "verkaufen", swedish: "sälja (säljer)", russian: ""},
+    {english: "to want", spanish: "querer (quier)", german: "wollen (will)", swedish: "vilija (vill)", russian: "хотеть"},
+    {english: "to need, have to", spanish: "necesitar", german: "müssen", swedish: "måste", russian: ""},
+    {english: "to eat", spanish: "comer", german: "essen", swedish: "äta", russian: "есть"},
+    {english: "to drink", spanish: "tomar |take|", german: "trinken", swedish: "dricka (dricker)", russian: "пить"},
+    {english: "to know", spanish: "saber", german: "wissen (weiß)", swedish: "veta (vet)", russian: ""},
+    {english: "to think", spanish: "pensar (piens)", german: "denken", swedish: "tänka (tänker)", russian: ""},
+    {english: "to remember", spanish: "recordar (recuer)", german: "denken", swedish: "minna (minns)", russian: ""},
+    {english: "to do, make", spanish: "hacer", german: "machen", swedish: "göra (gör)", russian: ""},
+    {english: "to give", spanish: "dar", german: "geben", swedish: "ge (ger)", russian: ""},
+    {english: "to take", spanish: "...", german: "nehmen", swedish: "ta (tar)", russian: ""},
+    {english: "to live", spanish: "vivir", german: "leben", swedish: "leva (lever)", russian: ""},
+    {english: "to live (reside)", spanish: "vivir", german: "leben", swedish: "bo (bor)", russian: ""},
+    {english: "to say/tell", spanish: "decir", german: "sagen", swedish: "säga (säger)", russian: ""},
+    {english: "to speak", spanish: "hablar", german: "sprechen", swedish: "tala (talar)", russian: ""},
+    {english: "to use", spanish: "usar", german: "benutzen", swedish: "använda (använder)", russian: ""},
+    {english: "to learn", spanish: "aprender", german: "lernen", swedish: "lära (lär sig)", russian: ""},
+    {english: "to practice", spanish: "praticar", german: "üben", swedish: "träna (tränar)", russian: ""},
+    {english: "to work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: ""},
+    {english: "to have", spanish: "tener (tien)", german: "haben", swedish: "ha (har)", russian: ""},
+    {english: "to help", spanish: "ayudar", german: "helfen", swedish: "hjälpa (hjälper)", russian: ""},
+    {english: "to like", spanish: "gustar", german: "mögen", swedish: "gilla (gillar)", russian: ""},
+    {english: "to hear", spanish: "escuchar", german: "hören", swedish: "höra (hör)", russian: ""},
+    {english: "to able to", spanish: "poder (pon)", german: "können", swedish: "kan", russian: ""},
+    {english: "to see", spanish: "ver", german: "sehen", swedish: "ser", russian: ""},
+    {english: "to buy", spanish: "comprar", german: "kaufen", swedish: "köpa (köper)", russian: ""},
+    {english: "to sell", spanish: "vender", german: "verkaufen", swedish: "sälja (säljer)", russian: ""},
   ];
   const vVerbs2 = [
-    {english: "sleep", spanish: "dormir (duer)", german: "schlafen"},
-    {english: "drive", spanish: "manejar", german: "fahren"},
-    {english: "clean", spanish: "limpiar", german: "sauber"},
-    {english: "turn off", spanish: "prender", german: "machen an"},
-    {english: "turn on", spanish: "apagar", german: "machen aus"},
-    {english: "play", spanish: "jugar (jueg)", german: "spielen"},
-    {english: "play (instrument)", spanish: "tocar |touch|", german: "..."},
-    {english: "read", spanish: "leer", german: "lesen"},
-    {english: "write", spanish: "escribir", german: "schreiben"},
-    {english: "call", spanish: "llamar", german: "rufen"},
-    {english: "draw", spanish: "dibujar", german: "zeichnen"},
-    {english: "play", spanish: "jugar", german: "spielen"},
-    {english: "play instrument", spanish: "tocar", german: "..."},
-    {english: "dance", spanish: "bailar", german: "tanzen"},
-    {english: "swim", spanish: "nadar", german: "schwimmen"},
+    {english: "to sleep", spanish: "dormir (duer)", german: "schlafen"},
+    {english: "to drive", spanish: "manejar", german: "fahren"},
+    {english: "to clean", spanish: "limpiar", german: "sauber"},
+    {english: "to turn off", spanish: "apagar", german: "machen an"},
+    {english: "to turn on", spanish: "prender", german: "machen aus"},
+    {english: "to play", spanish: "jugar (jueg)", german: "spielen"},
+    {english: "to play (instrument)", spanish: "tocar |touch|", german: "..."},
+    {english: "to read", spanish: "leer", german: "lesen"},
+    {english: "to write", spanish: "escribir", german: "schreiben"},
+    {english: "to call", spanish: "llamar", german: "rufen"},
+    {english: "to draw", spanish: "dibujar", german: "zeichnen"},
+    {english: "to play", spanish: "jugar", german: "spielen"},
+    {english: "to play instrument", spanish: "tocar", german: "..."},
+    {english: "to dance", spanish: "bailar", german: "tanzen"},
+    {english: "to swim", spanish: "nadar", german: "schwimmen"},
 
     /*
     {english: "open", spanish: "abrir", german: "öffnen"},
@@ -478,14 +478,36 @@ const vAnimals = [
     */
   ];
   const vVerbs3 = [ // modify somthing
-    {english: "change", spanish: "cambiar", german: "ändern"},
-    {english: "cut", spanish: "cortar", german: "schneiden"},
-    {english: "break", spanish: "romper", german: "brechen"},
-    {english: "fix", spanish: "arreglar", german: "reparieren"},
-    {english: "burn", spanish: "quemar", german: "brennen"},
-    {english: "fill", spanish: "llenar", german: "füllen"},
-    {english: "take out/off", spanish: "sacar", german: "entfernen"},
-    {english: "cover", spanish: "cubrir", german: "decken"},
+    {english: "to change", spanish: "cambiar", german: "ändern"},
+    {english: "to cut", spanish: "cortar", german: "schneiden"},
+    {english: "to break", spanish: "romper", german: "brechen"},
+    {english: "to fix", spanish: "arreglar", german: "reparieren"},
+    {english: "to burn", spanish: "quemar", german: "brennen"},
+    {english: "to fill", spanish: "llenar", german: "füllen"},
+    {english: "to take off/out", spanish: "sacar", german: "entfernen"},
+    {english: "to cover", spanish: "cubrir", german: "decken"},
+  ];
+  const vAdjectives1 = [ 
+    {english: "big", spanish: "grande", german: "groß"},
+    {english: "small", spanish: "pequeño", german: "klein"},
+    {english: "easy", spanish: "fácil", german: "einfach"},
+    {english: "difficult", spanish: "difícil", german: "schwierig"},
+    {english: "inside", spanish: "dentro", german: ""},
+    {english: "outside", spanish: "afuera", german: "außen"},
+    {english: "beautiful", spanish: "bonito", german: "schön"},
+    {english: "ugly", spanish: "feo", german: "hässlich"},
+    {english: "new", spanish: "nuevo", german: "neu"},
+    {english: "old", spanish: "viejo", german: "alt"},
+    {english: "best", spanish: "mejor", german: ""},
+    {english: "worst", spanish: "peor", german: ""},
+    {english: "important", spanish: "importante", german: "wichtig"},
+    {english: "spicy", spanish: "picante/pico", german: "scharf"},
+    {english: "hot", spanish: "caliente", german: "heiß"},
+    {english: "cold", spanish: "frío", german: "kalt"},
+    {english: "fast", spanish: "rápido", german: "schnell"},
+    {english: "slow", spanish: "lento", german: "langsam"},
+    {english: "expensive", spanish: "caro", german: "teuer"},
+    {english: "cheap", spanish: "barato", german: "billig"},
   ];
   const SpanishVerbs = [
     {english: "subir", spanish: "go/turn up, climb"},
@@ -497,10 +519,12 @@ const vAnimals = [
     {english: "montar", spanish: "Ride, Setup/PutTogether"},
     {english: "Ayudar", spanish: "help"},
   ];
+let vAllWords = [];
 
 const VocabDatabase = [
 {name: "Main", 
     arr: [
+        {name: "All Words", arr: vAllWords},
         {name: "Main1", arr: vMain},
         {name: "Pronouns", arr: vPronouns},
         {name: "Numbers", arr: vNumbers},
@@ -532,16 +556,25 @@ const VocabDatabase = [
         {name: "Verbs1",  arr: vVerbs1},
         {name: "Verbs2",  arr: vVerbs2},
         {name: "Verbs3",  arr: vVerbs3},
+        {name: "Adjectives1",  arr: vAdjectives1, desc: `All the words...`},
     ]
 },
 ];
 // german: in, auf, an, mit, von, zu, aus...
 
+VocabDatabase.forEach(v => {
+  v.arr.forEach(lsn => {
+    lsn.arr.forEach(wrd => {
+      if(wrd[getcurrentlangobj().name] != null && wrd[getcurrentlangobj().name] != "..." && wrd[getcurrentlangobj().name] != ""){
+        vAllWords.push(wrd);
+      }
+    })
+  })
+})
 
 
 // Functions ---------------------
 function getcurrentlangobj(){
-
     let aaaaaa = languagedatabase[0];
     languagedatabase.forEach(lll => {
         if(lll.name.toLowerCase() == localStorage.getItem('currentlang').toLowerCase()){aaaaaa = lll}
