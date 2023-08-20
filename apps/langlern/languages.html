@@ -57,12 +57,21 @@ let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 
 console.log(languagedatabase);
 languagedatabase.forEach(l => {
+
+	// For Flags
+	let flgname = l.name;
+	switch (l.name) {
+		case "swahili": flgname = "african"; break;
+		case "arabic": flgname = "semitic"; break;
+		case "hawaiian": flgname = "flower"; break;
+	}
+
 	languagesdiv.innerHTML += `
 	<div onclick="changelang('${l.name}')">
 		<div style="background-color: ${l.colors[0]}" class="langheading">${l.langfam}</div>
 		<div class="langinfo" style="background-color: ${l.colors[1]}">
 			<div style="display:flex; flex-direction: column; margin: .2em 1em .2em .2em">
-				<img class="theimg" src='/assets/language/flags/${l.name}.png'>
+				<img class="theimg" src='./assets/flags/${flgname}.png'>
 				${l.name}
 			</div>
 			

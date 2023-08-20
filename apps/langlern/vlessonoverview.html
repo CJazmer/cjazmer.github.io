@@ -50,6 +50,17 @@
             text-align: center;
             min-width: fit-content;
         }
+        select{
+            width: 100%;
+            text-align: center;
+            height: 2em;
+            background-color: rgb(255, 243, 177);
+        }
+        .thebuttonn{
+            width: 50%;
+            height: 2em;
+            background-color: rgb(255, 239, 146);
+        }
 	</style>
 </head>
 
@@ -58,11 +69,16 @@
 	<div id="main">
 		<div id="underbanner">
             <p id="vocabtitle">...</p>
-			<div id="vocabwords">
 
+            <select id="drpdwn">
+                <option value="multichoice">Multi Choice</option>
+                <option value="match">Match Words</option>
+            </select>
+            <div style="display: flex;">
+                <button class="thebuttonn" onclick="window.location.href='./vocab.html'">Back</button>
+                <button class="thebuttonn" onclick="Clicked()">Continue</button>
             </div>
-            <button class="thebutton" onclick="Clicked()">Continue</button>
-            <button class="thebutton" onclick="window.location.href='./vocab.html'">Back</button>
+			<div id="vocabwords"></div>
 		</div>
 		<div id="languagesdiv"></div>
 
@@ -108,7 +124,16 @@ function WordClicked(thetext){
     responsiveVoice.setDefaultVoice(apiVoiceName);
     responsiveVoice.speak(thetext); 
 }
+
+
+const drpdwn = document.getElementById("drpdwn");
 function Clicked(){
-    window.location.href="./vocabquiz.html";
+    if(drpdwn.value == "match"){
+        window.location.href="./vocabquizMatch.html";
+    }
+    else {
+        // Default is MultiChoice
+        window.location.href="./vocabquiz.html";
+    }
 }
 </script>

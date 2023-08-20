@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<style> </style>
+    <title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">   
+    <style>
+        .btnholderholder{
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            background-color: goldenrod;
+            justify-content: center;
+            padding: 1em 0em 1em 0em;
+            border: .2em solid gold;
+        }
+        .btnholder{
+            width: 45%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+        .btnholder button{
+            width: 80%;
+            max-width: 10em;
+            height: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner" style="align-content:flex-start;">
+		<div id="bg" class="bg">
+            <div id="questiondiv">
+                <div id="question"></div>
+            </div>
+           <div id="questionitems"></div>
+        </div>
+            <div class="btnholderholder">
+                <div class="btnholder" id="divbtnsleft"></div>
+                <div class="btnholder" id="divbtnsright"></div>
+            </div>
+    </div>
+	</div>
+    <footer></footer>
+</body>
+</html>
+
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+<script src="./soundsdatabase.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
+<script>
+const divbtnsleft = document.getElementById("divbtnsleft");
+const divbtnsright = document.getElementById("divbtnsright");
+let currentarr = getcurrentvocablesson().arr;
+let currentlang = localStorage.getItem("currentlang") || "spanish";
+console.log(localStorage.getItem("currentvocablesson"));
+
+let answerobjs = []; // The answers OBJ eng and other lang
+let numofbtns = 5;
+let arrAllBtns = [];
+let arrRightBtns = [];
+
+let apiVoice = getapivoice();
+responsiveVoice.setDefaultVoice(apiVoice);
+
+
+let colors = ["rgb(255, 160, 160)", "rgb(160, 225, 160)", "rgb(255, 225, 160)", "rgb(160, 160, 225)", "rgb(225, 160, 225)", "rgb(160, 225, 225)", "rgb(225, 225, 225)"];
+let availablecolors = [];
+let LastBtnClicked = null;
+
+
+
+
+// Gets appriate voice for the language choosen
+let apiVoiceName = getapivoice();
+
+// Create Buttons Dynamically
+function Reset(){
+    divbtnsleft.innerHTML = "";
+    divbtnsleft.innerHTML = "";
+    arrAllBtns = [];
+    arrRightBtns = [];
+    answerobjs = [];
+    LastBtnClicked = null;
+    availablecolors = [].concat(colors);
+    availablecolors.length = numofbtns;
+
+    for(i=0; i<numofbtns; i++){
+        divbtnsleft.innerHTML += `<button id="lb${i}" onclick="Clicked(this)"></button>`;
+        divbtnsright.innerHTML += `<button id="rb${i}" onclick="Clicked(this)"></button>`;
+        arrRightBtns.push(document.getElementById(`rb${i}`));
+    }
+    shuffleArray(arrRightBtns);
+
+    divbtnsright.innerHTML = "";
+    arrRightBtns.forEach(b => {
+        divbtnsright.innerHTML += `<button id="${b.id}" onclick="Clicked(this)"></button>`;
+    })
+
+    // Arrys that keep track of buttons
+    arrRightBtns = [];
+    for(i=0; i<numofbtns; i++){
+        arrAllBtns.push(document.getElementById(`lb${i}`));
+        arrAllBtns.push(document.getElementById(`rb${i}`));
+        arrRightBtns.push(document.getElementById(`rb${i}`));
+    }
+
+    // Get Random Words from database
+    for(i=0; i<numofbtns; i++){
+        answerobjs.push(RandomWordObj());
+    }
+
+    // Set Button Text in order (right side is shuffled)
+    for(i=0; i<answerobjs.length; i++){
+        document.getElementById(`lb${i}`).innerHTML = `${answerobjs[i].english}`;
+        document.getElementById(`rb${i}`).innerHTML = `${answerobjs[i][currentlang]}`;
+    }
+    arrAllBtns.forEach(b => {b.style.backgroundColor = ""})
+    console.log("reset...")
+}
+Reset();
+
+
+
+// Button clicked, check if correct answer
+function Clicked(b) {
+    let r = randomnum(0,availablecolors.length-1);
+    
+        if(LastBtnClicked == null && b.style.backgroundColor == ""){
+            LastBtnClicked = b;
+            b.style.backgroundColor = availablecolors[r];
+        }
+        // if LastClickedButton was LeftSide/English and CurrentButton is on Right/CurrentLang
+        else if(LastBtnClicked.id.includes("l") && b.id.includes("r")){
+
+            let LangAns = answerobjs[answerobjs.map(i => i.english).indexOf(LastBtnClicked.innerHTML)][currentlang];
+            console.log(`${LangAns} was the last button clicked, comparing to new button...`);
+
+            // CORRECT, if Buttonclicked/English is correct translation of LastBtnClicked/Spanish
+            if(b.innerHTML == LangAns){
+                b.style.backgroundColor = LastBtnClicked.style.backgroundColor;
+                availablecolors.splice(availablecolors.indexOf(LastBtnClicked.style.backgroundColor), 1);
+                console.log(`CORRECT`);
+                responsiveVoice.speak(LangAns);
+            }
+            else{ // Wrong, Reset LastClickedButton
+                LastBtnClicked.style.backgroundColor = "";
+                console.log("Wrong");
+            }
+            LastBtnClicked = null;
+            console.log(`Clicked: ${b.innerHTML}, Expecting: ${LangAns}`);
+        }
+        // if LastClickedButton was RightSide/CurrentLang and CurrentButton is on LeftSide/English
+        else if(LastBtnClicked.id.includes("r") && b.id.includes("l")){
+
+            let EngAns = answerobjs[answerobjs.map(i => i[currentlang]).indexOf(LastBtnClicked.innerHTML)].english;
+            console.log(`${EngAns} was the last button clicked, comparing to new button...`);
+
+            // CORRECT, if Buttonclicked/English is correct translation of LastBtnClicked/Spanish
+            if(b.innerHTML == EngAns){
+                b.style.backgroundColor = LastBtnClicked.style.backgroundColor;
+                availablecolors.splice(availablecolors.indexOf(LastBtnClicked.style.backgroundColor), 1);
+                console.log(`CORRECT`);
+            }
+            else{ // Wrong, Reset LastClickedButton
+                LastBtnClicked.style.backgroundColor = "";
+                console.log("Wrong");
+            }
+            LastBtnClicked = null;
+            console.log(`Clicked: ${b.innerHTML}, Expecting: ${EngAns}`);
+        }
+
+    let needtoreset = true;
+    arrAllBtns.forEach(b => {if(b.style.backgroundColor == ""){needtoreset = false;}})
+    if(arrAllBtns == []){needtoreset = false}
+    if(needtoreset){     
+        setTimeout(function timer() {
+            Reset();
+        }, 2000); // Wait 2 Sec before reseting
+    }   
+}
+
+questiondiv.addEventListener("click", function(){
+    if(QuestionInEnglish == false){ responsiveVoice.speak(questiondiv.innerHTML); }
+})
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+function RandomWordObj(){
+    let r = currentarr[randomnum(0,currentarr.length-1)];
+    while((r[currentlang] == "..." || answerobjs.map(i => i.english).includes(r.english)) && currentarr.length>numofbtns){
+        r = currentarr[randomnum(0,currentarr.length-1)];
+    }
+    return r;
+}
+</script>
