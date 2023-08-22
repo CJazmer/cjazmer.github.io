@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        #lettersholder{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            background-color: var(--color3);
+            justify-content: space-evenly;
+        }
+        .bg{
+            width: 100%;
+            height: 10em;
+            background-color: var(--color2);
+        }
+		#letterbox{
+			width: fit-content;
+            height: fit-content;
+            padding: .5em;
+            background-color: var(--color1);
+            border: .05em solid black;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 3em;
+            border-radius: 100%;
+            margin: auto;
+		}
+        .letter{
+            font-weight: 900;
+            font-size: larger;
+        }
+        .letterdesc{
+            font-size: small;
+            line-height:0px;
+            margin: 0px;
+        }
+        .answerholder{
+            background-color: var(--color2);
+            display: flex;
+        }
+        .answerholder button{
+            width: 50%;
+            height: 2em;
+            background-color: var(--color1);
+        }
+	</style>
+</head>
+
+<body>
+	<div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner">
+            <button class="thebutton" onclick="window.location.href='./sounds.html'">back</button>
+			<div class="bg">
+                <div id="letterbox"></div>
+            </div>
+            <div class="answerholder">
+                <button id="b1" onclick="LetterClicked(this)"></button>
+                <button id="b2" onclick="LetterClicked(this)"></button>
+            </div>
+            <div class="answerholder">
+                <button id="b3" onclick="LetterClicked(this)"></button>
+                <button id="b4" onclick="LetterClicked(this)"></button>
+            </div>
+		</div>
+		<div id="languagesdiv"></div>
+	</div>
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./soundsdatabase.js"></script>
+<script src="./langlernlayout.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
+<script>
+
+const letterbox = document.getElementById("letterbox");
+let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+let apiVoiceName = getapivoice();
+responsiveVoice.setDefaultVoice(apiVoiceName);
+let currentsounds = null;
+let pause = false;
+
+// Get currentsounds array using language name
+soundsdatabase.forEach(s => {
+    if(s.name == currentlang){
+        currentsounds = s.arr;
+    }
+});
+let answerObj = currentsounds[randomnum(0,currentsounds.length-1)];
+
+
+function Reset(){
+    // Pick Random Answer, call it answerObj
+    answerObj = currentsounds[randomnum(0,currentsounds.length-1)];
+    pause = false;
+
+    let allBtns = [];
+    for(i=1; i<=4; i++){
+        allBtns.push(document.getElementById(`b${i}`));
+    }
+
+    // Random answers for all buttons
+    allBtns.forEach(b => {
+        b.innerHTML = currentsounds[randomnum(0,currentsounds.length-1)].sound;
+    })
+    // one button is correct
+    allBtns[randomnum(0,allBtns.length-1)].innerHTML = answerObj.sound;
+    // Main Circle letter
+    letterbox.innerHTML = answerObj.letter;
+}
+Reset();
+
+function LetterClicked(b){  
+if(!pause){
+    // If Correct
+    if(b.innerHTML == answerObj.sound){
+        b.innerHTML += `✅`;
+        pause = true;
+        setTimeout(function timer() {
+                Reset();
+        }, 2000);  // Wait 2 sec before reseting
+    }
+    else{ // If Wrong
+        if(!b.innerHTML.includes("❌")){
+            b.innerHTML += `❌`;
+        }
+    }
+    responsiveVoice.speak(`${answerObj.letter}`); 
+    console.log(`${answerObj.letter}a`)
+}
+}
+</script>

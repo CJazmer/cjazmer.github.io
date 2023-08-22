@@ -33,66 +33,31 @@ body {
     width: 100%;
     height: 100%;
 }
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-.column {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column
-}
-#profilepic {
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    line-height: 2px;
-    font-size: 0px;
-    border: 4px solid black;
-    transform: translateX(-50%);
-}
-#profilepic:hover {
-    background-color:gold;
-    border: 4px solid white;
-}
-#flag {
-    border-radius: 10px;
-    width: 140px;
-    height: 70px;
-    border: 4px solid black;
-}
-#flag:hover{
-    border: 4px solid white
-    
-;}
 
 
-
-.profilecontainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center
+.langlernlayoutnav{
+    width: 100%;
+    min-width: 100%;
+    background-color: var(--color2);
+    display:flex;
+    justify-content: space-evenly;
 }
-.contentcontainer {
-    margin: 10px auto;
-    justify-content: center;
-    justify-self: auto;
-    align-self: center;
-    width: 400px;
-    height: 200px;
-    border-radius: 10px;
-    background-color: antiquewhite;
-    font-size: large;
-    text-align: center;
-    font-weight: 600;
-    border: 5px solid black;
-    transition: 0.3s;
+.langlernlayoutnav div{
+    padding: .5em;
+    border-radius: 10%;
+    background-color: var(--color1);
+    display:flex; 
+    margin: .2em 0em .2em 0em;
+    transition: .2s;
 }
-.contentcontainer:hover {
-    border: 5px solid rgb(255, 255, 255);
-    font-size: 150%;
-    transform: translateY(-8px);
+.langlernlayoutnav div:hover{
+    border-radius: 20%;
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+.thebutton{
+    width: 100%;
+    min-width: 100%;
+    height: 2.5em;
+    background-color: var(--color1);
 }

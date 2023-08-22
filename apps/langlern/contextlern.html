@@ -9,7 +9,7 @@
 	<meta name="keywords" content="Lang, Lern">
 	<style>
         #question{
-            background-color: rgb(255, 203, 106);
+            background-color: var(--color1);
             width: 100%;
             height: fit-content;
             padding: .5em 0em 0em 0em;
@@ -19,12 +19,12 @@
             font-size: 1.5em;
         }
         #questiontext{
-            background-color: rgb(255, 223, 162);
+            background-color: var(--color2);
             margin: 0em;
             padding: .5em;
             min-height: 5em;
             font-weight: bolder;
-            color: orangered;
+            color: black;
             text-align: center;
             font-size: 1.4em;
         }
@@ -38,13 +38,13 @@
            height: 1.3em; 
            font-style: italic;
            text-align: center;
-           background-color: rgb(255, 203, 106);
+           background-color: var(--color1);
         }
         #words{
             background-color: gray;
         }
         #words p{
-            background-color: rgb(255, 210, 125);
+            background-color: var(--color2);
             padding: .1em;
             margin-bottom: .1em;
         }
@@ -114,7 +114,7 @@ btnClicked();
                 else{
                     question.innerHTML = thelesson[indexnum].english;
                     btnreveal.innerHTML = `Show`;
-                    btnreveal.style.backgroundColor = `yellow`;
+                    btnreveal.style.backgroundColor = `var(--color1)`;
                 }
             }
             else{

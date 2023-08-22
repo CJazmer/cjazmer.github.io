@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        .clrholder{
+            background-color: var(--color1);
+            display: flex;
+            justify-content: center;
+        }
+        .clrholder div{
+            margin: .2em;
+        }
+        #drpdwn{
+            width: 100%;
+            text-align: center;
+        }
+        .themes{
+            background-color: var(--color1);
+        }
+	</style>
+</head>
+
+<body>
+	<div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner">
+            <div class="themes">Themes</div>
+            <div class="clrholder">
+                <div>
+                    <label name="e">Color1</label>
+                    <input type="color" name="e" value="#ffd700" id="hclr1">
+                </div>
+                <div>
+                    <label name="ee">Color2</label>
+                    <input type="color" name="ee" value="#daa520" id="hclr2">
+                </div>
+                <div>
+                    <label name="eee">Color3</label>
+                    <input type="color" name="eee" value="#B68711" id="hclr3">
+                </div>
+            </div>
+            <select id="drpdwn"></select>
+
+            <label name="z">Show Articles in Vocab:</label>
+            <input type="checkbox" name="z">
+		</div>
+	</div>
+
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+
+<script>
+const drpdwn = document.getElementById("drpdwn");
+let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+
+ColorThemes.forEach(t => {
+    drpdwn.innerHTML += `<option value="${t.name}">${t.name}</option>`;
+});
+
+for(i=1; i<=3; i++){
+    document.getElementById(`hclr${i}`).value = localStorage.getItem(`llcolor${i}`) || "#fffff";
+}
+
+ColorThemes.forEach(t => {
+    for(i=1; i<=3; i++){
+        if(document.getElementById(`hclr${i}`).value == t[`clr${i}`]){
+            drpdwn.value = t.name;
+        }
+    }
+})
+
+
+drpdwn.addEventListener("change", function(){
+    
+    ColorThemes.forEach(t => {
+        if(drpdwn.value == t.name){
+            for(i=1; i<=3; i++){
+                document.getElementById(`hclr${i}`).value = t[`clr${i}`];
+                document.documentElement.style.setProperty(`--color${i}`, t[`clr${i}`]);
+                localStorage.setItem(`llcolor${i}`, t[`clr${i}`]);
+            }
+        }
+    });
+})
+
+
+console.log(languagedatabase);
+</script>

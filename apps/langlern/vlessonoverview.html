@@ -16,12 +16,12 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
-            background-color: goldenrod;
+            background-color: var(--color2);
             padding: .5em 0em .5em 0em;
         }
         #vocabtitle{
             width: 100%;
-            background-color: gold;
+            background-color: var(--color1);
             text-align: center;
             font-weight: bolder;
             padding: 1em 0em 1em 0em;
@@ -32,15 +32,11 @@
             padding: .5em .5em 1em .5em;
             margin: .1em;
             text-align: center;
-            background-color: gold;
-            border: .2em solid rgb(255, 231, 96);
+            background-color: var(--color1);
+            border: .2em solid black;
             border-radius: 10%;
             cursor: pointer;
             transition: .2s;
-        }
-        .vocabword:hover{
-            transform: scale(1.1);
-            filter:brightness(1.1)
         }
         .eng{
             text-align: center;
@@ -54,12 +50,14 @@
             width: 100%;
             text-align: center;
             height: 2em;
-            background-color: rgb(255, 243, 177);
+            filter: brightness(1.8);
+            background-color: var(--color1);
         }
         .thebuttonn{
             width: 50%;
             height: 2em;
-            background-color: rgb(255, 239, 146);
+            background-color: var(--color1);
+            filter: brightness(1.5);
         }
 	</style>
 </head>

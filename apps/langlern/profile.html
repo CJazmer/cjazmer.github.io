@@ -1,33 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href="langlern.css" rel="stylesheet">
+	<link href="langlerncss.css" rel="stylesheet">
 	<title>LangLern</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Conner Jasmer">
-	<meta name="description" content="Generate funny random sentences">
-	<meta name="keywords" content="random sentence generator, funny">
-    <style>
-	.lang{background-color: rgb(206, 206, 206); align-content: center; height: fit-content; margin: 10px; padding: 5px;}
-	.lang img{width: 100px; height: 50px; border: 2px solid black;}
-	.level {background-color: aliceblue; align-content: center; text-align: center; vertical-align: middle;}
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+		.langg{
+			width: 100%;
+			text-align: center;
+			background-color: gold;
+			height: fit-content;
+			padding: .5em 0em .5em 0em;
+		}
+		.divmainlessons{
+			width: 99%;
+			height: 4em;
+			text-align: center;
+			border: .2em solid black;
+			border-radius: .2em;
+			background-color: rgb(255, 248, 206);
+			font-weight: bolder;
+			margin: .2em 0em .2em 0em;
+			transition: .2s;
+		}
+		.divmainlessons:hover{
+			transform: scale(1.02);
+		}
+
 	</style>
 </head>
-
-
 
 <body>
 	<div id="langlernnavbar"></div>
 	<div id="main">
-		<div id="topbanner">
-			<div class="profilecontainer"><a href="langlern.html"><img src="images/russian.png" id="profilepic" /><p style="line-height:1px;font-size:16px">Guest</p></a></div>
-			<div class="level"><h3>Level 23</h3><h3>-----------------</h3></div>
-		</div>
 		<div id="underbanner">
-			<div class="lang"><img src="images/russian.png"/><h3>Russian 100xp</h3></div>
-			<div class="lang"><img src="images/russian.png" /><h3>Spanish 50xp</h3></div>
+			<p>Profile is Work in Progress...</p>
+			<div class="divmainlessons" onclick="window.location.href='./langlern.html'">Back</div>
 		</div>
+		<div id="languagesdiv"></div>
 	</div>
+
 </body>
+<footer></footer>
 </html>
-<script src="langlern.js"></script> 
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+
+<script>
+const languagesdiv = document.getElementById("languagesdiv");
+let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+
+
+console.log(languagedatabase.length);
+document.getElementById("displaylang").innerHTML = currentlang;
+
+function changelang(langname){
+	localStorage.setItem("currentlang", langname);
+}
+
+
+</script>

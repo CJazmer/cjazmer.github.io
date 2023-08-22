@@ -11,10 +11,26 @@
 		.langg{
 			width: 100%;
 			text-align: center;
-			background-color: gold;
+			background-color: var(--color1);
 			height: fit-content;
 			padding: .5em 0em .5em 0em;
 		}
+		.divmainlessons{
+			width: 99%;
+			height: 4em;
+			text-align: center;
+			border: .2em solid black;
+			border-radius: .2em;
+			background-color: var(--color1);
+			filter:brightness(2);
+			font-weight: bolder;
+			margin: .2em 0em .2em 0em;
+			transition: .2s;
+		}
+		.divmainlessons:hover{
+			transform: scale(1.02);
+		}
+
 	</style>
 </head>
 
@@ -23,13 +39,10 @@
 	<div id="main">
 		<div id="underbanner">
 			<div class="langg" id="displaylang" onclick="window.location.href='languages.html'"></div>
-			<div class="contentcontainer" onclick="window.location.href='lessonslist.html'">Main Lessons</div>
-			<ol>
-				<li>Learn most common words & how letters sound</li>
-				<li>Learn to Conjugate verbs (know pronouns and endings)</li>
-				<li>Practice with Gendered Nouns</li>
-			</ol>
-			<button class="thebutton" onclick="window.location.href='/index.html'">Exit</button>
+			<div class="divmainlessons" onclick="window.location.href='./lessonslist.html'">Main Lessons</div>
+			<div class="divmainlessons" onclick="window.location.href='./profile.html'">Profile</div>
+			<div class="divmainlessons" onclick="window.location.href='./settings.html'">Settings</div>
+			<button class="thebutton" onclick="window.location.href='/index.html'">Back to Website</button>
 		</div>
 		<div id="languagesdiv"></div>
 	</div>

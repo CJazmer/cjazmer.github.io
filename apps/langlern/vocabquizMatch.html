@@ -13,10 +13,10 @@
             width: 100%;
             height: fit-content;
             display: flex;
-            background-color: goldenrod;
+            background-color: var(--color2);
             justify-content: center;
             padding: 1em 0em 1em 0em;
-            border: .2em solid gold;
+            border: .2em solid var(--color1);
         }
         .btnholder{
             width: 45%;
@@ -28,6 +28,17 @@
             width: 80%;
             max-width: 10em;
             height: 4em;
+        }
+        .langtitle{
+            background-color: var(--color1);
+            text-align: center;
+            font-weight: bolder;
+            width: 80%;
+            margin: auto;
+        }
+        #hnumsolved{
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -46,6 +57,7 @@
                 <div class="btnholder" id="divbtnsleft"></div>
                 <div class="btnholder" id="divbtnsright"></div>
             </div>
+            <div id="hnumsolved"></div>
     </div>
 	</div>
     <footer></footer>
@@ -61,6 +73,7 @@
 <script>
 const divbtnsleft = document.getElementById("divbtnsleft");
 const divbtnsright = document.getElementById("divbtnsright");
+const hnumsolved = document.getElementById("hnumsolved");
 let currentarr = getcurrentvocablesson().arr;
 let currentlang = localStorage.getItem("currentlang") || "spanish";
 console.log(localStorage.getItem("currentvocablesson"));
@@ -69,6 +82,7 @@ let answerobjs = []; // The answers OBJ eng and other lang
 let numofbtns = 5;
 let arrAllBtns = [];
 let arrRightBtns = [];
+let numsolved = -1; // off set -1 so the first reset doesnt count
 
 let apiVoice = getapivoice();
 responsiveVoice.setDefaultVoice(apiVoice);
@@ -86,8 +100,9 @@ let apiVoiceName = getapivoice();
 
 // Create Buttons Dynamically
 function Reset(){
-    divbtnsleft.innerHTML = "";
-    divbtnsleft.innerHTML = "";
+    divbtnsleft.innerHTML = `<div class="langtitle">english</div>`;
+    numsolved++;
+    hnumsolved.innerHTML = `Number Solved: ${numsolved}`;
     arrAllBtns = [];
     arrRightBtns = [];
     answerobjs = [];
@@ -102,7 +117,7 @@ function Reset(){
     }
     shuffleArray(arrRightBtns);
 
-    divbtnsright.innerHTML = "";
+    divbtnsright.innerHTML = `<div class="langtitle">${currentlang}</div>`;
     arrRightBtns.forEach(b => {
         divbtnsright.innerHTML += `<button id="${b.id}" onclick="Clicked(this)"></button>`;
     })
@@ -130,11 +145,13 @@ function Reset(){
 }
 Reset();
 
-
-
 // Button clicked, check if correct answer
 function Clicked(b) {
     let r = randomnum(0,availablecolors.length-1);
+
+        // If clicked on nonEnglish word, say it
+        if(b.id.includes("r")){responsiveVoice.speak(b.innerHTML);}
+
     
         if(LastBtnClicked == null && b.style.backgroundColor == ""){
             LastBtnClicked = b;
@@ -151,7 +168,6 @@ function Clicked(b) {
                 b.style.backgroundColor = LastBtnClicked.style.backgroundColor;
                 availablecolors.splice(availablecolors.indexOf(LastBtnClicked.style.backgroundColor), 1);
                 console.log(`CORRECT`);
-                responsiveVoice.speak(LangAns);
             }
             else{ // Wrong, Reset LastClickedButton
                 LastBtnClicked.style.backgroundColor = "";
