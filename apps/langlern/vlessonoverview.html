@@ -97,9 +97,11 @@ const vocabtitle = document.getElementById("vocabtitle");
 let currentlang = localStorage.getItem("currentlang");
 let currentvocablesson = getcurrentvocablesson();
 console.log(currentvocablesson.arr);
-console.log(responsiveVoice.getVoices())
 // Gets appriate voice for the language choosen
 let apiVoiceName = getapivoice();
+responsiveVoice.setDefaultVoice(apiVoiceName);
+console.log(responsiveVoice.getVoices())
+
 let theHTML = ``;
 vocabtitle.innerHTML = `${currentvocablesson.name} (${currentvocablesson.arr.length} words)`;
 
@@ -119,8 +121,12 @@ function WordClicked(thetext){
     msg.voice = window.speechSynthesis.getVoices()[getcurrentlangobj().audioindex];
     window.speechSynthesis.speak(msg);
     */
-    responsiveVoice.setDefaultVoice(apiVoiceName);
-    responsiveVoice.speak(thetext); 
+    let s = thetext;
+    if(currentlang == "chinese"){
+        s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[A-z]/gi, '');
+        console.log(`Saying... ${s}`);
+    }
+    responsiveVoice.speak(s); 
 }
 
 

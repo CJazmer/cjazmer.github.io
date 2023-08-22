@@ -72,6 +72,7 @@ console.log(localStorage.getItem("currentvocablesson"));
 
 // Gets appriate voice for the language choosen
 let apiVoiceName = getapivoice();
+responsiveVoice.setDefaultVoice(apiVoiceName);
 
 NewQuestion();
 function NewQuestion(){
@@ -108,15 +109,29 @@ function NewQuestion(){
 
     // pick 1 of the buttons to be the correct answer
     buttons[randomnum(0,buttons.length-1)].innerHTML = currentarr[answerindex][langbutton];
-    if(QuestionInEnglish == false){ responsiveVoice.speak(questiondiv.innerHTML); }
+    if(QuestionInEnglish == false){ 
+        let s = questiondiv.innerHTML;
+
+        if(currentlang == "chinese"){
+        s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[A-z]/gi, '');
+        console.log(`Saying... ${s}`);
+        }
+
+        responsiveVoice.speak(s); 
+    }
 }
 
 // Button clicked, check if correct answer
 function Clicked(b) {
     if(!b.innerHTML.includes("✅") && !b.innerHTML.includes("❌")){
         if(b.innerHTML == currentarr[answerindex][langbutton]) {
-            responsiveVoice.setDefaultVoice(apiVoiceName);
-            responsiveVoice.speak(b.innerHTML);
+
+            let s = b.innerHTML;
+                if(currentlang == "chinese"){
+                s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[A-z]/gi, '');
+                console.log(`Saying... ${s}`);
+                }
+            responsiveVoice.speak(s);
 
             b.innerHTML += "✅";
             setTimeout(function timer() {
@@ -129,6 +144,14 @@ function Clicked(b) {
 }
 
 questiondiv.addEventListener("click", function(){
-    if(QuestionInEnglish == false){ responsiveVoice.speak(questiondiv.innerHTML); }
+    if(QuestionInEnglish == false){ 
+        let s = questiondiv.innerHTML;
+
+        if(currentlang == "chinese"){
+        s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[A-z]/gi, '');
+        console.log(`Saying... ${s}`);
+        }
+        responsiveVoice.speak(questiondiv.innerHTML);
+    }
 })
 </script>

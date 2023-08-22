@@ -150,7 +150,14 @@ function Clicked(b) {
     let r = randomnum(0,availablecolors.length-1);
 
         // If clicked on nonEnglish word, say it
-        if(b.id.includes("r")){responsiveVoice.speak(b.innerHTML);}
+        if(b.id.includes("r")){
+            let s = b.innerHTML;
+            if(currentlang == "chinese"){
+                s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[A-z]/gi, '');
+                console.log(`Saying... ${s}`);
+            }
+            responsiveVoice.speak(s);
+        }
 
     
         if(LastBtnClicked == null && b.style.backgroundColor == ""){
@@ -205,10 +212,6 @@ function Clicked(b) {
         }, 2000); // Wait 2 Sec before reseting
     }   
 }
-
-questiondiv.addEventListener("click", function(){
-    if(QuestionInEnglish == false){ responsiveVoice.speak(questiondiv.innerHTML); }
-})
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {

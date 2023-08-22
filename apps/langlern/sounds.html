@@ -70,11 +70,11 @@
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
 
 <script>
-
 const lettersdiv = document.getElementById("lettersholder");
 const hinfo = document.getElementById("info");
 let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 let apiVoiceName = getapivoice();
+responsiveVoice.setDefaultVoice(apiVoiceName);
 
 let thearr = null;
 let theinfoarr = [""];
@@ -84,13 +84,13 @@ soundsdatabase.forEach(i => {
 });
 
 thearr.forEach(o => {
-    lettersdiv.innerHTML += `<div class="letterbox" onclick="LetterClicked('${o.audio}')"><span class="letter">${o.letter}</span><br><span class="letterdesc">${o.sound}</span></div>`;
+    lettersdiv.innerHTML += `<div class="letterbox" onclick="LetterClicked('${o.letter}')"><span class="letter">${o.letter}</span><br><span class="letterdesc">${o.sound}</span></div>`;
 });
 theinfoarr.forEach(i => {
     hinfo.innerHTML += `<div class="infodiv">${i}</div>`;
 })
 function LetterClicked(n){    
-    new Audio(`./audio/${n}.mp3`).play()
+    responsiveVoice.speak(`${n}`); 
 }
 
 </script>
