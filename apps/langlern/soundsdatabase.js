@@ -160,9 +160,10 @@
         {letter: "И/Й", sound: "i", audio: "i"},
         {letter: "Оо", sound: "o", audio: "none"},
         {letter: "Уу", sound: "u", audio: "u"},
-        {letter: "Аа", sound: "a", audio: "a"}
+        {letter: "Аа", sound: "a", audio: "a"},
+        {letter: "ы", sound: "ui", audio: "a"}
       ],
-    info: ["e sounds like ye", "consonants and end of words are soft/faded"]
+    info: ["Ь makes the letter before it soft / add ye sound", "consonants and end of words are soft/faded", ]
 },
 {name: "german",
     arr: [
