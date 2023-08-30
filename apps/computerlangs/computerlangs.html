@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sciences</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.holder{
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            width: 100%;
+            padding: .5em 0em .5em 0em;
+            background-color: goldenrod;
+        }
+        .btn{
+            padding: .5em;
+            margin-right: .4em;
+            background-color: gold;
+            border: .2em solid black;
+            border-radius: 10%;
+            min-width: 6.5em;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        #infodiv{
+            width: 100%;
+            min-height: 8em;
+            padding: .5em;
+            background-color: lightgoldenrodyellow;
+        }
+        .title{
+            width: 100%;
+            background-color: gold;
+            margin: 0em;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="gohere"></div>
+            <div id="infodiv"></div>
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+const categories = [    
+{name: "Object Oriented", 
+   arr: [
+   {name: "Python", color: "dodgerblue", desc: `
+   <h1>Variables --------------------</h1> 
+   <p>
+        name = "bob"<br>
+        num = 30<br>
+        print(name)<br>
+        print(type(name)) *tells you var type<br>
+
+        <b>Array: </b> names = ["bob", "sam", "sally"];
+    </p>
+
+    <h1>Loops --------------------</h1> 
+    <p>
+        for x in arrayname: print(x) *outputs each element in array*<br>
+        for x in "banana": print(x) *outputs each letter in string<br>
+    </p>
+    `},
+    {name: "Javascript", color: "yellow", desc: `
+    <h1>Variables --------------------</h1>
+    <p>
+        *var works for ALL var types!*<br>
+        <b>var:</b> name = "bob";<br>
+        <b>var</b> age = 20;<br>
+        <b>var</b> isOld = false; <br>
+        <b>let</b> name = "bob" *var & let can change value<br><br>
+
+        <b>const</b> name = "bob" *const cannot change value*<br>
+        
+        <b>String to Int:</b> parseInt("50") <br>
+        <b>Int to String:</b> (50).toString() <br><br>
+
+        <b>Array---</b><br>
+        var names = ["bob", "will", "sam"];<br>
+        var nums = [2, 7, 2, 1];
+    </p>
+    <h1>Loops --------------------</h1>
+    <p>
+        <b>FOR:</b> for(i = 0; i < 10; i++){ console.log(i) }<br>
+        <b>ForEach:</b> myArray.forEach(i => { console.log(i) })<br><br>
+    </p>
+
+    <h1>Functions --------------------</h1>
+    <p>
+        <b>Basic:</b> function sayHi(){ console.log("hi") } | <b>sayHi();</b><br>
+        <b>Parameter:</b> function sayWord(word){ console.log(word) } | <b>sayWord("cat");</b><br>
+        <b>Return:</b> function SqrRoot(num){ return num * num } | <b>SqrRoot(3);</b><br>
+    </p>
+
+    <h1>Classes --------------------</h1>
+    <p>
+        <b>class Person</b>{ <br>
+            constructor(name, age){ <br>
+                this.name = name;<br>
+                this.age = age;<br>
+                this.timelived = 0;<br>
+            }<br>
+            ageayear(){<br>
+                this.age++;<br>
+            }<br>
+        <b>}</b><br><br>
+        
+        var p = new Person("bob", 20); <b>Creates Class Object:</b><br>
+        p.age(); <b>Calls Class Function:</b><br>
+    </p>
+
+    <h1>Error Catching --------------------</h1>
+    <p>
+        <b>TryCatch:</b> try{ if(num == 1){num = 0} } catch(err) { console.log("num is null");<br>
+        <b>OrAssignment</b>var newnum = num || 10; "if num is null then set to 10"		
+    </p>
+
+    <h1>Canvas --------------------</h1>
+    <p>
+        <b>var canvas</b> = document.getElementById("mycanvas")) *canvas refrence<br>
+        <b>var ctx</b> = canvas.getContext("2d") *for drawing on canvas<br><br>
+
+        <b>-Draws Red Rectangle-</b><br>
+        ctx.beginPath();<br>
+        ctx.fillStyle = "red";<br>
+        ctx.fillRect(50, 50, 10, 10);<br>
+        ctx.stroke();<br><br>
+
+        <b>-Draws Blue Circle-</b><br>
+        ctx.beginPath();<br>
+        ctx.arc(50, 50, 30, 0, Math.PI * 2);<br>
+        ctx.fillStyle = "blue";<br>
+        ctx.fill();<br>
+        ctx.closePath();<br><br> 
+
+        <b>-Draws Red Line-</b><br>
+        ctx.lineWidth = 5;<br>
+        ctx.beginPath();<br>
+        ctx.moveTo(0, 0); //  x,y start<br>
+        ctx.lineTo(50, 20); // x,y end<br>
+        ctx.stroke();<br>
+        
+        
+    </p>
+
+    
+
+    `},
+    {name: "C#", color: "lime", desc: `
+    <h1>Variables --------------------</h1>
+    <p>
+        <b>string</b> name = "bob";<br>
+        <b>int</b> age = 21;  *-2 billion to 2 billion<br>
+        <b>short</b> plates = 30;  *-32,768 to 32,767<br>
+        <b>long</b> stars = 3729379;  *-2 billion to 2 billion<br>
+        <b>float</b> feet = 40.3;<br>
+        <b>bool</b> isred = false;<br>
+        <b>char</b> letter = 'c';<br><br>
+
+        <b>Array & List---</b><br>
+        <b>string[]</b> names = {"bob", "will", "sam"};<br>
+        <b>int[]</b> nums = {2, 7, 2, 1};<br>
+        <b>string[]</b> names = new string[10]; names[0] = "bob";
+    </p>
+
+    <h1>Loops --------------------</h1>
+    <p>
+        
+    </p>
+    `}, 
+    {name: "Java", color: "orange", desc: `
+
+    `},      
+]},
+{name: "Functional", 
+   arr: [
+   {name: "LISP", desc: `
+
+    `},
+]},
+{name: "Other", 
+   arr: [
+   {name: "Batch", desc: `
+
+    `},
+    {name: "Vbs", desc: `
+
+    `},
+]},
+];
+
+const gohere = document.getElementById("gohere");
+const infodiv = document.getElementById("infodiv");
+
+let thehtml = "";
+
+categories.forEach(c => {
+    thehtml += `<p class='title'>${c.name}</p><div class="holder">`;
+    c.arr.forEach(a => {
+        thehtml += `<div class="btn" style="background-color: ${a.color||'gold'}" onclick="Clicked('${a.name}')">${a.name}</div>`;
+    })
+    thehtml += "</div>"
+});
+gohere.innerHTML = thehtml;
+
+
+function Clicked(infooo){
+    
+categories.forEach(c => {
+    c.arr.forEach(a => {
+        if(a.name == infooo){infodiv.innerHTML = a.desc;}
+    })
+});
+if(infodiv.innerHTML == ""){infodiv.innerHTML = "..."};
+}
+
+
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+let mainbutton = document.getElementById("mainbutton");
+
+
+</script>
