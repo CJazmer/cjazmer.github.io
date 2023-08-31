@@ -59,6 +59,8 @@
             </div>
             <div id="hnumsolved"></div>
     </div>
+    <button class="thebutton" onclick="window.location.href='./vlessonoverview.html'">Back</button>
+
 	</div>
     <footer></footer>
 </body>
@@ -223,7 +225,7 @@ function shuffleArray(array) {
 }
 function RandomWordObj(){
     let r = currentarr[randomnum(0,currentarr.length-1)];
-    while((r[currentlang] == "..." || answerobjs.map(i => i.english).includes(r.english)) && currentarr.length>numofbtns){
+    while((answerobjs.map(i => i.english).includes(r.english)) && currentarr.length>numofbtns){
         r = currentarr[randomnum(0,currentarr.length-1)];
     }
     return r;

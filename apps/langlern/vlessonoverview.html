@@ -68,6 +68,7 @@
 		<div id="underbanner">
             <p id="vocabtitle">...</p>
 
+            <button class="thebuttonn" style="width: 100%;" id="bextra" onclick="ShowExtra(this)"></button>
             <select id="drpdwn">
                 <option value="multichoice">Multi Choice</option>
                 <option value="match">Match Words</option>
@@ -76,6 +77,7 @@
                 <button class="thebuttonn" onclick="window.location.href='./vocab.html'">Back</button>
                 <button class="thebuttonn" onclick="Clicked()">Continue</button>
             </div>
+            
 			<div id="vocabwords"></div>
 		</div>
 		<div id="languagesdiv"></div>
@@ -102,17 +104,21 @@ let apiVoiceName = getapivoice();
 responsiveVoice.setDefaultVoice(apiVoiceName);
 console.log(responsiveVoice.getVoices())
 
-let theHTML = ``;
-vocabtitle.innerHTML = `${currentvocablesson.name} (${currentvocablesson.arr.length} words)`;
 
-currentvocablesson.arr.forEach(w => {
-    if(w[currentlang] != "..."){
-theHTML += `
-<div class='vocabword' onclick="WordClicked('${w[currentlang]}')"><span class="eng">${w.english}</span><br><span class="lang">${w[currentlang]}</span></div>
-`;
+function ShowWords(){
+    let theHTML = ``;
+    vocabtitle.innerHTML = `${currentvocablesson.name} (${currentvocablesson.arr.length} words)`;
+
+    currentvocablesson.arr.forEach(w => {
+        if(w[currentlang] != "..."){
+    theHTML += `
+    <div class='vocabword' onclick="WordClicked('${w[currentlang]}')"><span class="eng">${w.english}</span><br><span class="lang">${w[currentlang]}</span></div>
+    `;
+    }
+    });
+    vocabwords.innerHTML = theHTML;
 }
-});
-vocabwords.innerHTML = theHTML;
+ShowWords();
 
 function WordClicked(thetext){
     /* 
@@ -138,6 +144,31 @@ function Clicked(){
     else {
         // Default is MultiChoice
         window.location.href="./vocabquiz.html";
+    }
+}
+
+
+const bextra = document.getElementById("bextra");
+if(localStorage.getItem("llshowextra") == "true"){
+    bextra.innerHTML = "Intermediate Words: ON";
+}
+else{
+    bextra.innerHTML = "Intermediate Words: OFF";
+}
+function ShowExtra(){
+    if(bextra.innerHTML == "Intermediate Words: OFF"){
+        bextra.innerHTML = "Intermediate Words: ON";
+        
+        localStorage.setItem("llshowextra", "true");
+        currentvocablesson = getcurrentvocablesson();
+        ShowWords();
+    }
+    else{
+        bextra.innerHTML = "Intermediate Words: OFF";
+
+        localStorage.setItem("llshowextra", "false");
+        currentvocablesson = getcurrentvocablesson();
+        ShowWords();
     }
 }
 </script>

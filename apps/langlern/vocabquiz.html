@@ -42,6 +42,7 @@
                 <button id="b4" onclick="Clicked(this)"></button>
             </div>
         </div>
+        <button class="thebutton" onclick="window.location.href='./vlessonoverview.html'">Back</button>
     </div>
 	</div>
     <footer></footer>
@@ -90,14 +91,12 @@ function NewQuestion(){
 
     answerindex = randomnum(0, currentarr.length-1);
     questiondiv.innerHTML = currentarr[answerindex][langquestion];
-    if(QuestionInEnglish){questiondiv.innerHTML += currentarr[answerindex].questionextra || "";};
-    if (currentarr[answerindex][currentlang] == "..."){NewQuestion();} // if the answer is ... than pick a different question. (... means skip that word)
 
     // each button gets random answer (that isn't correct)
     function Rwrongindex() {
         var r = randomnum(0, currentarr.length-1);
 
-        while(r == answerindex || currentarr[r][langbutton] == "..."){
+        while(r == answerindex){
             r = randomnum(0, currentarr.length-1);
         }
         console.log(`${r} ${currentarr[r][langbutton]} ${currentarr[r][langquestion]}`);
@@ -112,6 +111,7 @@ function NewQuestion(){
     if(QuestionInEnglish == false){ 
         let s = questiondiv.innerHTML;
 
+        // Speak settings for chinese
         if(currentlang == "chinese"){
         s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[A-z]/gi, '');
         console.log(`Saying... ${s}`);
