@@ -438,6 +438,10 @@ const vAnimals = [
     {english: "exit", spanish: "la salida", german: "der Ausgang", russian: "выход", tags: "extra"},
     {english: "mirror", spanish: "el espejo", german: "der Spiegel", russian: "зеркало", tags: "extra"},
     {english: "soap", spanish: "el jabon", german: "die Seife", russian: "мыло", tags: "extra"},
+    {english: "blanket", spanish: "...", german: "die Decke", swedish: "En filt", russian: "одеяло", tags: "extra"},
+    {english: "pillow", spanish: "la almohada", german: "das Kissen", swedish: "en kudde", russian: "подушка", tags: "extra"},
+    {english: "carpet", spanish: "la carpeta", german: "der Teppich", swedish: "en matta", russian: "ковер", tags: "extra"},
+    {english: "kitchen", spanish: "la cocina", german: "die Küche", swedish: "ett kök", russian: "кухня", tags: "extra"},
   ];
   const vLanguage = [
     {english: "language", spanish: "el idioma", german: "die Sprache", swedish: "ett språk", russian: "язык"},

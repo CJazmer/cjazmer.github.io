@@ -72,6 +72,7 @@
             <select id="drpdwn">
                 <option value="multichoice">Multi Choice</option>
                 <option value="match">Match Words</option>
+                <option value="audio">Automatic Audio</option>
             </select>
             <div style="display: flex;">
                 <button class="thebuttonn" onclick="window.location.href='./vocab.html'">Back</button>
@@ -140,6 +141,9 @@ const drpdwn = document.getElementById("drpdwn");
 function Clicked(){
     if(drpdwn.value == "match"){
         window.location.href="./vocabquizMatch.html";
+    }
+    else if(drpdwn.value == "audio"){
+        window.location.href="./vocabquizAudio.html";
     }
     else {
         // Default is MultiChoice

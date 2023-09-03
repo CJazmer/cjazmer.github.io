@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<style> </style>
+    <title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">   
+    <style>
+        #hQuestion{
+            width: 100%;
+            height: 3em;
+            margin: 0em;
+            font-weight: bolder;
+            text-align: center;
+            background-color: var(--color2);
+        }
+        #hAnswer{
+            width: 100%;
+            height: 2em;
+            margin: 0em;
+            text-align: center;
+            background-color: var(--color2);
+        }
+        table{
+            background-color: var(--color2);
+            margin: auto;
+            padding: 1em;
+            border: .2em solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="langlernnavbar"></div>
+	<div id="main">
+        <div id="underbanner">
+            <p id="hQuestion">...</p>
+            <p id="hAnswer">...</p>
+            <button class="thebutton" id="bPlay" onclick="bplayClicked()">Stoped⏹</button>
+            <button class="thebutton" onclick="window.location.href='./vlessonoverview.html'">Back</button>
+        </div>
+        <table>
+            <tr><th>Question in English</th><td><input type="checkbox" id="cbquestionenglish"></td></tr>
+            <tr><th>Next Question Speed</th><td><input type="range" min="6" max="20" value="9" id="rbquestionspeed"></td></tr>
+            <tr><th><button class="thebutton" onclick="applysett()">Apply</button></th></tr>
+        </table>
+    </div>
+
+	</div>
+    <footer></footer>
+</body>
+</html>
+
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+<script src="./soundsdatabase.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
+<script>
+const hQuestion = document.getElementById("hQuestion");
+const hAnswer = document.getElementById("hAnswer");
+const bPlay = document.getElementById("bPlay");
+let currentarr = getcurrentvocablesson().arr;
+let answerobj = RandomWordObj();
+let oseconds = 9;
+let osecondsanswer = 5;
+let ispaused = true;
+let isengquestion = false;
+
+console.log(responsiveVoice)
+console.log(responsiveVoice.getVoices())
+responsiveVoice.setDefaultVoice(getapivoice());
+responsiveVoice.rate = .1;
+
+function bplayClicked(){
+    if(bPlay.innerHTML == "Playing▶"){
+        bPlay.innerHTML = "Stoped⏹";
+        ispaused = true;
+    }
+    else{
+        bPlay.innerHTML = "Playing▶";
+        ispaused = false;
+    }
+}
+
+
+function newword(){
+    if(!ispaused){
+        answerobj = RandomWordObj();
+        hAnswer.innerHTML = "";
+        if(isengquestion){
+            hQuestion.innerHTML = `Say '${answerobj.english}'`;
+            const ut = new SpeechSynthesisUtterance(hQuestion.innerHTML);
+            speechSynthesis.speak(ut);
+        }
+        else{
+            hQuestion.innerHTML = answerobj[localStorage.getItem("currentlang")];
+            responsiveVoice.speak(hQuestion.innerHTML);
+            responsiveVoice.speak(hQuestion.innerHTML);
+        }
+
+
+        // Say answer
+        setTimeout(function(){
+            if(isengquestion){
+                hAnswer.innerHTML = answerobj[localStorage.getItem("currentlang")];
+                responsiveVoice.speak(hAnswer.innerHTML);
+                responsiveVoice.speak(hAnswer.innerHTML);
+            }
+            else{
+                hAnswer.innerHTML = answerobj.english;
+                const ut = new SpeechSynthesisUtterance(hAnswer.innerHTML);
+                responsiveVoice.speak(hQuestion.innerHTML);
+                speechSynthesis.speak(ut);
+            }
+        }, osecondsanswer*1000);
+    }
+}
+
+
+function RandomWordObj(){
+    let r = currentarr[randomnum(0,currentarr.length-1)];
+    return r;
+}
+
+
+let interval = setInterval(newword, oseconds*1000);
+
+
+
+const cbquestionenglish = document.getElementById("cbquestionenglish");
+const rbquestionspeed = document.getElementById("rbquestionspeed");
+
+function applysett(){
+    if(cbquestionenglish.checked){
+        isengquestion = true;
+    }
+    else{
+        isengquestion = false;
+    }
+
+    oseconds = rbquestionspeed.value;
+    clearInterval(interval);
+	interval = setInterval(newword, oseconds*1000);
+}
+</script>
