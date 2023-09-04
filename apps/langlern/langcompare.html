@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+		.select{
+            width: 5em;
+        }
+
+	</style>
+</head>
+
+<body>
+	<div id="langlernnavbar"></div>
+	<div id="main">
+        <div id="underbanner">
+            <label for="numbers">Word: </label>
+            <select name="numbers" id="hwordchoose">
+            </select>
+
+            <p id="hlangs"></p>
+        </div>
+	</div>
+
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+
+<script>
+const hwordchoose = document.getElementById("hwordchoose");
+const hlangs = document.getElementById("hlangs");
+let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+let db = VocabDatabase;
+let dbfilter = [];
+let crntword = {};
+
+
+db[0].arr.forEach(oo => {
+    oo.arr.forEach(o => {
+        // Check if all languages have word filled out
+        if(o.spanish && o.russian && o.polish){
+            dbfilter.push(o);
+        }
+    });
+});
+
+
+hlangs.addEventListener("change", function(){ crntword = dbfilter.filter((i) => i.english == hlangs.value) })
+console.log(crntword);
+
+hlangs.innerHTML = `
+    <div></div>
+`;
+
+dbfilter.forEach(o => {
+    hwordchoose.innerHTML += `
+    <option value="${o.english}">${o.english}</option>
+`;  
+});
+
+
+
+</script>
