@@ -110,7 +110,7 @@ const musicteacherdatabase = [
     <table>
         <tr><th></th><th>Instruments</th></tr>
         <tr><th>Guitar</th><td>Guitars are either steel or nylon string. Majority are steel in the USA, nylon strings are found on flamenco/spanishy and classical guitars which are acoustic. (drop d tuning: DADGBE)</td></tr>
-        <tr><th>Bass</th><td>(E A D G) same tuning as guitar just 1 octive down. If you have 5 or more strings, strings are added before E</td></tr>
+        <tr><th>Bass</th><td>(E A D G) same tuning as guitar just 1 octive down. If you have 5 or more strings, strings are added before E<br> flatwound strings are smooth vs roundwound strings are default</td></tr>
         <tr><th>Ukulele</th><td>(G C E A) Hawaiian instrument great for music beginers. It's the gateway drug of the music world because many people will try another instrument like guitar after playing for a bit</td></tr>
         <tr><th>Banjo</th><td>Bluegrass instrument usually used to fingerpick rhythms for Bluegrass Music.
         Use FingerPicks to play
@@ -193,43 +193,53 @@ const musicteacherdatabase = [
             Q Knob: How wide/spread across frequencies to affect. Called "quality factor"
         </p>
     <h1>Other Processors</h1>
-  
-        <p>
-        <b>Gain Volume:</b> Incoming signal volume. Boost/Reduce volume to get in the middle/yellow zone<br>
-        <b>Fader Volume:</b> Volume sliders at the bottom, the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale<br>
-        <b>Main Volume:</b> Volume for everything<br>
+    <p>
+        <b>Gain Volume:</b> Incoming signal volume. Boost/Reduce gain to get in the middle/yellow zone<br>
+        <b>Fader Volume:</b> Volume sliders at the bottom of each channel for the channel volume, try to be aroun 0db which is usually marked 3/4ths the way up on slider scale. 0db is "Unity Gain" meaning the sound is not boosted nor reduced. anything under 0db is reduced and anything over 0db is boosted<br>
+        <b>Main/Stereo Volume:</b> Volume slider for everything, usually on bottom right<br>
+        <b>Sub/Subwoofer Volume:</b> next to main volume, optional to use for low frequencies, send channels to sub output with sub button for analog mixers<br>
         <b>Mute:</b> Quickly mute channel without moving with your faders setup<br>
         <b>Gate:</b> Removes all sound that is quieter that a given threshold<br>
         <b>Compressor/Dynamics:</b> Makes volume stay evenly loud. Treshold lowers volume if volume goes over it. Can use for vocals, drums... to reduce loudness changes. If drummer is hitting hard or soft the volume will be closer<br>
         <b>LowCut / HPF:</b> button that removes very low freq. like the annoying rumble from handling mics or the stage rumble from unnecessary low frequences. Turn LowCut on to reduce very low bassyness.<br>
-        <b>Ø:</b> Invert audio signal<br>
-        <b>PhantomPower/+48v:</b> only used to condenser mics which are in studios, dynamic/stage mics don't need it<br>
+        <b>Ø:</b> Invert audio signal, not really used<br>
+        <b>PhantomPower/+48v:</b> only used for condenser mics which are in studios, dynamic/stage mics don't need it. Sends power through cable to power condenser mics<br>
         <b>Solo/PFL:</b> Isolates a channel to hear for testing.  1) "Solo in Place (SIP)" Mutes all other channels execpt the channel you just pressed. OR "Prefader Listening (PFL)" No channels mute, but all solo activated channels output to headphone jack so you can listen to it isolated) "AfterFader Listening(AFL)"<br>
         <b>FX:</b> add effect volume to channel for whatever the current effect is<br>
         <b>PAN:</b> how much is on left & right speaker. If paned all the way left, 100% channel volume is on left speaker. Paned middle (default) comes out 50/50 both L and R outputs/speakers<br>
         <b>PAD/26dB:</b> Reduces input gain by 26dB if input loud with little gain / peaking <br>
-        </p>
+    </p>
+    <h1>Outputs / Monitors</h1>
+    <p> main/stereo/mono bus
+        <b>Direct Outputs:</b> main output but without EQ or effects<br>
+        <b>Bus/DCA/VCA:</b> digital mixers have faders on the right that you can put channels in to control volume of multiple channels at once, also add fx...<br>
+        <b>Matrix:</b> group of buses and channels<br>
+        <b>MonitorOutput:</b> analog mixers have "aux" knobs that controls aux/monitor volume for that channel<br> Digital mixers use "bus" outputs for monitors<br>
+        <b>SubOutput:</b> analog mixers have 2 sub outputs that you connect to your subwoofers, on the channel have "sub" button pressed to send channel to sub output. <br>Digital mixers use a matrix output usually defaulted to last matrix channel, turn highs down to only have lows in subwoofer, put channels in monobus output (settings set panning mode to 'LR + Mono')<br>Bass, Kick, Toms, and Keyboard send to the subwoofer<br> 
+    </p>
     <h1>All Main Effects</h1>
-        <p>
-        Reverb: (room, hall, stage) <br>
-        Echo/Delay: Repeated sound after you play<br>
-        Distortion: overdrive(clean, powerful, tube amp) (dirty)<br>
-        Chorus/Flanger: doubles sound like 2 instruments playing, one slightly out of tune. Phaser(adds slo auto wawa)<br>
-        Tremelo: Volume Pulsating <br>
-        Wah: wa/waw funky sound<br>
-        Pitch Shift: plays another note that harmonizes with you <br>
-        Ocataver: Raise/Lower pitch
-        </p>
+    <p>
+        <b>Reverb:</b> (room, hall, stage) <br>
+        <b>Echo/Delay:</b> Repeated sound after you play<br>
+        <b>Distortion:</b> overdrive(clean, powerful, tube amp) (dirty)<br>
+        <b>Chorus/Flanger:</b> doubles sound like 2 instruments playing, one slightly out of tune. Phaser(adds slo auto wawa)<br>
+        <b>Tremelo:</b> Volume Pulsating <br>
+        <b>Wah:</b> wa/waw funky sound<br>
+        <b>Pitch Shift:</b> plays another note that harmonizes with you <br>
+        <b>Ocataver:</b> Raise/Lower pitch
+    </p>
     <h1>How to Mix</h1>
         <p>1) Mute everything, faders down<br>
         2) Plug in all instruments/mics<br>
-        3) raise fader to 0db (usually a mark 3/4 up) with gain lowerd all the way down. Bring up gain slowly until channel signal is in middle while instrument playing. Do for each channel (called Gain Staging). If each channel doesn't have a volume meter, Use the Solo/PFL to change the main meter as the individual channel meter<br>
-        4) Mix the EQ, Cut Lows/Highs...</p>
+        3) raise fader to 0db (usually a mark 3/4 up) with gain lowerd all the way down. Bring up gain slowly until channel signal is in middle/yellow while instrument playing. Do for each channel (called Gain Staging). If each channel doesn't have a volume meter, Use the Solo/PFL to change the main meter as the individual channel meter<br>
+        4) Mix the EQ, Cut Lows/Highs... Bass: mid and highs down reduce anything below 40hz to avoid chest rumble, boost around 70hz for pure bass tone. </p>
+    <img src="https://alexiy.nl/eq_chart/images/main_chart.jpg">
     <h1>Common Problems</h1>
         <p>
-        Static/Hissing: Turn off "Phantom Power / +48v". Passive speakers have more static because you send power through cables<br>
-        FeedBack: put mics behind speakers or point away, turn down mics and sing closer to them. Make sure mic is dynamic and unidirectional (only picks up sound 1 direction)<br>
-        Only 1 Speaker Working: make sure your Pan is in the middle.
+        <b>Static/Hissing:</b> Turn off "Phantom Power / +48v". Passive speakers have more static because you send power through cables<br>
+        <b>Missing Bass / empty sounding:</b> need somekind of Subwoofer for low sounds, normal speakers can't produce low Hz like subwoofers do, there's small portable ones you can buy<br>
+        <b>FeedBack:</b> put mics behind speakers or point away, turn down mics and sing closer to them. Make sure mic is dynamic and unidirectional (only picks up sound 1 direction)<br>
+        <b>Only 1 Speaker Working:</b> make sure your Pan is in the middle.
         </p>  
         <img src="https://virtuosocentral.com/wp-content/uploads/2020/06/sections-of-a-mixer.png"><img src="https://medias.audiofanzine.com/images/normal/behringer-x32-standard-2000507.jpg"> `
     },
@@ -240,6 +250,14 @@ const musicteacherdatabase = [
         <p>Passive does'nt have power source and needs amplifier (annoying because you need an amplifier and be careful with oms not to overpower and damage your speaker). Peak & Continuous power capacity are on the speaker lable and show how much power the speaker can handle.</p>
     <h1>Subwoofer "subs"</h1>
         <p>For the bass and low frequencies, Subwoofer placed low on floor. Low frequencies radiate evenly in all directions unlike mid and high range.</p>
+    <h1>Speaker Specifications</h1>
+    <p>
+        Look on speaker back or online to see info<br>
+        <b>Sound Level:</b> dB decibles are used for measurement 110-120db is loud big outdoor events| SPL sound pressure level, how much pressure the sound waves have aka Loudness<br>
+        <b>Class System:</b> ClassA(always on, more power wasted) ClassB(only on when audio is playing, on/off creates distortion) ClassD(most common because compact and low power waste)<br>
+        <b>Nominal Impedance:</b> in ohms<br>
+        <b>Power Capacity:</b> continuous is how much power speaker can handle over long time, peak is short time<br>
+    </p>
     <h1>Monitor</h1>
         <p>Smaller speaker that faces towards player to hear themself play. Monitor/AuxSend output from mixer plugs into monitor input. Don't plug main output mixer into monitor input because if you turn up the main volume, the monitors will turn up too and feedback into mics.</p>
     <h1>Ear Monitor</h1>
@@ -272,10 +290,15 @@ const musicteacherdatabase = [
     <h1>Adapters</h1>
         <p>A little device that converts chord tips. Attach the adapter on the cable tip to convert cable type. Example: TS 1/4 cable attach a TRS 1/8 adapter to the tip of the cable and the cord is now (TS 1/4 to TRS 1/8)</p>
     <h1>Stage Box / Snake Cable</h1>
-        <p>
+    <p>
         In big shows, the mixer will be far from stage in the back so a Extension Cable is used to plug in all inputs and bring them to the back<br>
         Snake/AnalogStageBox: An extencion chord for all your inputs. Thick output cord because of multiple cords for each input bundled together<br>
-        DigitalStageBox: a box to plug in all inputs with a much smaller output cable than a snake/analog stagebox</p>
+        DigitalStageBox: a box to plug in all inputs with a much smaller output cable than a snake/analog stagebox
+    </p>
+    <h1>Other</h1>
+    <p>
+        Double Cables: Red is Right, Black is Left (doesn't matter because L and R have same output, this is just a rule most people follow)
+    </p>
     <img src="https://producerhive.com/wp-content/uploads/2020/12/audio-cable-types-music-production-1024x545.jpg"/>
     `
     },
