@@ -1,6 +1,6 @@
 const musicteacherdatabase = [
     {title: "Percussion🥁🪘", thehtml: `
-        <p>the setup below is the standard setup for right hand players. Kick, Snare, HighHat are all you need...</p>    
+        <p>the setup below is the standard setup for right hand players. Kick, Snare, HighHat are all you need... Hit the cymbal with the side of the stick for less ring. Hit HighHat with tips of sticks while closed to have tight sound</p>    
         <h1>Drums Parts</h1>
         <img src="./assets/drumslabled.jpg">
         <table>
@@ -131,6 +131,13 @@ const musicteacherdatabase = [
         <tr><th>String Winder</th><td>Wind up the guitar tuners fast & easy</td></tr>
         <tr><th>Oil</th><td>Clean guitar body and fretboard, oil for body & oil for fretboard</td></tr>
     </table>
+
+    <h1>Play Methods</h1>
+    <p>
+        <b>Right Notes:</b> 1) pentatonic scale: 5 note scale thats the most popular <br> 2) freedom key: a pattern that repeats across fretboard <br> 3) My Method: play notes by ear, next note will either be 1 step or 2 steps so you have 50% chance when walking up, train yourself to hear 1 step vs 2 step jump to predict next note<br>
+        <b>Frasing:</b> play timing, pretend your saying a sentence, keep it simple but flavorful like BB king to practice
+    </p>
+
     <img src="./assets/gadgets.jpg">  
     <img src="https://www.gak.co.uk/blog/wp-content/uploads/2016/11/acoustic_guitar_diagram-e1428680792528.jpg">  
     <h1>Pickups</h1>
@@ -229,10 +236,26 @@ const musicteacherdatabase = [
         <b>Ocataver:</b> Raise/Lower pitch
     </p>
     <h1>How to Mix</h1>
-        <p>1) Mute everything, faders down<br>
+    <p>
+        1) Mute everything, faders down<br>
         2) Plug in all instruments/mics<br>
         3) raise fader to 0db (usually a mark 3/4 up) with gain lowerd all the way down. Bring up gain slowly until channel signal is in middle/yellow while instrument playing. Do for each channel (called Gain Staging). If each channel doesn't have a volume meter, Use the Solo/PFL to change the main meter as the individual channel meter<br>
-        4) Mix the EQ, Cut Lows/Highs... Bass: mid and highs down reduce anything below 40hz to avoid chest rumble, boost around 70hz for pure bass tone. </p>
+        4) Mix the EQ, Every insturment/channel should have some space in the EQ *dont boost the bass and guitar at 200hz because they'll clash* if you have 2 guitars have one boosted in a lower tone and the other in a higher tone to give some space<br>
+        <b>Guitar Rhythm:</b> boost 200hz for fullness *if no bass, otherwise theyll clash and sound muddy*, 1-2k for clarity<br>
+        <b>Guitar Lead:</b> boost 500-1k, lower below 500hz *add little reverb if clean tone<br>
+        <b>Bass:</b> boost around 100hz for pure bass, all other hz are lowered. <br>
+        <b>Vocal:</b> reduce 300-500hz boxyness, reduce under 150hz, boost after 10k for airiness *add little reverb<br>
+        <b>Drum Kick:</b> 200/500hz and above reduce, boost around 70hz and cut right under it to avoid subsonic lows<br>
+        <b>Drum Snare:</b> boost around 200hz, reduce lows and mids 500-1k, remove ringing with narrow reduce node or put gel pads on snare head<br>
+        <b>Drum HighHat:</b> boost after 1k, reduce everything below<br>
+        <b>Keyboard:</b> take alot of space/mix, thin it out to fit with other instruments otherwise no mixing needed if by itself<br>
+        <b>Hand Drums:</b> find resonance and boost a bit, slap sound around 2k boost a bit, reduce low and highs<br>
+        <b>Horns:</b> 1 trumpet soling boost around 800-1k, filter out lows and very highs<br><br>
+
+        <b>"Nodes":</b> are curve points on a EQ daigram, the main node types are (Bell: normal curve) (notch: steep narrow curve) (HighPass: Leftmost curve goes down completely) (LowPass: Rightmost curve goes down completely) (LowShelf: flat to left) (HighShelf: flat to right)<br>
+        <b>"Analyzer":</b> shows volume of all frequencies live, usually a button on EQ screen to turn on<br>
+    </p>
+    <img src="https://www.musicguymixing.com/wp-content/uploads/2022/10/EQ-Filters-1-1024x576.png">
     <img src="https://alexiy.nl/eq_chart/images/main_chart.jpg">
     <h1>Common Problems</h1>
         <p>
@@ -258,7 +281,7 @@ const musicteacherdatabase = [
         <b>Nominal Impedance:</b> in ohms<br>
         <b>Power Capacity:</b> continuous is how much power speaker can handle over long time, peak is short time<br>
     </p>
-    <h1>Monitor</h1>
+    <h1>Monitor / Wedge</h1>
         <p>Smaller speaker that faces towards player to hear themself play. Monitor/AuxSend output from mixer plugs into monitor input. Don't plug main output mixer into monitor input because if you turn up the main volume, the monitors will turn up too and feedback into mics.</p>
     <h1>Ear Monitor</h1>
         <p>Headphones that let you hear the band without needing monitor facing you. Plugin transmitter into Monitor/AuxSend output on mixer, goes to your receiver and headphones that you have cliped to you. Can have multiple headphones connected to 1 transmitter everone will hear the same mix.</p>
@@ -292,8 +315,8 @@ const musicteacherdatabase = [
     <h1>Stage Box / Snake Cable</h1>
     <p>
         In big shows, the mixer will be far from stage in the back so a Extension Cable is used to plug in all inputs and bring them to the back<br>
-        Snake/AnalogStageBox: An extencion chord for all your inputs. Thick output cord because of multiple cords for each input bundled together<br>
-        DigitalStageBox: a box to plug in all inputs with a much smaller output cable than a snake/analog stagebox
+        Analog Snake / AnalogStageBox: An extencion chord for all your inputs. Thick output cord because of multiple cords for each input bundled together<br>
+        StageBox / DigitalSnake: a box to plug in all inputs with a much smaller output cable than a snake/analog stagebox
     </p>
     <h1>Other</h1>
     <p>
@@ -302,6 +325,22 @@ const musicteacherdatabase = [
     <img src="https://producerhive.com/wp-content/uploads/2020/12/audio-cable-types-music-production-1024x545.jpg"/>
     `
     },
+    {title: "PA System Layout🎶", thehtml: `
+    <h1>Stage Layout</h1>
+    <p>
+        FOH: "front of house" is where sound guy and mixer is, usually behind crowd facing stage.<br>
+        Stage: where band plays, have monitors facing each person running out of bus/aux mixer output<br>
+        Connections: all instruments plug into Snake or Stagebox which outputs as an ethernet cable that runs to the mixer at the FOH in the back *indoor areas run the cable along the ceiling*<br>
+        The mixed audio returns to the stage box then to the amplifiers, Several amplifiers turnon, send audio, and power all the speakers and monitors<br>
+        sometimes therell be a "Digitial Crossover / Speaker Management System/Processor" that filters out the highs and lows for the subs and speakers before the amplifiers
+    </p>
+    <h1>Lights / DMX 'Digital Multiplex'</h1>
+    <p>
+        Rack Light Power Distribution Center, has plugins and switches that turns on/off the lights for convenience<br>
+        aDJ is a popular company that makes lights and has an app "MyDMX GO"
+    </p>
+    <img src="https://virtuosocentral.com/wp-content/uploads/2020/07/Passive-PA-System-Wiring-Diagram-1024x578.png">
+    `},
     {title: "How to Run a Band", thehtml: `
     <h1>Setup</h1>
     <p>
@@ -408,13 +447,13 @@ const musicteacherdatabase = [
 
 const LatinGenres = [
     {name: "Rumba Flamenca", description: `*Instrumental Spanish guitar sounds nice, don't need a singer but it helps (tresillo rhythm) <br> 1) Nylon Guitar Strumming pattern *NO PICK* <br> (slap up down up) <br> (down up down up slap up down up) <br> (down up down UP tap up slap up) <br><br> 2) Nylon Guitar soloing in minor key (phrygian or harmonic minor scale) <br> 3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2Jqf2FjO5svRlx2oQCKalL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Reggae", description: `1) Drummer (1+2+) <br> 2) Bass (simple catchy riff) <br> 3) guitar or piano play chords on 'and+' <br> 4) Soloing and Singer <br> *add a swing to make it groovy <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2RNTTtuUuFXlzXAiPC3F8I?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Reggae", description: `1) Drummer (1+2+) "One Drop" is very famous beat in reggae just dont kick on 1. Common for reggae drummers to tune snare high for that signature sound for the fills <br> 2) Bass (simple catchy riff) Cut all highs to have low flat pure bass tone <br> 3) guitar or piano play chords on 'and+' <br> 4) Piano background synth | Clav hit 8th notes | Organ tap cords on 'and' (-o-o-o-o) <br> *add a swing to make it groovy <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2RNTTtuUuFXlzXAiPC3F8I?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Reggaeton", description: `1) Drum/HandDrum (Tresillo Dembow beat) (L - - H L - H -) <br> 2) Guitar (Dembow strum (down up down UP slap up DOWN up)) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6WfFQdxkZQnOOeMqpz4cTF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Cumbia", description: `*Use a footpedal to add a thump to the downbeat <br><br> 1) Timbales (side of timbales (chachacha o - o o) Hit Cowbel/JamBlock on downbeat <br> 1) or Metal Guira (chachacha o - o o) <br> 2) Bass (Triad outlining chord) (L - - - M - H -) & Guitar/Piano chord (--o- --o-) <br> 3) Solo on guitar/piano (solo using 16th notes and spaces) <br> 4) Congas (H---H-L-) or (L-H-L-H-) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gsl75gtb2HYTTcxDQO1Ku?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Bachata", description: `Thump on down beat, straight beat <br> 1) Guitar Fingerpick rhythm (B - - - B - B -) or bachata soloing <br> 2) Metal Guira hitting 8th notes (derecho) or 4th notes (majao) *dont scrape, just tap side of guira <br> 3) Bongo (martillo) and hitting rolls <br> 4) Bass (B - - B B - B -) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7xcIEQqJ2QIAJISBoNYN2e?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Salsa", description: `*Bugalu, Mambo, Timba... <br><br> 1) Piano (montuno rhythm (M- H L - M - M - H - L - H - M)) or (fast(LMHLMHMH) with Tresillo bass (L--M--H-))  Thumb and Pinky play octive from eachother same note/beat <br> 2) Timbales (Cascara on cowbell to add energy) (o-o-oooo-o-oo-oo) <br> 3) Bass (Tresillo last 2 beats (---o--o-) rushed feel) <br> 4) Congas (tumbao - - H - - - L L) <br> 5) Metal Guira/Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 6) Brass (can do on piano) <br> *Piano is the hardest part to get right (You can play bass (tresillo) and piano (montuno) riff at the same time!) <br> *Hitting metal sound (cascara on cowbell) and horns gives salsa its sound <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Cumbia", description: `*Use a footpedal to add a thump to the downbeat <br><br> 1) or Metal Guira (chachacha o - o o) <br> 2) Bass (Triad outlining chord) (L - - - M - H -) <br> 3) Guitar/Piano/Accordion play chord on 'and' (--o- --o-) and also do solos using 8th notes <br> 4) Timbales (side of timbales (chachacha o - o o) Hit Cowbel/JamBlock on downbeat <br> 5) Congas hit on upbeat (--o-) or one of these beats (H---H-L-) or (L-H-L-H-) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gsl75gtb2HYTTcxDQO1Ku?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Bachata", description: `Straight romantic beat derived from Bolero. "Derecho", "Majao", and "Mambo" are 3 main rhythms of bachata music, play derecho then switch to majao during chorus. Mambo is more rare but played during changes for energy <br><br> 1) Guitar Fingerpick rhythm (B - - - B - B -) or bachata soloing <br> 2) Metal Guira Derecho(tap 8th notes) or Majao(tap 4th notes) or sometimes Mambo(chachacha o-ooo-oo) *dont scrape, just tap side of guira, only scrape for mambo <br> 3) Bongo (martillo) and hitting rolls <br> 4) Bass Derecho(L - - L H - H -) and Mojao(- - H L - - L L) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7xcIEQqJ2QIAJISBoNYN2e?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    {name: "Salsa", description: `*Bugalu, Mambo, Timba... <br><br> 1) Piano (montuno rhythm (M - H L - M - M - H - L - H - M) or fast(LMHLMHMH) with Tresillo bass (L--M--H-) Thumb and Pinky play octive from eachother same note/beat <br> 2) Timbales tap 8th notes on sides | Play Cascara on cowbell to add energy (o-o-oooo-o-oo-oo) <br> 3) Bass (Tresillo last 2 beats (---o--o-) rushed feel <br> 4) Congas (tumbao - - H - - - L L) <br> 5) Metal Guira/Shaker (16th Notes Constant flow, can add triplet shake on 1st note *no chachacha) <br> 6) Brass (can do on piano) <br> *Piano is the hardest part to get right (You can play bass (tresillo) and piano (montuno) riff at the same time!) <br> *Hitting metal sound (cascara on cowbell) and horns gives salsa its sound <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0hgnsVpwIMrhljhaj3xGby?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Merengue", 
-    description: `*Fast paced, Stomp on down beat <br> 1) Metal Guira (fast chachacha rhythm (o - o o) or fast scrape on down beat) *Thump on downbeat <br> 2) Piano (merengue (o oo o o o o o o o) or cascara rhythm on piano for energy (o - o - o o o o - o - o o - o o)) <br> 3) Bass hits on 1 <br> 4) Conga (H---H-L-) <br><br> * you can play both piano riff and bass at the same time on piano and have a foot pedal that adds the thump on down beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3N3D8G6KUEDqNynKqIJr9Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
+    description: `*Fast paced, Stomp on down beat <br> 1) Metal Guira (fast chachacha rhythm (o - o o) or fast scrape on down beat) *Thump on downbeat <br> 2) Piano merengue rhythm (o-o-o-o-oo-oo-o-) <br> 3) Bass hits on 1 <br> 4) Conga (H---H-L-) <br><br> * you can play both piano riff and bass at the same time on piano and have a foot pedal that adds the thump on down beat <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3N3D8G6KUEDqNynKqIJr9Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Son", description: `*Son Cubano, Guaracha, Charanga <br><br> 1) Guitar Rhythm (hit up down up) or Tres/Piano (montuno rhythm o-oo-o-o-o-o-o-o) <br> 2) Bass (trelillo rhythm last 2 beats) (- - - o - - o -) <br> 3) Bongo (Martillo or Tumbao rhythm) <br> 4) Shakers (chachacha rhythm) (o - o o) <br> 5) Clave (son clave mostly 2/3) and Cowbell <br><br> <iframe src="https://open.spotify.com/embed/playlist/6flqW9IdbH5q34NQTkZH0G?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Bolero", description: `Very Slow paced straight beat, has a roll on 2nd beat (B r r - B - B -) *r is roll  (Bolero, Paso doble...) <br><br> 1) Guitar/Tres/Piano Chords <br> 2) Shaker/TimbaleSides (constant 8th notes (roll on 2 & 3 beat) <br> 3) Bass (Tresillo Rhythm L - - - M - H -) <br> 4) Congas (- - H - - L H L) <br> 4) Bongo (martillo rhythm) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2uBIys5nViQv3et2qPPBAL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Guajira", 
@@ -455,7 +494,7 @@ const AmericanGenres = [
     {name: "Rock", description: `1) Drummer (1+2+) <br>2) Guitar with distortion <br>3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/29RO0worSJjuu77SI7GXoR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Metal", description: `1) Guitar power chords with distortion <br>2) Drums (1+2+) or fast (1212) with kickdrum every beat <br>3) Bass <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3amsAAZS7PfJyenaj92MrY?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "Funk", description: `*Funk, Disco <br><br> 1) Drums (1+2+) or gogo beat (B - K - - B K ) (B - - - K - - K - K B - K - - -) <br> 2) Groovy Bass (Add some slap, keep it simple an catchy) <br> 3) Rhythm Guitar (clean/wawa) (strum 16 notes press down on fretbord to play the chords on the hits/accents <br> (o o o o o o - o - o o o - - - -)) <br> 4) Keybord (organ) <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2NPs8J8BJPPFVrtNm9yFji?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
-    {name: "Jazz", description: `<b>Swing Jazz</b><br>  1) Drums (HighHat o--o-o) <br> 2) Bass walking (o--o--) <br> 3) Soloing keyboard/brass/guitar... clean tone <br> 4) Add chords on keyboard/guitar<br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6wxOQKGBk1BfMowFpbEKbB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br><br>
+    {name: "Jazz", description: `<b>Swing Jazz</b><br>  1) Drums (HighHat o--o-o|o--o-o)(Kick n Snare b--k--|b--k-) <br> 2) Bass walking (o--o--) <br> 3) Soloing keyboard/brass/guitar... clean tone <br> 4) Add chords on keyboard/guitar<br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6wxOQKGBk1BfMowFpbEKbB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br><br>
     <b>Smooth Jazz</b><br>  1) Drums 1+2+ with swing (b -- -k -- -) <br> 2) Bass (o -- -o -- -) <br> 3) Soloing keyboard/brass/guitar... clean tone <br> 4) Add chords on keyboard/guitar<br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7fCBhRaydlDGxHmYwkSpaK?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> `},
     {name: "BoogieWoogie", description: `*Also called Rock&Roll <br><br> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6AJeKUJM5fcAz7MZJhhArR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`},
     {name: "HipHop", description: `*Rap, Trap, Oldschool... <br><br> 1) Drums gogo beat. example: (B - - - K - - B - - B - K - - -) <br> 2) Bass (play on bass drum hits)`},
