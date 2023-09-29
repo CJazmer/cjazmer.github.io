@@ -233,12 +233,13 @@
         {letter: "w", sound: "v", audio: "v"},
         {letter: "j", sound: "y", audio: "ya"},
         {letter: "c", sound: "ts", audio: "ts"},
-        {letter: "ć/cz", sound: "ch", audio: "ch"},
+        {letter: "v", sound: "f", audio: "f"},
+        {letter: "ć/cz/ci", sound: "ch", audio: "ch"},
         {letter: "ś/sz/si", sound: "sh", audio: "sh"},
         {letter: "dź/dż", sound: "j in just", audio: "j"},
         {letter: "dz", sound: "d + z", audio: "dz"},
         {letter: "ń/ni", sound: "ny in canyon", audio: "ny"},
-        {letter: "ź/ż/rz", sound: "si in vision", audio: "zh"},
+        {letter: "ź/ż/rz/zi", sound: "si in vision", audio: "zh"},
         {letter: "ch/h", sound: "kh", audio: "x"},
         {letter: "i", sound: "ee in see", audio: "i"},
         {letter: "y", sound: "i in sit", audio: "ischwa"},
@@ -253,24 +254,28 @@
         {letter: "c", sound: "j in jar", audio: "j"},
         {letter: "ç", sound: "ch", audio: "ch"},
         {letter: "r", sound: "r tongue flap", audio: "rflap"},
+        {letter: "j", sound: "si in vision", audio: "rflap"},
         {letter: "ş", sound: "sh", audio: "sh"},
-        {letter: "ö", sound: "er close throat", audio: "oclosethroat"},
+        {letter: "ö", sound: "ir in girl", audio: "oclosethroat"},
         {letter: "ü", sound: "u close throat", audio: "uclosethroat"},
         {letter: "Iı", sound: "i in is", audio: "ischwa"},
         {letter: "İi", sound: "ee in see", audio: "i"},
         {letter: "e", sound: "e in bed", audio: "none"},
-        {letter: "a", sound: "a in father", audio: "a"}
+        {letter: "a", sound: "a in father", audio: "a"},
+        {letter: "u", sound: "oo in cool", audio: "u"}
       ],
-    info: [""]
+    info: ["100% phonetic alphabet", "Ğ is silent and softens previous letter"]
 },
 {name: "oneida", 
     arr: [
         {letter: "k", sound: "g", audio: "gk"},
         {letter: "t", sound: "d", audio: "dt"},
         {letter: "ʌ", sound: "nasal a", audio: "anasal"},
-        {letter: "sy", sound: "sh", audio: "sh"}
+        {letter: "kh", sound: "k", audio: "gk"},
+        {letter: "th", sound: "t", audio: "gk"},
+        {letter: "sy", sound: "sh", audio: "sh"},
         ],
-    info: ["(Tsy/Tsi) ts is j sound", "(Tshy/Tshi) tsh makes ch sound", "Don't glide the vowels like owww, just say o"]
+    info: ["(Tsy/Tsi) ts is j sound", "(Tshy/Tshi) tsh makes ch sound", "when S is between vowels or at start it sounds more like Z", "Don't glide the vowels like owww, just say o"]
 },
 {name: "ojibwe", 
     arr: [
