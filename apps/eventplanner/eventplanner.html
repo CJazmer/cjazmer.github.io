@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sciences</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.holder{
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            width: 100%;
+            padding: .5em 0em .5em 0em;
+            background-color: goldenrod;
+        }
+        .btn{
+            padding: .5em;
+            margin-right: .4em;
+            background-color: gold;
+            border: .2em solid black;
+            border-radius: 10%;
+            min-width: 6.5em;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        #infodiv{
+            width: 100%;
+            min-height: 8em;
+            padding: .5em;
+            background-color: lightgoldenrodyellow;
+        }
+        .title{
+            width: 100%;
+            background-color: gold;
+            margin: 0em;
+            font-weight: 800;
+        }
+        button{
+            max-height: 1.3em;
+        }
+
+        .addperson:hover{
+            background-color: white;
+        }
+        #hpeople{
+            background-color: lightgoldenrodyellow;
+            width: 100%;
+            max-height: 15em;
+            min-height: 10em;
+            display: flex;
+            flex-wrap: wrap;
+            overflow-x: scroll;
+            justify-content: space-evenly;
+            justify-content: center;
+        }
+        .person{
+            background-color: tan;
+            min-width: 3em;
+            max-width: 8em;
+            height: fit-content;
+            margin: .2em;
+            padding: .4em;
+            border: .2em pink solid;
+            border-radius: 10%;
+            transition: .2s;
+            cursor: pointer;
+        }
+        .person:hover{
+            background-color: pink;
+        }
+        #hpeopleinfo{
+            background-color: pink;
+            padding: .2em 0em .2em 0em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+        <div>
+            <button onclick="AddPerson()">Add Person</button>
+            <input type="text" id="hpersonname"></input>
+            <input type="number" id="hpersonamount"></input>
+        </div>
+        <div id="hpeopleinfo"></div>
+        <div id="hpeople"></div>
+
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const hpeople = document.getElementById("hpeople");
+    const hpeopleinfo = document.getElementById("hpeopleinfo");
+    const hpersonname = document.getElementById("hpersonname");
+    const hpersonamount = document.getElementById("hpersonamount");
+
+
+    // [name: "bob", peoplearr: [{name: sam, amount: 2, gender: "na"}]]
+    class Event{
+        constructor(name, peoplearr, willgo){
+            this.name = name;
+            this.peoplearr = peoplearr;
+            this.willgo = "na"; // na, yes, no, idk
+        }
+    }
+    class person{
+        constructor(name, amount, gender){
+            this.name = name;
+            this.amount = amount;
+            this.gender = "na"; // na, m, f
+        }
+    }
+    let events = [];
+
+
+    events.push(new Event("test", null));
+
+
+    let currentevent = events[0];
+
+    AddPerson(new person("bob", 2));
+
+
+    loadevent();
+    function loadevent(){
+            hpeople.innerHTML = "";
+
+            let cnt = 0;
+            let cntyes = 0;
+            let idx = 0;
+            currentevent.peoplearr.forEach(o => {
+                let clr = "grey";
+                if(o.willgo == "yes"){clr = "green"}
+                if(o.willgo == "no"){clr = "red"}
+
+                hpeople.innerHTML += `<div class="person" onclick="PersonClicked(${idx})" style="background-color: ${clr}">${o.name} ${o.amount}</div>`;
+                idx++;
+                cnt += o.amount;
+                if(o.willgo == "yes"){cntyes += o.amount};
+            });
+            hpeopleinfo.innerHTML = `
+            People Invited: ${cnt}  (${currentevent.peoplearr.length} Groups)<br>
+                ${cntyes} minimum
+            `;
+    }
+    function AddPerson(){
+        let obj = new person(hpersonname.value, parseInt(hpersonamount.value), "na");
+
+        if(hpersonname.value && hpersonamount.value){
+            if(currentevent.peoplearr){
+                currentevent.peoplearr.push(obj);
+            }
+            else{
+                let arr = [];
+                arr.push(obj);
+                currentevent.peoplearr = arr;
+            } 
+        }
+        loadevent();
+    }
+    function PersonClicked(inx){
+        if(currentevent.peoplearr[inx].willgo == "na"){
+            currentevent.peoplearr[inx].willgo = "yes";
+        }
+        else{
+            currentevent.peoplearr[inx].willgo = "na";
+        }
+        loadevent();
+    }
+
+
+
+</script>
