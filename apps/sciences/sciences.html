@@ -852,16 +852,25 @@ const categories = [
     <h1>-------------------- Latitude & Rotation --------------------</h1>
     <p>
         <b>Day:</b> How long planet takes to rotate<br>
+        <b>Sidereal Day:</b> How long planet takes to rotate to facing the sun again same spot *more that 360deg turn unlike a day because planet is moving, its why we need leap years<br>
+        <b>Noon</b> when sun is highest in the sky during the day "Solar Noon". Local noon is just 12pm which is not always accurate<br>
         <b>Year:</b> How long planet takes to orbit sun/parent<br>
-        <b>Season:</b> How long planet takes to orbit sun/parent<br>
-        <b>Rotation:</b> <br>
+        <b>Season:</b> planet orientation changes in a predictable pattern that changes heat...<br>
+        <b>Equator:</b> imaginary horizontal line running middle of planet<br>
+        <b>Northern Tropic:</b> 'Tropic of Cancer' imaginary horizontal line running above equator that <br>
+        <b>Southern Tropic:</b> 'Tropic of Capricorn' imaginary horizontal line running middle of planet<br>
+        <b>Polar Circles:</b> 'Artic Circle' in north | 'Antarctic Circle' in south<br>
+        <b>Poles</b> geographic pole is where the planet is rotating on. Magnetic north and south pole is the strongest region of magnetic field on opposite ends<br>
     </p>
+    <img scr="https://c.tadst.com/gfx/1200x675/longitude-latitude-more.png?1">
 
     <h1>---------- Space Wind Radiation ----------</h1>
     <p>
-        "Solar Wind" are Electrons & Protons being continuously emitted by a star<br>
+        "Solar Wind" are Electrons, Protons, Light being continuously emitted by a star<br>
         Astrosphere: the bubble around a star caused by solar wind<br>
         PhotoElectricEffect: solar wind hits particals and hits them into the air like the moondust glow and saturns rings
+        GreenHouse Effect: CO2, O3, <br>
+
     </p>
 
     <h1>Stars</h1>
@@ -921,11 +930,20 @@ const categories = [
         Dark Energy: 68% of energy in universe, pushing galaxies apart
     </p>
 
-    <h1>---------- Orbit ----------</h1>
+    <h1>---------- All Orbit Types ----------</h1>
     <p>
-        Ecliptic Plane: an imaginary line that all planets <br>
-        Solstice: <br>
-        Equinox: <br><br>
+        Almost impossible for orbit to be perfect circle so orbits are elliptical<br>
+        <b>"Perihelion"</b> is the clostest point from parent object and <b>"Aphelion"</b> is the furthest point from parent object<br>
+        <b>Default Orbit:</b> low earth orbit 'LEO' | middle earth orbit 'MEO'<br>
+        <b>Middle Earth Orbit 'MEO':</b> default orbit<br>
+        <b>Geostationary Orbit 'GEO':</b> satellite orbits with earth's rotation fixed to 1 side of earth. Need to be further away to keep up speed about 22k miles<br>
+        <b>Polar Orbit:</b> satellite orbits along poles/rotation axis so as planet turns it gets coverage of the whole planet<br>
+        <b>Sun-Synchronous Orbit:</b> satellite orbits past noon and midnight zone, synced with yearly planet orbit<br>
+        <b>Molniya Orbit:</b> <br><br>
+
+        Ecliptic Plane: an imaginary line drawn from host star/planet that all planets/satellites sit on<br>
+        Solstice: Summer Solstice is the highest the sun will be in the sky and longest day. Winter Solstice is the lowest the sun will be in the sky and the shortest day<br>
+        Equinox: when day and night are same length, happens 2 times a year because of orbit in spring and fall<br><br>
 
         <b>--- 5 Lagrange Points---</b> <br>
         Primary body is the bigger object (ex:Sun), Secondary body is the smaller object orbiting the primary (ex:Earth)<br>
@@ -939,6 +957,7 @@ const categories = [
         Sun-Juipiter L4-Trojan is called "GreekCamp" and Sun-Juipiter L5-Trojan is called "TrojanCamp"<br>
     </p>
     <img src="https://solarsystem.nasa.gov/internal_resources/3324"/>
+    <img src="https://o.quizlet.com/khR7c3PvCnz4NvukUWGdVQ_b.jpg">
 
     <p>
         Planets often orbit in a oval shape<br>
@@ -980,51 +999,75 @@ const categories = [
     
     `},
     {name: "Climate🌎", desc: `
-    <h1>Air Quality</h1>
-    <p>PM2.5</p>
-
-
+    <h1>Other</h1>
     <p>
-        <b>-----Weather Service-----</b><br>
+        <b>Spheres----------</b><br>
+        <b>Lithosphere:</b> earth layers<br>
+        <b>Hydrosphere:</b> 96.5% of volume, 71% of Earths surface, 97% of water is in oceans<br>
+        <b>Atmosphere:</b> the air around a planet, 99% of atmosphere is within 30km to surface on Earth and holds 3% of earths surface fresh water. Greenhouse gases trap heat (C02, CH4, N20...). Aerosols are small particles like dust and salts that absorb radiation and cause cloud formation and red/orange sunrises. Ozone O3 is toxic to humans and is considered a pollutant in lower atmosphere, O3 in upper atmosphere absorbs UV light. CFCs break down ozone in upper atmosphere and were banned in 2010<br>
+        <b>Biosphere:</b> all life from ocean floor to boiling hot springs to the atmosphere<br>
+        <b>Cyrosphere:</b> frozen water<br><br>
         
-        <b>Sensors:</b> (Thermometer: Temperature) (Barometer: AirPressure) (Hygrometer: Humidity) (Anemeter: windspeed)<br>
-        <b>Forcast Office:</b> 122 offices *2023* across USA, Each release a weather balloon at the same time 2 times a day at noon and midnight Zulu time<br>
-        <b>Weather Baloons:</b> go up to stratosphere and are equipped with all senors listed above<br>
-        <b>Doppler Radar:</b> sends radio wave pulses that bounce and relect off rain/debree in sky which reflects back to sensor, what all modern radars use<br>
+        Air Quality AQI: from 0-500. PM means Particulate Matter size "PM2.5" Particales in the air 2.5 microns in width bigger number = bigger partical size
     </p>
 
+
     <p>
-        <b>-----Atmosphere Layers-----</b><br>
-        <b>Troposphere 0-18km:</b> GroundLevel/Mountains, Tropopause is Tropo-Stratosphere boundry and all temperature above it is stable making the wind steady so its hard for cloulds to rise past the Tropopause so they flatten out at the boundary giving supercells clouds the flat anvil shape<br>
-        <b>Stratosphere 11-50km:</b> where O3/Ozone layer is that absorbs harmful UV light, Weatherbaloons. Stratopause is its upper boundary. 20km up temp starts increasing up to 0C/32F caused by UV radiation<br>
-        <b>Mesosphere 40-90km:</b> Radiation is higher since above the ozone layer, meteors burnup here. Mesopause is its upper boundary. Coldest layer, temp starts decreasing down to -90C<br>
-        <b>Thermosphere 80-800km:</b> Huge Thickest and Hottest layer of atmosphere, Auroras & setllites. can reach up to 4,500 degrees Fahrenheit near top. Ionosphere is inside thermosphere where air is ionized by high solar radiation. Thermopause is its upper boundary<br>
+        <b>Atmosphere Layers----------</b><br>
+        <b>Troposphere 0-18km:</b> All weather and water is in Troposphere. From Ground level past Mountain tops. Tempature drops higher up. Tropopause is Tropo-Stratosphere boundry and all temperature above it is stable making the wind steady so its hard for cloulds to rise past the Tropopause so they flatten out at the boundary giving supercells clouds the flat anvil shape<br>
+        <b>Stratosphere 11-50km:</b> where O3/Ozone layer is that absorbs harmful UV light, Weatherbaloons. Tempature rises higher up. Stratopause is its upper boundary. 20km up temp starts increasing up to 0C/32F caused by UV radiation<br>
+        <b>Mesosphere 40-90km:</b> Radiation is higher since above the ozone layer, meteors burnup here. Tempature drops higher up. Mesopause is its upper boundary. Coldest layer, temp starts decreasing down to -90C<br>
+        <b>Thermosphere 80-800km:</b> Largest and Hottest layer of atmosphere, where auroras and setllites are. Can reach up to 4,500 degrees Fahrenheit near top. Tempature gets very hot higher up. Ionosphere is inside thermosphere where air is ionized by high solar radiation. Where Karman line is, the line where space is considered to start around 60 miles. Thermopause is its upper boundary<br>
         <b>ExoSphere 800-3000km:</b> MASSIVE outtermost layer that fades into space, vacum level density<br>
-        *after Mesophere the temp starts increasing
+        *air pressure drops at a constant rate, after Mesophere the temp starts increasing<br><br>
     </p>
     <img src="https://1.bp.blogspot.com/--e3x3ZlQA-Y/XxsJOkPML8I/AAAAAAAAJSs/qI4SuQzqOBU_hL0hY_iPYS8-xV4RX7-IgCLcBGAsYHQ/s2048/bigstock-Earth-Atmosphere-Layers-Infogr-361667698.jpg"/><img src="http://www.ux1.eiu.edu/~cfjps/1400/FIG01_019.JPG"/>
     
     <h1>-------------------- Clouds --------------------</h1>
     <p>
-        Cumulus: Low Big puffy clouds<br>
-        Stratus: Low blanket clouds<br>
-        Cirrus: Very High wispy icy clouds near Tropopause<br>
-        Cumulo-nimbus: Cumulus-RainMaker
+        <b>Cumulus:</b> Low Big puffy clouds<br>
+        <b>Stratus:</b> Low blanket clouds<br>
+        <b>Cirrus:</b> Very High wispy icy clouds near Tropopause<br>
+        <b>Cumulo-nimbus:</b> Cumulus-RainMaker<br>
+        Shelf Cloud "Squall Line"
     </p>
 
-    <h1>-------------------- Meteorology (Weather Systems)--------------------</h1>
+    <h1>-------------------- Meteorology (Atmosphere Study and Weather Systems)--------------------</h1>
     <p>
+        <b>Government----------</b><br>
+        <b>WMO:</b> "World Meteorological Organization" is the global agency of the UN that brings countries together to preserve the climate<br>
+        <b>NOAA:</b> "National Oceanic and Atmospheric Administration" is a US government agency that studies the oceans, atmosphere, climate, sun...<br>
+        <b>NWS:</b> "National Weather Service" is the only one allowed to issue storm watches and warnings. The NWS headquarters is in Oklahoma and called SPC "Storm Prediction Center"<br>
+        <b>FAA:</b> "Federal Aviation Administration" is the government agency that monitors flights, sky, flight rules... ATO monitors air space, ARP builds and maintains airports, AVS inpects aircraft, ASH saftey of passengers<br>
+        <b>NCEP:</b> makes forecast from national forcast offices data<br>
+        <b>ASOS/AWOS:</b> "Automated Surface Observing Systems" are the areas where thermometers, barometers, and other sensors are outside<br>
+        <b>Forcast Office:</b> 122 offices *2023* across USA, Each release a weather balloon at the same time 2 times a day at noon and midnight Zulu time<br>
+        <b>Percipitation:</b> water falling from sky. Rain, snow, hail...<br>
+        <b>Isopheth Maps:</b> lines on map connecting equal values... Isotherm:tempature | Isotachs:wind | Isobath:depth | Isobar:airpressure | Isohaline:watersalt<br><br>
+
+        <b>Sensor Instruments----</b><br>
+        <b>Types:</b> in-situ sensors are touching the thing they sense like thermometer and anemometer. Remote sensors are at a distance observing like RADAR, Camera, X-Ray, eyeball, Metal Detector. Active Remote sensors send out a signal to listen back for, Passive Remote sensors listen for natural radiation<br>
+        <b>Doppler Radar:</b> sends radio wave pulses that bounce and relect off rain/debree in sky which reflects back to sensor, what all modern radars use<br>
+        <b>Satalites:</b> orbit earth and take pictures, GOES take pictures of 1 spot far away because of Geostationary orbit, POES are closer and see all around the earth by moving in Polar orbit | OES means "Operational Environmental Satellite" | G means "Geostationary" P means "Polar orbit"<br>
+        <b>Barometer:</b> measures air pressure, tube filled near top with water facing down into a puddle. Air pressure will determine how high water is in tube. Pressure measured with "mb" millibar<br>
+        <b>Thermometer:</b> measures air tempature using liquid that expands/rises and contracts/lowers. Alcohol, Mercury, Gallium used because they're hard to freeze and are consistent<br>
+        <b>Hygrometer:</b> measures air humidity using a wound up material that expands and contracts by absorbing moisture in the air<br>
+        <b>Anememeter:</b> measures wind speed and direction by letting the wind blow a fanlike object that spins<br>
+        <b>Ceilometer:</b> measures cloud height above it by shooting a laser up and measuring time it takes to reflect back, beam is near inferred...<br>
+        <b>Visibility sensor:</b> measures visibility by shining a light that might scatter among particulates in the air and measures light reflected back<br>
+        <b>Rain Gauge:</b> container that collects water with measurements on side<br>
+        <b>Weather Baloons:</b> goes up to stratosphere with a "radiosonde" that is equipped with senors listed above. Usually filled with H2 and released 2 times everyday<br>
+        <b>Daily Mean:</b> average hourly temps in a day | <b>Daily temp range:</b> lowest and highest temp difference | <b>Monthly Mean</b> average daily mean | Annual mean: average of all months | <b>Annual temp range:</b> highest and lowest between all months<br><br>
+
         <b>Pressure Systems----------</b></br>
-        <b>Cold Air:</b> Falls because its more dense, moves faster than warm air<br>
-        <b>Warm Air:</b> Rises because its less dense<br>
-        <b>High Pressure:</b> cold air falling towards ground & compressing, Clear weather<br>
-        <b>Low Pressure:</b> warm air rising into atmosphere leaving low pressure air gap below, throws cooling moist air into atmosphere causing clouds<br>
-        <b>Wind</b> Higher pressure air moves to Lower Pressure air causing wind<br>
-        <b>Frontal Surface:</b> where 2 air groups colide<br>
-        <b>Front:</b> Line boundary on ground where 2 air groups colide<br>
+        <b>Front:</b> boundary of air mass warm or cold. Frontal Surface is area of air collision<br>
+        <b>Warm and Cold Air:</b> cold air falls because its more dense/heavy and moves faster than warm air, warm air rises because its less dense<br>
+        <b>Air Pressure:</b> High pressure is cold air falling towards ground & compressing, Clear weather. Low Pressure is warm air rising into atmosphere leaving low pressure air gap below, throws cooling moist air into atmosphere causing clouds<br>
+        <b>Wind</b> Higher pressure air moves into Lower Pressure air gap causing wind<br>
+        <b>Microburst:</b> concentrated downburst of strong winds/rain that occurs during a thunderstorm<br>
     </p>
-    <img src="https://i.pinimg.com/originals/52/09/bf/5209bfb519a10a723664ccba524e0499.jpg">
-    
+    <img src="https://i.pinimg.com/originals/52/09/bf/5209bfb519a10a723664ccba524e0499.jpg"><img src="https://media.kiiitv.com/assets/KIII/images/8207798d-4b9b-4e14-945e-0c3a8dd65b43/8207798d-4b9b-4e14-945e-0c3a8dd65b43_750x422.png">
+    <img src="https://i.pinimg.com/originals/a9/8c/2c/a98c2cbc24b6d2712c17a19f0d805b3e.jpg">
 
     <h1>-------------------- Storms --------------------</h1>
     <p>
@@ -1040,7 +1083,9 @@ const categories = [
         Precipitation water fall rain, snow, fog, hail... <br>
         Collection: Water in rivers is SreamFlow, water moving on land is SurfaceRunoff, water absorbed by plants is Interception<br>
         Water absorbed in ground is Infiltration/Percolation and can collect into aquiers or "Discharges" to bodies of water<br> 
-        Water "Evaporates" into air because of sunlight and heat, Air Water does Condensation by mixing with air particulates
+        Water "Evaporates" into air because of sunlight and heat, Air Water does Condensation by mixing with air particulates<br><br>
+
+        <b>Cloud Cover Okta Scale:</b> Higher number means more clouds aka less shadow difference | Lower number means clearer skies aka more shadow difference<br>
     </p>
     <img src="https://www.metlink.org/wp-content/uploads/2020/12/Trenberth_2011_edited-768x569.jpg">
 
@@ -1052,18 +1097,20 @@ const categories = [
 
     <h1>-------------------- Earth Info --------------------</h1>
     <p>
-      Full Rotation: 1day, 24hrs<br>
-      Full Revolution around Sun: 1year, 365days<br>
+        Atmosphere Gasses: Nitrogen 78% | Oxygen: 20% | Carbon Dioxide 0.04%<br>
+        Full Rotation: 1day / 24hrs<br>
+        Full Revolution around Sun: almost 1 year, 365.24 days<br>
     </p>
 
     <a href="https://youtu.be/xXMU5KyM8YY" target="_blank">
         <h1>-------------------- Climate (Entire Planet)--------------------</h1>
     </a>
     <p>
-        Seasons: how direct the sunlight is, summer the earth tilting towards the sun, winter its tilting away<br><br>
+        <b>Seasons:</b> how direct the sunlight is, summer the earth tilting towards the sun, winter its tilting away. Duration and Intensity are main factors, being 1M miles closer in orbit to sun is not enough to change climate<br><br>
         <b>-----Wind Circulation-----</b><br>
         *Takes place in Troposphere, Tropopause is higer at equator because of Hadley Cells*<br><br>
-
+        
+        <b>Convection:</b> is vertical air movement of heat and moisture aka updrafts and downdrafts <br>
         Wind/weather is crazy below the tropopause, above it, its stable <br>
         Coriolis Effect: from earths rotation<br>
         Three-Cell-Model: (Polar, Ferrel, Hadley) from the coriolis effect. Depends on the season/earths tilt<br>
@@ -1131,6 +1178,45 @@ const categories = [
     <p>General relativity, </p>
 
     <h1>Mechanics (energy & movement)</h1>
+    <h1>Energy Transfer</h1>
+    <p>
+        Energy is ability to do work, its cannot be created nor destroyed only transfered from one form to another. 
+        <b>Conduction:</b> heat transfer by molecules colliding / contact<br>
+        <b>Convection:</b> vertical heat transfer by<br>
+        <b>Advection:</b> horizontal heat transfer by air wind or fluid flow. <br>
+        <b>Radiation:</b> heat transfer by<br><br>
+        
+        <b>Properties</b><br>
+        Density:</b> <br>
+        Ductility:</b> how bendy material is before it snaps<br>
+        Capacitance:</b> ability of a system to store an electric charge<br>
+        Dielectricity:</b> dielectric vs insulator<br>
+        Albedo:</b> how reflective something is 0-100% (percentage of reflected radiation)<br>
+
+        what can happen
+        Reflection: light bounces back from an object at the same angle<br>
+        Scattering: large number of weaker rays traveling in different directions<br>
+        Backscattering: scattering forwards and backwards<br><br>
+        
+        1) all objects continually radiate energy of a range of wavelengths<br>
+        2) good absorbers of radiation/heat are also good emitters<br>
+        3) hotter objects radiate more energy and shorter tighter wavelengths<br>
+
+    </p>
+    <img src="https://mrsdeminosciencezone.weebly.com/uploads/7/1/7/6/7176205/184651246.jpg?603">
+    
+    <h1>Light / Electromagnetic Spectrum</h1>
+    <p>
+        Shorter wavelengths have more energy packed into it vs longer wavelengths<br>
+        Radio: <br>
+        Microwave: radar TV<br>
+        Infrared: transfers heat easy bec<br>
+        Visible: the light humans see<br>
+        Ultraviolet UV: <br>
+        XRay: <br>
+        Gamma: <br>
+    </p>
+    <img src="https://gamma-sci.com/wp-content/uploads/2021/07/7.2.21-Electromagnetic-Spectrum.jpg">
 
     <h1>Main Equations</h1>
     <table>
@@ -1323,8 +1409,7 @@ const categories = [
         <b>Contraction:</b> 2 words fuse into 1 (I + Am = I'm | de + el = del)<br>
         <b>Consonant:</b> Closed mouth sound or air restrictions (t, k, m, s, l...)<br>
         <b>Vowel:</b> Open mouth sound, no air restriction (a, e, i, o, u)<br>
-        <b>Syllable:</b> 1 vowel sound, can have surrounding consonants. People use "V" for vowel and "C" consonant. "Bob" is "CVC"<br>
-        <b>VowelHarmony:</b><br><br>
+        <b>Syllable:</b> 1 vowel sound, can have surrounding consonants. People use "V" for vowel and "C" consonant. "Bob" is "CVC" | Open ends in vowel "ba" Closed ends in consonant "bot" Diphthong has 2 combined vowels "Boi"<br><br>
 
         <b>Articulation Places:</b> Bibabial(Lip to Lip), Labial-dental(f spot), Dental(Tongue to teech "Th"), Alveolar(d/n spot), PostAlveolar(d/n spot), RetroFlex(tongue curled back touching roof), Palatal(ñ/y spot), Velar(k/g spot), Uvular(uvula)<br>
         Voiced/Voiceless: S + voiced = Z | T + voiced = D...<br>
@@ -1335,7 +1420,7 @@ const categories = [
         <b>Stress Accenting:</b> stressed vowels are stronger/louder like the english word to'morr'ow. Spanish will sometimes mark which vowel is accented like tiburón. This is common in IndoEuropean languages. Languages like Japanese have "pitch accent" where stressed vowels are raised in pitch and not louder/longer like english<br>
         <b>Stress-Timed:</b> languages have syllables with mostly the same length, Syllable-Timed languages have syllable that are different speeds if stressed or not like English<br>
         <b>Tones:</b> some languages have a tone set that can change the meaning of words like Asian and African languages<br>
-
+        <b>VowelHarmony:</b> vowels in same word become simular like all being nasal or rounding lips for example. Turkic and Uralic languages have this<br><br>
 
         Consonant Types: Retroflex(tongue curled back) 
     </p>
@@ -1476,6 +1561,7 @@ const categories = [
     </p>
     <p>
         Miosis: can't dialate pupil<br>
+        Cataracts: cloudy eyes, UV light can increase chance<br>
 
         Meningitis: infection that inflames the membranes around brain and spinal cord<br>
 
