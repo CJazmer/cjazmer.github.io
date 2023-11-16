@@ -53,7 +53,7 @@
 <script src="./langlernlayout.js"></script>
 <script>
 const languagesdiv = document.getElementById("languagesdiv");
-let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 
 console.log(languagedatabase);
 languagedatabase.forEach(l => {

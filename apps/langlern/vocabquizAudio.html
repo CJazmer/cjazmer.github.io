@@ -44,7 +44,7 @@
         </div>
         <table>
             <tr><th>Question in English</th><td><input type="checkbox" id="cbquestionenglish"></td></tr>
-            <tr><th>Next Question Speed</th><td><input type="range" min="6" max="15" value="9" id="rbquestionspeed"></td></tr>
+            <tr><th>Next Question Speed</th><td><input type="range" min="6" max="10" value="8" id="rbquestionspeed"></td></tr>
             <tr><th><button class="thebutton" onclick="applysett()">Apply</button></th></tr>
         </table>
     </div>
@@ -99,7 +99,8 @@ function newword(){
         else{
             hQuestion.innerHTML = answerobj[localStorage.getItem("currentlang")];
             responsiveVoice.speak(hQuestion.innerHTML);
-            responsiveVoice.speak(hQuestion.innerHTML);
+
+            setTimeout(function(){responsiveVoice.speak(hQuestion.innerHTML); }, osecondsanswer*500);
         }
 
 
@@ -113,7 +114,6 @@ function newword(){
             else{
                 hAnswer.innerHTML = answerobj.english;
                 const ut = new SpeechSynthesisUtterance(hAnswer.innerHTML);
-                responsiveVoice.speak(hQuestion.innerHTML);
                 speechSynthesis.speak(ut);
             }
         }, osecondsanswer*1000);

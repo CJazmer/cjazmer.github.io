@@ -87,7 +87,7 @@
 <script>
 
 const letterbox = document.getElementById("letterbox");
-let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 let apiVoiceName = getapivoice();
 responsiveVoice.setDefaultVoice(apiVoiceName);
 let currentsounds = null;

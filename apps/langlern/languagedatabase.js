@@ -203,6 +203,33 @@ lesson: [
     ]
 }
 ];
+const Arabiclessonobjs = [
+  {name: `Conjugation`,
+  lesson: [
+      {english: `Default Conj. I(ا) | you(تـ) | he/it(يـ) | she/it(تـ) | we(نـ) | they(يـ … ون)`, otherlang: ``, hint: ``},
+      {english: `I hear`, otherlang: `أسْمَع`, hint: `سمع`},
+      {english: `you hear, we hear`, otherlang: `تَسْمَع, نَسْمَع`, hint: `سمع`},
+      {english: `she hears, they hear`, otherlang: `تَسْمَع, يَسْمَعون`, hint: `سمع`},
+      {english: `I sleep, they sleep`, otherlang: `أنام, نائمون`, hint: `نام`},
+      {english: `I speak, you speak`, otherlang: `أتكلم, تتكلم`, hint: `تكلم`},
+      {english: `she swims, you swim`, otherlang: `تَسْبَح, تَسْبَح`, hint: `سبح`},
+      
+      {english: `Default Past. I(ُـت) | you(ـتَ) | he… | she(ـَتْ) | we(ـنا)`, otherlang: ``, hint: ``},
+      {english: `I heard`, otherlang: `سمعت`, hint: `سمع`},
+      {english: `I heard, you heard`, otherlang: `سمعت, سمعت`, hint: `سمع`},
+      {english: `we heard, they heard`, otherlang: `سمعت, سمعوا`, hint: `سمع`},
+      {english: `he heard, she heard`, otherlang: `سمع, سمعت`, hint: `سمع`},
+
+      {english: `Egypt Conj. I(بـ) | you(بتـ) | he/it(بيـ) | she/it(بتـ) | we(بنـ) | they(بيـ … و)`, otherlang: ``, hint: ``},
+      {english: `Egypt Future. Replace b(بـ) with h(هـ)`, otherlang: ``, hint: ``},
+
+      ]
+  },
+  {name: `Less Fusa | More Dialect!`,
+  lesson: [
+      ]
+  }
+  ];
 const Chineselessonobjs = [
 {name: `Chinese 1`,
 lesson: [
@@ -266,7 +293,7 @@ const languagedatabase = [
     {name: `chinese`, langfam: `Sino-Tibetan`, colors:clrsarr[9], lessonsobjs: Chineselessonobjs, audioindex: 19},
     {name: `swahili`, langfam: `Bantu`, colors:clrsarr[11], lessonsobjs: null, audioindex: 0},
     {name: `hawaiian`, langfam: `Polynesian`, colors:clrsarr[10], lessonsobjs: null, audioindex: 0},
-    {name: `arabic`, langfam: `Semetic`, colors:clrsarr[5], lessonsobjs: null, audioindex: 0},
+    {name: `arabic`, langfam: `Semetic`, colors:clrsarr[5], lessonsobjs: Arabiclessonobjs, audioindex: 0},
     {name: `turkish`, langfam: `Turkic`, colors:clrsarr[8], lessonsobjs: null, audioindex: 0},
     {name: `oneida`, langfam: `Native (Iroquoian)`, colors:clrsarr[11], lessonsobjs: Oneidalessonobjs, audioindex: 0},
 ];
@@ -314,7 +341,7 @@ const vAnimals = [
     {english: "pig", spanish: "el cerdo", german: "das Schwein", russian: "свинья",  arabic: "خنزير", finish: "sika", hawaiian: "?", oneida: "?", lakota: "?"},
     {english: "spider", spanish: "la araña", german: "die Spinne", russian: "паук"},
     {english: "horse", spanish: "el caballo", german: "das Pferd", russian: "конь", arabic: "حُصان"},
-    {english: "bear", spanish: "el oso", german: "der Bär", russian: "медведь"},
+    {english: "bear", spanish: "el oso", german: "der Bär", russian: "медведь", arabic: "دُب"},
 
     // Intermediate / Extra
     {english: "ant", spanish: "la hormiga", german: "die Ameise", russian: "муравей", tags: "extra"},
@@ -343,13 +370,13 @@ const vAnimals = [
     {english: "drink", spanish: "la bebida", german: "das Getränk", swedish: "en drink", russian: "напиток"},
     {english: "beer", spanish: "la cerveza", german: "das Bier", swedish: "en öl", russian: "пиво"},
     {english: "wine", spanish: "el vino", german: "der Wein", swedish: "ett vin", russian: "вино", arabic: "نَبيذ"},
-    {english: "ice", spanish: "el hielo", german: "das Eis", swedish: "en is", russian: "лед"},
-    {english: "bread", spanish: "el pan", german: "das Brot", swedish: "en bröd", russian: "хлеб", arabic: "خُبْز"},
+    {english: "ice", spanish: "el hielo", german: "das Eis", swedish: "en is", russian: "лед", arabic: "جَلِيد"},
+    {english: "bread", spanish: "el pan", german: "das Brot", swedish: "en bröd", russian: "хлеб", arabic: "خُبْز", tags: "slavic, "},
     {english: "rice", spanish: "el arroz", german: "der Reis", swedish: "ett ris", russian: "рис", arabic: "أُرْز"},
     {english: "egg", spanish: "el huevo", german: "das Ei", swedish: "ett ägg", russian: "яйцо", arabic: "بَيْضة"},
     {english: "meat", spanish: "la carne", german: "das Fleisch", swedish: "ett kött", russian: "мясо", arabic: "لَحْم"},
     {english: "onion", spanish: "cebolla", german: "die Zwiebel", swedish: "en lök", russian: "лук", arabic: "بَصَل"},
-    {english: "cheese", spanish: "queso", german: "der Käse", swedish: "en ost", russian: "сыр", arabic: "جُبْن"},
+    {english: "cheese", spanish: "queso", german: "der Käse", swedish: "en ost", russian: "сыр", arabic: "جُبْن", tags: "slavic, "},
     {english: "oil", spanish: "el aceite", german: "das Öl", swedish: "en olja", russian: "масло"},
     {english: "fork", spanish: "el tenedor", german: "die Gabel", swedish: "en gaffel", russian: "вилка"},
     {english: "knife", spanish: "el cuchillo", german: "das Messer", swedish: "en kniv", russian: "нож", arabic: "سِكّين"},
@@ -369,7 +396,7 @@ const vAnimals = [
   const vLandscape = [
     {english: "plant", spanish: "la planta", german: "die Pflanze", russian: "растение", hawaiian: "", lakota: "", oneida: "", arabic: ""},
     {english: "fire", spanish: "el fuego", german: "das Feuer", russian: "огонь", hawaiian: "ahi", lakota: "pȟéta", oneida: "o·tsísteˀ", arabic: "نار", chinese: "火 huǒ"},
-    {english: "air", spanish: "el aire", german: "die Luft", russian: "воздух"},
+    {english: "air", spanish: "el aire", german: "die Luft", russian: "воздух", arabic: "هَواء"},
     {english: "sun", spanish: "el sol", german: "die Sonne", russian: "солнце", arabic: "شَّمس", hawaiian: "lā", lakota: "wí", oneida: ""},
     {english: "moon", spanish: "la luna", german: "der Mond", russian: "луна", arabic: "قَمَر", hawaiian: "mahina", lakota: "haŋwí", oneida: "wehní·taleˀ"},
     {english: "star", spanish: "la estrella", german: "der Stern", russian: "звезда", arabic: "نَجْم", hawaiian: "hoku", lakota: "wičháȟpi", oneida: ""},
@@ -388,14 +415,14 @@ const vAnimals = [
     {english: "berry", spanish: "la baya", german: "die Beere", russian: "ягода", hawaiian: "", lakota: "", oneida: "", arabic: "", tags: "extra"},
   ]
   const vWeather = [
-    {english: "sky", spanish: "el cielo", german: "der Himmel", russian: "небо",  arabic: "سَماء", hawaiian: "lani", lakota: "maȟpíya", oneida: ""},
+    {english: "sky", spanish: "el cielo", german: "der Himmel", russian: "небо",  arabic: "سَماء", hawaiian: "lani", lakota: "maȟpíya", oneida: "romance, slavic, semitic, germanic"},
     {english: "cloud", spanish: "la nube", german: "die Wolke", russian: "облако"},
     {english: "storm", spanish: "la tormenta", german: "der Sturm", russian: "буря"},
     {english: "rain", spanish: "la lluvia", german: "der Regen", russian: "дождь", arabic: "مطر"},
     {english: "snow", spanish: "la nieve", german: "der Schnee", russian: "снег", arabic: "ثَلْج"},
   ];
   const vWorld = [
-    {english: "world", spanish: "el mundo", german: "die Welt", swedish: "en värld", russian: "мир"},
+    {english: "world", spanish: "el mundo", german: "die Welt", swedish: "en värld", russian: "мир", tags: "semitic, "},
     {english: "people", spanish: "la gente", german: "die Leute", swedish: "ett folk", russian: "люди"},
     {english: "country", spanish: "el país", german: "das Land", swedish: "ett land", russian: "страна"},
     {english: "flag", spanish: "la bandera", german: "die Flagge", swedish: "en flagga", russian: "флаг"},
@@ -411,7 +438,7 @@ const vAnimals = [
   ];
   const vBody = [
     {english: "body", spanish: "el cuerpo", german: "der Körper", swedish: "en kropp", russian: "тело"},
-    {english: "head", spanish: "la cabeza", german: "der Kopf", swedish: "ett huvud", russian: "голова", arabic: "رَأس"},
+    {english: "head", spanish: "la cabeza", german: "der Kopf", swedish: "ett huvud", russian: "голова", arabic: "رَأس", tags: "semitic, "},
     {english: "face", spanish: "la cara", german: "das Gesicht", swedish: "ett ansikte", russian: "лицо", arabic: "وَجْه"},
     {english: "eye", spanish: "el ojo", german: "das Auge", swedish: "ett öga", russian: "Глаз", arabic: "عَيْن"},
     {english: "mouth", spanish: "la boca", german: "der Mund", swedish: "en mun", russian: "рот", arabic: "فَم"},
@@ -477,8 +504,8 @@ const vAnimals = [
 
   const vRoom = [
     {english: "room", spanish: "el cuarto", german: "das Zimmer", russian: "комната"},
-    {english: "table", spanish: "la mesa", german: "der Tisch", russian: "стол"},
-    {english: "chair", spanish: "la silla", german: "der Stuhl", russian: "стул"},
+    {english: "table", spanish: "la mesa", german: "der Tisch", russian: "стол", arabic: "طاوِلة"},
+    {english: "chair", spanish: "la silla", german: "der Stuhl", russian: "стул", arabic: "كُرسي"},
     {english: "seat", spanish: "el asiento", german: "der Sitz", russian: "место"},
     {english: "book", spanish: "el libro", german: "das Buch", russian: "книга", arabic: "كِتاب"},
     {english: "paper", spanish: "el papel", german: "das Papier", russian: "бумага", arabic: "وَرَق"},
@@ -487,10 +514,10 @@ const vAnimals = [
     {english: "bed", spanish: "la cama", german: "das Bett", russian: "кровать", arabic: "سَرِير"},
     {english: "floor", spanish: "el piso", german: "der Boden", russian: "пол"},
     {english: "roof", spanish: "el techo", german: "das Dach", russian: "крыша"},
-    {english: "wall", spanish: "el pared", german: "die Wand", russian: "стена"},
+    {english: "wall", spanish: "el pared", german: "die Wand", russian: "стена", arabic: "حائِط"},
     {english: "window", spanish: "la ventana", german: "das Fenster", russian: "окно"},
-    {english: "stairs", spanish: "las escaleras", german: "die Treppe", russian: "лестница"},
-    {english: "clock/watch", spanish: "el reloj", german: "die Uhr", russian: "часы"},
+    {english: "stairs", spanish: "las escaleras", german: "die Treppe", russian: "лестница", arabic: "دُرَج"},
+    {english: "clock/watch", spanish: "el reloj", german: "die Uhr", russian: "часы", arabic: "ساعة"},
 
     // Extra Room Words
     {english: "exit", spanish: "la salida", german: "der Ausgang", russian: "выход", tags: "extra"},
@@ -532,28 +559,26 @@ const vAnimals = [
     {english: "this/that is", spanish: "...", german: "das", swedish: "...", russian: "это"},
     {english: "hi", spanish: "hola", german: "hallo", swedish: "hej", russian: "привет"},
     {english: "bye", spanish: "adiós", german: "Tschüss", swedish: "hejdå", russian: "пока"},
-    {english: "thanks", spanish: "gracias", german: "Danke", swedish: "tack", russian: "спасибо"},
+    {english: "thanks", spanish: "gracias", german: "danke", swedish: "tack", russian: "спасибо", arabic: "شكرًا"},
     {english: "youre welcome", spanish: "de nada", german: "Bitte", swedish: "...", russian: "..."},
     {english: "sorry", spanish: "lo siento", german: "...", swedish: "förlåt", russian: "извини"},
-    {english: "please", spanish: "por favor", german: "Bitte", swedish: "snälla", russian: "пожалуйста"},
+    {english: "please", spanish: "por favor", german: "bitte", swedish: "snälla", russian: "пожалуйста"},
     {english: "yes", spanish: "sí", german: "ja", swedish: "ja", russian: "да", arabic: "نَعَم"},
     {english: "no", spanish: "no", german: "nein", swedish: "nej", russian: "нет", arabic: "لا"},
     {english: "and", spanish: "y", german: "und", swedish: "och", russian: "и", arabic: "و"},
     {english: "because", spanish: "porque", german: "Weil", swedish: "för", russian: "потому что"},
-    {english: "thanks", spanish: "gracias", german: "danke", swedish: "tack", russian: "спасибо", arabic: "شكرًا"},
-    {english: "please", spanish: "por favor", german: "bitte", swedish: "snälla", russian: "пожалуйста"},
     {english: "very", spanish: "muy", german: "sehr", swedish: "väldigt", russian: "очень"},
     {english: "all, everyone/thing", spanish: "todo", german: "alle", swedish: "alla", russian: "все"},
     {english: "thing", spanish: "la cosa", german: "das Ding", swedish: "sak", russian: "штука"},
     {english: "here", spanish: "aquí", german: "hier", swedish: "här", russian: "здесь"},
     {english: "there", spanish: "alla", german: "dort", swedish: "där", russian: "там"},
 
-    {english: "what", spanish: "qué", german: "was", swedish: "vad", russian: "что"},
-    {english: "where", spanish: "dónde", german: "wo", swedish: "var", russian: "где"},
-    {english: "why", spanish: "por qué", german: "warum", swedish: "varför", russian: "почему"},
-    {english: "who", spanish: "quién", german: "wer", swedish: "vem", russian: "кто"},
-    {english: "when", spanish: "cuando", german: "wenn", swedish: "när", russian: "когда"},
-    {english: "how", spanish: "cómo", german: "wie", swedish: "hur", russian: "как"},
+    {english: "what", spanish: "qué", german: "was", swedish: "vad", russian: "что", arabic: "ما"},
+    {english: "where", spanish: "dónde", german: "wo", swedish: "var", russian: "где", arabic: "أين"},
+    {english: "why", spanish: "por qué", german: "warum", swedish: "varför", russian: "почему", arabic: "لماذا"},
+    {english: "who", spanish: "quién", german: "wer", swedish: "vem", russian: "кто", arabic: "مِن"},
+    {english: "when", spanish: "cuando", german: "wenn", swedish: "när", russian: "когда", arabic: "مَتـى"},
+    {english: "how", spanish: "cómo", german: "wie", swedish: "hur", russian: "как", arabic: "كَيف"},
     
     {english: "more", spanish: "más", german: "mehr", swedish: "mer", russian: "больше"},
     {english: "less", spanish: "menos", german: "weniger", swedish: "mindre", russian: "меньше"},
@@ -567,21 +592,20 @@ const vAnimals = [
   ];
   const vMain2 = [
     {english: "food", spanish: "la comida", german: "das Essen", swedish: "en mat", russian: "еда"},
-    {english: "water", spanish: "el agua", german: "das Wasser", swedish: "ett vatten", russian: "вода", chinese: "水 shuǐ"},
+    {english: "water", spanish: "el agua", german: "das Wasser", swedish: "ett vatten", russian: "вода", chinese: "水 shuǐ", tags: "romance, "},
     {english: "money", spanish: "el dinero", german: "das Geld", swedish: "en pengar", russian: "деньги"},
-    {english: "house", spanish: "la casa", german: "das Haus", swedish: "ett hus", russian: "дом", arabic: "بَيْت"},
+    {english: "house", spanish: "la casa", german: "das Haus", swedish: "ett hus", russian: "дом", arabic: "بَيْت", tags: "romance, semitic"},
     {english: "bathroom", spanish: "el baño", german: "das Bad", swedish: "ett badrum", russian: "ванная"},
     {english: "phone", spanish: "el celular", german: "das Telefon", swedish: "en telefon", russian: "телефон", arabic: "هاتِف"},
     {english: "job", spanish: "el trabajo", german: "die Arbeit", swedish: "ett jobb", russian: "работа"},
     {english: "shop/store", spanish: "la tienda", german: "das Geschäft", russian: "..."},
     {english: "store/market", spanish: "...", german: "...", russian: "магазин"},
-    {english: "light", spanish: "la luz", german: "das Licht", swedish: "ett ljus", russian: "свет"},
+    {english: "light", spanish: "la luz", german: "das Licht", swedish: "ett ljus", russian: "свет", arabic: "ضوء", tags: "romance, "},
     {english: "life", spanish: "la vida", german: "das Leben", swedish: "ett liv", russian: "жизнь", arabic: "حَياة"},
     {english: "garbage", spanish: "la basura", german: "der Müll", swedish: "ett skräp", russian: "мусор", arabic: "قُمامة"},
 
     {english: "bag", spanish: "la bolsa", german: "die Tasche", swedish: "en väska", russian: "мешок"},
     {english: "box", spanish: "la caja", german: "die Kiste", swedish: "en låda", russian: "коробка"},
-    {english: "bathroom", spanish: "el baño", german: "ein Badezimmer", swedish: "ett badrum", russian: "ванная"},
     {english: "friend", spanish: "el amigo", german: "der Freund", swedish: "en vän", russian: "друг", arabic: "صَديق"},
     {english: "god", spanish: "dios", german: "der Gott", swedish: "en gud", russian: "Бог", arabic: "الله"},
     {english: "team", spanish: "el equipo", german: "ein Team", swedish: "ett lag", russian: "команда"},
@@ -640,61 +664,62 @@ const vAnimals = [
     {english: "message", spanish: "mensaje", german: "die Nachricht"},
   ];
   const vVerbs1 = [
-    {english: "to want", spanish: "querer (quier)", german: "wollen (will)", swedish: "vilija (vill)", russian: "хотеть"},
+    {english: "to want", spanish: "querer (quier)", german: "wollen (will)", swedish: "vilija (vill)", russian: "хотеть", arabic: "ريد"},
     {english: "to need, have to", spanish: "necesitar", german: "müssen", swedish: "måste", russian: ""},
     {english: "to eat", spanish: "comer", german: "essen", swedish: "äta", russian: "есть"},
-    {english: "to drink", spanish: "tomar |take|", german: "trinken", swedish: "dricka (dricker)", russian: "пить"},
+    {english: "to drink", spanish: "tomar |take|", german: "trinken", swedish: "dricka (dricker)", russian: "пить", arabic: "شرب"},
     {english: "to know fact", spanish: "saber", german: "wissen (weiß)", swedish: "veta (vet)", russian: "знать"},
     {english: "to know about", spanish: "conocer", german: "", swedish: "", russian: ""},
     {english: "to think", spanish: "pensar (piens)", german: "denken", swedish: "tänka (tänker)", russian: ""},
-    {english: "to remember", spanish: "recordar (recuer)", german: "denken", swedish: "minna (minns)", russian: ""},
+    {english: "to remember", spanish: "recordar (recuer)", german: "denken", swedish: "minna (minns)", russian: "تذكر"},
     {english: "to do, make", spanish: "hacer", german: "machen", swedish: "göra (gör)", russian: ""},
     {english: "to give", spanish: "dar", german: "geben", swedish: "ge (ger)", russian: ""},
     {english: "to take", spanish: "...", german: "nehmen", swedish: "ta (tar)", russian: ""},
     {english: "to live", spanish: "vivir", german: "leben", swedish: "leva (lever)", russian: ""},
     {english: "to live (reside)", spanish: "vivir", german: "leben", swedish: "bo (bor)", russian: "жить"},
     {english: "to say/tell", spanish: "decir", german: "sagen", swedish: "säga (säger)", russian: ""},
-    {english: "to speak", spanish: "hablar", german: "sprechen", swedish: "tala (talar)", russian: "говори́ть"},
+    {english: "to speak", spanish: "hablar", german: "sprechen", swedish: "tala (talar)", russian: "говори́ть", arabic: "تكلم"},
     {english: "to use", spanish: "usar", german: "benutzen", swedish: "använda (använder)", russian: ""},
-    {english: "to learn", spanish: "aprender", german: "lernen", swedish: "lära (lär sig)", russian: ""},
+    {english: "to learn", spanish: "aprender", german: "lernen", swedish: "lära (lär sig)", russian: "", arabic: "تعلم"},
+    {english: "to understand", spanish: "entender", german: "", swedish: "", russian: "", arabic: "فهم"},
     {english: "to practice", spanish: "praticar", german: "üben", swedish: "träna (tränar)", russian: ""},
-    {english: "to work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: "рабо́тать"},
+    {english: "to work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: "рабо́тать", arabic: "عمل"},
     {english: "to have", spanish: "tener (tien)", german: "haben", swedish: "ha (har)", russian: ""},
-    {english: "to help", spanish: "ayudar", german: "helfen", swedish: "hjälpa (hjälper)", russian: "помогать"},
+    {english: "to help", spanish: "ayudar", german: "helfen", swedish: "hjälpa (hjälper)", russian: "помогать", arabic: "ساعد"},
     {english: "to like", spanish: "gustar", german: "mögen", swedish: "gilla (gillar)", russian: ""},
-    {english: "to hear", spanish: "escuchar", german: "hören", swedish: "höra (hör)", russian: ""},
+    {english: "to hear", spanish: "escuchar", german: "hören", swedish: "höra (hör)", russian: "", arabic: "سمع"},
     {english: "to able to", spanish: "poder (pon)", german: "können", swedish: "kan", russian: ""},
-    {english: "to look", spanish: "mirar", german: "...", swedish: "titta", russian: "смотреть"},
+    {english: "to look", spanish: "mirar", german: "...", swedish: "titta", russian: "смотреть", arabic: "نظر"},
     {english: "to see", spanish: "ver", german: "sehen", swedish: "ser", russian: "ви́деть"},
-    {english: "to buy", spanish: "comprar", german: "kaufen", swedish: "köpa (köper)", russian: ""},
-    {english: "to sell", spanish: "vender", german: "verkaufen", swedish: "sälja (säljer)", russian: "продавать (прода)"},
+    {english: "to buy", spanish: "comprar", german: "kaufen", swedish: "köpa (köper)", russian: "", arabic: "شتري"},
+    {english: "to sell", spanish: "vender", german: "verkaufen", swedish: "sälja (säljer)", russian: "продавать (прода)", arabic: "بيع"},
   ];
   const vVerbs2 = [
-    {english: "to sleep", spanish: "dormir (duer)", german: "schlafen", russian: "спать"},
-    {english: "to drive", spanish: "manejar", german: "fahren", russian: "водить"},
-    {english: "to clean", spanish: "limpiar", german: "sauber", russian: "чистить"},
+    {english: "to sleep", spanish: "dormir (duer)", german: "schlafen", russian: "спать", arabic: "نام"},
+    {english: "to drive", spanish: "manejar", german: "fahren", russian: "водить", arabic: "قود"},
+    {english: "to clean", spanish: "limpiar", german: "sauber", russian: "чистить", arabic: "نظف"},
     {english: "to turn off", spanish: "apagar", german: "machen an"},
     {english: "to turn on", spanish: "prender", german: "machen aus"},
     {english: "to play", spanish: "jugar (jueg)", german: "spielen"},
     {english: "to play (instrument)", spanish: "tocar |touch|", german: "..."},
-    {english: "to read", spanish: "leer", german: "lesen"},
-    {english: "to write", spanish: "escribir", german: "schreiben"},
+    {english: "to read", spanish: "leer", german: "lesen", arabic: "قرأ"},
+    {english: "to write", spanish: "escribir", german: "schreiben", arabic: "كتب"},
     {english: "to write/paint", spanish: "...", german: "...", russian: "писа́ть"},
     {english: "to call", spanish: "llamar", german: "rufen"},
     {english: "to draw", spanish: "dibujar", german: "zeichnen"},
     {english: "to play", spanish: "jugar", german: "spielen"},
     {english: "to play instrument", spanish: "tocar", german: "..."},
     {english: "to wait", spanish: "esperar", german: "warten", russian: "ждать"},
-    {english: "to dance", spanish: "bailar", german: "tanzen", russian: "танцевать(танцу)"},
+    {english: "to dance", spanish: "bailar", german: "tanzen", russian: "танцевать(танцу)", arabic: "رقص"},
     {english: "to cook", spanish: "cocinar", german: "kochen", russian: "готовить", oneida: "-khuni-"},
     {english: "to swim", spanish: "nadar", german: "schwimmen", russian: "плавать"},
-    {english: "to fly", spanish: "volar", german: "fliegen", russian: "летать"},
+    {english: "to fly", spanish: "volar", german: "fliegen", russian: "летать", arabic: "طير"},
     {english: "to search/lookfor", spanish: "buscar", german: "suchen", swedish: "sök (söker)", russian: "..."}, // Find & Search are the same????
-    {english: "to find", spanish: "encontrar", german: "finden", swedish: "hitta", russian: "..."},
+    {english: "to find", spanish: "encontrar", german: "finden", swedish: "hitta", russian: "...", arabic: "جد"},
+    {english: "open", spanish: "abrir", german: "öffnen", arabic: "فتح"},
+    {english: "close", spanish: "cerrar", german: "schließen"},
 
     /*
-    {english: "open", spanish: "abrir", german: "öffnen"},
-    {english: "close", spanish: "cerrar", german: "schließen"},
     {english: "push", spanish: "empujar", german: "drücken"},
     {english: "pull", spanish: "jalar", german: "ziehen"},
     */
@@ -708,6 +733,30 @@ const vAnimals = [
     {english: "to fill", spanish: "llenar", german: "füllen"},
     {english: "to take off/out", spanish: "sacar", german: "entfernen"},
     {english: "to cover", spanish: "cubrir", german: "decken"},
+
+    // Extra
+    {english: "to jump", spanish: "saltar/brincar", info: "extra"},
+    {english: "to escape/runaway", spanish: "fugarse", tags: "extra"},
+    {english: "to empty/hollow", spanish: "vaciar", tags: "extra"},
+    {english: "to emerge/arise", spanish: "surgir", tags: "extra"},
+    {english: "to throw/emit", spanish: "surgir", tags: "extra"},
+    {english: "to achieve", spanish: "lograr", tags: "extra"},
+    {english: "to beat/whisk", spanish: "batir", tags: "extra"},
+    {english: "to beat/whisk", spanish: "batir", tags: "extra"},
+    {english: "to hunt/trap/catch", spanish: "cazar", tags: "extra"},
+    {english: "to find", spanish: "encontrar", tags: "extra"},
+    {english: "to hide", spanish: "esconder", tags: "extra"},
+    {english: "to strain/filter", spanish: "colar", tags: "extra"},
+    {english: "to discover", spanish: "descubrir/hallar", tags: "extra"},
+    {english: "to turnin/submit", spanish: "descubrir/hallar", tags: "extra"},
+    {english: "to reach", spanish: "alcanzar", tags: "extra"},
+    {english: "to save/store", spanish: "guardar/almancenar", tags: "extra"},
+    {english: "to be made of", spanish: "componer de", tags: "extra"},
+    {english: "to take advantage of", spanish: "aprovechar de", tags: "extra"},
+    {english: "to exhause/runout", spanish: "agostar", tags: "extra"},
+    {english: "to findout", spanish: "averiguar", tags: "extra"},
+
+  // la etapa, presa, estrecho, reto, 
   ];
   const vAdjectives1 = [ 
     {english: "big", spanish: "grande", german: "groß", russian: "большой"},
@@ -745,13 +794,14 @@ const vAnimals = [
 
     {english: "high", spanish: "alto", german: "", russian: "высокий"},
     {english: "low", spanish: "bajo", german: "", russian: "низкий"},
-    {english: "poisonous", spanish: "venenoso", german: "giftig", russian: "ядовитый"},
 
     {english: "happy", spanish: "feliz", german: "glücklich", russian: "счастлив"},
     {english: "sad", spanish: "triste", german: "traurig", russian: "Грустно"},
     {english: "mad", spanish: "enojado", german: "verägert", russian: "Злюсь"},
     {english: "busy", spanish: "ocupado", german: "beschäftigt", russian: "занят"},
     {english: "excited", spanish: "emocionado", german: "...", russian: "..."},
+
+    {english: "poisonous", spanish: "venenoso", german: "giftig", russian: "ядовитый", tags: "extra"},
     // {english: "afraid", spanish: "", german: "", russian: ""},
     // {english: "relaxed", spanish: "relajado", german: "", russian: ""},
   ];
@@ -800,12 +850,10 @@ const vAnimals = [
     {english: "brick", spanish: "el ladrillo", german: "...", russian: "кирпич", tags: "extra"},
   ];
 
-let vAllWords = [];
 
 const VocabDatabase = [
 {name: "Main", 
     arr: [
-        {name: "All Words", arr: vAllWords},
         {name: "Main1", arr: vMain},
         {name: "Main2", arr: vMain2},
         {name: "Pronouns", arr: vPronouns},
@@ -847,16 +895,6 @@ const VocabDatabase = [
 ];
 // german: in, auf, an, mit, von, zu, aus...
 
-VocabDatabase.forEach(v => {
-  v.arr.forEach(lsn => {
-    lsn.arr.forEach(wrd => {
-      if(wrd[getcurrentlangobj().name] != null && wrd[getcurrentlangobj().name] != "..." && wrd[getcurrentlangobj().name] != ""){
-        vAllWords.push(wrd);
-      }
-    })
-  })
-})
-
 
 // Global Variables (Null/Empty checking) ---------------------
 if(!localStorage.getItem("llshowextra")){ localStorage.setItem("llshowextra", "false")}
@@ -866,6 +904,43 @@ console.log(localStorage);
 
 
 // Functions ---------------------
+let currentlang = getcurrentlangobj().name;
+let showextrawords = false;
+if(localStorage.getItem("llshowextra") == "true"){
+    showextrawords = true;
+}
+
+function getAllWords(){
+  let temp = [];
+  VocabDatabase.forEach(section => {
+    section.arr.forEach(lesn => {
+        lesn.arr.forEach(wrd => {
+
+          if(wrd[currentlang] && wrd[currentlang] != "..."){
+            temp.push(wrd);
+          }
+          
+          // filter out intermediate words if option turned off
+          if(!showextrawords){
+            temp = temp.filter(function (t) { 
+              return t.tags == undefined || !t.tags.includes("extra"); 
+            });
+          }
+          
+        })
+    })
+  });
+  return temp; //returns all word objs in all lessons
+}
+
+function getAllWordsLesson(){
+  let aw = {name: "All Words", arr: getAllWords()};
+  return aw;
+}
+
+
+
+
 function getcurrentlangobj(){
     let aaaaaa = languagedatabase[0];
     // find lesson
@@ -877,7 +952,7 @@ function getcurrentlangobj(){
 
 // Get VOCAB Lesson {name: Food, arr: [{english: food, spanish: "comida"...}]}
 function getcurrentvocablesson(){
-    let bbbbb = VocabDatabase[0].arr[0];
+    let bbbbb = getAllWordsLesson();
     // Find lesson by name
     VocabDatabase.forEach(cat => {
         cat.arr.forEach(les => {
@@ -886,7 +961,6 @@ function getcurrentvocablesson(){
     })
 
     let newarr = [];
-    let currentlang = getcurrentlangobj().name;
 
     // Filter Empty/Null/"..." words
       bbbbb.arr.forEach(bb => {

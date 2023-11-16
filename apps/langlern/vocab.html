@@ -42,6 +42,14 @@
             padding: .5em;
             font-weight: 900;
         }
+        .btnknownwords{
+            width: 100%;
+            height: 2em;
+            margin: 0em;
+            background-color: var(--color1);
+            border: .1em solid black;
+            border-radius: 1em;
+        }
 	</style>
 </head>
 
@@ -49,6 +57,7 @@
     <div id="langlernnavbar"></div>
 	<div id="main">
 		<div id="underbanner">
+            <button class="btnknownwords" onclick="window.location.href='./knownwords.html'">Test Your Vocab Skills</div>
 			<div id="vocablist">
 
             </div>
@@ -67,30 +76,37 @@
 <script>
 const vocablist = document.getElementById("vocablist");
 const arrlessonslist = ["colors", "numbers", "food"]
-let currentlang = localStorage.getItem("currentlang");
+currentlang = localStorage.getItem("currentlang");
 console.log(getcurrentlangobj().lessonsobjs);
 
 // German.lessonsobjs[name, lessonsarr].lessonsarr
 let theHTML = ``;
 let thecolor = "gold";
+let needToAddAllWords = true; 
 
 // Fills up screen with lesson boxes using the languagedatabase.js file
 VocabDatabase.forEach(vd => {
-theHTML += `<div class='vocabtitle'>${vd.name}</div><div class='vocabboxsholder'>`;
-vd.arr.forEach(lesnobj => {
-thecolor = "var(--color1)";
-    lesnobj.arr.forEach(wrd => { // greys out if lesson has null word / missing words
-        // Greys out if no data in lesson
-        if(wrd[currentlang] == null || wrd[currentlang] == ""){thecolor = "grey";}
+    theHTML += `<div class='vocabtitle'>${vd.name}</div><div class='vocabboxsholder'>`;
+    vd.arr.forEach(lesnobj => {
+
+    // add ALL WORDS BOX to first/0 
+    if(needToAddAllWords){theHTML += `<div class='vocabbox' style='background-color:${thecolor}' onclick="Clicked(this)">All Words</div>`; needToAddAllWords = false; }
+
+    thecolor = "var(--color1)";
+        lesnobj.arr.forEach(wrd => { // greys out if lesson has null word / missing words
+            // Greys out if no data in lesson
+            if(wrd[currentlang] == null || wrd[currentlang] == ""){thecolor = "grey";}
+        })
+        theHTML += `<div class='vocabbox' style='background-color:${thecolor}' onclick="Clicked(this)">${lesnobj.name}</div>`;
     })
-    theHTML += `<div class='vocabbox' style='background-color:${thecolor}' onclick="Clicked(this)">${lesnobj.name}</div>`;
-})
-theHTML += `</div>`;
+    theHTML += `</div>`;
 })
 vocablist.innerHTML = theHTML;
+needToAddAllWords = true;
 
 // When Language box is clicked, switch pages "vlessonoverview"
 function Clicked(h){
+    
     localStorage.setItem("currentvocablesson", h.innerHTML) || "Colors";
     console.log(h.innerHTML);
 

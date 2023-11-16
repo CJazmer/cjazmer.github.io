@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        #henglish{
+            background-color: var(--color1);
+            width: 100%;
+            height: fit-content;
+            padding: .1em 0em .1em .5em;
+            text-align: center;
+            margin: 0em;
+            font-weight: bolder;
+            font-size: 1.5em;
+            text-align: left;
+        }
+        #otherlang{
+            background-color: var(--color2);
+            width: 100%;
+            height: fit-content;
+            padding: 1em 0em 1em .5em;
+            text-align: center;
+            margin: 0em;
+            font-weight: bolder;
+            font-size: 1.5em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+        }
+        .word:hover{
+            background-color: var(--color1);
+            cursor: pointer;
+            visibility: visible;
+        }
+        .hover{
+            position:absolute;
+            font-size: .6em;
+            background-color: var(--color1);
+            transform: translateY(-1em);
+            visibility: hidden;
+        }
+        .word:hover .hover{
+            visibility: visible;
+        }
+        .word:active .hover{
+            visibility: visible;
+        }
+        button{
+            width: 49%;
+            max-height: 2em;
+        }
+	</style>
+</head>
+
+<body>
+    <div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner" style="justify-content:center;">
+            <div id="henglish"></div>
+			<div id="otherlang"></div>
+            <p id="hinfo"></p>
+            <div id="otherlangtext" onclick="playagain()"></div>
+            <button id="btnreveal" onclick="btnClicked('left')">←</button>
+            <button id="btnreveal" onclick="btnClicked('right')">→</button>
+            <div id="words"></div>
+		</div>
+	</div>
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script src="./languagedatabase.js"></script>
+<script src="./langlernlayout.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
+<script>
+    const otherlang = document.getElementById("otherlang");
+    const henglish = document.getElementById("henglish");
+    const hinfo = document.getElementById("hinfo");
+    let indx = 0;
+
+    const oneidaExamples = [
+        {english: `I dont love you`, lang: `(No)te(I to You)ku(love)noluhkwa`, info: ``},
+        {english: `good car`, lang: `(Noun Marker ka or o)ká·(car)sleht(good)i·yó`, info: ``},
+        {english: `I have corn`, lang: `(I to it)wak(corn)nʌst(connector)a(have)yʌ`, info: ``},
+        {english: `Does he know? I dont have any money`, lang: `(he)lo(know)núhte (yes no question)kʌ, (no)te'(I)wak(money)hwíst(connector)a(have)yʌ`, info: ``},
+        {english: `Oneida, TapeRecorder`, lang: `(noun marker)o(stone)nʌy(stand)ote'(?)a·ká·, (noun marker)ka(word)wʌn(connector)a(catch)ye·ná(?)s`, info: ``},
+        {english: `Tree`, lang: `(noun marker)ka(log)lu·t(upright)óte`, info: ``},
+        {english: `He plays music for us`, lang: `(he to us)shukwa(play music, a- removed)tlʌnot(?)ha'se·níhe'`, info: ``},
+        {english: `When he got hungry, he ate`, lang: `onʌ (past)wa(?)hatuhkályake' onʌ (past)wa(?)hatekhu·ní·`, info: ``},
+    ];
+    const spanishExamples = [
+        {english: `did you eat already?`, lang: `(already)ya (eat)com(you, past)iste`, info: `ya means already/yet, put at start of sentence`},
+        {english: `the volcano remains active`, lang: `(the)el (volcano)volcán (it continues | seguir)sigue (active)activo`, info: ``},
+        {english: `I don't know what it is`, lang: `(no)no (i know | saber)sé (what)que (is)es`, info: ``},
+        {english: `what do birds eat?`, lang: `(what)qué (they eat | comer)comen (the | male plural)los (birds)pajaros?`, info: ``},
+        {english: `everything turned out good`, lang: `(everything)todo (it turned out | salir)salío (good)bien `, info: `Salir 'to follow' can be used as 'turn out' outcome`},
+        {english: `theres people behind us that we just met`, lang: `(there is)hay (people)personas (behind)atrás (that)que (we just | acabar)acabamos (...)de (meet)conocer`, info: ``},
+        {english: `cover your mouth when you sneeze or cough`, lang: `(cover! | cubrir)cubre(you)te (the)la (mouth)boca (...)al (sneeze)estornudar (or)o (cough)toser `, info: `a + el = al 'to the'`},
+        {english: `we will have embarrassing moments`, lang: `(we go | ir)vamos (to)a (have)tener (moments)momentos (of)de (embarrassment)vergüenza `, info: ``},
+        {english: `where is he getting these words from?`, lang: `(from)de (where)dónde (is)está (taking out | sacar)sacando (the)las (words)palabras?`, info: ``},
+        {english: `theres no signs, we need to use our instincts to arrive safety`, lang: `(no)no (there is)hay (signs)letreros, (we need | necesitar)necesitamos (to use)utilizar (our)nuestros (instincts)instintos (in order to)para (arrive)llegar (safe)seguro`, info: `para 'for' is also used 'in order to'`},
+        {english: `we try to wright our names on the wall`, lang: `tratamos de escribir nuestros nombres en la pared`, info: ``},
+        {english: `we make a mix, leaf combination`, lang: `(we make | hacer)hacemos (a)una (mix)mezcla, (combination)combinacion (of)de (the)las (leaves)hojas`, info: ``},
+        {english: `i will put it inside the backpack`, lang: `(it)lo (I go)voy (to)a (put)poner (inside)dentro de (the)la (backpack)mochila`, info: ``},
+        {english: `I'm going to help him fill the glasses`, lang: `(him/it)lo (I go)voy (to)a (help)ayudar (to)a (fill)llenar (the)los (glasses)vasos`, info: ``},
+        {english: `i don't want them to find out`, lang: `(no)no (i want | querer)quiero (that)que (reflexive)se (they findout | enterar, subjunctive)enteren`, info: ``},
+        {english: ``, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+
+    ];
+    const arabicExamples = [
+        {english: ``, lang: `(a)قَلَمـ()ـك() و()قلمـ()ـي و()قلمـ()ـنا`, info: ``},
+        {english: `I listen to you`, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+        {english: ``, lang: ``, info: ``},
+    ];
+// قَلَمـ(pen)ـك(your) و(and)قلمـ(pen)ـي(my) و(and)قلمـ(pen)ـنا(our)
+// قَلَمـ(pen)ـك(your) و(and)قلمـ(pen)ـي(my) و(and)قلمـ(pen)ـنا(our)
+// قَلَمـ(pen)ـك(your) و(and)قلمـ(pen)ـي(my) و(and)قلمـ(pen)ـنا(our)
+// ()قَلَمـ()ـك() و()قلمـ()ـي و()قلمـ()ـنا
+
+    let crntarr = arabicExamples;
+    let crntsentence = `<div class="word">`+crntarr[0].lang;
+    
+    function update(){
+    crntsentence = crntsentence.replaceAll(" (",`</div><div class="word" style="padding-left:.5em"><div class="hover">`);
+    crntsentence = crntsentence.replaceAll("(",`</div><div class="word"><div class="hover">`);
+    crntsentence = crntsentence.replaceAll(")",`</div>`);
+
+    crntsentence += "</div>";
+    henglish.innerHTML = crntarr[indx].english;
+    otherlang.innerHTML = crntsentence;
+    }
+    update();
+
+
+
+    btnClicked('left');
+    btnClicked('right');
+
+    function btnClicked(dir){
+        if(dir == 'right'){
+            indx++;
+        }
+        else{
+            indx--;
+        }
+        if(indx >= crntarr.length){indx = 0}
+        if(indx < 0){indx = crntarr.length-1}
+        hinfo.innerHTML = `Sentence: ${indx}/${crntarr.length-1}`;
+
+        crntsentence = `<div class="word">`+crntarr[indx].lang;
+        update();
+    }
+
+</script>

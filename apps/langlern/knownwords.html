@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>LangLern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+        .divtop{
+            width: 100%;
+            height: fit-content;
+            border: .2em solid black;
+            display: flex;
+            justify-content: space-evenly;
+            background-color: var(--color1);
+        }
+        .col{
+            width: 30%;
+            height: 10em;
+            background-color: white;
+        }
+        .col p{
+            text-align: center;
+            background-color: rgb(231, 231, 255);
+            transition: .2s;
+            cursor: pointer;
+        }
+        .col p:hover{
+            transform: scale(1.05);
+        }
+        .scrolly{
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 8em;
+        }
+        #htheword{
+            font-size: 2.5em;
+        }
+        .btnchoice{
+            width: 30%;
+            height: 2em;
+        }
+	</style>
+</head>
+
+<body>
+    <div id="langlernnavbar"></div>
+	<div id="main">
+		<div id="underbanner" style="justify-content:center;">
+            <div class="divtop">
+                <div class="col">
+                    <p id="hyeswords"></p>
+                    <div id="dropdownyes" class="scrolly">
+
+                    </div>
+                </div>
+                <div class="col">
+                    <p id="halmostwords"></p>
+                    <div id="dropdownalmost" class="scrolly">
+
+                    </div>
+                </div>
+                <div class="col">
+                    <p id="hnowords"></p>
+                    <div id="dropdownno" class="scrolly">
+
+                    </div>
+                </div>
+            </div>
+			<div class="divtop">
+                <p id="htheword">egg</p>
+            </div>
+            <div class="divtop">
+                <button onclick="Clicked('yes')" class="btnchoice" style="background-color: rgb(180, 255, 180);">Yes</button>
+                <button onclick="Clicked('almost')" class="btnchoice" style="background-color: rgb(255, 254, 180);">Almost</button>
+                <button onclick="Clicked('no')" class="btnchoice" style="background-color: rgb(255, 180, 180);">No</button>    
+            </div>
+        <button onclick="window.location.href='./vocab.html'" style="width: 100%; height: 4em; margin-top: 5em;">Back</div>
+        <button onclick="window.location.href='./vocab.html'" style="width: 100%; height: 4em; margin-top: 5em;">Back</div>
+		</div>
+	</div>
+</body>
+<footer></footer>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script src="./languagedatabase.js"></script>
+<script src="./langlernlayout.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
+<script>
+const hyeswords = document.getElementById("hyeswords");
+const halmostwords = document.getElementById("halmostwords");
+const hnowords = document.getElementById("hnowords");
+const dropdownyes = document.getElementById("dropdownyes");
+const dropdownalmost = document.getElementById("dropdownalmost");
+const dropdownno = document.getElementById("dropdownno");
+const htheword = document.getElementById("htheword");
+
+let arryes = [];
+let arralmost = [];
+let arrno = [];
+
+let allwords = getAllWords(); // OBJS {}
+let theword = {};
+
+function newWord(){
+    theword = allwords[randomnum(0,allwords.length-1)];
+    htheword.innerHTML = `${theword[currentlang]} (${allwords.length} left)`;
+    
+    hyeswords.innerHTML = `${arryes.length} Yes`;
+    halmostwords.innerHTML = `${arralmost.length} Almost`;
+    hnowords.innerHTML = `${arrno.length} No`;
+
+    dropdownyes.innerHTML = "";
+    dropdownalmost.innerHTML = "";
+    dropdownno.innerHTML = "";
+    arryes.forEach(w => {
+        dropdownyes.innerHTML += `<p>${w.english} | ${w[currentlang]}</p>`;
+    });
+    arralmost.forEach(w => {
+        dropdownalmost.innerHTML += `<p>${w.english} | ${w[currentlang]}</p>`;
+    });
+    arrno.forEach(w => {
+        dropdownno.innerHTML += `<p>${w.english} | ${w[currentlang]}</p>`;
+    });
+}
+newWord();
+
+function Clicked(str){
+    if(str == "yes"){
+        arryes.push(theword);
+    }
+    else if(str == "no"){
+        arrno.push(theword);
+    }
+    else{
+        arralmost.push(theword);
+    }
+
+    allwords.splice(allwords.indexOf(theword,1),1);
+    newWord();
+}
+
+allwords.forEach(w => {
+    console.log(w.english);
+})
+</script>

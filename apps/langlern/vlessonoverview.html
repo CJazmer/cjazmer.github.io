@@ -97,7 +97,7 @@
 <script>
 const vocabwords = document.getElementById("vocabwords");
 const vocabtitle = document.getElementById("vocabtitle");
-let currentlang = localStorage.getItem("currentlang");
+currentlang = localStorage.getItem("currentlang");
 let currentvocablesson = getcurrentvocablesson();
 console.log(currentvocablesson.arr);
 // Gets appriate voice for the language choosen
@@ -111,11 +111,11 @@ function ShowWords(){
     vocabtitle.innerHTML = `${currentvocablesson.name} (${currentvocablesson.arr.length} words)`;
 
     currentvocablesson.arr.forEach(w => {
-        if(w[currentlang] != "..."){
+        
     theHTML += `
     <div class='vocabword' onclick="WordClicked('${w[currentlang]}')"><span class="eng">${w.english}</span><br><span class="lang">${w[currentlang]}</span></div>
     `;
-    }
+    
     });
     vocabwords.innerHTML = theHTML;
 }
@@ -157,6 +157,7 @@ if(localStorage.getItem("llshowextra") == "true"){
     bextra.innerHTML = "Intermediate Words: ON";
 }
 else{
+    localStorage.setItem("llshowextra", "false");
     bextra.innerHTML = "Intermediate Words: OFF";
 }
 function ShowExtra(){

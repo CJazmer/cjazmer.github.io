@@ -72,7 +72,7 @@
 <script>
 const lettersdiv = document.getElementById("lettersholder");
 const hinfo = document.getElementById("info");
-let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 let apiVoiceName = getapivoice();
 responsiveVoice.setDefaultVoice(apiVoiceName);
 
