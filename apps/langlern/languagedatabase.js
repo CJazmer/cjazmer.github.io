@@ -263,9 +263,65 @@ const Oneidalessonobjs = [
   ]},
   ];
 
-const GermanSentences = [
-{otherlang: "", }
+ // SENTENCE EXAMPLES ===========================================
+ const oneidaExamples = [
+  {english: `I dont love you`, lang: `(no)te(I to You)ku(love)noluhkwa`, info: ``},
+  {english: `good car`, lang: `(noun)ká·(car)sleht(good)i·yó`, info: ``},
+  {english: `I have corn`, lang: `(I to it)wak(corn)nʌst(connector)a(have)yʌ`, info: ``},
+  {english: `Does he know? I dont have any money`, lang: `(he)lo(know)núhte (yes no question)kʌ, (no)te'(I)wak(money)hwíst(connector)a(have)yʌ`, info: ``},
+  {english: `Oneida, TapeRecorder`, lang: `(noun)o(stone)nʌy(upright)ote'(people)a·ká·, (noun marker)ka(word)wʌn(connector)a(catch)ye·ná(?)s`, info: ``},
+  {english: `Tree`, lang: `(noun)ka(log)lu·t(upright)óte`, info: ``},
+  {english: `He plays music for us`, lang: `(he to us)shukwa(play music, a- removed)tlʌnot(?)ha'se·níhe'`, info: ``},
+  {english: `When he got hungry, he ate`, lang: `onʌ (past)wa(?)hatuhkályake' onʌ (past)wa(?)hatekhu·ní·`, info: ``},
 ];
+const spanishExamples = [
+  {english: `did you eat already?`, lang: `(already)ya (eat)com(you, past)iste`, info: `ya means already/yet, put at start of sentence`},
+  {english: `the volcano remains active`, lang: `(the)el (volcano)volcán (it continues | seguir)sigue (active)activo`, info: ``},
+  {english: `I don't know what it is`, lang: `(no)no (i know | saber)sé (what)que (is)es`, info: ``},
+  {english: `what do birds eat?`, lang: `(what)qué (they eat | comer)comen (the | male plural)los (birds)pajaros?`, info: ``},
+  {english: `everything turned out good`, lang: `(everything)todo (it turned out | salir)salío (good)bien `, info: `Salir 'to follow' can be used as 'turn out' outcome`},
+  {english: `theres people behind us that we just met`, lang: `(there is)hay (people)personas (behind)atrás (that)que (we just | acabar)acabamos (...)de (meet)conocer`, info: ``},
+  {english: `cover your mouth when you sneeze or cough`, lang: `(cover! | cubrir)cubre(you)te (the)la (mouth)boca (...)al (sneeze)estornudar (or)o (cough)toser `, info: `a + el = al 'to the'`},
+  {english: `we will have embarrassing moments`, lang: `(we go | ir)vamos (to)a (have)tener (moments)momentos (of)de (embarrassment)vergüenza `, info: ``},
+  {english: `where is he getting these words from?`, lang: `(from)de (where)dónde (he is)está (taking out | sacar)sacando (the)las (words)palabras?`, info: ``},
+  {english: `theres no signs, we need to use our instincts to arrive safety`, lang: `(no)no (there is)hay (signs)letreros, (we need | necesitar)necesitamos (to use)utilizar (our)nuestros (instincts)instintos (in order to)para (arrive)llegar (safe)seguro`, info: `para 'for' is also used 'in order to'`},
+  {english: `we try to wright our names on the wall`, lang: `(we try)tratamos de (to write)escribir (our)nuestros (names)nombres (on)en (the)la (wall)pared`, info: ``},
+  {english: `we make a mix, leaf combination`, lang: `(we make | hacer)hacemos (a)una (mix)mezcla, (combination)combinacion (of)de (the)las (leaves)hojas`, info: ``},
+  {english: `i will put it inside the backpack`, lang: `(it)lo (I go)voy (to)a (put)poner (inside)dentro (of)de (the)la (backpack)mochila`, info: ``},
+  {english: `I'm going to help him fill the glasses`, lang: `(him/it)lo (I go)voy (to)a (help)ayudar (to)a (fill)llenar (the)los (glasses)vasos`, info: ``},
+  {english: `i don't want them to find out`, lang: `(no)no (i want | querer)quiero (that)que (reflexive)se (they findout | enterar, subjunctive)enteren`, info: ``},
+  {english: ``, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+
+];
+const arabicExamples = [
+  {english: ``, lang: `(a)قَلَمـ()ـك() و()قلمـ()ـي و()قلمـ()ـنا`, info: ``},
+  {english: `I listen to you`, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+  {english: ``, lang: ``, info: ``},
+];
+const hawaiianExamples = [
+  {english: `Im going to the church`, lang: `(go)hele (I)au (to)i (the)ka (house)hale(pray)pule`, info: ``},
+  {english: `I went to the school`, lang: `(past)ua (go)hele (I)au (to)i (the)ke (school)kula`, info: ``},
+  {english: `the house, the school, the schools`, lang: `(the)ka (house)hale, (the)ke (school)kula, (the plural)na (school)kula`, info: `asdf`},
+  {english: `I eat fish and I drink water`, lang: `(eat)ʻai (I)au (direct object)i (the)ka (fish)iʻa (and)a (drink)inu (I)au (direct object)i (the)ka (water)wai`, info: ``},
+
+];
+const finnishExamples = [
+  {english: `the dogs were in the room`, lang: `(dog)koira(plural)t (they were)olivat (room)huone(in)essa`, info: ``},
+];
+const swahiliExamples = [
+  {english: `I ate fish`, lang: `(I)ni(past)li(eat)kula (fish)samaki`, info: ``},
+];
+// Hindi, Japanese, Korean???
+// قَلَمـ(pen)ـك(your) و(and)قلمـ(pen)ـي(my) و(and)قلمـ(pen)ـنا(our)
+// قَلَمـ(pen)ـك(your) و(and)قلمـ(pen)ـي(my) و(and)قلمـ(pen)ـنا(our)
+// قَلَمـ(pen)ـك(your) و(and)قلمـ(pen)ـي(my) و(and)قلمـ(pen)ـنا(our)
+// ()قَلَمـ()ـك() و()قلمـ()ـي و()قلمـ()ـنا
 
 
 const clrsarr = [
@@ -283,19 +339,19 @@ const clrsarr = [
     ["mediumpurple", "plum"], // Native American 11
 ]
 const languagedatabase = [
-    {name: `spanish`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: Spanishlessonobjs, audioindex: 8},
-    {name: `french`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: null, audioindex: 8},
-    {name: `german`, langfam: `Germanic (west)`, colors:clrsarr[1], lessonsobjs: Germanlessonobjs, audioindex: 3},
-    {name: `swedish`, langfam: `Germanic (north)`, colors:clrsarr[1], lessonsobjs: null, audioindex: 3},
-    {name: `finish`, langfam: `Uralic`, colors:clrsarr[4], lessonsobjs: null, audioindex: 0},
-    {name: `polish`, langfam: `Slavic (west)`, colors:clrsarr[3], lessonsobjs: Polishlessonobjs, audioindex: 16},
-    {name: `russian`, langfam: `Slavic (east)`, colors:clrsarr[3], lessonsobjs: Russianlessonobjs, audioindex: 18},
-    {name: `chinese`, langfam: `Sino-Tibetan`, colors:clrsarr[9], lessonsobjs: Chineselessonobjs, audioindex: 19},
-    {name: `swahili`, langfam: `Bantu`, colors:clrsarr[11], lessonsobjs: null, audioindex: 0},
-    {name: `hawaiian`, langfam: `Polynesian`, colors:clrsarr[10], lessonsobjs: null, audioindex: 0},
-    {name: `arabic`, langfam: `Semetic`, colors:clrsarr[5], lessonsobjs: Arabiclessonobjs, audioindex: 0},
-    {name: `turkish`, langfam: `Turkic`, colors:clrsarr[8], lessonsobjs: null, audioindex: 0},
-    {name: `oneida`, langfam: `Native (Iroquoian)`, colors:clrsarr[11], lessonsobjs: Oneidalessonobjs, audioindex: 0},
+    {name: `spanish`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: Spanishlessonobjs, examples: spanishExamples, audioindex: 8},
+    {name: `french`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: null, examples: null, audioindex: 8},
+    {name: `german`, langfam: `Germanic (west)`, colors:clrsarr[1], lessonsobjs: Germanlessonobjs, examples: null, audioindex: 3},
+    {name: `swedish`, langfam: `Germanic (north)`, colors:clrsarr[1], lessonsobjs: null, examples: null, audioindex: 3},
+    {name: `finish`, langfam: `Uralic`, colors:clrsarr[4], lessonsobjs: null, examples: finnishExamples, audioindex: 0},
+    {name: `polish`, langfam: `Slavic (west)`, colors:clrsarr[3], lessonsobjs: Polishlessonobjs, examples: null, audioindex: 16},
+    {name: `russian`, langfam: `Slavic (east)`, colors:clrsarr[3], lessonsobjs: Russianlessonobjs, examples: null, audioindex: 18},
+    {name: `chinese`, langfam: `Sino-Tibetan`, colors:clrsarr[9], lessonsobjs: Chineselessonobjs, examples: null, audioindex: 19},
+    {name: `swahili`, langfam: `Bantu`, colors:clrsarr[11], lessonsobjs: null, examples: swahiliExamples, audioindex: 0},
+    {name: `hawaiian`, langfam: `Polynesian`, colors:clrsarr[10], lessonsobjs: null, examples: hawaiianExamples, audioindex: 0},
+    {name: `arabic`, langfam: `Semetic`, colors:clrsarr[5], lessonsobjs: Arabiclessonobjs, examples: arabicExamples, audioindex: 0},
+    {name: `turkish`, langfam: `Turkic`, colors:clrsarr[8], lessonsobjs: null, examples: null, audioindex: 0},
+    {name: `oneida`, langfam: `Native (Iroquoian)`, colors:clrsarr[11], lessonsobjs: Oneidalessonobjs, examples: oneidaExamples, audioindex: 0},
 ];
 
 
@@ -303,14 +359,14 @@ const languagedatabase = [
 
 // Vocab Database --------------------------------
 const vColors = [
-    {english: "red", spanish: "rojo", german: `rot`, swedish: "röd", russian: `кра́сный`, arabic: "أَحْمَرْ", questionextra: "<div style='background-color:red; width:1em; height:1em; border-radius:100%'></div>"},
-    {english: "orange", spanish: "naranja", german: `orange`, swedish: "orange", russian: `ора́нжевый`, arabic: "بُرْتُقَانِي", questionextra: "<div style='background-color:orange; width:1em; height:1em; border-radius:100%'></div>"},
+    {english: "red", spanish: "rojo", german: `rot`, swedish: "röd", russian: `кра́сный`, arabic: "أَحْمَرْ", hawaiian: "'ula'ula", questionextra: "<div style='background-color:red; width:1em; height:1em; border-radius:100%'></div>"},
+    {english: "orange", spanish: "naranja", german: `orange`, swedish: "orange", russian: `ора́нжевый`, arabic: "بُرْتُقَانِي", hawaiian: "'alani", questionextra: "<div style='background-color:orange; width:1em; height:1em; border-radius:100%'></div>"},
     {english: "yellow", spanish: "amarillo", german: `gelb`, swedish: "gul", russian: `жёлтый`, arabic: "أَصْفَرْ", questionextra: "<div style='background-color:yellow; width:1em; height:1em; border-radius:100%'></div>"},
     {english: "green", spanish: "verde", german: `grün`, swedish: "grön", russian: `зелёный`, arabic: "أَخْضَرْ", questionextra: "<div style='background-color:green; width:1em; height:1em; border-radius:100%'></div>"},
     {english: "cyan", spanish: "...", german: `hellblau`, swedish: "...", russian: `голубо́й`, arabic: "...", questionextra: "<div style='background-color:cyan; width:1em; height:1em; border-radius:100%'></div>"},
     {english: "blue", spanish: "azul", german: `blau`, swedish: "blå", russian: `си́ний`, arabic: "أَزْرَقْ", questionextra: "<div style='background-color:blue; width:1em; height:1em; border-radius:100%'></div>"},
     {english: "purple", spanish: "morado", german: `lila`, swedish: "lila", russian: `фиоле́товый`, arabic: "مُوفْ", questionextra: "<div style='background-color:purple; width:1em; height:1em; border-radius:100%'></div>"},
-    {english: "black", spanish: "negro", german: `schwarz`, swedish: "svart", russian: `чёрный`, arabic: "إِسْوِدْ", questionextra: "<div style='background-color:black; width:1em; height:1em; border-radius:100%'></div>"},
+    {english: "black", spanish: "negro", german: `schwarz`, swedish: "svart", russian: `чёрный`, arabic: "إِسْوِدْ", hawaiian: "'ele'ele", questionextra: "<div style='background-color:black; width:1em; height:1em; border-radius:100%'></div>"},
     {english: "white", spanish: "blanco", german: `weiß`, swedish: "vit", russian: `бе́лый`, arabic: "أَبْيَضْ", questionextra: "<div style='background-color:white; width:1em; height:1em; border-radius:100%'></div>"},
 ]
 const vNumbers = [
@@ -370,7 +426,7 @@ const vAnimals = [
     {english: "drink", spanish: "la bebida", german: "das Getränk", swedish: "en drink", russian: "напиток"},
     {english: "beer", spanish: "la cerveza", german: "das Bier", swedish: "en öl", russian: "пиво"},
     {english: "wine", spanish: "el vino", german: "der Wein", swedish: "ett vin", russian: "вино", arabic: "نَبيذ"},
-    {english: "ice", spanish: "el hielo", german: "das Eis", swedish: "en is", russian: "лед", arabic: "جَلِيد"},
+    {english: "ice", spanish: "el hielo", german: "das Eis", swedish: "en is", russian: "лед", arabic: "جَلِيد", hawaiian: "hau"},
     {english: "bread", spanish: "el pan", german: "das Brot", swedish: "en bröd", russian: "хлеб", arabic: "خُبْز", tags: "slavic, "},
     {english: "rice", spanish: "el arroz", german: "der Reis", swedish: "ett ris", russian: "рис", arabic: "أُرْز"},
     {english: "egg", spanish: "el huevo", german: "das Ei", swedish: "ett ägg", russian: "яйцо", arabic: "بَيْضة"},
@@ -396,7 +452,7 @@ const vAnimals = [
   const vLandscape = [
     {english: "plant", spanish: "la planta", german: "die Pflanze", russian: "растение", hawaiian: "", lakota: "", oneida: "", arabic: ""},
     {english: "fire", spanish: "el fuego", german: "das Feuer", russian: "огонь", hawaiian: "ahi", lakota: "pȟéta", oneida: "o·tsísteˀ", arabic: "نار", chinese: "火 huǒ"},
-    {english: "air", spanish: "el aire", german: "die Luft", russian: "воздух", arabic: "هَواء"},
+    {english: "air", spanish: "el aire", german: "die Luft", russian: "воздух", arabic: "هَواء", hawaiian: "ea"},
     {english: "sun", spanish: "el sol", german: "die Sonne", russian: "солнце", arabic: "شَّمس", hawaiian: "lā", lakota: "wí", oneida: ""},
     {english: "moon", spanish: "la luna", german: "der Mond", russian: "луна", arabic: "قَمَر", hawaiian: "mahina", lakota: "haŋwí", oneida: "wehní·taleˀ"},
     {english: "star", spanish: "la estrella", german: "der Stern", russian: "звезда", arabic: "نَجْم", hawaiian: "hoku", lakota: "wičháȟpi", oneida: ""},
@@ -407,8 +463,8 @@ const vAnimals = [
     {english: "flower", spanish: "la flor", german: "die Blume", russian: "цветок", hawaiian: "", lakota: "", oneida: "", arabic: ""},
     {english: "forest", spanish: "el bosque", german: "der Wald", russian: "лес", arabic: "غابة"},
     {english: "grass", spanish: "el césped", german: "das Gras", russian: "трава"},
-    {english: "sea", spanish: "el mar", german: "das Meer", russian: "море", arabic: "بَحْر"},
-    {english: "river", spanish: "el río", german: "der Fluss", russian: "река", arabic: "نَهْر"},
+    {english: "sea", spanish: "el mar", german: "das Meer", russian: "море", arabic: "بَحْر", hawaiian: "kai"},
+    {english: "river", spanish: "el río", german: "der Fluss", russian: "река", arabic: "نَهْر", hawaiian: "muliwai"},
     {english: "desert", spanish: "el desierto", german: "die Wüste", russian: "пустыня", arabic: "صَحْراء"},
 
     // Extra
@@ -416,10 +472,10 @@ const vAnimals = [
   ]
   const vWeather = [
     {english: "sky", spanish: "el cielo", german: "der Himmel", russian: "небо",  arabic: "سَماء", hawaiian: "lani", lakota: "maȟpíya", oneida: "romance, slavic, semitic, germanic"},
-    {english: "cloud", spanish: "la nube", german: "die Wolke", russian: "облако"},
+    {english: "cloud", spanish: "la nube", german: "die Wolke", russian: "облако", hawaiian: "ʻōpua"},
     {english: "storm", spanish: "la tormenta", german: "der Sturm", russian: "буря"},
-    {english: "rain", spanish: "la lluvia", german: "der Regen", russian: "дождь", arabic: "مطر"},
-    {english: "snow", spanish: "la nieve", german: "der Schnee", russian: "снег", arabic: "ثَلْج"},
+    {english: "rain", spanish: "la lluvia", german: "der Regen", russian: "дождь", arabic: "مطر", hawaiian: "ua"},
+    {english: "snow", spanish: "la nieve", german: "der Schnee", russian: "снег", arabic: "ثَلْج", hawaiian: "hau"},
   ];
   const vWorld = [
     {english: "world", spanish: "el mundo", german: "die Welt", swedish: "en värld", russian: "мир", tags: "semitic, "},
@@ -437,7 +493,7 @@ const vAnimals = [
     {english: "yard", spanish: "el patio", german: "das Yard", swedish: "...", russian: "двор"},
   ];
   const vBody = [
-    {english: "body", spanish: "el cuerpo", german: "der Körper", swedish: "en kropp", russian: "тело"},
+    {english: "body", spanish: "el cuerpo", german: "der Körper", swedish: "en kropp", russian: "тело", hawaiian: "kino"},
     {english: "head", spanish: "la cabeza", german: "der Kopf", swedish: "ett huvud", russian: "голова", arabic: "رَأس", tags: "semitic, "},
     {english: "face", spanish: "la cara", german: "das Gesicht", swedish: "ett ansikte", russian: "лицо", arabic: "وَجْه"},
     {english: "eye", spanish: "el ojo", german: "das Auge", swedish: "ett öga", russian: "Глаз", arabic: "عَيْن"},
@@ -449,11 +505,11 @@ const vAnimals = [
     {english: "hair", spanish: "el pelo", german: "die Haare", swedish: "ett hår", russian: "волосы"},
     {english: "arm", spanish: "el brazo", german: "der Arm", swedish: "en arm", russian: "..."},
     {english: "hand", spanish: "la mano", german: "die Hand", swedish: "en hand", russian: "...", arabic: "يَدّ"},
-    {english: "hand/arm", spanish: "...", german: "...", swedish: "...", russian: "рука"},
+    {english: "hand/arm", spanish: "...", german: "...", swedish: "...", russian: "рука", hawaiian: "lima"},
     {english: "leg", spanish: "la pierna", german: "das Bein", swedish: "ett ben", russian: "нога", arabic: "رِجْل"},
     {english: "foot", spanish: "el pie", german: "der Fuß", swedish: "en fot", russian: "ступня", arabic: "قَدَم"},
     {english: "skin", spanish: "la piel", german: "die Haut", swedish: "ett skinn", russian: "кожа", arabic: "جِلْد"},
-    {english: "heart", spanish: "el corazon", german: "das Herz", swedish: "ett hjärta", russian: "сердце"},
+    {english: "heart", spanish: "el corazón", german: "das Herz", swedish: "ett hjärta", russian: "сердце", hawaiian: "puʻuwai"},
     {english: "teeth", spanish: "dientes", german: "die Zähne", swedish: "en tänder", russian: "зубы"},
     {english: "lips", spanish: "los labios", german: "die Lippe", russian: "губа"},
 
@@ -565,9 +621,9 @@ const vAnimals = [
     {english: "please", spanish: "por favor", german: "bitte", swedish: "snälla", russian: "пожалуйста"},
     {english: "yes", spanish: "sí", german: "ja", swedish: "ja", russian: "да", arabic: "نَعَم"},
     {english: "no", spanish: "no", german: "nein", swedish: "nej", russian: "нет", arabic: "لا"},
-    {english: "and", spanish: "y", german: "und", swedish: "och", russian: "и", arabic: "و"},
+    {english: "and", spanish: "y", german: "und", swedish: "och", russian: "и", arabic: "و", hawaiian: "a"},
     {english: "because", spanish: "porque", german: "Weil", swedish: "för", russian: "потому что"},
-    {english: "very", spanish: "muy", german: "sehr", swedish: "väldigt", russian: "очень"},
+    {english: "very", spanish: "muy", german: "sehr", swedish: "väldigt", russian: "очень", hawaiian: "loa"},
     {english: "all, everyone/thing", spanish: "todo", german: "alle", swedish: "alla", russian: "все"},
     {english: "thing", spanish: "la cosa", german: "das Ding", swedish: "sak", russian: "штука"},
     {english: "here", spanish: "aquí", german: "hier", swedish: "här", russian: "здесь"},
@@ -594,27 +650,27 @@ const vAnimals = [
     {english: "food", spanish: "la comida", german: "das Essen", swedish: "en mat", russian: "еда"},
     {english: "water", spanish: "el agua", german: "das Wasser", swedish: "ett vatten", russian: "вода", chinese: "水 shuǐ", tags: "romance, "},
     {english: "money", spanish: "el dinero", german: "das Geld", swedish: "en pengar", russian: "деньги"},
-    {english: "house", spanish: "la casa", german: "das Haus", swedish: "ett hus", russian: "дом", arabic: "بَيْت", tags: "romance, semitic"},
+    {english: "house", spanish: "la casa", german: "das Haus", swedish: "ett hus", russian: "дом", arabic: "بَيْت", hawaiian: "hale", tags: "romance, semitic"},
     {english: "bathroom", spanish: "el baño", german: "das Bad", swedish: "ett badrum", russian: "ванная"},
     {english: "phone", spanish: "el celular", german: "das Telefon", swedish: "en telefon", russian: "телефон", arabic: "هاتِف"},
     {english: "job", spanish: "el trabajo", german: "die Arbeit", swedish: "ett jobb", russian: "работа"},
     {english: "shop/store", spanish: "la tienda", german: "das Geschäft", russian: "..."},
     {english: "store/market", spanish: "...", german: "...", russian: "магазин"},
     {english: "light", spanish: "la luz", german: "das Licht", swedish: "ett ljus", russian: "свет", arabic: "ضوء", tags: "romance, "},
-    {english: "life", spanish: "la vida", german: "das Leben", swedish: "ett liv", russian: "жизнь", arabic: "حَياة"},
+    {english: "life", spanish: "la vida", german: "das Leben", swedish: "ett liv", russian: "жизнь", arabic: "حَياة", hawaiian: "ola"},
     {english: "garbage", spanish: "la basura", german: "der Müll", swedish: "ett skräp", russian: "мусор", arabic: "قُمامة"},
 
     {english: "bag", spanish: "la bolsa", german: "die Tasche", swedish: "en väska", russian: "мешок"},
     {english: "box", spanish: "la caja", german: "die Kiste", swedish: "en låda", russian: "коробка"},
     {english: "friend", spanish: "el amigo", german: "der Freund", swedish: "en vän", russian: "друг", arabic: "صَديق"},
-    {english: "god", spanish: "dios", german: "der Gott", swedish: "en gud", russian: "Бог", arabic: "الله"},
+    {english: "god", spanish: "dios", german: "der Gott", swedish: "en gud", russian: "Бог", arabic: "الله", hawaiian: "akua"},
     {english: "team", spanish: "el equipo", german: "ein Team", swedish: "ett lag", russian: "команда"},
-    {english: "music", spanish: "la musica", german: "die Musik", swedish: "en musik", russian: "музыка"},
-    {english: "song", spanish: "la canción", german: "ein Lied", swedish: "en sång", russian: "песня"},
+    {english: "music", spanish: "la musica", german: "die Musik", swedish: "en musik", russian: "музыка", hawaiian: "mele"},
+    {english: "music/song", hawaiian: "mele"},
     {english: "movie", spanish: "la película", german: "der Film", swedish: "en film", russian: "фильм"},
     {english: "game", spanish: "el juego", german: "das Spiel", swedish: "ett spel", russian: "игра"},
     {english: "ball", spanish: "la bola", german: "ein Ball", swedish: "en boll", russian: "мяч"},
-    {english: "church", spanish: "la iglesia", german: "die Kirche", swedish: "kyrka", russian: "церковь"},
+    {english: "church", spanish: "la iglesia", german: "die Kirche", swedish: "kyrka", russian: "церковь", hawaiian: "halepule"},
   ];
   const vPronouns = [
     {english: "I", spanish: "yo", german: "ich", swedish: "jag", russian: "Я"},
@@ -636,12 +692,12 @@ const vAnimals = [
     {english: "obj: yall", spanish: "...", german: "...", swedish: "er", russian: "вас"},
     {english: "obj: them", spanish: "les", german: "...", swedish: "dem", russian: "их"},
 
-    {english: "my", spanish: "mi", german: "mein", swedish: "min/mitt", russian: "мой"},
-    {english: "your", spanish: "tu", german: "dein", swedish: "din/ditt", russian: "твой"},
+    {english: "my", spanish: "mi", german: "mein", swedish: "min/mitt", russian: "мой", hawaiian: "ko'u"},
+    {english: "your", spanish: "tu", german: "dein", swedish: "din/ditt", russian: "твой", hawaiian: "kou"},
     {english: "his", spanish: "...", german: "sein", swedish: "hans", russian: "..."},
     {english: "her", spanish: "...", german: "ihr", swedish: "hennes", russian: "..."},
     {english: "its", spanish: "...", german: "sein", swedish: "dess", russian: "..."},
-    {english: "his/her/it", spanish: "su", german: "...", swedish: "...", russian: "его"},
+    {english: "his/her/it", spanish: "su", german: "...", swedish: "...", russian: "его", hawaiian: "kana"},
     {english: "our", spanish: "nuestro", german: "unser", swedish: "vår/vårt", russian: "наш"},
     {english: "yall's", spanish: "...", german: "euer", swedish: "...", russian: "ваш"},
     {english: "their", spanish: "su", german: "ihr", swedish: "deras", russian: "их"},
@@ -664,10 +720,10 @@ const vAnimals = [
     {english: "message", spanish: "mensaje", german: "die Nachricht"},
   ];
   const vVerbs1 = [
-    {english: "to want", spanish: "querer (quier)", german: "wollen (will)", swedish: "vilija (vill)", russian: "хотеть", arabic: "ريد"},
-    {english: "to need, have to", spanish: "necesitar", german: "müssen", swedish: "måste", russian: ""},
+    {english: "to want", spanish: "querer (quier)", german: "wollen (will)", swedish: "vilija (vill)", russian: "хотеть", arabic: "ريد", hawaiian: "makemake"},
+    {english: "to need, have to", spanish: "necesitar", german: "müssen", swedish: "måste", russian: "", hawaiian: "pono"},
     {english: "to eat", spanish: "comer", german: "essen", swedish: "äta", russian: "есть"},
-    {english: "to drink", spanish: "tomar |take|", german: "trinken", swedish: "dricka (dricker)", russian: "пить", arabic: "شرب"},
+    {english: "to drink", spanish: "tomar |take|", german: "trinken", swedish: "dricka (dricker)", russian: "пить", arabic: "شرب", hawaiian: "inu"},
     {english: "to know fact", spanish: "saber", german: "wissen (weiß)", swedish: "veta (vet)", russian: "знать"},
     {english: "to know about", spanish: "conocer", german: "", swedish: "", russian: ""},
     {english: "to think", spanish: "pensar (piens)", german: "denken", swedish: "tänka (tänker)", russian: ""},
@@ -683,7 +739,8 @@ const vAnimals = [
     {english: "to learn", spanish: "aprender", german: "lernen", swedish: "lära (lär sig)", russian: "", arabic: "تعلم"},
     {english: "to understand", spanish: "entender", german: "", swedish: "", russian: "", arabic: "فهم"},
     {english: "to practice", spanish: "praticar", german: "üben", swedish: "träna (tränar)", russian: ""},
-    {english: "to work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: "рабо́тать", arabic: "عمل"},
+    {english: "to work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: "рабо́тать", arabic: "عمل", hawaiian: "hana"},
+    {english: "to go", spanish: "ir", german: "", swedish: "", russian: "", arabic: "", hawaiian: "hele"},
     {english: "to have", spanish: "tener (tien)", german: "haben", swedish: "ha (har)", russian: ""},
     {english: "to help", spanish: "ayudar", german: "helfen", swedish: "hjälpa (hjälper)", russian: "помогать", arabic: "ساعد"},
     {english: "to like", spanish: "gustar", german: "mögen", swedish: "gilla (gillar)", russian: ""},
@@ -714,6 +771,7 @@ const vAnimals = [
     {english: "to cook", spanish: "cocinar", german: "kochen", russian: "готовить", oneida: "-khuni-"},
     {english: "to swim", spanish: "nadar", german: "schwimmen", russian: "плавать"},
     {english: "to fly", spanish: "volar", german: "fliegen", russian: "летать", arabic: "طير"},
+    {english: "to fly/jump", hawaiian: "lele"},
     {english: "to search/lookfor", spanish: "buscar", german: "suchen", swedish: "sök (söker)", russian: "..."}, // Find & Search are the same????
     {english: "to find", spanish: "encontrar", german: "finden", swedish: "hitta", russian: "...", arabic: "جد"},
     {english: "open", spanish: "abrir", german: "öffnen", arabic: "فتح"},
@@ -854,42 +912,42 @@ const vAnimals = [
 const VocabDatabase = [
 {name: "Main", 
     arr: [
-        {name: "Main1", arr: vMain},
-        {name: "Main2", arr: vMain2},
-        {name: "Pronouns", arr: vPronouns},
-        {name: "Numbers", arr: vNumbers},
-        {name: "Colors",  arr: vColors},
-        {name: "Fruit",  arr: vFruit},
-        {name: "Time",  arr: vTime},
-        {name: "Room",  arr: vRoom},
-        {name: "Food",  arr: vFood},
-        {name: "Other",  arr: vOther},
-        {name: "Materials",  arr: vMaterials},
+        {name: "Main1", arr: vMain, type: "other"},
+        {name: "Main2", arr: vMain2, type: "noun"},
+        {name: "Pronouns", arr: vPronouns, type: "other"},
+        {name: "Numbers", arr: vNumbers, type: "other"},
+        {name: "Colors",  arr: vColors, type: "adjective"},
+        {name: "Fruit",  arr: vFruit, type: "noun"},
+        {name: "Time",  arr: vTime, type: "noun"},
+        {name: "Room",  arr: vRoom, type: "noun"},
+        {name: "Food",  arr: vFood, type: "noun"},
+        {name: "Other",  arr: vOther, type: "noun"},
+        {name: "Materials",  arr: vMaterials, type: "noun"},
     ]
 },
 {name: "People", 
     arr: [
-        {name: "Family",  arr: vFamily},
-        {name: "Body",  arr: vBody},
-        {name: "Clothes",  arr: vClothes},
-        {name: "World",  arr: vWorld},
-        {name: "Language",  arr: vLanguage},
+        {name: "Family",  arr: vFamily, type: "noun"},
+        {name: "Body",  arr: vBody, type: "noun"},
+        {name: "Clothes",  arr: vClothes, type: "noun"},
+        {name: "World",  arr: vWorld, type: "noun"},
+        {name: "Language",  arr: vLanguage, type: "noun"},
     ]
 },
 {name: "Nature", 
     arr: [
-        {name: "Animals",  arr: vAnimals},
-        {name: "Landscape",  arr: vLandscape},
-        {name: "Weather",  arr: vWeather},
+        {name: "Animals",  arr: vAnimals, type: "noun"},
+        {name: "Landscape",  arr: vLandscape, type: "noun"},
+        {name: "Weather",  arr: vWeather, type: "noun"},
     ]
 },
 {name: "Verbs", 
     arr: [
-        {name: "Verbs1",  arr: vVerbs1},
-        {name: "Verbs2",  arr: vVerbs2},
-        {name: "Verbs3",  arr: vVerbs3},
-        {name: "Adjectives1",  arr: vAdjectives1, desc: `All the words...`},
-        {name: "Adjectives2",  arr: vAdjectives2, desc: ``},
+        {name: "Verbs1",  arr: vVerbs1, type: "verb"},
+        {name: "Verbs2",  arr: vVerbs2, type: "verb"},
+        {name: "Verbs3",  arr: vVerbs3, type: "verb"},
+        {name: "Adjectives1",  arr: vAdjectives1, desc: `All the words...`, type: "adjective"},
+        {name: "Adjectives2",  arr: vAdjectives2, desc: ``, type: "adjective"},
     ]
 },
 ];
@@ -910,18 +968,26 @@ if(localStorage.getItem("llshowextra") == "true"){
     showextrawords = true;
 }
 
-function getAllWords(){
+// all/null(includes nouns), verb, 
+function getAllWords(par){
   let temp = [];
   VocabDatabase.forEach(section => {
     section.arr.forEach(lesn => {
         lesn.arr.forEach(wrd => {
 
+          // if word exists / not null
           if(wrd[currentlang] && wrd[currentlang] != "..."){
-            temp.push(wrd);
+            if(!par){ temp.push(wrd); } // include everything if null/not specified
+            // if want verb or is null
+            else if(par.includes("verb") && lesn.type.includes("verb")){ temp.push(wrd); }
+            // if wants adjective
+            else if(par.includes("adjective") && lesn.type.includes("adjective")){ temp.push(wrd); }
+            // if wants noun
+            else if(par.includes("noun") && lesn.type.includes("noun")){ temp.push(wrd); }
           }
           
           // filter out intermediate words if option turned off
-          if(!showextrawords){
+          if(localStorage.getItem('llshowextra') != "true"){
             temp = temp.filter(function (t) { 
               return t.tags == undefined || !t.tags.includes("extra"); 
             });

@@ -39,7 +39,7 @@
 <script>
 const hwordchoose = document.getElementById("hwordchoose");
 const hlangs = document.getElementById("hlangs");
-let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 let db = VocabDatabase;
 let dbfilter = [];
 let crntword = {};

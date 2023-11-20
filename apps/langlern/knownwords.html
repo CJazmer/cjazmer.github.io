@@ -77,8 +77,19 @@
                 <button onclick="Clicked('almost')" class="btnchoice" style="background-color: rgb(255, 254, 180);">Almost</button>
                 <button onclick="Clicked('no')" class="btnchoice" style="background-color: rgb(255, 180, 180);">No</button>    
             </div>
-        <button onclick="window.location.href='./vocab.html'" style="width: 100%; height: 4em; margin-top: 5em;">Back</div>
-        <button onclick="window.location.href='./vocab.html'" style="width: 100%; height: 4em; margin-top: 5em;">Back</div>
+            <div style="margin-top: 2em; background-color: var(--color2);">
+                <div style="display: flex; justify-content: center;">
+                    <lable name="e1">Include Verbs</lable><input name="e1" type="checkbox" checked="checked" id="chkbxverbs" style="margin-right: .5em;">
+                    <lable name="e2">Include Adjectives</lable><input name="e2" type="checkbox" checked="checked" id="chkbxadjectives" style="margin-right: .5em;">
+                    <lable name="e3">Include Nouns</lable><input name="e3" type="checkbox" checked="checked" id="chkbxnouns">
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <lable name="e4">Question in English</lable><input name="e4" type="checkbox" value="0" id="chkbxeng" style="margin-right: .5em;">
+                    <lable name="e5">Intermediate Words</lable><input name="e5" type="checkbox" value="0" id="chkbxintermed">
+                </div>
+                <button onclick="Reset()" style="width: 100%; height: 3em;">Reset</div>
+                <button onclick="window.location.href='./vocab.html'" style="width: 100%; height: 2em;">Back</div>
+            </div>
 		</div>
 	</div>
 </body>
@@ -99,6 +110,12 @@ const dropdownyes = document.getElementById("dropdownyes");
 const dropdownalmost = document.getElementById("dropdownalmost");
 const dropdownno = document.getElementById("dropdownno");
 const htheword = document.getElementById("htheword");
+const chkbxeng = document.getElementById("chkbxeng");
+const chkbxintermed = document.getElementById("chkbxintermed");
+
+console.log(localStorage.getItem("llshowextra"))
+if(localStorage.getItem("llshowextra") == "true"){chkbxintermed.checked = true}
+else {chkbxintermed.checked = false}
 
 let arryes = [];
 let arralmost = [];
@@ -109,8 +126,14 @@ let theword = {};
 
 function newWord(){
     theword = allwords[randomnum(0,allwords.length-1)];
-    htheword.innerHTML = `${theword[currentlang]} (${allwords.length} left)`;
     
+    if(chkbxeng.checked){
+        htheword.innerHTML = `${theword.english} (${allwords.length} left)`;
+    }
+    else{
+        htheword.innerHTML = `${theword[currentlang]} (${allwords.length} left)`;
+    }
+
     hyeswords.innerHTML = `${arryes.length} Yes`;
     halmostwords.innerHTML = `${arralmost.length} Almost`;
     hnowords.innerHTML = `${arrno.length} No`;
@@ -145,7 +168,30 @@ function Clicked(str){
     newWord();
 }
 
-allwords.forEach(w => {
-    console.log(w.english);
-})
+const chkbxverbs = document.getElementById("chkbxverbs");
+const chkbxadjectives = document.getElementById("chkbxadjectives");
+const chkbxnouns = document.getElementById("chkbxnouns");
+
+
+function Reset(){
+    dropdownyes.innerHTML = "";
+    dropdownalmost.innerHTML = "";
+    dropdownno.innerHTML = "";
+    arryes = [];
+    arralmost = [];
+    arrno = [];
+
+    if(chkbxintermed.checked){ localStorage.setItem("llshowextra", "true")}
+    else { localStorage.setItem("llshowextra", "false")}
+
+    let t = "";
+    if(chkbxverbs.checked){t += "verbs, "}
+    if(chkbxadjectives.checked){t += "adjectives, "}
+    if(chkbxnouns.checked){t += "nouns, "}
+    if(chkbxverbs.checked && chkbxadjectives.checked && chkbxnouns.checked){t = null}
+
+    if(t == ""){t = null}
+    allwords = getAllWords(t);
+    newWord();
+}
 </script>

@@ -63,7 +63,7 @@
 
 <script>
 const drpdwn = document.getElementById("drpdwn");
-let currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
+currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 
 ColorThemes.forEach(t => {
     drpdwn.innerHTML += `<option value="${t.name}">${t.name}</option>`;
