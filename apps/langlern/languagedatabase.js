@@ -263,6 +263,23 @@ const Oneidalessonobjs = [
   ]},
   ];
 
+  const Hawaiianlessonobjs = [
+    {name: `Basic1`,
+    lesson: [
+      {english: `I(au) you('oe) he/she('o ia) we(kākou) they(lākou)`, otherlang: ``, hint: ``},
+      {english: `pronoun is after verb "work I"`, otherlang: ``, hint: ``},
+      {english: `say I work`, otherlang: `hana au`, hint: `work: hana`},
+      {english: `say you work and she works`, otherlang: `hana 'oe a hana 'o ia`, hint: `and: a`},
+      
+      {english: `past tense: put 'ua' in front`, otherlang: ``, hint: ``},
+      {english: `say I worked`, otherlang: `ua hana au`, hint: `work: hana`},
+      
+      {english: `because(no ka mea)`, otherlang: ``, hint: ``},
+      {english: `say I worked because I need food`, otherlang: `ua hana au no ka mea pono au (i ka) mea'ai`, hint: `need: pono`},
+
+    ]},
+  ];
+
  // SENTENCE EXAMPLES ===========================================
  const oneidaExamples = [
   {english: `I dont love you`, lang: `(no)te(I to You)ku(love)noluhkwa`, info: ``},
@@ -307,9 +324,10 @@ const arabicExamples = [
 const hawaiianExamples = [
   {english: `Im going to the church`, lang: `(go)hele (I)au (to)i (the)ka (house)hale(pray)pule`, info: ``},
   {english: `I went to the school`, lang: `(past)ua (go)hele (I)au (to)i (the)ke (school)kula`, info: ``},
+  {english: `the bird eats the fish`, lang: `(eat)ʻai (the)ka (fish)manu (direct object)i (the)ka (fish)iʻa`, info: ``},
   {english: `the house, the school, the schools`, lang: `(the)ka (house)hale, (the)ke (school)kula, (the plural)na (school)kula`, info: `asdf`},
-  {english: `I eat fish and I drink water`, lang: `(eat)ʻai (I)au (direct object)i (the)ka (fish)iʻa (and)a (drink)inu (I)au (direct object)i (the)ka (water)wai`, info: ``},
-
+  {english: `I eat fish and I drink water`, lang: `(eat)'ai (I)au (direct object)i (the)ka (fish)i'a (and)a (drink)inu (I)au (direct object)i (the)ka (water)wai`, info: ``},
+  {english: `I went shopping with my friends on sunday`, lang: `(past)ua (go)ele (I)au (infinitive)e (shop)kū'ai (with)me (my)ko'u (plural)mau (friend)hoaaloha (on)ma (the)ka (sunday)lāpula`, info: ``},
 ];
 const finnishExamples = [
   {english: `the dogs were in the room`, lang: `(dog)koira(plural)t (they were)olivat (room)huone(in)essa`, info: ``},
@@ -348,7 +366,7 @@ const languagedatabase = [
     {name: `russian`, langfam: `Slavic (east)`, colors:clrsarr[3], lessonsobjs: Russianlessonobjs, examples: null, audioindex: 18},
     {name: `chinese`, langfam: `Sino-Tibetan`, colors:clrsarr[9], lessonsobjs: Chineselessonobjs, examples: null, audioindex: 19},
     {name: `swahili`, langfam: `Bantu`, colors:clrsarr[11], lessonsobjs: null, examples: swahiliExamples, audioindex: 0},
-    {name: `hawaiian`, langfam: `Polynesian`, colors:clrsarr[10], lessonsobjs: null, examples: hawaiianExamples, audioindex: 0},
+    {name: `hawaiian`, langfam: `Polynesian`, colors:clrsarr[10], lessonsobjs: Hawaiianlessonobjs, examples: hawaiianExamples, audioindex: 0},
     {name: `arabic`, langfam: `Semetic`, colors:clrsarr[5], lessonsobjs: Arabiclessonobjs, examples: arabicExamples, audioindex: 0},
     {name: `turkish`, langfam: `Turkic`, colors:clrsarr[8], lessonsobjs: null, examples: null, audioindex: 0},
     {name: `oneida`, langfam: `Native (Iroquoian)`, colors:clrsarr[11], lessonsobjs: Oneidalessonobjs, examples: oneidaExamples, audioindex: 0},
@@ -419,8 +437,8 @@ const vAnimals = [
     {english: "watermelon", spanish: "sandía", portugese: "melancia", polish: "arbuz", russian: "арбуз", hawaiian: "", german: "die Wassermelone", swedish: "en vattenmelon", arabic: "بَطّيخ"},    
   ]
   const vFood = [
-    {english: "food", spanish: "la comida", german: "das Essen", swedish: "en mat", russian: "еда"},
-    {english: "water", spanish: "el agua", german: "das Wasser", swedish: "ett vatten", russian: "вода", arabic: "ماء"},
+    {english: "food", spanish: "la comida", german: "das Essen", swedish: "en mat", russian: "еда", hawaiian: "mea"},
+    {english: "water", spanish: "el agua", german: "das Wasser", swedish: "ett vatten", russian: "вода", arabic: "ماء", hawaiian: "wai"},
     {english: "bottle", spanish: "la botella", german: "die Flasche", swedish: "en flaska", russian: "бутылка"},
     {english: "milk", spanish: "la leche", german: "die Milch", swedish: "en mjölk", russian: "молоко", arabic: "حَليب"},
     {english: "drink", spanish: "la bebida", german: "das Getränk", swedish: "en drink", russian: "напиток"},
@@ -563,7 +581,7 @@ const vAnimals = [
     {english: "table", spanish: "la mesa", german: "der Tisch", russian: "стол", arabic: "طاوِلة"},
     {english: "chair", spanish: "la silla", german: "der Stuhl", russian: "стул", arabic: "كُرسي"},
     {english: "seat", spanish: "el asiento", german: "der Sitz", russian: "место"},
-    {english: "book", spanish: "el libro", german: "das Buch", russian: "книга", arabic: "كِتاب"},
+    {english: "book", spanish: "el libro", german: "das Buch", russian: "книга", arabic: "كِتاب", hawaiian: "puke"},
     {english: "paper", spanish: "el papel", german: "das Papier", russian: "бумага", arabic: "وَرَق"},
     {english: "door", spanish: "la puerta", german: "die Tür", russian: "дверь", arabic: "باب"},
     {english: "key", spanish: "la llave", german: "der Schlüssel", russian: "ключ", arabic: "مِفْتاح"},
@@ -669,7 +687,7 @@ const vAnimals = [
     {english: "music/song", hawaiian: "mele"},
     {english: "movie", spanish: "la película", german: "der Film", swedish: "en film", russian: "фильм"},
     {english: "game", spanish: "el juego", german: "das Spiel", swedish: "ett spel", russian: "игра"},
-    {english: "ball", spanish: "la bola", german: "ein Ball", swedish: "en boll", russian: "мяч"},
+    {english: "ball", spanish: "la pelota", german: "ein Ball", swedish: "en boll", russian: "мяч"},
     {english: "church", spanish: "la iglesia", german: "die Kirche", swedish: "kyrka", russian: "церковь", hawaiian: "halepule"},
   ];
   const vPronouns = [
@@ -754,12 +772,12 @@ const vAnimals = [
   const vVerbs2 = [
     {english: "to sleep", spanish: "dormir (duer)", german: "schlafen", russian: "спать", arabic: "نام"},
     {english: "to drive", spanish: "manejar", german: "fahren", russian: "водить", arabic: "قود"},
-    {english: "to clean", spanish: "limpiar", german: "sauber", russian: "чистить", arabic: "نظف"},
+    {english: "to clean", spanish: "limpiar", german: "sauber", russian: "чистить", arabic: "نظف", hawaiian: "clean"},
     {english: "to turn off", spanish: "apagar", german: "machen an"},
     {english: "to turn on", spanish: "prender", german: "machen aus"},
     {english: "to play", spanish: "jugar (jueg)", german: "spielen"},
     {english: "to play (instrument)", spanish: "tocar |touch|", german: "..."},
-    {english: "to read", spanish: "leer", german: "lesen", arabic: "قرأ"},
+    {english: "to read", spanish: "leer", german: "lesen", arabic: "قرأ", hawaiian: "heluhelu"},
     {english: "to write", spanish: "escribir", german: "schreiben", arabic: "كتب"},
     {english: "to write/paint", spanish: "...", german: "...", russian: "писа́ть"},
     {english: "to call", spanish: "llamar", german: "rufen"},
@@ -768,7 +786,7 @@ const vAnimals = [
     {english: "to play instrument", spanish: "tocar", german: "..."},
     {english: "to wait", spanish: "esperar", german: "warten", russian: "ждать"},
     {english: "to dance", spanish: "bailar", german: "tanzen", russian: "танцевать(танцу)", arabic: "رقص"},
-    {english: "to cook", spanish: "cocinar", german: "kochen", russian: "готовить", oneida: "-khuni-"},
+    {english: "to cook", spanish: "cocinar", german: "kochen", russian: "готовить", oneida: "-khuni-", hawaiian: "kuke"},
     {english: "to swim", spanish: "nadar", german: "schwimmen", russian: "плавать"},
     {english: "to fly", spanish: "volar", german: "fliegen", russian: "летать", arabic: "طير"},
     {english: "to fly/jump", hawaiian: "lele"},

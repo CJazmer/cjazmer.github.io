@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="langlerncss.css" rel="stylesheet">
+	<title>Dictionary</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Learn Languages">
+	<meta name="keywords" content="Lang, Lern">
+	<style>
+		#hSearchbar {
+			border-radius: 25px;
+			width: 50%;
+		}
+
+		#searchbarbackground {
+			background-color: var(--color3);
+		}
+
+		#outputdiv {
+			line-height: 5px;
+			background-color: dimgray;
+		}
+
+		.holder{
+			height: 5em;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		#hSuggestions{
+			display: flex;
+			flex-wrap: nowrap;
+			overflow-x: scroll;
+			height: auto;
+			text-wrap: nowrap;
+		}
+		
+		.word{
+			background-color: var(--color2);
+			border-radius: .5em;
+			margin-right: .1em;
+			width: fit-content;
+			padding: .2em;
+			transition: .2s;
+			cursor: pointer;
+		}
+		.word:hover{
+			transform: scale(1.1);
+		}
+
+		#hWordOther{
+			width: 100%;
+			color: var(--color1);
+			font-size: 2em;
+			font-weight: bolder;
+			margin-top: .9em;
+		}
+		#hWordEng{
+			width: 100%;
+			color: white;
+			font-size: 1.5em;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="langlernnavbar"></div>
+
+	<div id="main">
+
+		<div id="underbanner" style="justify-content:center;">
+
+
+			<div id="navflex">
+				<h1 style="margin-bottom: 1px"><span id="selectedlanguage">Spanish</span> Dictionary</h1>
+				<select id="hLanguages" style="margin-bottom: 20px; background-color: var(--color1)" onkeypress="updatelang()"></select>
+
+				<div id="searchbarbackground" class="dropdown-content">
+						<input type="text" placeholder="Search Word" id="hSearchbar" oninput="Typed()" />
+						<button onclick="Search()">Search!</button>
+						<div id="hSuggestions"></div>
+					</div>
+
+					<div id="outputdiv">
+						<h1 id="outputnewword"></h1>
+						<h3 id="outputogword"></h3>
+						
+						<div class="holder">
+							<p id="hWordOther"></p>
+							<p id="hWordEng"></p>
+						</div>
+				</div>
+				<button onclick="window.location.href='./langlern.html'" style="width: 100%; height: 2em;">Back</button>
+		    </div>
+	    </div>
+	</div>
+	<footer></footer>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="./languagedatabase.js"></script>
+<script src="/layout.js"></script>
+<script src="./langlernlayout.js"></script>
+<script src="./soundsdatabase.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=j1WhBeQz"></script>
+
+<script>
+let allwords = getAllWords() || null;
+const hLanguages = document.getElementById("hLanguages");
+const hSuggestions = document.getElementById("hSuggestions");
+const hSearchbar = document.getElementById("hSearchbar");
+const hWordEng = document.getElementById("hWordEng");
+const hWordOther = document.getElementById("hWordOther");
+
+
+currentlang = getcurrentlangobj().name;
+
+for(i = 0; i < languagedatabase.length; i++){
+	let extra = "";
+	if(languagedatabase[i].name == currentlang.name){extra = "selected"}
+
+	hLanguages.innerHTML += `<option ${extra} value="${languagedatabase[i].name}">${languagedatabase[i].name}</option>`
+}
+
+
+function Typed() {
+	hSuggestions.innerHTML = "";
+
+	allwords.forEach(w => {
+
+		if(w.english.includes(hSearchbar.value)){
+
+			hSuggestions.innerHTML += `<div class="word" onclick="WordClick('${w.english}')">${w.english}</div>`;
+		}
+	});
+}
+Typed();
+
+function Search(){
+	allwords.forEach(w => {
+		if(hSearchbar.value == w.english){
+			hWordEng.innerHTML = w.english;
+			hWordOther.innerHTML = w[currentlang];
+		}
+	})
+}
+function WordClick(wrd){
+	hSearchbar.value = wrd;
+	Search();
+}
+</script>
