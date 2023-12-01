@@ -15,9 +15,9 @@
 		.displaywords {
 			width: 98%;
 			display: flex;
-			flex-flow: row wrap;
+			flex-wrap: nowrap;
+			overflow-x: scroll;
 			flex-direction: row;
-			justify-content: space-evenly;
 			background-color: gray;
 			padding: .4em;
 		}
@@ -41,6 +41,51 @@
 			padding: 5;
 			color: black;
 		}
+		#hLanguages{
+			width: fit-content;
+			max-width: 90%;
+			margin: auto;
+		}
+
+		#hPos{
+			display: flex;
+			flex-wrap: nowrap;
+			overflow-x: scroll;
+			background-color: black;
+			width: 100%;
+			height: 2em;
+			padding: 1.5em 0em .2em 0em;
+		}
+		.posword{
+			background-color: goldenrod;
+			width: fit-content;
+			color: black;
+			margin-right: .5em;
+		}
+		.pos{
+			background-color: gold;
+			position: absolute;
+			transform: translateY(-1.5em);
+			border-radius: .5em;
+			padding: .1em;
+			font-size: .8em;
+		}
+		table{
+			margin: auto;
+		}
+		table th{
+			width: 9em;
+			text-align: left;
+		}
+		table td{
+			text-align: left;
+		}
+		table input{
+			width: 5em;
+		}
+		table select{
+			width: 5em;
+		}
 	</style>
 </head>
 
@@ -50,24 +95,49 @@
 
 			<div id="navflex">
 
-				<div style="display: flex;">
-						<select name="languages" id="languages">
-							<option value="lang1">my language</option>
-						</select>
-						<button onclick="window.location.href='grammer.html'">Grammer</button>
-						<button onclick="window.location.href='grammer.html'">Grammer</button>
-				</div>
 				<h3>English -> Your Lang</h3>
-			    <textarea id="txtinput"></textarea>
+			    <textarea id="txtinput" onkeyup="Translate()"></textarea>
 				<textarea id="txtoutput"></textarea>
-				<button onclick="TranslateLang()" style="width: 100%; height: 2em;">Translate</button>
+				<div id="hPos"></div>
 				
-				
+				<div>
+					<select id="hLanguages" onchange="LangChanged()"></select>
+					<input type="text" onchange="ChangedLangName(this.value)" id="hLangname">
+				</div>
+				<div>
+					<input type="text" id="hSearch" onkeyup="Search()">
+					<button onclick="Add()">Add</button>
+				</div>
 				<h3>Nouns</h3>
+				
 				<div id="displaynouns" class="displaywords"></div>
+				<div>
+					<label for="plural">Plural Marker</label>
+					<select id="dropdownPlural" name="plural" onchange="PluralRule(this)">
+						<option value="suffix">suffix</option>
+						<option value="prefix">prefix</option>
+						<option value="none">none</option>
+					</select>
+					<input type="text" id="inputPlural" onkeyup="ChangePlural(this)"></select>
+				</div>
+				<label for="gender">Gender/Classes</label>
+					<select id="dropdownPlural" name="gender" onchange="">
+						<option value="none">none</option>
+						<option value="gender">gender</option>
+						<option value="classes">classes (Bantu)</option>
+					</select>
 				<h3>Verbs</h3>
 				<div id="displayverbs" class="displaywords"></div>
 
+
+				<table id="hConjugationTable"></table>
+
+				<h3>Affixes or Cases</h3>
+
+				<h3>Phonology</h3>
+				<table id="hSoundsTable">
+					
+				</table>
 				<footer></footer>
 			</div>
 		</div>
@@ -81,49 +151,197 @@ var txtinput = document.getElementById('txtinput');
 var txtoutput = document.getElementById('txtoutput');
 var displaynouns = document.getElementById('displaynouns');
 var displayverbs = document.getElementById('displayverbs');
+const hSounds = document.getElementById('displayverbs');
+const hLanguages = document.getElementById("hLanguages");
+const hSearch = document.getElementById("hSearch");
+const hPos = document.getElementById('hPos');
 
-var nouns = [
-	{english: "water", lang: ""},
-	{english: "food", lang: ""},
-	{english: "bread", lang: ""},
-	{english: "fish", lang: ""},
-	{english: "rice", lang: ""},
-
-	{english: "animal", lang: ""},
-	{english: "egg", lang: ""}
-]
-var verbs = [
-{english: "eat", lang: ""},
-{english: "drink", lang: ""},
-{english: "speak", lang: ""},
-]
-var main = [
-	{english: "and", lang: ""},
-	{english: "or", lang: ""},
-	{english: "with", lang: ""},
-	{english: "without", lang: ""},
-]
+const inputPlural = document.getElementById("inputPlural");
+const dropdownPlural = document.getElementById("dropdownPlural");
+const hConjugationTable = document.getElementById('hConjugationTable');
+const hSoundsTable = document.getElementById('hSoundsTable');
 
 
-var vowels = ["a", "e", "i", "o", "u"]
-var consonants = ["b", "k", "f", "h", "j", "t", "d", "g", "l", "m", "n", "r", "s", "v", "w", "z"]
+class Language{
+	constructor(name, vowels, consonants, nouns, verbs, adjectives, other){
+		this.name = "new language",
+		this.vowels = ['a', 'e', 'i', 'o', 'u'];
+		this.consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "th", "ch", "sh", "ng", ],
+		this.nouns = [
+			{english: "water", lang: ""},
+			{english: "food", lang: ""},
+			{english: "bread", lang: ""},
+			{english: "fish", lang: ""},
+			{english: "rice", lang: ""},
+			{english: "animal", lang: ""},
+			{english: "egg", lang: ""}
+		];
+		this.verbs = [
+			{english: "eat", lang: ""},
+			{english: "drink", lang: ""},
+			{english: "speak", lang: ""},
+		],
+		this.adjectives = [];
+		this.other = [];
 
-nouns.forEach(word => {
-word.lang = MakeWord(2)	
-});
-verbs.forEach(word => {
-word.lang = MakeWord(2)	
-});
-main.forEach(word => {
-word.lang = MakeWord(1)	
-});
+		this.conjugationtype = "european"; // basic european
+		this.ruleplural = {affix: "s", location: "suffix"}; // prefix, suffix
+		this.ruleEuroConjugation = [
+			{pronoun: "i", tense: "now", affix: ""},
+			{pronoun: "you", tense: "now", affix: ""},
+			{pronoun: "he,she,it", tense: "now", affix: "s"},
+			{pronoun: "we", tense: "now", affix: ""},
+			{pronoun: "they", tense: "now", affix: ""},
+			{pronoun: "i", tense: "past", affix: "ed"},
+			{pronoun: "you", tense: "past", affix: "ed"},
+			{pronoun: "he,she,it", tense: "past", affix: "ed"},
+			{pronoun: "we", tense: "past", affix: "ed"},
+			{pronoun: "they", tense: "past", affix: "ed"},
+			{pronoun: "i", tense: "future", affix: ""},
+			{pronoun: "you", tense: "future", affix: ""},
+			{pronoun: "he,she,it", tense: "future", affix: ""},
+			{pronoun: "we", tense: "future", affix: ""},
+			{pronoun: "they", tense: "future", affix: ""},
+			{pronoun: "i", tense: "conditional", affix: ""},
+			{pronoun: "you", tense: "conditional", affix: ""},
+			{pronoun: "he,she,it", tense: "conditional", affix: ""},
+			{pronoun: "we", tense: "conditional", affix: ""},
+			{pronoun: "they", tense: "conditional", affix: ""},
+		]
+		this.appositions = ["in,on,at", "of, from"];
+	}
+	conjugate(){
+
+	}
+}
+
+let langindex = 0;
+let languages = [];
+languages.push(new Language); // default
+
+let thelang = languages[0];
+let irrEnglishPast = [
+	{eng: "eat", irr: "ate"},
+	{eng: "say", irr: "said"},
+	{eng: "go", irr: "went"},
+	{eng: "take", irr: "took"},
+	{eng: "see", irr: "saw"},
+	{eng: "know", irr: "knew"},
+	{eng: "get", irr: "got"},
+	{eng: "find", irr: "found"},
+];
+let engPronouns = ["i", "you", "he", "she", "it", "we", "they", "yall"]
+let engVerbs = ["eat", "walk", "speak", "talked"];
+let engNouns = ["water", "food", "sand"];
+
+function Refresh(){
+	// Display Languages in Dropdown
+	hLanguages.innerHTML = "";
+	languages.forEach(l => { hLanguages.innerHTML += `<option value="${l.name}">${l.name}</option>`; })
+	hLanguages.innerHTML += `<option value="new" style="background-color: green">new+</option>`;
+	hLanguages.selectedIndex = langindex;
+
+	thelang = languages[langindex];
+
+
+
+	// Display nouns ==================
+	if(thelang.nouns){
+		displaynouns.innerHTML = "";
+		thelang.nouns.forEach(n => {	
+			let clr = "white";
+			if(!n.lang){clr = "grey"}
+
+		displaynouns.innerHTML += `
+			<div class="wordholder">	
+				<div class="eng"><input type="text" class="eng" value="${n.english}"></div>
+				<div class="lang"><input type="text" class="lang" value="${n.lang}" onkeyup="EditWord(this, '${n.english}', 'nouns')" onchange="Refresh()" style="background-color: ${clr}"></div>
+			</div>
+			`
+		});
+	}
+	// Display verbs
+	if(thelang.verbs){
+		displayverbs.innerHTML = "";
+		thelang.verbs.forEach(v => {	
+			let clr = "white";
+			if(!v.lang){clr = "grey"}
+
+		displayverbs.innerHTML += `
+			<div class="wordholder">	
+				<div class="eng"><input type="text" class="eng" value="${v.english}"></div>
+				<div class="lang"><input type="text" class="lang" value="${v.lang}" onkeyup="EditWord(this, '${v.english}', 'verbs')"  onchange="Refresh()" style="background-color: ${clr}"></div>
+			</div>
+			`
+		});
+	}
+
+	RefreshConjugation();
+
+	// Rules
+	dropdownPlural.value = thelang.ruleplural.location;
+	inputPlural.value = thelang.ruleplural.affix;
+
+
+	document.getElementById('hLangname').value = thelang.name;
+
+	console.log(thelang.nouns)
+
+	console.log(thelang)
+	Translate();
+}
+Refresh();
+
+// When languages dropdown changed
+function LangChanged(){
+	if(hLanguages.value == "new"){
+		languages.push(new Language);
+		Refresh();
+		hLanguages.selectedIndex = 0;
+	}
+	else{
+		langindex = hLanguages.selectedIndex;
+		Refresh();
+	}
+}
+
+function Add(){
+ 	thelang.nouns.push({english: hSearch.value, lang: ""});
+	Refresh()
+}
+
+function Search(){
+
+}
+
+
+function EditWord(ele, eng, type){
+		thelang[type].forEach(n => {
+			if(n.english == eng){n.lang = ele.value;}
+		});
+	Translate();
+}
+
+
+// Plural Marker ================================
+// When plural marker txtbox typed in
+function ChangePlural(ele){
+	thelang.ruleplural.affix = ele.value;
+	Refresh();
+}
+// When plural dropdown is changed
+function PluralRule(ele){
+	thelang.ruleplural.location = ele.value;
+	Refresh();
+}
+
 
 
 function MakeWord(syllables) {
 var word = ""
 for (var i = 0; i < syllables; i++) {
-	word += consonants[randomnum(0,consonants.length-1)]
-	word += vowels[randomnum(0,vowels.length-1)]
+	word += thelang.consonants[randomnum(0,thelang.consonants.length-1)]
+	word += thelang.vowels[randomnum(0,thelang.vowels.length-1)]
 } 
 return word
 }
@@ -131,52 +349,257 @@ return word
 
 
 
-// arr = array of words, where = the container to put it in
-function displaywords(arr, where){
-arr.forEach(n => {
-        var e = document.createElement("div"); 
-		e.innerHTML = n.english
-		e.className = "eng"
 
-		var ee = document.createElement("div"); 
-		ee.innerHTML = n.lang
-		ee.className = "lang"
+function Translate(){
+	let sentence = txtinput.value;
+	let splt = sentence.split(" ");
+	let sentencewords = []; 
+	/*
+	(Separate words by spaces)
+	sentencewords = [
+		{eng: "I", lang: "", pos: ""}
+		{eng: "love", lang: "", pos: ""}
+		{eng: "you", lang: "", pos: ""}
+	]
+	*/
+	splt.forEach(w => {sentencewords.push({eng: w.toLowerCase(), lang: "", pos: ""})});
 
-		var contain =  document.createElement("div"); 
-		contain.appendChild(e)
-		contain.appendChild(ee)
-		contain.className = "wordholder"
-        where.appendChild(contain);
-    });
+
+	/*
+	(Find part of speech 'pos', put lang: in order)
+	sentencewords = [
+		{eng: "I", lang: "I", pos: "pronoun"}
+		{eng: "love", lang: "love", pos: "verb"}
+		{eng: "your", lang: "your", pos: "possessive"}
+		{eng: "drinks", lang: "drink-s", pos: "noun-plural"}
+	]
+	*/
+	let output = "";
+	let posOutput = "";
+	for(i=0; i<sentencewords.length; i++){
+		let w = sentencewords[i]; 
+		let wb = sentencewords[i-1] || ""; // word before
+		let wa = sentencewords[i+1] || ""; // word after
+
+
+		// Search Verbs and Tense (verb, verb-past, verb-future)
+		let arrverbs = engVerbs; 
+		thelang.verbs.forEach(v => {arrverbs.push(v.english)})
+
+		arrverbs.forEach(v => { 
+			if(w.eng == `${v}ed`){w.pos = "verb-past"; w.lang = w.eng.slice(0,-2);}
+			if(w.eng == `${v}s`){w.pos = "verb"; w.lang = w.eng.slice(0,-1);}
+			else if(w.eng == v && wb.eng == "will"){w.pos = "verb-future"; w.lang = w.eng; sentencewords = sentencewords.slice(i); i--}
+			else if(w.eng == v && wb.eng == "would"){w.pos = "verb-conditional"; w.lang = w.eng; sentencewords = sentencewords.slice(i); i--}
+			else if(w.eng == v){w.pos = "verb"; w.lang = w.eng;}
+		});
+
+
+		// Search Nouns, Plural (noun, noun-plural)
+		let arrnouns = engNouns;
+		thelang.nouns.forEach(n => {arrnouns.push(n.english)})
+
+		engNouns.forEach(n => { 
+			if(!w.pos.includes("verb")){
+				if(w.eng == `${n}s`){w.pos = "noun-plural"}
+				else if(w.eng == n){w.pos = "noun"}
+			}
+		})
+
+
+		// if Plural (eng 's' at end) {eng: "drinks", lang: "", pos: "noun-plural"}
+		if(w.pos.includes('plural')){
+			if(thelang.ruleplural.location == "prefix"){
+				w.lang = `${thelang.ruleplural.affix}-${w.lang}`; // s-drink
+				w.pos = "plural-noun";
+			}
+			else if(thelang.ruleplural.location == "suffix"){ 
+				w.lang += `-${thelang.ruleplural.affix}`; // drink-s
+				w.pos = "noun-plural";
+			}
+		}
+
+		engPronouns.forEach(p => {
+			if(w.eng == p){w.pos = "pronoun"}
+		})
+		
+
+
+
+		// If using European Conjugation 
+		if(thelang.conjugationtype == "european"){
+			// if pronoun, verb
+			if(wb.pos == "pronoun" && w.pos.includes("verb")){
+				thelang.ruleEuroConjugation.forEach(c => {
+					// if pronoun can conjugate (c is obj)
+					if(c.pronoun.includes(wb.eng)){
+
+						// if past tense
+						if(w.pos == "verb-past" && c.tense == "past"){
+							w.lang += `-${c.affix}`;
+							w.pos += `${c.pronoun}/${c.tense}`;
+						}
+						else if(w.pos == "verb-future" && c.tense == "future"){
+							w.lang += `-${c.affix}`;
+							w.pos += `${c.pronoun}/${c.tense}`;
+						}
+						else if(w.pos == "verb-conditional"){
+							w.lang += `-${c.affix}`;
+							w.pos += `-${c.pronoun}/${c.tense}`;		
+						}
+						else if(w.pos == "verb"){
+							w.lang += `-${c.affix}`;
+							w.pos += `-${c.pronoun}/${c.tense}`;		
+						}
+						wb.lang = ""; // remove pronoun before
+					}
+				})
+			}
+		}
+		// if using Bantu conjugation
+		if(thelang.conjugationtype == "basic"){
+
+		}
+
+
+	if(w.lang == ""){ w.lang = w.eng; }
+		/*
+	(Translate each morpheme between '-', use pos to be more accurate) *lang is still in english
+	sentencewords = [
+		{eng: "love-I", lang: "am-o", pos: "verb-pronoun"}
+		{eng: "your", lang: "tu", pos: "possessive"}
+		{eng: "drinks", lang: "bebita-s", pos: "noun-plural"}
+	]
+	*/
+
+		// Nouns
+		thelang.nouns.forEach(n => {
+			if(n.lang){ w.lang = w.lang.replaceAll(n.english, n.lang);}
+		});
+
+		// Verbs
+		thelang.verbs.forEach(v => {
+			if(v.lang){ w.lang = w.lang.replaceAll(v.english, v.lang); }
+		});
+
+		sentencewords[i] = w;
+		output += `${w.lang} `;
+		posOutput += `<div class="posword"><div class="pos">${w.pos}</div>${w.lang}</div>`;
+	}
+
+
+	txtoutput.value = output.replaceAll('-', '');
+	hPos.innerHTML = posOutput;
+	console.log("==============================");
+	sentencewords.forEach(w => { console.log(`${w.eng} | ${w.lang}(${w.pos})`)})
 }
-displaywords(nouns, displaynouns);
-displaywords(main, displaynouns)
-displaywords(verbs, displayverbs)
 
 
-txtoutput.enabled = false;
-function TranslateLang() {
-txtoutput.textContent = "";
-var txteng = txtinput.value.toString().split(" ")
-var words = []
 
-var theword = "";
-txteng.forEach(w => {
-	theword = ""
-	
-nouns.forEach(noun => {	
-	if (w == noun.english) { theword = noun.lang }	
-})
 
-main.forEach(m => {	
-	if (w == m.english) { theword = m.lang }	
-})
 
-if (theword == "") {theword = w}
 
-words.push(theword)
-txtoutput.value += theword + " ";
-})
+function RefreshConjugation(){
+	let theHTML = `
+		<tr><td>Conjugation Style</td>
+			<td>
+				<select id="hSelectConjugation" onchange="ChangedConjuType()">
+					<option value="european">affix for tense/person (IndoEuropean) </option>
+					<option value="basic">vowel (semitic)</option>
+					<option value="separate">separate word (Asian)</option>
+					<option value="compact">transitive (Person to Person) (Native American)</option>
+				</select>
+			</td>
+	`;
+
+	if(thelang.conjugationtype == "european"){
+		theHTML += `
+			<td>
+				<select id="e">
+					<option value="suffix">suffix</option>
+					<option value="prefix">prefix</option>
+				</select>
+			</td>
+		</tr>
+		<tr><th></th><td>now</td><td>past</td><td>future</td><td>conditional</td></tr>
+
+		`;
+
+		
+		let prons = [];
+		thelang.ruleEuroConjugation.forEach(o => {
+			if(!prons.includes(o.pronoun)){prons.push(o.pronoun)}
+		})
+
+		prons.forEach(p => {
+			let n = "";
+			let past = "";
+			let f = "";
+			let c = "";
+
+			thelang.ruleEuroConjugation.forEach(r => {
+				if(r.pronoun == p){
+					if(r.tense == "now"){n = r.affix}
+					if(r.tense == "past"){past = r.affix}
+					if(r.tense == "future"){f = r.affix}
+					if(r.tense == "conditional"){c = r.affix}
+				}
+			})
+			
+			theHTML += `
+			<tr><th>${p}</th>
+				<td><input type="text" value="${n}" style="background-color: lightgreen" onkeyup="ChangedEuroConj('${p}','now',this.value)"></td>
+				<td><input type="text" value="${past}" style="background-color: lightyellow" onkeyup="ChangedEuroConj('${p}','past',this.value)"></td>
+				<td><input type="text" value="${f}" style="background-color: lightblue" onkeyup="ChangedEuroConj('${p}','future',this.value)"></td>
+				<td><input type="text" value="${c}" style="background-color: plum" onkeyup="ChangedEuroConj('${p}','conditional',this.value)"></td></tr>
+			`;
+
+
+		});
+		'';
+		hConjugationTable.innerHTML = theHTML;
+		/*
+		thelang.ruleEuroConjugation.forEach(r => {
+			hConjugationTable.innerHTML += `<tr><th>${r.tense} | ${r.pronoun}</th><td><input type="text" value="${r.affix}"></td></tr>`;
+		});
+		*/
+	}
+
+	const hSelectConjugation = document.getElementById("hSelectConjugation");
+	hSelectConjugation.value = thelang.conjugationtype;
 }
+
+
+function ChangedEuroConj(pn, tns, txt){
+	thelang.ruleEuroConjugation.forEach(r => {
+		if(r.tense == tns && r.pronoun == pn){
+			r.affix = txt;
+			Refresh();
+		}
+	});
+}
+
+function ChangedConjuType(){
+	thelang.conjugationtype = hSelectConjugation.value
+	Refresh();
+}
+
+function ChangedLangName(txt){
+	thelang.name = txt;
+	Refresh();
+}
+
+hSoundsTable.innerHTML = `
+	<tr><th>Vowels</th><td><input type="text" value="${thelang.vowels}"</td></tr>
+	<tr><th>Consonants</th><td><input type="text" value="${thelang.consonants}"></td></tr>
+	<tr><th>Letter Changes "alternation"</th><td><input type="text" value=""></td></tr>
+	<tr><th>Consonant Cluster Limit</th><td>
+		<label for="cv1">Limit</label><input type="text" value="CCVCCC" name="cv1"><br>
+		<label for="cv2">Epenthetic Vowel</label><input type="text" value="a" name="cv2"><br>
+		*C: consonant, V: vowel, how many consonants are allowed to cluster per word? *ex: CCVCC*
+	</td></tr>
+`;
+
+
 function randomnum(min, max){return Math.floor(Math.random() * (max - min + 1)) + min}
 </script> 
