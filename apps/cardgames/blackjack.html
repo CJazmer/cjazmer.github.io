@@ -7,17 +7,19 @@
 	<meta name="keywords" content="random, info, generator">
 	<style>
 		.cardup{
-            width: 4em;
-            height: 7em;
-            margin-right: -3em;
+            width: 2.5em;
+            height: 4.3em;
+            margin-right: -2em;
             background-color: white;
             border-radius: 10%;
             border: .2em solid black;
             padding: .5em;
+            font-size: 1.3em;
+            font-weight: bolder;
         }
         .carddown{
-            width: 4em;
-            height: 7em;
+            width: 3.5em;
+            height: 5.8em;
             padding: .5em;
             margin-right: -4em;
             background-image: radial-gradient(blue, cyan);
@@ -26,9 +28,9 @@
             text-align: center;
         }
         .smallcard{
-            width: 3em;
-            height: 5em;
-            margin-right: -1em;
+            width: 2em;
+            height: 4em;
+            margin-right: -.3em;
             margin-bottom: -3em;
         }
         #deckview{
@@ -85,6 +87,18 @@
             margin: 0em;
             padding: .5em;
         }
+        #hbasicstrat{
+            background-color: gainsboro;
+            text-align: center;
+            border-collapse:collapse;
+        }
+        #hbasicstrat tr{
+            border: .02em solid black;
+        }
+        #hbasicstrat td{
+            padding: .2em;
+            border: .02em solid black;
+        }
     </style>
 </head>
 
@@ -93,19 +107,19 @@
 			<div id="layoutpagenav"></div>
 
             <div class="cardholder" id="haideck"></div>
-            <p class="score"><span id="heading"></span> (<span id="themove"></span>) <br>
-                 You: <span id="playerscore"></span> | AI: <span id="aiscore"></span> <br> 
-                 <label for="numbers">Bet:</label>
-            <select name="numbers" id="dropdowncurrentbet">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20" selected>20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="200">200</option>
-            </select>
-                 <span id="hmoney"></span>
-            </p>
+                    <p class="score" id="hmiddle"><span id="heading"></span> (<span id="themove"></span>) <br>
+                        You: <span id="playerscore"></span> | AI: <span id="aiscore"></span> <br> 
+                        <label for="numbers">Bet:</label>
+                        <select name="numbers" id="dropdowncurrentbet">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected>20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                        </select>
+                        <span id="hmoney"></span>
+                    </p>
             <div class="cardholder" id="hplayerdeck"></div>
             <div class="flex">
                 <button onclick="Hit()">Hit</button>
@@ -138,6 +152,7 @@
                     <td><button onclick="ApplyRules()" style="background-color: greenyellow;">Apply Settings</button></td>
                 </tr>
             </table>
+            <button onclick="autoplay()" id="hautoplay">auto play: OFF</button>
             <p class="score"> RunningCount: <span id="hcardcount"></span> | TotalDecks: <span id="hnumofdecks"></span></p>
             <div id="deckview"></div>
 
@@ -146,15 +161,17 @@
                 <b>DoubleDown:</b> DoublesBet, Draws a card, ends turn<br>
                 <b>Insurance:</b> When dealer has Ace, you bet if they have a 10/blackjack as the other card and win money if they do<br>
                 <b>Surrender:</b> If you think youll lose, Only lose half your bet and lose<br>
-                <b>YOU:</b> 17+ (Stand), 16- (hit if dealer 7+), 10/11 (DoubleDown)<br>
-                <b>Dealer:</b> 6- (Stand), 7+ (hit)<br>
+                <b>YOU:</b> Stand 11+, Hit if Dealer 7+, never hit over 16 too high, 10/11 (DoubleDown)<br>
+                <b>Dealer:</b> draws until 16<br>
                 <b>CardCount:</b> +0.5% in your favor for every +1 true count (bet higher)<br>
-                <i>!Splitting and soft/Ace decks don't work yet!</i>
+                <i>!Splitting doesnt work yet!</i>
             </p>
             <table>
                 <tr><th>Win Rate</th><td id="hwinrate"></td></tr>
                 <tr><th>Money Gain</th><td id="hmoneystats"></td></tr>
             </table>
+            <table id="hbasicstrat"></table>
+
             <footer></footer>
 			</div>
 		</div>
@@ -177,6 +194,9 @@
     const dropdowncurrentbet = document.getElementById("dropdowncurrentbet");
     const hwinrate = document.getElementById("hwinrate");
     const hmoneystats = document.getElementById("hmoneystats");
+    const hbasicstrat = document.getElementById("hbasicstrat");
+    const hmiddle = document.getElementById("hmiddle");
+    const hautoplay = document.getElementById("hautoplay");
 
 // ♥️♠️♦️♣️
 const defaultdeck = [
@@ -184,6 +204,16 @@ const defaultdeck = [
     "A♥️", "2♥️", "3♥️", "4♥️", "5♥️", "6♥️", "7♥️", "8♥️", "9♥️", "10♥️", "J♥️", "Q♥️", "K♥️",
     "A♦️", "2♦️", "3♦️", "4♦️", "5♦️", "6♦️", "7♦️", "8♦️", "9♦️", "10♦️", "J♦️", "Q♦️", "K♦️",
     "A♣️", "2♣️", "3♣️", "4♣️", "5♣️", "6♣️", "7♣️", "8♣️", "9♣️", "10♣️", "J♣️", "Q♣️", "K♣️",
+];
+const basicstrat = [
+    {d: "5", player: "", move: "h"},
+    {d: "6", player: "", move: "h"},
+    {d: "7", player: "", move: "h"},
+    {d: "", player: "", move: ""},
+    {d: "", player: "", move: ""},
+    {d: "", player: "", move: ""},
+    {d: "", player: "", move: ""},
+    {d: "", player: "", move: ""},
 ];
 let deck = [].concat(defaultdeck);
 let playerdeck = [];
@@ -205,6 +235,8 @@ let runningcount = 0;
 let MoneyGain = 0;
 let startmoney = 200;
 let doubleddown = false;
+let resettime = 4000;
+let autoplaying = false;
 
 reset();
 ShuffleDeck();
@@ -212,6 +244,9 @@ function reset(){
     heading.innerHTML = "Play!";
     gameended = false;
     runningcount = 0;
+
+    //<button style="width: 100%;" onclick="reset()">Deal</button>
+
 
 aideck = []; 
 DrawCard("ai");
@@ -227,6 +262,7 @@ function UpdateScreen(){
     hplayerdeck.innerHTML = ""; 
     haideck.innerHTML = "";
     hmoney.innerHTML = `$${playermoney} (Gain $${MoneyGain})`;
+
 
     for(i=0; i<playerdeck.length; i++){
         let styl = ""
@@ -267,7 +303,22 @@ function UpdateScreen(){
     hmoneystats.innerHTML = `$${startmoney} to $${playermoney} | ${sign}$${MoneyGain} (${sign + Math.floor((MoneyGain/startmoney)*100)}%)`;
     document.getElementById("inputplayermoney").value = playermoney;
     if(SumArray(playerdeck) == 21){EndGame("Win (Blackjack!)")}
+
+    if(autoplaying){
+        resettime = 0;
+        let pp = SumArray(playerdeck);
+        let aai = SumArray(aideck.slice(0,1));
+
+        console.log(`${pp} against ${aai}: ${BestMove(pp,aai)}`);
+        if(BestMove(pp,aai).includes("Hit")){Hit()}
+        else if(BestMove(pp,aai).includes("Stand")){Stand()}
+        else if(BestMove(pp,aai).includes("Double")){DoubleDown()}
+        else if(BestMove(pp,aai).includes("Surr")){Surrender()}
+    }
+    else{ resettime = 4000; }
+    console.log(getCardCount());
 }
+
 
 
 // Player Moves -------------------------------
@@ -345,6 +396,7 @@ function RevealCards(){
 
 function EndGame(msg){
 if(!gameended){
+    console.log(msg)
     gameended = true;
     if(msg.includes("draw")){}
     else if(msg.toLowerCase().includes("win")){
@@ -363,22 +415,34 @@ if(!gameended){
     heading.innerHTML = msg;
     setTimeout(function timer() {
             reset();
-    }, 4000);
+    }, resettime);
 }
 }
 
-function BestMove(plr, ai){
+function BestMove(plr, ai, issoft){
     let r = "...";
     plr = ToNum(plr);
     ai = ToNum(ai);
+    if(!issoft){issoft = false}
 
-    if((ToNum(playerdeck[0]) == ToNum(playerdeck[1])) && playerdeck.length == 2 && playerdeck[0] != "10"){r = "<b>Split</b> *always split, except for 10s";}
-    else if(plr >= 17){r = "<b>Stand</b> *you're too high"}
-    else if((plr == 10 || plr == 11) && ai <= 8){r = "<b>Double Down</b>"}
-    else if(plr == 15 || plr == 16 && (ai == 10 || ai == 11)){r = "<b>Surrender/Hit</b>"}
-    else if(plr <= 16 && ai >= 7){r = "Hit"}
-    else if(ai <= aiDrawThreshold){r = "stand"}
-    else if(ai > aiDrawThreshold){r = "hit"}
+    if((ToNum(playerdeck[0]) == ToNum(playerdeck[1])) && playerdeck.length == 2 && playerdeck[0] != "10"){r = "Split *always split, except for 10s";}
+    if(plr >= 17){r = "Stand *you're too high"}
+
+    if(plr <= 16 && ai >= 7){r = "Hit"}
+    else if(plr <= 16 && ai <= 7){r = "Stand"}
+    else if(ai <= aiDrawThreshold){r = "Stand"}
+    else if(ai > aiDrawThreshold){r = "Hit"}
+
+    if(plr <= 11){r = "Hit"}
+    if(plr == 12 && (ai == 2 || ai == 3)){r = "Hit"}
+    if(plr == 9 && (ai <= 6 && ai != 2)){r = "Double Down"}
+    if(plr == 10 && ai <= 9){r = "Double Down"}
+    if(plr == 11){r = "Double down"}
+    if(plr == 16 && (ai == 10 || ai == 11)){r = "Surrender"}
+    if(plr >= 17){r = "Stand"}
+
+    // if((plr == 15 || plr == 16) && (ai == 10 || ai == 11)){r = "Surrender/Hit"}
+
 
     return r;
 }
@@ -400,7 +464,13 @@ function ToNum(n){
 }
 function SumArray(arr){
     let sum = 0;
-    arr.forEach(n => {sum += ToNum(n)});
+    let hasA = false;
+    arr.forEach(n => {
+        sum += ToNum(n);
+        if(n.includes("A")){hasA = true;}
+    });
+    
+    if(sum > 21 && hasA){sum -= 10; console.log(`ACE: ${sum+10} is now ${sum}`)}
     return sum;
 }
 function DrawCard(playr){
@@ -459,5 +529,44 @@ function CheckForWinner(){
     else if(SumArray(playerdeck) < SumArray(aideck)){EndGame("Lose (lower num)")}
     }
 }
+
+// o is player, i is dealer
+let theHTML = "<tr><th></th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th>";
+for(o = 3; o <= 17; o++){
+theHTML += `<tr><th>${o}</th>`;
+    for(i = 2; i <= 11; i++){
+        let clr = "salmon";
+        if(BestMove(o,i).includes("Hit")){clr = "green"}
+        if(BestMove(o,i).includes("Double")){clr = "lime"}
+        if(BestMove(o,i).includes("Surr")){clr = "white"}
+
+        theHTML += `<td style="background-color: ${clr}">${BestMove(o,i).substring(0,1)}</td>`;;
+    }
+theHTML += "</tr>";
+}
+hbasicstrat.innerHTML = theHTML;
+
+function autoplay(){
+    if(autoplaying){
+        hautoplay.innerHTML = "autoplay: OFF";
+        autoplaying = false;
+    }
+    else{
+        hautoplay.innerHTML = "autoplay: ON...";
+        autoplaying = true;
+        reset();
+    }
+}
+
+function getCardCount(){
+    let r = 0;
+    deck.forEach(c => {
+        if(ToNum(c) <= 6){r++;}
+        if(ToNum(c) >= 10){r--;}
+    });
+    return r;
+}
+
+
 dropdowncurrentbet.addEventListener("change", function(){currentbet = dropdowncurrentbet.value})
 </script>
