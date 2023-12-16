@@ -27,6 +27,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        transition: 1s;
     }
     .thebutton{
         min-width: 100%; 
@@ -45,7 +46,6 @@
                 <div class="lightyellow .mainlight"></div>
                 <div class="lightred .mainlight"></div>
             </div>
-            <button onclick="CreateCircles()" class="thebutton">Refresh Colors</button>
             <div id="circlesholder"></div>
             <footer></footer>
 </body>
@@ -75,7 +75,6 @@ function updateclasses(){
             background-color: ${colors[i]};
             box-shadow: 0em 0em 1em .4em ${colors[i]};
             transition: .1s;
-
         }
         .light${colors[i]}:hover{
             background-color: ${colors[i]};
@@ -86,12 +85,23 @@ function updateclasses(){
 
     }
 }
-    // create 300 circles 
-    function CreateCircles(){
-        circlesholder.innerHTML = "";
+
+
+setInterval(CreateCircles, 1000);
+
+
+    circlesholder.innerHTML = "";
     for(i = 0; i < 300; i++){
         let rcolor = colors[randomnum(0, colors.length-1)];
-        circlesholder.innerHTML += `<div class='light${rcolor}' onclick(btnclick(this)></div>`;
+        circlesholder.innerHTML += `<div class='light${rcolor}' onclick="btnclick(this)" id="c${i}"></div>`;
+    }
+
+    // create 300 circles 
+    function CreateCircles(){
+    for(i = 0; i < 300; i++){
+        let clr =  colors[randomnum(0, colors.length-1)];
+        document.getElementById(`c${i}`).style.backgroundColor = clr;
+        document.getElementById(`c${i}`).style.boxShadow = `0em 0em 1em .4em ${clr}`;
     }
     }
     CreateCircles()
