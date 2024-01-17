@@ -63,9 +63,12 @@ canvas.style.height = inputheight.value + "px";
 }
 // Main Functions
 function drawstripes(amount, direction, colors){
-    if (direction == "vertical") {
         var xstart = 0; var count = 0;
-        for (var i = 0; i < amount; i++) { 
+        for (i = 0; i < amount; i++) { 
+
+            //if(document.getElementById("hgradient")){
+            //    amount *= 4;
+            //}   
             
             // Color (if more stripes than colors, it repeats)
             ctx.fillStyle = colors[count];
@@ -73,26 +76,18 @@ function drawstripes(amount, direction, colors){
             else {count = 0;}
 
             ctx.beginPath();
-            ctx.fillRect(xstart, 0, canvas.width / amount + 1, canvas.height); // +1 covers empty gap
+            if (direction == "vertical") {
+                //Vertical
+                ctx.fillRect(xstart, 0, canvas.width / amount + 1, canvas.height); // +1 covers empty gap
+                xstart += (canvas.width / amount); // change start x position for next stripe
+            }
+            else{
+                // Horizontal
+                ctx.fillRect(0, xstart, canvas.width, canvas.height / amount + 1); // +1 covers empty gap
+                xstart += (canvas.height / amount); // change start y position for next stripe
+            }
             ctx.closePath(); 
-            xstart += (canvas.width / amount); // change start x position for next stripe
         }
-    }
-    else{ // Horizontal is default
-        var ystart = 0; var count = 0;
-        for (var i = 0; i < amount; i++) { 
-   
-            // Color (if more stripes than colors, it repeats)
-            ctx.fillStyle = colors[count];
-            if(count < colors.length - 1) {count++;}
-            else {count = 0;}
-
-            ctx.beginPath();
-            ctx.fillRect(0, ystart, canvas.width, canvas.height / amount + 1); // +1 covers empty gap
-            ctx.closePath(); 
-            ystart += (canvas.height / amount); // change start y position for next stripe
-        }
-    }
 }
 function drawshape(shape, color){
 ctx.beginPath();
@@ -116,4 +111,4 @@ var link = document.createElement('a');
   link.download = 'filename.png';
   link.href = document.getElementById('canvas').toDataURL()
   link.click();
-}
+};

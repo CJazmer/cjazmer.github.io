@@ -56,8 +56,6 @@
 
 			<div id="navflex">
 
-            <canvas id="canvas"></canvas>
-
             <div id="controlscontainer">
                 <div class="controlholder" onclick="SwitchTool('')">
                     <p class="controlheading">Tool</p>
@@ -76,13 +74,11 @@
                      </select>
                 </div>
             </div>
+            <canvas id="canvas"></canvas>
+
 
             <label for="ee">Commands</label>
-            <select name="ee" id="selecter">
-            <option value="fill">Fill</option>
-            <option value="grid">grid</option>
-            <option value="celticknot">CelticKnots</option>
-            </select>
+            <select name="ee" id="selecter" style="text-align: center;"></select>
 
             <div class="settingsdiv" id="diveditor">
                 
@@ -109,6 +105,12 @@
     let xmouse = 0;
     let ymouse = 0;
     let currenttool = "brush";
+
+    // Fixes Mouse Offset
+    canvas.width = 500;
+    canvas.height = 500;
+    canvas.style.width = "50%";
+    canvas.style.height = "50%";
 
     function draw(shape){
         
@@ -156,24 +158,20 @@ else{
 }
 }
 
-let diveditor = document.getElementById("diveditor");
-selecter.addEventListener("change", changeit)
-function changeit(){
-    switch (selecter.value) {
-        case "fill":
-        diveditor.innerHTML = `
-            <p>Fill Screen</p>
+const Commands = [
+    {name: "fill", html: `
+            <p>Fill Screen / Flags</p>
             <table>
                 <tr><th>Sections</th><td><input type="number" value="3" id="fillamount"></td></tr>
                 <tr><th>Vertical</th><td><input type="checkbox" id="filldirection" checked="checked"></td></tr>
                 <tr><th>Colors</th><td><input type="text" id="fillcolors" value="blue, white, red"></td></tr>
+                <tr><th>Flag Presets</th><td><select id="htmlflagslist"></select></td></tr>
+                <tr><th>Gradient</th><td><input type="checkbox" id="hgradient"></td></tr>
             </table>
             <button onclick="btnFill()">Fill</button>
-            <select id="htmlflagslist"></select>
-        `; break;
-        case "grid":
-        diveditor.innerHTML = `
-        <p>Create a Grid</p>
+    `},
+    {name: "grid", html: `
+                <p>Create a Grid</p>
                 <table>
                     <tr><th>Num Columns</th><td><input type="number" value="5" id="gridnumcolumns"></td></tr>
                     <tr><th>Num Rows</th><td><input type="number" value="5" id="gridnumrows"></td></tr>
@@ -181,10 +179,9 @@ function changeit(){
                     <tr><th>Line Width</th><td><input type="range" min="1" max="20" value="1" id="gridwidth"></td></tr>
                 </table>
                 <button onclick="btnGrid()">Create Grid</button>
-        `; break;
-        case "celticknot":
-        diveditor.innerHTML = `
-        <p>Create a Celtic Knot</p>
+    `},
+    {name: "celticknot", html: `
+                <p>Create a Celtic Knot</p>
                 <table>
                     <tr><th>Num Columns</th><td><input type="number" value="5" id="knotnumcolumns"></td></tr>
                     <tr><th>Num Rows</th><td><input type="number" value="5" id="knotnumrows"></td></tr>
@@ -193,13 +190,43 @@ function changeit(){
                     <tr><th>Has Weave</th><td><input type="checkbox" checked="checked" id="knothasweave"></td></tr>
                 </table>
                 <button onclick="btnKnot()">Create Knot</button>
-        `; break;
-        default:
-            break;
-    }
+    `},
+    {name: "noise", html: `
+                <p>Create a Noise</p>
+                <table>
+                    <tr><th>Pixel Amount</th><td><input type="number" value="50" id="hNoisePixelAmount"></td></tr>
+                </table>
+                <button onclick="CreateNoiseee()">Create Noise</button>
+    `},
+];
+selecter.innerHTML = "";
+Commands.forEach(c => {
+    selecter.innerHTML += `<option value="${c.name}">${c.name}</option>`;
+});
+
+
+
+
+let diveditor = document.getElementById("diveditor");
+selecter.addEventListener("change", changeit)
+function changeit(){
+    Commands.forEach(c => {
+        if(c.name == selecter.value){
+            diveditor.innerHTML = c.html;
+        }
+    });
+
+    htmlflagslist.innerHTML = "";
+    flags.forEach(f => {
+        htmlflagslist.innerHTML += `<option>${f.name}</option>`;
+    });
 }
+changeit();
 
+function CreateNoiseee(){
+    CreateNoise(parseInt(document.getElementById("hNoisePixelAmount").value));
+}
 </script>
-
 <script src="./flagmaker.js"></script>
 <script src="./celticknotmaker.js"></script>
+<script src="./noise.js"></script>

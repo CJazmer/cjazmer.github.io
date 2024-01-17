@@ -72,7 +72,6 @@ function MakeCelticKnot(numcolumns, numrows, linewidth, outlinewidth, color1, th
         ctx.fillRect(themargin, starty + ((i*starty)-linewidth/2)+linewidth, canvas.width - themargin*2, outlinewidth);
 
         ctx.stroke();
-
     }
 
      // Creates overlap effect by covering certain black lines
