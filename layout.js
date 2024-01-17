@@ -3,9 +3,9 @@ try {
 let layoutpagenav = document.getElementById("layoutpagenav");
 
 layoutpagenav.innerHTML = `
-<nav class="topnavbar"><h1 onclick="window.location.href='/index.html'">Jazmer World Music</h1><ul>
+<nav class="topnavbar"><h1 onclick="window.location.href='/index.html'">Jazmer Products</h1><ul>
+<li onclick="window.location.href='/survival/indexsurvival.html'">Research</li>
 <li onclick="window.location.href='/language/indexlanguages.html'">Language</li>
-<li onclick="window.location.href='/survival/indexsurvival.html'">Survival</li>
 <li onclick="window.location.href='/music/indexmusic.html'">Music</li>
 <li onclick="window.location.href='/apps/indexapps.html'">Apps</li>
 <li onclick="window.location.href='/other/indexother.html'">Other</li>

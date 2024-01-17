@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Primitive Tech</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="Generate random info">
+	<meta name="keywords" content="random, info, generator">
+	<style>
+		.holder{
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            width: 100%;
+            padding: .5em 0em .5em 0em;
+            background-color: goldenrod;
+        }
+        .btn{
+            padding: .5em;
+            margin-right: .4em;
+            background-color: gold;
+            border: .2em solid black;
+            border-radius: 10%;
+            min-width: 6.5em;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        #infodiv{
+            width: 100%;
+            min-height: 8em;
+            padding: .5em;
+            background-color: lightgoldenrodyellow;
+        }
+        .title{
+            width: 100%;
+            background-color: gold;
+            margin: 0em;
+            font-weight: 800;
+        }
+        table{
+            background-color:rgb(255, 248, 151);
+            border: .2em solid black;
+            margin: .2em;
+            border-collapse: collapse;
+
+        }
+        table tr{
+            border: .1em solid black;
+        }
+        th{padding: .2em;}
+        .techbox{
+            width: 5em;
+            height: 4em;
+            background-color: lightsteelblue;
+        }
+        #htechtree{
+            height: 10em;
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper" style="background: linear-gradient(to right, tan, rgb(206, 152, 82) 100%);">
+			<div id="gohere"></div>
+            <div id="infodiv"></div>
+            <h1>Ultimate Tech Strategy</h1>
+            <ul>
+            <li>
+                Once food & water are sustainable then begin. 
+                Create Shacks using stick frame filled in with Clay/Mud/Grass. 
+            </li>
+            <li>
+                Find flat space, clearout using a stick like a broom.
+            </li>
+            <li>
+                StorageShack: have stick shelfing that holds baskets and clay pots that hold powders like woodash and charcoal
+            </li>
+            <li>
+                CematicShack: potter wheel
+            </li>
+            <li>
+                BlackSmith shack: Have charcoal storage in corner floor of shead with foot high clay wall keeping charcoal in.
+                Forage rightoutside
+            </li>
+            
+            </ul>
+            <div id="htechtree"></div>
+
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    // Clay Charcoal, fibers, fire, water, iron, copper, lime, Potassium Nitrate, sulfur, gunpowder
+const categories = [    
+{name: "Materials", 
+   arr: [
+    {name: "Lime", desc: `
+    `},
+    {name: "Sulfur", desc: `
+    `},
+    {name: "Metals", desc: `
+    `},
+    {name: "Magnets", desc: `
+    `},
+    {name: "Acids", desc: `
+    `},
+    {name: "Laytex", desc: `
+    <p>
+        1) Collect milky sap from plants like Milkweed, Dandelion, Dogbanes, Goldenrod<br>
+    </p>
+    `},
+    {name: "KNO3", desc: `
+        PotassiumNitrate
+    `},
+    {name: "Acids n Bases", desc: `
+        Acid Berries: Sumac, <br>
+        Seep the berries in cold water for few hours, strain acidic water out, boil off extra water content to concentrate the acidity<br><br>
+
+        Bases---
+        WoodAsh: white powder from campfires, Mix ash with water let solid junk settel, pour out Base water and evaporate to increate Base 
+    `},
+]},
+{name: "1 Stone Age", 
+   arr: [
+    {name: "Cordage🪢", desc: `
+        <p>
+            LearnMethod: Twist fibers, then twist thoes fibers together<br>
+            Make a DropSpindle to store a lot of cordage, Stick poked through flywheel
+        </p>
+    `},
+    {name: "Weaving🧺", desc: `
+        <p>
+            Basket: 3ish long bendable sticks, 
+        </p>
+    `},
+    {name: "Textiles👕", desc: `
+    <p>
+        Need large amount of cordage, store it on a DropSpindle<br>
+        1) Make a Loom with sticks and cordage
+    </p>
+    `},
+    {name: "Rubber n Plastic🧴", desc: `
+    <p>
+        <b>Simple Rubber</b><br>
+        1) Collect Milky sap from common weeds (Dandelion, Milkweed)<br>
+        2) let dry<br><br>
+
+        <b>Better Rubber</b>
+    </p>
+    `},
+    {name: "Fire Forage🔥", desc: `
+    <p>
+        Best fule is charcoal, dig pit (covered with clay to prevent dirt falling in). 
+        Keep laying sticks over hole until few feet high, ignite on top, fire burns down, when pile is fully buring and falls into hole poor water over charcoal and collect<br><br>
+    
+        </p>
+    `},
+    {name: "Pottery🏺", desc: `
+    <p>
+        Make a Forage by forming a chimney with a bottom hole out of ClayDirt<br>
+        1) Form clay into pot/shapes *add water if clay is hard, dry it if too soft*<br>
+        2) Let fully dry to avoid cracking<br>
+        3) Heat in Forage overnight to make waterproof
+    </p>
+    `},
+    {name: "Masondry", desc: `
+    <p>
+        Create Brick Mold with 4 flat wood slabs or Clay mold thats was fired
+    </p>
+    `},
+    {name: "Glass🔎", desc: `
+    <p>
+
+        0) Add a Flux like (Pot Ash: white power left over from campfires, SodaAsh) *Lowers Tempature needed to melt*<br>
+        0) Add a Stabilizer (Lime, Coral, Sandstone, Chalk) **<br><br>
+        
+        1) Melt Sand using very high tempature<br>
+        2) Form glass into wanted shape<br>
+        3) Let Glass slowly cool to prevent cracking
+    </p>
+    `},
+    {name: "Fermentation🍺", desc: `
+    <p>
+        Alcohol: <br>
+        Vinegar: 
+    </p>
+    `},
+    {name: "Distillation⚗️", desc: `
+    <p>
+        Heat a container with mash in it, funnel the vapor into another container to collect wanted material
+        cool vapor before it enters container for better efficiency<br> 
+        Ethanol/Vodkas: distill alcohol/beer<br>
+
+    </p>
+    `},
+]},
+{name: "2 Metal Age", 
+   arr: [
+    {name: "Casting🔩", desc: `
+    `},
+    {name: "Explosives💥", desc: `
+    `},
+    {name: "", desc: `
+    `},
+]},
+{name: "3 Electric Age", 
+   arr: [
+    {name: "Electricity⚡️", desc: `
+    `},
+    {name: "Fission☢️", desc: `
+    `},
+    {name: "", desc: `
+    `},
+]},
+];
+
+const gohere = document.getElementById("gohere");
+const infodiv = document.getElementById("infodiv");
+
+let thehtml = "";
+
+categories.forEach(c => {
+    thehtml += `<p class='title'>${c.name}</p><div class="holder">`;
+    c.arr.forEach(a => {
+        thehtml += `<div class="btn" onclick="Clicked('${a.name}')">${a.name}</div>`;
+    })
+    thehtml += "</div>"
+});
+gohere.innerHTML = thehtml;
+
+
+function Clicked(infooo){
+    
+categories.forEach(c => {
+    c.arr.forEach(a => {
+        if(a.name == infooo){infodiv.innerHTML = a.desc;}
+    })
+});
+if(infodiv.innerHTML == ""){infodiv.innerHTML = "..."};
+}
+
+
+let mainbutton = document.getElementById("mainbutton");
+const htechtree = document.getElementById("htechtree");
+const techtree = [
+    {name: "fire", parents: "", desc: ``},
+    {name: "pottery", parents: "fire", desc: ``},
+];
+htechtree.innerHTML = "";
+
+techtree.forEach(t => {
+    htechtree.innerHTML = `<div class="techbox">${t.name}</div>`;
+});
+
+</script>

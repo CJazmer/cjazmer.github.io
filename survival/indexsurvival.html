@@ -5,33 +5,35 @@
 	<meta name="author" content="Conner Jasmer">
 	<meta name="description" content="home page for learning survival skills, plants, and animals.">
 	<meta name="keywords" content="survival, skills">
+	<style>
+		.pics{
+			display: flex;
+			justify-content: center;
+			width: 100%;
+		}
+		.pics img{
+			width: 10em;
+			height: 17em;
+		}
+		embed{
+			width: 100%;
+			height: 80em;
+		}
+	</style>
 </head>
 
 <body>
 		<div class="themeblackgoldback">
 			<div id="layoutpagenav"></div>
 
-
-			<center>
-			<h1>Survival</h1>
-			<h1>Choose a Skill</h1>
-			
-				<div id="flexcontainer">
+			<h1>Survival (ALL Pictures were taken by me)</h1>			
+				<div class="pics">
 					<img src="/assets/survival/plants.png" class="gallery" onclick="Clicked('plants')">
 					<img src="/assets/survival/animals.png" class="gallery" onclick="Clicked('animals')">
-					<img src="/assets/survival/technology.png" class="gallery" onclick="Clicked('primitivetech')">
-
-					<center><h1>General Knowledge</h1></center>
-
-					<ul>
-						<li>Make Tea from soaking leaves/root in very hot water to extract minerals.</li>
-						<li>General Knollage: Fall is harvesting season! It's when most berries & Fruit are ripe because it had all summer to grow the fuits using the sun as energy.</li>
-						<li>Some edible plants can be toxic when overeaten.</li>
-						<li>Spit out seeds and skin for fruits and big berries.</li>
-					</ul>
 				</div>
-			</center>
-
+					<embed src="assets/Science.pdf">
+					<embed src="assets/Math.pdf">
+					<embed src="assets/TechTree.pdf">
 			<footer></footer>
 		</div>
 </body>

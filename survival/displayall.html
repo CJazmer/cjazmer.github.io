@@ -103,6 +103,13 @@
 			</center>
 				
 
+			<h1>General Knowledge</h1>
+				<ul>
+					<li>Make Tea from soaking leaves/root in very hot water to extract minerals.</li>
+					<li>General Knollage: Fall is harvesting season! It's when most berries & Fruit are ripe because it had all summer to grow the fuits using the sun as energy.</li>
+					<li>Some edible plants can be toxic when overeaten.</li>
+					<li>Spit out seeds and skin for fruits and big berries.</li>
+				</ul>
 				<p>General Knollage: Fall is when most berries & Fruit are ripe because it had all summer to grow the fuits using the sun as energy.  Spit out seeds & skin of berries and fruits.</p>
 			</div>
 
@@ -153,7 +160,7 @@ else if (databasename == "primitivetech"){
 else{ 
 	imgpath = "/assets/plants/"
 	ShowImages(plantsdatabase);
-	emojidescription.innerHTML = `🌵 has thorns | 💀 Poisonous to eat | ⚠️ Poisonous to touch | 👃 has sent <br> 🧠 hallucinogenic`;
+	emojidescription.innerHTML = `🌵 has thorns | 💀 Poisonous to eat | ⚠️ Poisonous to touch | 👃 has sent <br> 🥛 MilkySap | 🪢 Fibers | ☁️ Has Fuzz | 🧠 hallucinogenic`;
 	emojidescription.innerHTML += `<br><br><span style="background-color: lime; color:black;">Very Common</span> | <span style="background-color: green;color:black;">Common</span> | <span style="background-color: pink; color:black;">Rare</span> | <span style="background-color:purple;">Very Rare</span>`;
 }
 
@@ -184,6 +191,9 @@ function ShowImages(thedatabase){
 	if(p.tags.includes("poisonsap")){extra += "⚠️";}
 	if(p.tags.includes("thorns")){extra += "🌵";}
 	if(p.tags.includes("sent")){extra += "👃";}
+	if(p.tags.includes("fuzz")){extra += "☁️";}
+	if(p.tags.includes("milkysap")){extra += "🥛";}
+	if(p.tags.includes("fibers")){extra += "🪢";}
 	if(p.tags.includes("hallucinogenic")){extra += "🧠";}
 	// Animals / Bugs
 	if(p.tags.includes("water")){extra += "🌊";}
