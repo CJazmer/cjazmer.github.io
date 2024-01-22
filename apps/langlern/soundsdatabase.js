@@ -191,6 +191,38 @@
       ],
     info: ["-tion, hiss sound + 'on'", "ch is hiss sound sometimes"]
 },
+{name: "swahili",
+    arr: [
+        {letter: "a", sound: "a in 'ah'", audio: ""},
+        {letter: "e", sound: "a in 'cake'", audio: ""},
+        {letter: "i", sound: "ee in 'see'", audio: ""},
+        {letter: "o", sound: "o in 'so'", audio: ""},
+        {letter: "u", sound: "oo in 'cool'", audio: ""},
+        {letter: "th", sound: "th in 'think'", audio: ""},
+        {letter: "dh", sound: "th in 'they'", audio: ""},
+        {letter: "gh", sound: "", audio: ""},
+        {letter: "ng", sound: "ng in 'king'", audio: ""},
+        {letter: "ny", sound: "ny in 'canyon'", audio: ""},
+        {letter: "r", sound: "r tap", audio: ""},
+      ],
+    info: [""]
+},
+{name: "chinese",
+    arr: [
+        {letter: "sh", sound: "sh heavy", audio: ""},
+        {letter: "x", sound: "sh light", audio: ""},
+        {letter: "j", sound: "sh light", audio: ""},
+        {letter: "zh", sound: "'si' in regime", audio: ""},
+        {letter: "r", sound: "retroflex", audio: ""},
+        {letter: "a", sound: "a in 'ah'", audio: ""},
+        {letter: "e", sound: "like e in 'bet'", audio: ""},
+        {letter: "i", sound: "ee in 'see'", audio: ""},
+        {letter: "o", sound: "o in 'open'", audio: ""},
+        {letter: "u", sound: "oo in 'cool'", audio: ""},
+        {letter: "ü", sound: "u closer mouth", audio: ""},
+      ],
+    info: ["'Pinyin' is chinese written in the latin alphabet", "1) ā High Tone: higher than talking voice", "2) á Rise Tone: like asking a question", "3) ă fallrise Tone: fall into raspy voice *don't rise most of time", "4) à Falling Tone: make voice fall", "5) a None: talking voice"]
+},
 {name: "finnish", 
     arr: [
         {letter: "c", sound: "s", audio: "s"},

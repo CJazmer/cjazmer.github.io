@@ -29,7 +29,10 @@
 		.divmainlessons:hover{
 			transform: scale(1.02);
 		}
-
+		button{
+			width: 10em;
+			max-height: 1.6em;
+		}
 	</style>
 </head>
 
@@ -39,6 +42,9 @@
 		<div id="underbanner">
 			<p id="hinfo"></p>
 			<p>Profile is Work in Progress...</p>
+			<input type="text" id="hname"><button onclick="CreateProfile()">Create Profile</button>
+
+			<div id="hprofiles"></div>
 			<div id="hlangsinfo"></div>
 			<div class="divmainlessons" onclick="window.location.href='./langlern.html'">Back</div>
 		</div>
@@ -56,16 +62,50 @@
 
 <script>
 const languagesdiv = document.getElementById("languagesdiv");
+const hprofiles = document.getElementById("hprofiles");
+const hname = document.getElementById("hname");
+
 currentlang = localStorage.getItem("currentlang") || languagedatabase[0];
 let hinfo = document.getElementById("hinfo");
 let hlangsinfo = document.getElementById("hlangsinfo");
 
+//localStorage.setItem("llprofiles", JSON.stringify([{name: "bob", xp: 0},{name: "sam", xp: 30}]));
+let llprofiles = localStorage.getItem("llprofiles");
+
+class Profile{
+	constructor(name){
+		this.name = name;
+		this.xp = 0;
+	}
+}
+function CreateProfile(){
+	llprofiles = localStorage.getItem("llprofiles");
+	try{ llprofiles = JSON.parse(llprofiles); }catch(err){}
+
+	if(llprofiles.find(p => p.name == hname.value)){
+		
+	}
+	else{
+		llprofiles.push(new Profile(hname.value));
+		localStorage.setItem("llprofiles", JSON.stringify(llprofiles));
+		Update();
+	}
+}
+CreateProfile();
 
 
-hinfo.innerHTML = `
-	Total Questions Answered: ${0}<br>
+function Update(){
+	hprofiles.innerHTML = "";
+	try{ llprofiles = JSON.parse(llprofiles); }catch(err){}
+	llprofiles.forEach(p => {
+		hprofiles.innerHTML += `<p>${p.name} (${p.xp}xp)</p>`;
+	});
+	hinfo.innerHTML = `
+		Total Questions Answered: ${0}<br>
 
-`;
+	`;
+}
+Update();
 
 
 

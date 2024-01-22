@@ -27,10 +27,40 @@
 			margin: .2em 0em .2em 0em;
 			transition: .2s;
 		}
+		.divsholder{
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: space-evenly;
+			align-items: center;
+		}
 		.divmainlessons:hover{
 			transform: scale(1.02);
 		}
-
+		.divmainlessons2{
+			width: 40%;
+			min-width: 20em;
+			height: auto;
+			min-height: 3em;
+			text-align: center;
+			border: .2em solid black;
+			border-radius: .2em;
+			background-color: var(--color1);
+			font-weight: bolder;
+			margin: .2em 0em .2em 0em;
+			transition: .2s;
+		}
+		.divmainlessons2 img{
+			border: .2em solid black;
+			width: 13em;
+		}
+		.divmainlessons2 p{
+			background-color: var(--color1);
+			filter: brightness(90%);
+		}
+		.divmainlessons2:hover{
+			transform: scale(1.02);
+		}
 	</style>
 </head>
 
@@ -38,13 +68,21 @@
 	<div id="langlernnavbar"></div>
 	<div id="main">
 		<div id="underbanner">
-			<div class="langg" id="displaylang" onclick="window.location.href='languages.html'"></div>
-			<div class="divmainlessons" onclick="window.location.href='./lessonslist.html'">Main Lessons</div>
-			<div class="divmainlessons" onclick="window.location.href='./sentenceexamples.html'">Sentence Examples💬</div>
-			<div class="divmainlessons" onclick="window.location.href='./profile.html'">Profile👤</div>
-			<div class="divmainlessons" onclick="window.location.href='./settings.html'">Settings⚙️</div>
-			<div class="divmainlessons" onclick="window.location.href='./langcompare.html'">Language Compare🗺️</div>
-			<div class="divmainlessons" onclick="window.location.href='./dictionary.html'">Dictionary📖</div>
+			<div class="divsholder">
+				<div class="langg" id="displaylang" onclick="window.location.href='languages.html'"></div>
+				<div class="divmainlessons" onclick="window.location.href='./lessonslist.html'">Main Lessons</div>
+				<div class="divmainlessons2" onclick="window.location.href='./profile.html'">Profile👤</div>
+				<div class="divmainlessons2" onclick="window.location.href='./settings.html'">Settings⚙️</div>
+				<div class="divmainlessons2" onclick="window.location.href='./sentenceexamples.html'">
+					<p>Sentence Examples💬</p>
+					<img src="./assets/sentenceexample.gif">
+				</div>
+				<div class="divmainlessons2" onclick="window.location.href='./dictionary.html'">
+					<p>Dictionary📖</p>
+					<img src="./assets/dictionarygif.gif">
+				</div>
+				<div class="divmainlessons" onclick="window.location.href='./langcompare.html'">Language Compare🗺️</div>
+			</div>
 			<button class="thebutton" onclick="window.location.href='/index.html'">Back to Website</button>
 		</div>
 	</div>

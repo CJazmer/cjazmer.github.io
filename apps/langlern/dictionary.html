@@ -12,22 +12,18 @@
 			border-radius: 25px;
 			width: 50%;
 		}
-
 		#searchbarbackground {
 			background-color: var(--color3);
 		}
-
 		#outputdiv {
 			line-height: 5px;
-			background-color: dimgray;
+			background-color: rgb(98, 98, 98);
 		}
-
 		.holder{
 			height: 5em;
 			display: flex;
 			flex-wrap: wrap;
 		}
-
 		#hSuggestions{
 			display: flex;
 			flex-wrap: nowrap;
@@ -35,7 +31,6 @@
 			height: auto;
 			text-wrap: nowrap;
 		}
-		
 		.word{
 			background-color: var(--color2);
 			border-radius: .5em;
@@ -48,7 +43,6 @@
 		.word:hover{
 			transform: scale(1.1);
 		}
-
 		#hWordOther{
 			width: 100%;
 			color: var(--color1);
@@ -60,6 +54,9 @@
 			width: 100%;
 			color: white;
 			font-size: 1.5em;
+		}
+		button{
+			max-height: 2em;
 		}
 	</style>
 </head>
@@ -91,6 +88,7 @@
 							<p id="hWordEng"></p>
 						</div>
 				</div>
+				<table id="hConjugation"></table>
 				<button onclick="window.location.href='./langlern.html'" style="width: 100%; height: 2em;">Back</button>
 		    </div>
 	    </div>
@@ -113,6 +111,7 @@ const hSuggestions = document.getElementById("hSuggestions");
 const hSearchbar = document.getElementById("hSearchbar");
 const hWordEng = document.getElementById("hWordEng");
 const hWordOther = document.getElementById("hWordOther");
+const hConjugation = document.getElementById("hConjugation");
 
 
 currentlang = getcurrentlangobj().name;
@@ -149,5 +148,25 @@ function Search(){
 function WordClick(wrd){
 	hSearchbar.value = wrd;
 	Search();
+
+
+	/*
+	if(currentlang == "spanish"){
+	hConjugation.innerHTML = "";
+	let eee = null;
+	allwords.forEach(w => {
+		if(w.english == wrd){eee = w[currentlang]}
+	})
+	hConjugation.innerHTML += `
+	<tr><td>${eee.slice(0,-2)+"o"}</td><td>${eee.slice(0,-2)+"amos"}</td></tr>
+	`;
+	hConjugation.innerHTML += `
+	<tr><td>${eee.slice(0,-2)+"as"}</td><td>${eee.slice(0,-2)+"ais"}</td></tr>
+	`;
+	hConjugation.innerHTML += `
+	<tr><td>${eee.slice(0,-2)+"e"}</td><td>${eee.slice(0,-2)+"en"}</td></tr>
+	`;
+	}
+	*/
 }
 </script>

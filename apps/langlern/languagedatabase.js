@@ -93,26 +93,6 @@ lesson: [
     {english: `Use Keine if feminine`, otherlang: ``, hint: ``},
     {english: `I don't have a cat`, otherlang: `Ich habe keine Katze`, hint: ``},
 ]},
-{name: `Sentence Examples`, 
-lesson: [
-    {english: `i'm here, where are you?`, otherlang: `ich bin hier. Wo bist du`, hint: ``},
-    {english: `what are you doing? `, otherlang: `was machst du`, hint: ``},
-    {english: `why do you have that? `, otherlang: `warum hast du das?`, hint: ``},
-    {english: `when are you comming? `, otherlang: `wann kommst du?`, hint: ``},
-    {english: `i don't know, what is it`, otherlang: `Ich weiß nicht, was es ist`, hint: ``},
-    {english: `i dance, do you dance?`, otherlang: `ich tanze, tanzst du?`, hint: `pronoun after verb because its a question`},
-    {english: `i don't dance, i cant dance`, otherlang: `Ich tanze nicht, Ich kann nicht tanzen`, hint: `Negate: put 'nicht' after verb`},
-    {english: `i have a cat and you dont have a cat`, otherlang: `Ich habe eine Katze und du hast keine Katze`, hint: `Negate2: replace artical with 'keine'`},
-    {english: `my car can drive`, otherlang: `mein Auto kann fahren`, hint: ``},
-    {english: `did you eat yet?`, otherlang: `Hast du schon gegessen,`, hint: `schon means yet/already`},
-    {english: `i will sing if you will sing`, otherlang: `Ich werde singen, wenn du singst`, hint: `wenn = if, 'werden' is verb 'to will'`},
-    {english: `were talking about cats`, otherlang: `sprachen über Katzen`, hint: `über can mean about`},
-    {english: `we should eat`, otherlang: `wir sollten Essen`, hint: `sollen (sollt) to should`},
-    {english: `I should practice guitar`, otherlang: `Ich sollte Gitarre üben`, hint: `verbs goes at end of sentence`},
-    {english: `can you sing and do you sing?`, otherlang: `Kannst du singen und singst du?`, hint: ``},
-    {english: `i like to learn languages. you like to learn languages`, otherlang: `Ich lerne gerne Sprachen. Du lernst gerne Sprachen`, hint: `gerne = like (put after verb, not conjugated)`},
-    {english: `trees are big but this tree is small`, otherlang: `Bäume sind groß, aber dieser Baum ist klein`, hint: ``},
-]},
 ];
 const Russianlessonobjs = [
 {name: `Russian 1`,
@@ -307,12 +287,30 @@ const spanishExamples = [
   {english: `i will put it inside the backpack`, lang: `(it)lo (I go)voy (to)a (put)poner (inside)dentro (of)de (the)la (backpack)mochila`, info: ``},
   {english: `I'm going to help him fill the glasses`, lang: `(him/it)lo (I go)voy (to)a (help)ayudar (to)a (fill)llenar (the)los (glasses)vasos`, info: ``},
   {english: `i don't want them to find out`, lang: `(no)no (i want | querer)quiero (that)que (reflexive)se (they findout | enterar, subjunctive)enteren`, info: ``},
+  {english: `Its what I do most when I have free time`, lang: `(it is)es (it)lo (what)que (most)más (I do)hago (when)cuando (I have)tengo (time)tiempo (free)libre`, info: ``},
   {english: ``, lang: ``, info: ``},
   {english: ``, lang: ``, info: ``},
   {english: ``, lang: ``, info: ``},
   {english: ``, lang: ``, info: ``},
-  {english: ``, lang: ``, info: ``},
-
+];
+const GermanExamples = [
+  {english: `i'm here, where are you?`, lang: `(I)ich (am)bin (here)hier. (where)Wo (are)bist (you)du`, info: ``},
+  {english: `what are you doing? `, lang: `was machst du`, info: ``},
+  {english: `why do you have that? `, lang: `(why)warum (have)hast (you)du (that)das?`, info: ``},
+  {english: `when are you comming? `, lang: `wann kommst du?`, info: ``},
+  {english: `i don't know, what is it`, lang: `(I)Ich (know)weiß (not)nicht, (what)was (is)es (it)ist`, info: ``},
+  {english: `i dance, do you dance?`, lang: `(I)ich (dance)tanze, (dance)tanzst (you)du?`, info: `pronoun after verb because its a question`},
+  {english: `i don't dance, i cant dance`, lang: `Ich tanze nicht, Ich kann nicht tanzen`, info: `Negate: put 'nicht' after verb`},
+  {english: `i have a cat and you dont have a cat`, lang: `Ich habe eine Katze und du hast keine Katze`, info: `Negate2: replace artical with 'keine'`},
+  {english: `my car can drive`, lang: `mein Auto kann fahren`, info: ``},
+  {english: `did you eat yet?`, lang: `Hast du schon gegessen,`, info: `schon means yet/already`},
+  {english: `i will sing if you will sing`, lang: `Ich werde singen, wenn du singst`, info: `wenn = if, 'werden' is verb 'to will'`},
+  {english: `were talking about cats`, lang: `sprachen über Katzen`, info: `über can mean about`},
+  {english: `we should eat`, lang: `wir sollten Essen`, info: `sollen (sollt) to should`},
+  {english: `I should practice guitar`, lang: `Ich sollte Gitarre üben`, info: `verbs goes at end of sentence`},
+  {english: `can you sing and do you sing?`, lang: `Kannst du singen und singst du?`, info: ``},
+  {english: `i like to learn languages. you like to learn languages`, otherlang: `Ich lerne gerne Sprachen. Du lernst gerne Sprachen`, info: `gerne = like (put after verb, not conjugated)`},
+  {english: `trees are big but this tree is small`, lang: `Bäume sind groß, aber dieser Baum ist klein`, info: ``},
 ];
 const arabicExamples = [
   {english: ``, lang: `(a)قَلَمـ()ـك() و()قلمـ()ـي و()قلمـ()ـنا`, info: ``},
@@ -359,7 +357,7 @@ const clrsarr = [
 const languagedatabase = [
     {name: `spanish`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: Spanishlessonobjs, examples: spanishExamples, audioindex: 8},
     {name: `french`, langfam: `Romance`, colors:clrsarr[0], lessonsobjs: null, examples: null, audioindex: 8},
-    {name: `german`, langfam: `Germanic (west)`, colors:clrsarr[1], lessonsobjs: Germanlessonobjs, examples: null, audioindex: 3},
+    {name: `german`, langfam: `Germanic (west)`, colors:clrsarr[1], lessonsobjs: Germanlessonobjs, examples: GermanExamples, audioindex: 3},
     {name: `swedish`, langfam: `Germanic (north)`, colors:clrsarr[1], lessonsobjs: null, examples: null, audioindex: 3},
     {name: `finish`, langfam: `Uralic`, colors:clrsarr[4], lessonsobjs: null, examples: finnishExamples, audioindex: 0},
     {name: `polish`, langfam: `Slavic (west)`, colors:clrsarr[3], lessonsobjs: Polishlessonobjs, examples: null, audioindex: 16},
@@ -496,23 +494,23 @@ const vAnimals = [
     {english: "snow", spanish: "la nieve", german: "der Schnee", russian: "снег", arabic: "ثَلْج", hawaiian: "hau"},
   ];
   const vWorld = [
-    {english: "world", spanish: "el mundo", german: "die Welt", swedish: "en värld", russian: "мир", tags: "semitic, "},
+    {english: "world", spanish: "el mundo", german: "die Welt", swedish: "en värld", russian: "мир", chinese: "世界 shìjiè", tags: "semitic, "},
     {english: "people", spanish: "la gente", german: "die Leute", swedish: "ett folk", russian: "люди"},
     {english: "country", spanish: "el país", german: "das Land", swedish: "ett land", russian: "страна"},
     {english: "flag", spanish: "la bandera", german: "die Flagge", swedish: "en flagga", russian: "флаг"},
-    {english: "city", spanish: "la ciudad", german: "die Stadt", swedish: "en stad", russian: "город", arabic: "مَدينة"},
+    {english: "city", spanish: "la ciudad", german: "die Stadt", swedish: "en stad", russian: "город", arabic: "مَدينة", chinese: "城市 chéngshì"},
     {english: "building", spanish: "el edificio", german: "das Gebäude", swedish: "en byggnad", russian: "здание"},
     {english: "neighborhood", spanish: "el barrio", german: "die Nachbarschaft", swedish: "ett grannskap", russian: "район", arabic: "حَيّ"},
     {english: "street", spanish: "la calle", german: "die Straße", swedish: "en gata", russian: "дорога"},
-    {english: "car", spanish: "el carro", german: "das Auto", swedish: "en bil", russian: "машина"},
+    {english: "car", spanish: "el carro", german: "das Auto", swedish: "en bil", russian: "машина", chinese: "车 chē"},
     {english: "boat", spanish: "el bote", german: "das Boot", swedish: "en båt", russian: "лодка"},
     {english: "plane", spanish: "el avión", german: "das Flugzeug", swedish: "ett flygplan", russian: "самолёт"},
     {english: "sidewalk", spanish: "la banqueta", german: "der Gehweg", swedish: "en trottoar", russian: "тротуар"},
     {english: "yard", spanish: "el patio", german: "das Yard", swedish: "...", russian: "двор"},
   ];
   const vBody = [
-    {english: "body", spanish: "el cuerpo", german: "der Körper", swedish: "en kropp", russian: "тело", hawaiian: "kino"},
-    {english: "head", spanish: "la cabeza", german: "der Kopf", swedish: "ett huvud", russian: "голова", arabic: "رَأس", tags: "semitic, "},
+    {english: "body", spanish: "el cuerpo", german: "der Körper", swedish: "en kropp", russian: "тело", chinese: "身体 shēntǐ", hawaiian: "kino"},
+    {english: "head", spanish: "la cabeza", german: "der Kopf", swedish: "ett huvud", russian: "голова", arabic: "رَأس", chinese: "头 tóu", tags: "semitic, "},
     {english: "face", spanish: "la cara", german: "das Gesicht", swedish: "ett ansikte", russian: "лицо", arabic: "وَجْه"},
     {english: "eye", spanish: "el ojo", german: "das Auge", swedish: "ett öga", russian: "Глаз", arabic: "عَيْن"},
     {english: "mouth", spanish: "la boca", german: "der Mund", swedish: "en mun", russian: "рот", arabic: "فَم"},
@@ -536,7 +534,7 @@ const vAnimals = [
     {english: "knee", spanish: "la rodilla", german: "das Knie", swedish: "ett knä", russian: "колено", tags: "extra"},
   ]
   const vClothes = [
-    {english: "clothes", spanish: "la ropa", portugese: "roupa", german: "die Kleidung", swedish: "en kläder", russian: "одежда"},
+    {english: "clothes", spanish: "la ropa", portugese: "roupa", german: "die Kleidung", swedish: "en kläder", russian: "одежда", chinese: "衣服 yīfú"},
     {english: "cap", spanish: "la gorra", portugese: "o boné", german: "die Kappe", swedish: "en hatt", russian: "шапка", arabic: "قُبَّعة"},
     {english: "glasses", spanish: "gafas/lentes", portugese: "os óculos", german: "die Brille", swedish: "glasögon", russian: "очки"},
     {english: "shirt", spanish: "la camiseta", portugese: "camisa", german: "das Hemd", arabic: "قَميص", swedish: "en skjorta", russian: "рубашка"},
@@ -809,6 +807,7 @@ const vAnimals = [
     {english: "to fill", spanish: "llenar", german: "füllen"},
     {english: "to take off/out", spanish: "sacar", german: "entfernen"},
     {english: "to cover", spanish: "cubrir", german: "decken"},
+    {english: "to crack, rip, tear", spanish: "rayar", tags: ""},
 
     // Extra
     {english: "to jump", spanish: "saltar/brincar", info: "extra"},
@@ -831,6 +830,12 @@ const vAnimals = [
     {english: "to take advantage of", spanish: "aprovechar de", tags: "extra"},
     {english: "to exhause/runout", spanish: "agostar", tags: "extra"},
     {english: "to findout", spanish: "averiguar", tags: "extra"},
+    {english: "to splash", spanish: "saplicar", tags: "extra"},
+    {english: "to blow", spanish: "soplar", tags: "extra"},
+    {english: "to appear, showup", spanish: "aparecer", tags: "extra"},
+    {english: "to avoid", spanish: "evitar", tags: "extra"},
+    {english: "to develop", spanish: "desarrollar", tags: "extra"},
+
 
   // la etapa, presa, estrecho, reto, 
   ];
@@ -905,6 +910,8 @@ const vAnimals = [
     {english: "speaker", spanish: "la bocina", german: "der Lautsprecher", swedish: "högtalare", russian: "спикер"},
     {english: "drumset", spanish: "la batería", german: "ein Schlagzeug", swedish: "en trumma", russian: "барабан"},
     {english: "backpack", spanish: "la mochila", german: "der Rucksack", swedish: "en ryggsäck", russian: "рюкзак"},
+    {english: "ray, stripe, line", spanish: "la raya", german: "", swedish: "", russian: ""},
+    {english: "gut, insides, intestine", spanish: "la tripa", german: "", swedish: "", russian: ""},
 
     // Extra
     {english: "helmet", spanish: "el casco", german: "der Helm", swedish: "en hjälm", russian: "шлем", tags: "extra"},
