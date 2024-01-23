@@ -8,16 +8,28 @@
 	<style>
 		.pics{
 			display: flex;
-			justify-content: center;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
 			width: 100%;
 		}
 		.pics img{
 			width: 10em;
 			height: 17em;
 		}
+		.pics button{
+			border-radius: 1em;
+			min-width: 8em;
+			background-color: green;
+		}
 		embed{
 			width: 100%;
 			height: 80em;
+		}
+		h1{
+			text-align: center;
+		}
+		p{
+			padding: 1em;
 		}
 	</style>
 </head>
@@ -26,14 +38,53 @@
 		<div class="themeblackgoldback">
 			<div id="layoutpagenav"></div>
 
-			<h1>Survival (ALL Pictures were taken by me)</h1>			
+			<h1>Survival (ALL Pictures were taken by me)</h1>
+			<p>
+				I'm big into survival, below is an app with all of the plants and mushrooms I've documented and identified throughout the Midwest. 
+				I hope one day to discover an undocumented plant!
+			</p>		
 				<div class="pics">
 					<img src="/assets/survival/plants.png" class="gallery" onclick="Clicked('plants')">
 					<img src="/assets/survival/animals.png" class="gallery" onclick="Clicked('animals')">
 				</div>
-					<embed src="assets/Science.pdf">
-					<embed src="assets/Math.pdf">
-					<embed src="assets/TechTree.pdf">
+
+			<h1>Information Display</h1>
+			<p>
+				Here is the worlds first "All of science condensed into a sheet", well not quite.
+				I cannot cover every detail but its much more feasible to have every main concept instead. 
+				Categories closer together relate to each other. I haven't seen anyone do this yet which motivated me to create it.
+			</p>
+			<div class="pics">
+				<a href="./assets/Science.pdf" target="_blank">
+					<button style="background-color: green;">Science🧪</button>
+				</a>
+				<a href="./assets/Math.pdf" target="_blank">
+					<button>Math➕</button>
+				</a>
+				<a href="./assets/TechTree.pdf" target="_blank">
+					<button>TechTree📱</button>
+				</a>
+				<a href="./assets/Music.pdf" target="_blank">
+					<button>Music🎹</button>
+				</a>
+			</div>
+
+			<h1>Language Notes</h1>
+			<p>
+				These are pretty messy still, but its me attempting to fit a language onto 1 sheet
+			</p>
+			<div class="pics">
+				<a href="./assets/spanish.pdf" target="_blank">
+					<button>Spanish</button>
+				</a>
+				<a href="./assets/hawaiian.pdf" target="_blank">
+					<button>Hawaiian</button>
+				</a>
+			</div>
+			<h1>Papers</h1>
+			<p>
+				I plan on writing papers in the future, stay tuned...
+			</p>
 			<footer></footer>
 		</div>
 </body>
