@@ -11,15 +11,49 @@
         max-height: 30em;
         background-color: black;
     }
+    #gameboard{
+        display: flex;
+        flex-direction: column;
+        background-color: palegoldenrod;
+        width: auto;
+        height: auto;
+    }
+    .row{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+    .tile{
+        width: 1em;
+        height: 1em;
+        background-color: gray;
+        border: .1em solid black;
+    }
+    .buttonholder{
+        margin: auto;
+        width: fit-content;
+    }
+    p{
+        text-align: center;
+    }
 </style>
 </head>
 
 <body>
 		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
 			<div id="layoutpagenav"></div>
-
-             
-                <div id="gamebord"></div>
+            <div id="gameboard"></div>
+            <div class="buttonholder">
+                <button onclick="move('up')">⬆️</button>
+                <button onclick="move('down')">⬇️</button>
+                <button onclick="move('left')">⬅️</button>
+                <button onclick="move('right')">➡️</button>
+            </div>
+            <p id="info"></p>    
+                <canvas id="canvas"></canvas>
             <footer></footer>
 		</div>
 </body>
@@ -28,9 +62,18 @@
 <!-- -------------------------Javascript------------------------- -->
 <script src="../../layout.js"></script>
 <script>
-    const gamebord = document.getElementById("gamebord");
+    const gameboard = document.getElementById("gameboard");
+    const info = document.getElementById("info");
     let snakecolor = "rgb(0, 225, 0)";
-
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let gridsize = 12;
+    let foodid = "";
+    let playerid = "r1c1";
+    let playerids = [];
+    let direction = "right";
+    let score = 0;
+    let gameover = false;
   
     class Food{
         constructor(id, x, y){
@@ -42,10 +85,89 @@
 
         }
     }
+    let tiles = [];
 
-    setInterval(Update, 100);
+    let thehtml = "";
+    for (r = 0; r < gridsize; r++) {
+        thehtml += `<div class="row">`;
+        for (c = 0; c < gridsize; c++) {
+            thehtml += `<div class="tile" id="r${r+1}c${c+1}" style="width: 2em; min-height: 2em"></div>`;
+        };
+        thehtml += `</div>`;
+    };
+    gameboard.innerHTML = thehtml;
+
+    function atefood(){
+        foodid = `r${randomnum(1,gridsize)}c${randomnum(1,gridsize)}`;
+        score++;
+    }
+    atefood();   
+
+    
+
+
+    setInterval(Update, 400);
     function Update(){
+        move(direction);
+        for (r = 1; r <= gridsize; r++) {
+            for (c = 1; c <= gridsize; c++) {
+                document.getElementById(`r${r}c${c}`).style.backgroundColor = "grey";
+            };
+        };
+
+        document.getElementById(foodid).style.backgroundColor = "red";
+        document.getElementById(playerid).style.backgroundColor = "green";
         
+        playerids.slice(1, playerids.length).forEach(p => { 
+            document.getElementById(p).style.backgroundColor = "green";
+            if(p == playerid){gameover = true;}
+        });
+        // if(gameover){alert("gameover"); gameover = false;}
+
+        if(playerid == foodid){atefood()}
+        info.innerHTML = `Length: ${score} | use arrow keys on computer`;
+
+
+
+    }
+    addEventListener('keydown', function(e){
+        if(e.code == "ArrowLeft"){ move("left") }
+        if(e.code == "ArrowRight"){ move("right") }
+        if(e.code == "ArrowUp"){ move("up") }
+        if(e.code == "ArrowDown"){ move("down") }
+    })
+
+    function move(dir){
+        plyrnums = playerid.split("c"); // r1c1
+        let playerr = parseInt(plyrnums[0].replace("r",""));
+        let playerc = parseInt(plyrnums[1].replace("c",""));
+
+        switch(dir) {
+            case "up":
+                if(playerr <= 1){playerr = gridsize;}
+                else{ playerr--; }
+                direction = "up";
+            break;
+            case "down":
+                if(playerr >= gridsize){playerr = 1;}
+                else{ playerr++; }
+                direction = "down";
+            break;
+            case "left":
+                if(playerc <= 1){playerc = gridsize;}
+                else{ playerc--; }
+                direction = "left";
+            break;
+            default:
+                if(playerc >= gridsize){playerc = 1;}
+                else{ playerc++; }
+                direction = "right";
+        };
+        playerid = `r${playerr}c${playerc}`;
+        playerids.push(playerid);
+        if(playerids.length > score){
+            playerids = playerids.slice(1, playerids.length)
+        }
     }
         
 </script> 
