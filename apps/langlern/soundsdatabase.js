@@ -344,6 +344,18 @@
         ],
     info: [""]
 },
+{name: "haitian", 
+    arr: [
+        {letter: "an", sound: "un in drunk", audio: ""},
+        {letter: "en", sound: "en in bent", audio: ""},
+        {letter: "on", sound: "on in wont", audio: ""},
+        {letter: "oun", sound: "oo in moon", audio: ""},
+        {letter: "r", sound: "french r", audio: ""},
+        {letter: "j", sound: "ge in genre", audio: ""},
+        {letter: "l", sound: "light l", audio: ""},
+      ], 
+      info: ["Haitian is written how it's said!", "Don't glide the vowels like owww, just say o"]
+},
 {name: "arabic",
     arr: [
         {letter: "و", sound: "w / u", audio: "u"},
