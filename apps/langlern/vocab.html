@@ -92,11 +92,16 @@ VocabDatabase.forEach(vd => {
     // add ALL WORDS BOX to first/0 
     if(needToAddAllWords){theHTML += `<div class='vocabbox' style='background-color:${thecolor}' onclick="Clicked(this)">All Words</div>`; needToAddAllWords = false; }
 
+    let missing = 0;
     thecolor = "var(--color1)";
         lesnobj.arr.forEach(wrd => { // greys out if lesson has null word / missing words
             // Greys out if no data in lesson
-            if(wrd[currentlang] == null || wrd[currentlang] == ""){thecolor = "grey";}
-        })
+            if(wrd[currentlang] == null || wrd[currentlang] == ""){missing++;}
+        });
+
+        if(missing >= 5){thecolor = "grey";}
+        console.log(`${missing}, ${lesnobj.arr.length}`)
+
         theHTML += `<div class='vocabbox' style='background-color:${thecolor}' onclick="Clicked(this)">${lesnobj.name}</div>`;
     })
     theHTML += `</div>`;
