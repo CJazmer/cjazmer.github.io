@@ -350,11 +350,14 @@
         {letter: "en", sound: "en in bent", audio: ""},
         {letter: "on", sound: "on in wont", audio: ""},
         {letter: "oun", sound: "oo in moon", audio: ""},
+
         {letter: "r", sound: "french r", audio: ""},
         {letter: "j", sound: "ge in genre", audio: ""},
-        {letter: "l", sound: "light l", audio: ""},
+        {letter: "l", sound: "ligher l", audio: ""},
+        {letter: "d", sound: "dz", audio: ""},
+        {letter: "ch", sound: "sh in shut", audio: ""},
       ], 
-      info: ["Haitian is written how it's said!", "Don't glide the vowels like owww, just say o"]
+      info: ["Haitian is written how it's said!", "Stress usually falls on the last syllable", "Don't glide the vowels like owww, just say o"]
 },
 {name: "arabic",
     arr: [
