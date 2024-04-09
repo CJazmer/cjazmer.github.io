@@ -160,7 +160,7 @@ else if (databasename == "primitivetech"){
 else{ 
 	imgpath = "/assets/plants/"
 	ShowImages(plantsdatabase);
-	emojidescription.innerHTML = `🌵 has thorns | 💀 Poisonous to eat | ⚠️ Poisonous to touch | 👃 has sent <br> 🥛 MilkySap | 🪢 Fibers | ☁️ Has Fuzz | 🧠 hallucinogenic`;
+	emojidescription.innerHTML = `🌵 has thorns | 💀 Poisonous to eat | ⚠️ Poisonous to touch | 👃 has sent <br> 🥛 MilkySap | 🪢 Fibers | ☁️ Has Fuzz | 🧠 hallucinogenic | 🌴 Tropical`;
 	emojidescription.innerHTML += `<br><br><span style="background-color: lime; color:black;">Very Common</span> | <span style="background-color: green;color:black;">Common</span> | <span style="background-color: pink; color:black;">Rare</span> | <span style="background-color:purple;">Very Rare</span>`;
 }
 
@@ -195,6 +195,8 @@ function ShowImages(thedatabase){
 	if(p.tags.includes("milkysap")){extra += "🥛";}
 	if(p.tags.includes("fibers")){extra += "🪢";}
 	if(p.tags.includes("hallucinogenic")){extra += "🧠";}
+	if(p.tags.includes("tropical")){extra += "🌴";}
+
 	// Animals / Bugs
 	if(p.tags.includes("water")){extra += "🌊";}
 	if(p.tags.includes("bite")){extra += "🩸";}
