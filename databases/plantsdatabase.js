@@ -1,33 +1,37 @@
+// TAGS: (poisoneat, poisontouch, fibers, sap, fuzz)
+// Commonness: (very common, common, rare, very rare)
+
 const plantsdatabaseweeds = [
-    {name: "Dandelion", sciname: "Taraxacum officinale", family: "daisy", commonness: "very common", tags: "",
+    {name: "Dandelion", sciname: "Taraxacum officinale", family: "daisy", commonness: "very common", tags: "milkysap",
 description: ""},
     {name: "Burdock", sciname: "Arctium lappa", family: "daisy",commonness: "very common", tags: ""},
     {name: "Goldenrod", sciname: "Solidago (group)", family: "daisy", commonness: "very common", tags: ""},
     {name: "Garlic Mustard", sciname: "Alliaria petiolata", family: "mustard", commonness: "very common", tags: ""},
     {name: "Wild Ginger", sciname: "Asarum (group)", family: "birthwort", commonness: "common", tags: ""},
     {name: "Blue Violet", sciname: "", family: "", commonness: "common", tags: ""},
-    {name: "Cattail", sciname: "Typha (group)", family: "cattail", commonness: "common", tags: ""},
+    {name: "Cattail", sciname: "Typha (group)", family: "cattail", commonness: "common", tags: "fuzz"},
     {name: "Broadleaf Plantain", sciname: "Plantago major", family: "plantain", commonness: "very common", tags: ""},
     {name: "Asparagus", sciname: "Asparagus acutifolius", family: "asparagus", commonness: "rare", tags: ""},
     {name: "Red Baneberry", sciname: "Actaea rubra", family: "buttercup", commonness: "rare", tags: "poisoneat"},
     {name: "White Baneberry", sciname: "Actaea pachypoda", family: "buttercup", commonness: "very rare", tags: "poisoneat"},
     {name: "Mayapple", sciname: "Podophyllum peltatum", family: "barberry (Berberidaceae)", commonness: "rare", tags: "mature"},
     {name: "Clear Weed", sciname: "Pilea pumila", family: "nettle", commonness: "common", tags: ""},
-    {name: "Stinging Nettle", sciname: "", family: "nettle", commonness: "very common", tags: "thorns"},
-    {name: "Wood Nettle", sciname: "", family: "nettle", commonness: "common", tags: "thorns"},
+    {name: "Stinging Nettle", sciname: "", family: "nettle", commonness: "very common", tags: "thorns, fibers"},
+    {name: "Wood Nettle", sciname: "", family: "nettle", commonness: "common", tags: "thorns, fibers"},
+    {name: "Dogbane", sciname: "", family: "dogbane", commonness: "", tags: "fibers, milkysap"},
     {name: "Purslane", sciname: "Portulaca oleracea", family: "", commonness: "very common", tags: ""},
-    {name: "Spotted Spurge", sciname: "", family: "", commonness: "very common", tags: "toxic"},
+    {name: "Spotted Spurge", sciname: "", family: "spruge (Euphorbiaceae)", commonness: "very common", tags: "toxic, milkysap"},
     {name: "Sarsaparilla", sciname: "Aralia nudicaulis", family: "Araliaceae", commonness: "common", tags: ""},
     {name: "Woodsorrel", sciname: "Oxalis (group)", family: "", commonness: "very \common", tags: ""},
     {name: "Wild Carrot", sciname: "", family: "", commonness: "very common", tags: ""},
     {name: "Wild Parsnip", sciname: "", family: "", commonness: "common", tags: "poisonsap"},
-    {name: "Wild Lettuce", sciname: "", family: "", commonness: "common", tags: ""},
+    {name: "Wild Lettuce", sciname: "", family: "", commonness: "common", tags: "milkysap"},
     {name: "Buckthorn", sciname: "", family: "", commonness: "very common", tags: "toxic"},
     {name: "Witch Hazel", sciname: "", family: "", commonness: "very common", tags: ""},
     {name: "Yarrow", sciname: "Achillea millefolium", family: "daisy", commonness: "rare", tags: ""},
     {name: "Velvet Leaf", sciname: "Abutilon theophrasti", family: "Malvaceae", commonness: "common", tags: ""},
-    {name: "Yellow Salsify", sciname: "Tragopogon dubius", family: "", commonness: "rare", tags: ""},
-    {name: "Creeping Thistle", sciname: "Cirsium arvense", family: "daisy", commonness: "very common", tags: "thorns"},
+    {name: "Yellow Salsify", sciname: "Tragopogon dubius", family: "", commonness: "rare", tags: "fuzz"},
+    {name: "Creeping Thistle", sciname: "Cirsium arvense", family: "daisy", commonness: "very common", tags: "thorns, fuzz"},
     {name: "Sow Thistle", sciname: "Sonchus (group)", family: "daisy", commonness: "common", tags: ""},
     {name: "Globe Thistle", sciname: "Sonchus (group)", family: "daisy", commonness: "rare", tags: ""},
     {name: "Wild Strawberry", sciname: "Fragaria vesca", family: "rose (Rosaceae)", commonness: "common", tags: ""},
@@ -36,7 +40,7 @@ description: ""},
     {name: "Enchanters Nightshade", sciname: "Circaea lutetiana", family: "willowherb (Onagraceae)", commonness: "very common", tags: "toxic"},
     {name: "Mullein", sciname: "Verbascum thapsus", family: "figwort", commonness: "common", tags: ""},
     {name: "Motherwort", sciname: "Leonurus cardiaca", family: "mint", commonness: "", tags: ""},
-    {name: "Milkweed", sciname: "Asclepias (group)", family: "dogbane", commonness: "very common", tags: ""},
+    {name: "Milkweed", sciname: "Asclepias (group)", family: "dogbane", commonness: "very common", tags: "fibers, milkysap"},
     {name: "Horseweed", sciname: "Conyza canadensis", family: "daisy", commonness: "common", tags: ""},
     {name: "Curly Dock", sciname: "Rumex crispus", family: "knotweed", commonness: "rare", tags: ""},
     {name: "Bedstraw", sciname: "Galium (group)", family: "bedstraw", commonness: "common", tags: ""},
@@ -51,6 +55,8 @@ description: ""},
     {name: "Beebalm", sciname: "", family: "mint", commonness: "common", tags: "sent"},
     {name: "Birdsfoot Trefoil", sciname: "", family: "", commonness: "common", tags: ""},
     {name: "Blackberry", sciname: "Rubus ursinus", family: "rose (Rosaceae)", commonness: "common", tags: "thorns"},
+    {name: "Red Raspberry", sciname: "", family: "", commonness: "common", tags: "thorns"},
+    {name: "Black Raspberry", sciname: "", family: "", commonness: "common", tags: "thorns"},
     {name: "Black Eyed Susan", sciname: "", family: "", commonness: "commmon", tags: ""},
     {name: "Canadian Honewort", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Chives", sciname: "", family: "", commonness: "rare", tags: "sent"},
@@ -93,12 +99,15 @@ const plantsdatabasevines = [
 const plantsdatabasemushrooms = [
     {name: "Artistconk", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Destroying Angel", sciname: "", family: "", commonness: "", tags: "poisoneat"},
-    {name: "Pearshaped Puffball", sciname: "", family: "", commonness: "", tags: ""},
+    {name: "Chanterelle", sciname: "", family: "", commonness: "", tags: ""},
+    {name: "Pearshaped Puffball", sciname: "", family: "", commonness: "very common", tags: ""},
     {name: "Shaggy Scalycap", sciname: "", family: "", commonness: "", tags: "poisoneat"},
+    {name: "Hoof Fungus", sciname: "", family: "", commonness: "", tags: ""},
+    {name: "Lumpy Bracket", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Turkey Tail", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Aspen Bracket", sciname: "", family: "", commonness: "", tags: ""},
-    {name: "Hoof Fungus", sciname: "", family: "", commonness: "", tags: ""},
     {name: "Blushing Bracket", sciname: "", family: "", commonness: "", tags: ""},
+    {name: "Fly Agaric", sciname: "", family: "", commonness: "", tags: "poisoneat, hallucinogenic"},
 ]
 const plantsdatabasetrees = [
     {name: "White Oak", sciname: "Quercus alba", family: "Fagaceae", commonness: "", tags: ""},
@@ -120,6 +129,12 @@ const plantsdatabasetrees = [
     {name: "Horse Chestnut", sciname: "Aesculus hippocastanum", family: "soapberry", commonness: "", tags: ""},
     {name: "Crab Apple", sciname: "", family: "", commonness: "", tags: ""},
     {name: "White Mulberry", sciname: "Morus alba", family: "mulberry (Moraceae)", commonness: "", tags: ""},
+    {name: "Cabbage Palm", sciname: "", family: "", commonness: "", description: "Sabal/Cabbage palm has 'boots' on trunk that fall off when older", tags: "tropical"},
+    {name: "foxtail Palm", sciname: "", family: "", commonness: "", tags: "tropical"},
+    {name: "Bismarck Palm", sciname: "", family: "", commonness: "", tags: "tropical"},
+    {name: "California Palm", sciname: "", family: "", commonness: "", tags: "tropical"},
+    {name: "Phoenix Palm", sciname: "", family: "", commonness: "", tags: "tropical"},
+    {name: "Spanish Moss", sciname: "", family: "", commonness: "common", description: "", tags: "tropical"},
 
 ]
 const plantsdatabaseother = [
@@ -136,4 +151,7 @@ const plantsdatabase = [
     {tablename: "mushroom", table: plantsdatabasemushrooms, description: ""},
     {tablename: "other", table: plantsdatabaseother, description: "Mold, Bacteria..."},
 ]
-// Commonness (very common, common, rare, very rare)
+
+const plantsdatabasefamilies = [
+    {name: "nettle"}
+]
