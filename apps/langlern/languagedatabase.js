@@ -1,6 +1,10 @@
 // Leave blank "" lesson will be incomplete
 // Put "..." word does not exist
 // Put ||
+// Universal app Functions
+function randomnum(minn, maxx){
+  return Math.floor(Math.random() * (maxx - minn + 1)) + minn
+}
 
 
 const Spanishlessonobjs = [
@@ -620,7 +624,7 @@ const vAnimals = [
     {english: "arabic", spanish: "árabe", german: "Arabisch", swedish: "arabiska", russian: "арабский"},
   ];
   const vFamily = [
-    {english: "family", spanish: "la familia", german: "", swedish: "", russian: "", haitian: "fanmi"},
+    {english: "family", spanish: "la familia", german: "die Familie", swedish: "", russian: "", haitian: "fanmi"},
     {english: "dad", spanish: "el padre", german: "der Papa", swedish: "en pappa", russian: "па́па"},
     {english: "mom", spanish: "madre", german: "die Mama", swedish: "en mamma", russian: "ма́ма"},
     {english: "brother", spanish: "el hermano", german: "der Bruder", swedish: "en bror", russian: "брат", haitian: "frè"},
@@ -780,12 +784,12 @@ const vAnimals = [
     {english: "to speak", spanish: "hablar", german: "sprechen", swedish: "tala (talar)", russian: "говори́ть", arabic: "تكلم", haitian: "pale"},
     {english: "to use", spanish: "usar", german: "benutzen", swedish: "använda (använder)", russian: ""},
     {english: "to learn", spanish: "aprender", german: "lernen", swedish: "lära (lär sig)", russian: "", arabic: "تعلم", haitian: "aprann"},
-    {english: "to understand", spanish: "entender", german: "", swedish: "", russian: "", arabic: "فهم", haitian: "konprann"},
+    {english: "to understand", spanish: "entender", german: "verstehen", swedish: "", russian: "", arabic: "فهم", haitian: "konprann"},
     {english: "to practice", spanish: "praticar", german: "üben", swedish: "träna (tränar)", russian: "", haitian: "pratike"},
     {english: "to work", spanish: "trabajar", german: "arbeiten", swedish: "jobbar", russian: "рабо́тать", arabic: "عمل", hawaiian: "hana", haitian: "travay"},
-    {english: "to go", spanish: "ir", german: "", swedish: "", russian: "", arabic: "", hawaiian: "hele", haitian: "ale"},
+    {english: "to go", spanish: "ir", german: "gehen", swedish: "", russian: "", arabic: "", hawaiian: "hele", haitian: "ale"},
     {english: "to help", spanish: "ayudar", german: "helfen", swedish: "hjälpa (hjälper)", russian: "помогать", arabic: "ساعد", haitian: "ede"},
-    {english: "to try", spanish: "intentar", german: "", swedish: "", russian: "", arabic: "", haitian: "eseye"},
+    {english: "to try/attempt", spanish: "intentar", german: "versuchen", swedish: "", russian: "", arabic: "", haitian: "eseye"},
     {english: "to like", spanish: "gustar", german: "mögen", swedish: "gilla (gillar)", russian: "", haitian: "renmen"},
     {english: "to hear", spanish: "escuchar", german: "hören", swedish: "höra (hör)", russian: "", arabic: "سمع", haitian: "tande"},
     {english: "to able to", spanish: "poder (pon)", german: "können", swedish: "kan", russian: ""},
@@ -793,7 +797,7 @@ const vAnimals = [
     {english: "to see", spanish: "ver", german: "sehen", swedish: "ser", russian: "ви́деть", arabic: "رَأى"},
     {english: "to buy", spanish: "comprar", german: "kaufen", swedish: "köpa (köper)", russian: "", arabic: "شتري", haitian: "achte"},
     {english: "to sell", spanish: "vender", german: "verkaufen", swedish: "sälja (säljer)", russian: "продавать (прода)", arabic: "بيع"},
-    {english: "to love", spanish: "", german: "", swedish: "", russian: "", arabic: "", haitian: "renmen"},
+    {english: "to love", spanish: "amar", german: "lieben", swedish: "", russian: "", arabic: "", haitian: "renmen"},
   ];
   const vVerbs2 = [
     {english: "to sleep", spanish: "dormir (duer)", german: "schlafen", russian: "спать", arabic: "نام", haitian: "dòmi"},
@@ -821,8 +825,8 @@ const vAnimals = [
     {english: "to find", spanish: "encontrar", german: "finden", swedish: "hitta", russian: "...", arabic: "جد", haitian: "jwenn"},
     {english: "open", spanish: "abrir", german: "öffnen", arabic: "فتح"},
     {english: "close", spanish: "cerrar", german: "schließen"},
-    {english: "to die", spanish: "morir", german: "", russian: "", arabic: "ماتَ"},
-    {english: "to attack", spanish: "atacar", german: "", russian: "напасть", arabic: ""},
+    {english: "to die", spanish: "morir", german: "sterben", russian: "", arabic: "ماتَ"},
+    {english: "to attack", spanish: "atacar", german: "angreifen", russian: "напасть", arabic: ""},
 
 
     /*
@@ -839,8 +843,8 @@ const vAnimals = [
     {english: "to take off/out", spanish: "sacar", german: "entfernen"},
     {english: "to cover", spanish: "cubrir", german: "decken"},
     {english: "to crack, rip, tear", spanish: "rayar", tags: ""},
-    {english: "to win", spanish: "ganar", tags: ""},
-    {english: "to lose", spanish: "pedir", tags: ""},
+    {english: "to win", spanish: "ganar", german: "gewinnen", tags: ""},
+    {english: "to lose", spanish: "pedir", german: "verlieren", tags: ""},
     {english: "to bend/fold/turn", spanish: "doblar", tags: ""},
 
     // Extra
@@ -904,8 +908,8 @@ const vAnimals = [
     {english: "ugly", spanish: "feo", german: "hässlich", russian: "уродливый"},
     {english: "new", spanish: "nuevo", german: "neu", russian: "новый"},
     {english: "old", spanish: "viejo", german: "alt", russian: "старый"},
-    {english: "best", spanish: "mejor", german: "", russian: "лучший"},
-    {english: "worst", spanish: "peor", german: "", russian: "худший"},
+    {english: "best", spanish: "mejor", german: "beste", russian: "лучший"},
+    {english: "worst", spanish: "peor", german: "schlimmste", russian: "худший"},
     {english: "important", spanish: "importante", german: "wichtig", russian: "важный"},
     {english: "spicy", spanish: "picante/pico", german: "scharf", russian: "острый"},
     {english: "sweet", spanish: "dulce", german: "süß", swedish: "söt", russian: "сладкий"},
@@ -917,13 +921,13 @@ const vAnimals = [
     {english: "cheap", spanish: "barato", german: "billig", russian: "дешевый"},
   ];
   const vAdjectives2 = [ 
-    {english: "close", spanish: "cerca", german: "", russian: "близко"},
-    {english: "far", spanish: "lejos", german: "", russian: "далеко"},
+    {english: "close", spanish: "cerca", german: "nah", russian: "близко"},
+    {english: "far", spanish: "lejos", german: "weit", russian: "далеко"},
     {english: "hard/solid", spanish: "duro", german: "", russian: "..."},
-    {english: "heavy", spanish: "", german: "", russian: "..."},
-    {english: "soft", spanish: "suave", german: "", russian: "мягкий"},
-    {english: "light, not heavy", spanish: "", german: "", russian: ""},
-    {english: "wet", spanish: "mojado", german: "", russian: ""},
+    {english: "heavy", spanish: "pesado", german: "schwer", russian: "..."},
+    {english: "soft", spanish: "suave", german: "weich", russian: "мягкий"},
+    {english: "lightweight", spanish: "", german: "", russian: ""},
+    {english: "wet", spanish: "mojado", german: "nass", russian: ""},
 
     {english: "high", spanish: "alto", german: "", russian: "высокий"},
     {english: "low", spanish: "bajo", german: "", russian: "низкий"},
