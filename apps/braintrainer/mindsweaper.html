@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>MindSweep</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="">
+	<meta name="keywords" content="music">
+<style>   
+#gamediv{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+} 
+.square{
+    width: 2em;
+    height: 2em;
+    background-color: azure;
+    border: .2em solid black;
+    color:black;
+    text-align: center;
+    font-weight: bolder;
+}
+</style>
+</head>
+
+<body>
+		<div class="wrapper" style="background: linear-gradient(to right, #ff6a00 0%, #ff3300 100%);">
+            <div id="layoutpagenav"></div>
+
+                <div id="gamediv"></div>
+               
+            
+            
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js" integrity="sha512-jduERlz7En1IUZR54bqzpNI64AbffZWR//KJgF71SJ8D8/liKFZ+s1RxmUmB+bhCnIfzebdZsULwOrbVB5f3nQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/layout.js"></script>
+<script>
+    // h = from HTML
+    const gamediv = document.getElementById("gamediv");
+    let gridsize = 10;
+    let squareObjsArr = [];
+
+    class Square{
+        constructor(id){
+            this.id = id;
+            this.isBomb = false;
+            this.isClicked = false;
+            this.probability = 0;
+            this.nextToClicked = false;
+
+        }
+        UpdateProbability(){
+            // r22c8 id example, separte it
+            let rloc = 0;
+            let cloc = this.id.indexOf('c');
+
+            let row = parseInt(this.id.slice(0+1, cloc));
+            let col = parseInt(this.id.slice(cloc+1, cloc.length));
+
+            let surroundSquares = [];
+
+            // left
+            surroundSquares.push(idToSquareObj(`r${row}c${col-1}`));
+
+            // right
+            surroundSquares.push(idToSquareObj(`r${row}c${col+1}`));
+
+            // up
+            surroundSquares.push(idToSquareObj(`r${row-1}c${col+1}`));
+            surroundSquares.push(idToSquareObj(`r${row-1}c${col}`));
+            surroundSquares.push(idToSquareObj(`r${row-1}c${col-1}`));
+
+            // down
+            surroundSquares.push(idToSquareObj(`r${row+1}c${col+1}`));
+            surroundSquares.push(idToSquareObj(`r${row+1}c${col}`));
+            surroundSquares.push(idToSquareObj(`r${row+1}c${col-1}`));
+
+            console.log(surroundSquares.map(s => s.isClicked));
+
+            //more efficent way??
+            let amountClicked = 0;
+            surroundSquares.forEach(s => {if(s.isClicked){amountClicked++}});
+
+            this.probability = 0;
+            surroundSquares.forEach(s => {
+                s.nextToClicked = true;
+                s.probability = amountClicked/surroundSquares.length;
+            });
+            console.log(`${amountClicked} ${surroundSquares.length}`);
+
+        }
+    }
+
+    Reset();
+    function Reset(){
+        // Make Board, Assign IDs 'r0c0'
+        let theHTML = "";
+        for (i = 0; i < gridsize; i++) {
+            theHTML += "<div class='row'>";
+            for(j = 0; j < gridsize; j++){
+                theHTML += `<div id='r${j}c${i}' class='square' onclick='squareClicked(this.id)'></div>`;
+                squareObjsArr.push(new Square(`r${j}c${i}`));
+            }
+            theHTML += "</div>";
+        }
+        gamediv.innerHTML = theHTML;
+
+        // BOMBS, bomb amount same as grid size
+        for (i = 0; i < gridsize; i++) {
+            squareObjsArr[randomnum(0,squareObjsArr.length-1)].isBomb = true;
+        }
+
+        console.log(`BOMBS: ${getBombs().map(i => i.id)}`)
+    }
+
+    function getBombs(){
+        let r = [];
+        squareObjsArr.forEach(square => {
+            if(square.isBomb){
+                r.push(square);
+            }
+        })
+        return r;
+    }
+
+    // id to obj
+    function idToSquareObj(sqID){
+        let r = null;
+        squareObjsArr.forEach(square => {
+            if(square.id == sqID){
+                r = square;
+            }
+            
+        })
+        return r;
+    }
+
+    function UpdateScreen(){
+        squareObjsArr.forEach(square => {
+            squareDiv = document.getElementById(square.id);
+
+            if(square.isClicked){
+                square.UpdateProbability()
+                squareDiv.style.backgroundColor = "Grey";
+                squareDiv.innerHTML = square.probability;
+
+                if(square.isBomb){
+                    squareDiv.style.backgroundColor = "Red";
+                }
+            }
+            if(square.nextToClicked){
+                squareDiv.innerHTML = square.probability;
+                //squareDiv.style.backgroundColor = "Yellow";
+            }
+            
+        })
+    }
+
+    
+    function squareClicked(sqID){
+        const clickedSquare = document.getElementById(sqID);
+        const squareObj = idToSquareObj(sqID);
+        squareObj.isClicked = true;
+
+        if(squareObj.isBomb){
+            GameOver();
+            alert("Boom Game Over");
+        }
+        else{
+            UpdateScreen();
+        }
+    }
+
+    function GameOver(){
+        squareObjsArr.forEach(square => {
+            const squareDiv = document.getElementById(square.id);
+
+            if(square.isClicked){
+                squareDiv.style.backgroundColor = "Grey";
+            }
+            if(square.isBomb){
+                squareDiv.style.backgroundColor = "Red";
+            }
+        })
+    }
+    
+</script> 
