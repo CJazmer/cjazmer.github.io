@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Finance Tracker</title>
+	<meta name="author" content="Conner Jasmer">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<style>
+		.wrapper{
+            background-color:#302b2b;
+            min-height: 10em;
+        }
+        #productBoxsDiv{
+            width: 100%;
+            min-height: 8em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .productBox{
+            background-color:#7c6060;
+            border: .2em solid black;
+            width: 10em;
+            height: 7.5em;
+            margin: .5em;
+            flex-wrap: nowrap;
+            position: relative;
+        }
+        .productBoxRow{
+            width: 100%;
+            flex-wrap: nowrap;
+            display: flex;
+        }
+        .productBoxRow button{
+            width: 96%;
+        }
+        .buyButton{
+            background-color: #a37d7d;
+            width: 4em;
+            height: 3em;
+            color: white;
+        }
+        #transactionsDiv{
+            min-height: 12em;
+            max-height: 20em;
+            background-color: #423a3a;
+            overflow-x:auto;
+        }
+        .transactionRow{
+            width: 100%;
+            height: 3em;
+            display: flex;
+            background-color: #695555;
+            align-items: center;
+            border: 1px solid black;
+            color: white;
+            padding-left: 1em;
+        }
+        .rowInfo{
+            width: 8em;
+        }
+        .rowInput{
+            width: 100%;
+        }
+        .deleteButton{
+            background-color: lightcoral;
+            width: 2em;
+            height: 1.2em;
+        }
+        #addButton{
+            background-color: lightgreen;
+            width: 4em;
+            height: 1.2em;
+        }
+        #addProductDiv{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        #addProductDiv input{
+            width: 40%;
+        }
+        .money{
+            color:rgb(131, 255, 131)
+        }
+        .boxAmountInput{
+            background-color: lightskyblue;
+            width: 45%;
+        }
+        .boxPriceInput{
+            background-color: lightgreen;
+            width: 45%;
+        }
+        .boxDeleteButton{
+            background-color: lightcoral;
+            height: 1em;
+            width: 1.4em;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0 0 1em 0;
+            z-index: 10;
+        }
+        #totalInfo{
+            background-color: #a37d7d;
+            height: 1.5em;
+            width: 100%;
+            text-align: center;
+            color:white;
+            font-weight: 900;
+        }
+        #resetAndSaveButtonsDiv{
+            width: 100%;
+            padding: .1em;
+            background-color:#695555;
+        }
+        #resetAndSaveButtonsDiv button{
+            width: 49%;
+            height: 2em;
+            background-color: #a37d7d;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layoutpagenav"></div>
+    <div class="wrapper">
+
+        <div id='addProductDiv'>
+            <input class='rowInput' placeholder='item' id="productNameInput">
+            <input type="number" class='rowInput' placeholder='$price' id="productPriceInput">
+            <button id='addButton' onclick='addProduct()'>+</button>
+        </div>
+        <div id="productBoxsDiv"></div>
+
+        <div id="totalInfo"></div>
+        <div id="transactionsDiv"></div>
+        <div id="resetAndSaveButtonsDiv">
+            <button onclick="ResetAll()">Reset</button>
+            <button onclick="Save()">Save (CSV)</button>
+        </div>
+    
+            <footer></footer>
+		</div>
+</body>
+</html>
+
+<!-- -------------------------Javascript------------------------- -->
+<script src="../../layout.js"></script>
+<script>
+    const productBoxsDiv = document.getElementById("productBoxsDiv");
+    const transactionsDiv = document.getElementById("transactionsDiv");
+    const productsDiv = document.getElementById("productsDiv");
+    const productPriceInput = document.getElementById("productPriceInput");
+    const productNameInput = document.getElementById("productNameInput");
+    const totalInfo = document.getElementById("totalInfo");
+
+    let transactionsArray = []; // {id:, name:, price:}
+    let productArray = [];
+
+    // {name: "coaster", price: 10}
+    class Product{
+        constructor(name, price, amount){
+            this.name = name;
+            this.price = price;
+            this.amount = amount;
+        }
+    }
+
+    class Transaction{
+        constructor(id, name, price){
+            this.id = id;
+            this.name = name;
+            this.price = price;
+        }
+    }
+
+    productNameInput.value = 'coaster';
+    productPriceInput.value = 15;
+    UpdateScreen();
+    function UpdateScreen(){
+        // BuyButtons setup
+        let theHTML = '';
+        productArray.forEach(product => {
+            theHTML += `
+            <div class="productBox">
+                <div class="productBoxRow"><button class='buyButton' onclick="addTransaction('${product.name}','${product.price}')">${product.name}</button></div>
+                <div class="productBoxRow"><input value="${product.price}" class="boxPriceInput" onchange="priceChanged(this.value,'${product.name}')"><input value="${product.amount}" class="boxAmountInput" onchange="amountChanged(this.value,'${product.name}')"></div>
+                <div class='productBoxRow'><p class="money">$${product.price*product.amount}</p></div>
+                <button class="boxDeleteButton" onclick="removeProduct('${product.name}')">-</button>
+            </div>
+            `;
+        });
+        productBoxsDiv.innerHTML = theHTML;
+
+        // Transactions Div setup
+        theHTML = '';
+        transactionsArray.reverse().forEach(transaction => {
+            theHTML += `
+            <div class='transactionRow'>
+                <div class='rowInfo'><p>${transaction.name}</p></div>
+                <div class='rowInfo'><p class="money">+$${transaction.price}</p></div>
+                <button class='deleteButton' onclick='removeTransaction(${transaction.id})'>-</button>
+            </div>`;
+        })
+
+        // update transaction ids, ensure theyre right order if deleted
+        transactionsDiv.innerHTML = theHTML;
+        for(i=0; i<transactionsArray.length; i++){
+            transactionsArray[i].id = i;
+        }
+
+        let totalEarned = 0;
+        transactionsArray.forEach(transaction => {
+            totalEarned += transaction.price;
+        })
+        totalInfo.innerHTML = `${transactionsArray.length} sales [+$${totalEarned}]`;
+    }
+
+    function addProduct(){
+        if(!productNameInput.value || !productPriceInput.value){
+            alert('enter item name AND price...')
+        }
+        else {
+            let p = new Product(productNameInput.value, productPriceInput.value, 1);
+            productArray.push(p);
+            console.log(`Product '${productNameInput.value}' for ${productNameInput.value} added`);
+            UpdateScreen();
+        }
+    }
+
+    function addTransaction(name, price){
+        let o = new Transaction(transactionsArray.length, name, parseFloat(price));
+        transactionsArray.push(o);
+        UpdateScreen();
+    }
+    function removeTransaction(theID){
+        transactionsArray.splice(theID, 1);
+        UpdateScreen();
+    }
+    function removeProduct(name){
+        let pIndex = 0;
+        for(i=0; i<productArray.length; i++){
+            if(productArray[i].name == name){
+                productArray.splice(i, 1);
+            }
+        }
+        UpdateScreen();
+    }
+    function getProductByName(name){
+        r = null;
+        productArray.forEach(product => {
+            if(product.name == name){r = product}
+        })
+        return r;
+    }
+    // when product price green input box changed
+    function priceChanged(price, objName){
+        getProductByName(objName).price = parseFloat(price);
+        console.log(`${objName} price changed to ${price}`);
+        UpdateScreen();
+    }
+    // when product amount blue input box changed
+    function amountChanged(amount, objName){
+        getProductByName(objName).amount = amount;
+        console.log(`${objName} price changed to ${amount}`);
+        UpdateScreen();
+    }
+    function ResetAll(){
+        if (confirm("Reset App??") == true) {
+            productArray = [];
+            transactionsArray = [];
+            UpdateScreen();
+            console.log('app reset');
+        }
+    }
+    function Save(){
+        let totalprice = 0;
+        transactionsArray.map(p => totalprice += p.price);
+        
+        const description = [
+            `#${new Date().toLocaleDateString()} | $${totalprice} total | ${transactionsArray.length} sales
+            \n# Columns: name | price`
+        ];
+        const header = 'name,price';
+        const rows = transactionsArray.map(obj => `${obj.name},${obj.price}`);
+        const csvContent = [...description, header, ...rows].join('\n');
+
+        // Trigger CSV file download
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'transactions.csv';
+        link.click();
+    }
+</script>
